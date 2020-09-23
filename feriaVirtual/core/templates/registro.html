@@ -3,55 +3,228 @@
 {% block title %}Registro{% endblock %}
 
 {% block content %}
-<div class="registro_contenedor centrar-contenedor">
-    
-    <div class="ventana_registro">
-        <div class="ventana-titulo">
-            <h2 class="ventana-titulo__h1">Formulario de Registro</h2>
-        </div>
 
-        <div class="formulario_registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            <input type="text" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Rut o Pasaporte">
-            <div class="centrar-contenedor">
-                <p class="font-lato mx-4">Es pasaporte?</p>
-                <input type="checkbox" class="formulario-registro__checkbox">
-            </div>
-            <input type="date" class="formulario-registro__input focus:outline-none appearance-none focus:outline-none focus:border-orange-500" placeholder="Fecha de Nacimiento">
-
-            <input type="text" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Nombre">
-            <input type="text" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Apellido Paterno">
-            <input type="text" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Apellido Materno">
-
-            <input type="email" class="formulario-registro__input focus:outline-none col-span-2 focus:border-orange-500" placeholder="Correo Electronico">
-            <input type="number" class="formulario-registro__input focus:outline-none appearance-none focus:border-orange-500" placeholder="9 5511 4581">
-
-            <input type="text" class="formulario-registro__input focus:outline-none col-span-3 focus:border-orange-500" placeholder="Direccion">
-            
-            <div class="contenedor-select">
-                <select class="formulario-registro__select focus:outline-none focus:border-orange-500">
-                    <option>Region</option>
-                </select>
-                <i class="fas fa-angle-down absolute right-0 mr-2"></i>
-            </div>
-            <div class="contenedor-select">
-                <select class="formulario-registro__select focus:outline-none focus:border-orange-500">
-                    <option>Provincia</option>
-                </select>
-                <i class="fas fa-angle-down absolute right-0 mr-2"></i>
-            </div>
-            <div class="contenedor-select">
-                <select class="formulario-registro__select focus:outline-none focus:border-orange-500">
-                    <option>Comuna</option>
-                </select>
-                <i class="fas fa-angle-down absolute right-0 mr-2"></i>
-            </div>
-            
-            <input type="password" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Contraseña">
-            <input type="password" class="formulario-registro__input focus:outline-none focus:border-orange-500" placeholder="Repita Contraseña">
-
-            <button type="submit" class="formulario-login__btn btn col-span-3 m-2 my-4">Registrarse</button>
-        </div>
-    </div>
+<div class="registro-contenedor centrar-contenedor">
+	<div class="ventana-registro">
+		<div class="ventana-titulo">
+			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
+		</div>
+		<form id="registro-formulario" action="">
+			<div class="formulario-registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				<!-- Identificacion -->
+				<div class="registro-contenedor-inputs">
+					<input id="registro-rut" name="registro-rut" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Rut o Pasaporte" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">El Rut ingresado no es valido. En caso de
+							ser
+							el numero de pasaporte, favor activar la opcion "Es Pasaporte?".</span>
+					</div>
+				</div>
+				<div class="registro-contenedor-checkboxs flex justify-center">
+					<p class="font-lato m-4">Es pasaporte?</p>
+					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
+						class="registro-contenedor-checkboxs__checkbox" />
+				</div>
+				<div class="registro-contenedor-inputs">
+					<input id="registro-fecha" name="registro-fecha" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none appearance-none focus:outline-none focus:border-orange-500"
+						placeholder="Fecha de Nacimiento" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
+							{{ fechaActual }}.</span>
+					</div>
+				</div>
+				<!-- Nombre Completo -->
+				<div class="registro-contenedor-inputs">
+					<input id="registro-nombre" name="registro-nombre" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Nombre" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
+							alfabeticos.</span>
+					</div>
+				</div>
+				<div class="registro-contenedor-inputs">
+					<input id="registro-Paterno" name="registro-Paterno" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Apellido Paterno" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
+							alfabeticos.</span>
+					</div>
+				</div>
+				<div class="registro-contenedor-inputs">
+					<input id="registro-materno" name="registro-materno" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Apellido Materno" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
+							alfabeticos.</span>
+					</div>
+				</div>
+				<!-- Correo y Numero -->
+				<div class="registro-contenedor-inputs lg:col-span-2">
+					<input id="registro-correo" name="registro-correo" type="email"
+						class="registro-contenedor-inputs__input lg:w-full focus:outline-none focus:border-orange-500"
+						placeholder="Correo Electronico" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
+							caracteres alfanumericos, guiones o puntos.</span>
+					</div>
+				</div>
+				<div class="registro-contenedor-inputs">
+					<input id="registro-celular" name="registro-celular" type="text"
+						class="registro-contenedor-inputs__input focus:outline-none appearance-none focus:border-orange-500"
+						placeholder="Numero de Telefono" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
+							56 9 XXXX XXXX</span>
+					</div>
+				</div>
+				<!-- Direccion -->
+				<div class="registro-contenedor-inputs lg:col-span-3">
+					<input id="registro-direccion" name="registro-direccion" type="text"
+						class="registro-contenedor-inputs__input lg:w-full focus:outline-none focus:border-orange-500"
+						placeholder="Direccion" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
+							alfabeticos.</span>
+					</div>
+				</div>
+				<!-- Selects -->
+				<div class="registro-contenedor-selects">
+					<select id="registro-region" name="registro-region"
+						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						<option selected="true" disabled="disabled">Selecciona Region</option>
+					</select>
+					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
+				</div>
+				<div class="registro-contenedor-selects">
+					<select id="registro-provincia" name="registro-provincia"
+						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						<option selected="true" disabled="disabled">Selecciona Provincia</option>
+					</select>
+					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
+				</div>
+				<div class="registro-contenedor-selects">
+					<select id="registro-comuna" name="registro-comuna"
+						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						<option selected="true" disabled="disabled">Selecciona Comuna</option>
+					</select>
+					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
+				</div>
+				<!-- Contrasenia -->
+				<div class="registro-contenedor-inputs">
+					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Contraseña" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">La contrasenia debe contener de 6 a 12
+							caracteres.</span>
+					</div>
+				</div>
+				<div class="registro-contenedor-inputs">
+					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
+						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						placeholder="Repita Contraseña" />
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
+					</div>
+				</div>
+				<!-- Btn -->
+				<div class="registro-contenedor-btns md:col-span-2 lg:col-span-3">
+					<button type="submit" class="formulario-login__btn btn w-full">
+						Registrarse
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
+
+<script>
+	// Inicio DatePicker JQuery
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+			'Noviembre', 'Diciembre'
+		],
+		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+
+	$('#registro-fecha').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "+0D"
+	});
+	// Fin DatePicker JQuery
+
+
+	// Inicio Select Select2
+	$(document).ready(function () {
+
+		$("#registro-region").select2({
+			placeholder: "",
+			language: {
+				noResults: function () {
+
+					return "No hay resultado";
+				},
+				searching: function () {
+
+					return "Buscando..";
+				}
+			},
+			theme: "default registro-contenedor-selects__select"
+		});
+
+		$("#registro-provincia").select2({
+			placeholder: "",
+			language: {
+				noResults: function () {
+
+					return "No hay resultado";
+				},
+				searching: function () {
+
+					return "Buscando..";
+				}
+			},
+			theme: "default registro-contenedor-selects__select"
+		});
+
+		$("#registro-comuna").select2({
+			placeholder: "",
+			language: {
+				noResults: function () {
+
+					return "No hay resultado";
+				},
+				searching: function () {
+
+					return "Buscando..";
+				}
+			},
+			theme: "default registro-contenedor-selects__select"
+		});
+
+	});
+	// Fin Select Select2
+</script>
 
 {% endblock %}

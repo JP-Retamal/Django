@@ -10,12 +10,21 @@
             <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
         </div>
         <div class="formulario-login">
-        <input type="email" class="formulario-login__input focus:outline-none focus:border-orange-500" placeholder="Correo Electrónico">
-            <input type="password" class="formulario-login__input focus:outline-none focus:border-orange-500" placeholder="Contraseña">
+            <input id="login-correo" name="login-correo" type="email" class="formulario-login__input focus:outline-none focus:border-orange-500"
+                placeholder="Correo Electrónico">
+            <input id="login-contrasenia" name="login-contrasenia" type="password" class="formulario-login__input focus:outline-none focus:border-orange-500"
+                placeholder="Contraseña">
+            <div class="contenedor-inputs-error">
+                <span class="contenedor-inputs-error__span">Debe completar todos los campos.</span>
+            </div>
+            <div class="contenedor-inputs-error">
+                <span class="contenedor-inputs-error__span">Correo electronico o contrasenia no son correctos.</span>
+            </div>
             <button type="submit" class="formulario-login__btn btn">Entrar</button>
         </div>
         <div class="enlace-sign">
-            <span class="enlace-sign__span">¿No posees cuenta? <a href="#" class="enlace-sign__a">Puedes registrarte aquí.</a></span>
+            <span class="enlace-sign__span">¿No posees cuenta? <a href="#" class="enlace-sign__a">Puedes registrarte
+                    aquí.</a></span>
         </div>
     </div>
 </div>

@@ -371,33 +371,50 @@ h6{
     /* =====================================Registro====================================== */
 
 .registro-contenedor{
-    @apply h-screen;
     background: url('../img/bg.jpg');
     background-size: cover;
+    min-height:100vh;
 }
 
 .ventana-registro{
     @apply bg-white;
     @apply rounded-lg;
-    @apply mx-5 px-5;
+    @apply m-4 px-4;
     min-width: 50%;
 }
 
-.formulario-registro__input{
-    @apply bg-gray-100 p-2 m-2 border-2 rounded-lg;
-
+.registro-contenedor-inputs{
+    @apply m-2;
 }
 
-.formulario-registro__checkbox{
+.registro-contenedor-inputs__input{
+    @apply bg-gray-100 border-2 rounded-lg;
+    @apply w-full;
+    @apply p-2;
+}
+
+.contenedor-inputs-error{
+    @apply bg-red-400 text-center;
+    @apply border-2 border-red-500 rounded-lg;
+    @apply mt-2 p-2;
+    display: none;
+}
+
+.contenedor-inputs-error__span{
+    @apply font-lato text-white font-semibold text-sm;
+}
+
+.registro-contenedor-checkboxs__checkbox{
     @apply relative;
     @apply bg-white appearance-none outline-none;
     @apply border-2 rounded-full;
-    @apply duration-100;
+    @apply duration-100 m-2;
+    @apply m-2;
     width: 50px;
     height: 30px;
 }
 
-input.formulario-registro__checkbox:after {
+input.registro-contenedor-checkboxs__checkbox:after {
     content: "";
     position: absolute;
     top: 0px; left: 0px;
@@ -407,27 +424,31 @@ input.formulario-registro__checkbox:after {
     border: 1px solid #e2e8f0;
 }
 
-input.formulario-registro__checkbox:checked {
+input.registro-contenedor-checkboxs__checkbox:checked {
     border-color: #4ED164;
     background-color: #4ED164;
     transition-duration: 200ms;
 }
 
-input.formulario-registro__checkbox:checked:after {
+input.registro-contenedor-checkboxs__checkbox:checked:after {
     left: 20px;
 }
 
-.contenedor-select{
-    @apply flex items-center relative m-2;
+.registro-contenedor-selects{
+    @apply flex items-center;
     @apply relative;
     @apply m-2;
 }
 
-.formulario-registro__select{
+.registro-contenedor-selects__select{
     @apply bg-gray-100 appearance-none;
     @apply border-2 rounded-lg;
     @apply w-full;
     @apply p-2;
+}
+
+.registro-contenedor-btns{
+    @apply mb-6;
 }
 
     /* =====================================Registro====================================== */

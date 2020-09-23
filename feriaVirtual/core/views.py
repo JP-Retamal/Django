@@ -11,5 +11,5 @@ def login(request):
     return render(request, 'login.html')
 
 def registro(request):
-
-    return render(request, 'registro.html')
+    fechaActual = '22/09/2020'
+    return render(request, 'registro.html', { 'fechaActual' : fechaActual })

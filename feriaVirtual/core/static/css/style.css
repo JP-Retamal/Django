@@ -1103,9 +1103,9 @@ h6{
 /* =====================================Registro====================================== */
 
 .registro-contenedor{
-  height: 100vh;
   background: url('../img/bg.jpg');
   background-size: cover;
+  min-height:100vh;
 }
 
 .ventana-registro{
@@ -1113,24 +1113,51 @@ h6{
   background-color: #fff;
   background-color: rgba(255, 255, 255, var(--bg-opacity));
   border-radius: 0.5rem;
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  margin: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   min-width: 50%;
 }
 
-.formulario-registro__input{
+.registro-contenedor-inputs{
+  margin: 0.5rem;
+}
+
+.registro-contenedor-inputs__input{
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));
-  padding: 0.5rem;
-  margin: 0.5rem;
   border-width: 2px;
   border-radius: 0.5rem;
+  width: 100%;
+  padding: 0.5rem;
 }
 
-.formulario-registro__checkbox{
+.contenedor-inputs-error{
+  --bg-opacity: 1;
+  background-color: #fc8181;
+  background-color: rgba(252, 129, 129, var(--bg-opacity));
+  text-align: center;
+  border-width: 2px;
+  --border-opacity: 1;
+  border-color: #f56565;
+  border-color: rgba(245, 101, 101, var(--border-opacity));
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  display: none;
+}
+
+.contenedor-inputs-error__span{
+  font-family: Lato, sans-serif;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.registro-contenedor-checkboxs__checkbox{
   position: relative;
   --bg-opacity: 1;
   background-color: #fff;
@@ -1142,11 +1169,13 @@ h6{
   border-width: 2px;
   border-radius: 9999px;
   transition-duration: 100ms;
+  margin: 0.5rem;
+  margin: 0.5rem;
   width: 50px;
   height: 30px;
 }
 
-input.formulario-registro__checkbox:after {
+input.registro-contenedor-checkboxs__checkbox:after {
   content: "";
   position: absolute;
   top: 0px; left: 0px;
@@ -1156,26 +1185,24 @@ input.formulario-registro__checkbox:after {
   border: 1px solid #e2e8f0;
 }
 
-input.formulario-registro__checkbox:checked {
+input.registro-contenedor-checkboxs__checkbox:checked {
   border-color: #4ED164;
   background-color: #4ED164;
   transition-duration: 200ms;
 }
 
-input.formulario-registro__checkbox:checked:after {
+input.registro-contenedor-checkboxs__checkbox:checked:after {
   left: 20px;
 }
 
-.contenedor-select{
+.registro-contenedor-selects{
   display: flex;
   align-items: center;
   position: relative;
   margin: 0.5rem;
-  position: relative;
-  margin: 0.5rem;
 }
 
-.formulario-registro__select{
+.registro-contenedor-selects__select{
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -1186,6 +1213,10 @@ input.formulario-registro__checkbox:checked:after {
   border-radius: 0.5rem;
   width: 100%;
   padding: 0.5rem;
+}
+
+.registro-contenedor-btns{
+  margin-bottom: 1.5rem;
 }
 
 /* =====================================Registro====================================== */
@@ -22302,9 +22333,9 @@ input.formulario-registro__checkbox:checked:after {
   /* =====================================Registro====================================== */
 
   .sm\:registro-contenedor{
-    height: 100vh;
     background: url('../img/bg.jpg');
     background-size: cover;
+    min-height:100vh;
   }
 
   .sm\:ventana-registro{
@@ -22312,24 +22343,51 @@ input.formulario-registro__checkbox:checked:after {
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity));
     border-radius: 0.5rem;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     min-width: 50%;
   }
 
-  .sm\:formulario-registro__input{
+  .sm\:registro-contenedor-inputs{
+    margin: 0.5rem;
+  }
+
+  .sm\:registro-contenedor-inputs__input{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
-    padding: 0.5rem;
-    margin: 0.5rem;
     border-width: 2px;
     border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
   }
 
-  .sm\:formulario-registro__checkbox{
+  .sm\:contenedor-inputs-error{
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    text-align: center;
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .sm\:contenedor-inputs-error__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .sm\:registro-contenedor-checkboxs__checkbox{
     position: relative;
     --bg-opacity: 1;
     background-color: #fff;
@@ -22341,11 +22399,13 @@ input.formulario-registro__checkbox:checked:after {
     border-width: 2px;
     border-radius: 9999px;
     transition-duration: 100ms;
+    margin: 0.5rem;
+    margin: 0.5rem;
     width: 50px;
     height: 30px;
   }
 
-  input.sm\:formulario-registro__checkbox:after {
+  input.sm\:registro-contenedor-checkboxs__checkbox:after {
     content: "";
     position: absolute;
     top: 0px; left: 0px;
@@ -22355,26 +22415,24 @@ input.formulario-registro__checkbox:checked:after {
     border: 1px solid #e2e8f0;
   }
 
-  input.sm\:formulario-registro__checkbox:checked {
+  input.sm\:registro-contenedor-checkboxs__checkbox:checked {
     border-color: #4ED164;
     background-color: #4ED164;
     transition-duration: 200ms;
   }
 
-  input.sm\:formulario-registro__checkbox:checked:after {
+  input.sm\:registro-contenedor-checkboxs__checkbox:checked:after {
     left: 20px;
   }
 
-  .sm\:contenedor-select{
+  .sm\:registro-contenedor-selects{
     display: flex;
     align-items: center;
     position: relative;
     margin: 0.5rem;
-    position: relative;
-    margin: 0.5rem;
   }
 
-  .sm\:formulario-registro__select{
+  .sm\:registro-contenedor-selects__select{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -22385,6 +22443,10 @@ input.formulario-registro__checkbox:checked:after {
     border-radius: 0.5rem;
     width: 100%;
     padding: 0.5rem;
+  }
+
+  .sm\:registro-contenedor-btns{
+    margin-bottom: 1.5rem;
   }
 
   /* =====================================Registro====================================== */
@@ -43436,9 +43498,9 @@ input.formulario-registro__checkbox:checked:after {
   /* =====================================Registro====================================== */
 
   .md\:registro-contenedor{
-    height: 100vh;
     background: url('../img/bg.jpg');
     background-size: cover;
+    min-height:100vh;
   }
 
   .md\:ventana-registro{
@@ -43446,24 +43508,51 @@ input.formulario-registro__checkbox:checked:after {
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity));
     border-radius: 0.5rem;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     min-width: 50%;
   }
 
-  .md\:formulario-registro__input{
+  .md\:registro-contenedor-inputs{
+    margin: 0.5rem;
+  }
+
+  .md\:registro-contenedor-inputs__input{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
-    padding: 0.5rem;
-    margin: 0.5rem;
     border-width: 2px;
     border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
   }
 
-  .md\:formulario-registro__checkbox{
+  .md\:contenedor-inputs-error{
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    text-align: center;
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .md\:contenedor-inputs-error__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .md\:registro-contenedor-checkboxs__checkbox{
     position: relative;
     --bg-opacity: 1;
     background-color: #fff;
@@ -43475,11 +43564,13 @@ input.formulario-registro__checkbox:checked:after {
     border-width: 2px;
     border-radius: 9999px;
     transition-duration: 100ms;
+    margin: 0.5rem;
+    margin: 0.5rem;
     width: 50px;
     height: 30px;
   }
 
-  input.md\:formulario-registro__checkbox:after {
+  input.md\:registro-contenedor-checkboxs__checkbox:after {
     content: "";
     position: absolute;
     top: 0px; left: 0px;
@@ -43489,26 +43580,24 @@ input.formulario-registro__checkbox:checked:after {
     border: 1px solid #e2e8f0;
   }
 
-  input.md\:formulario-registro__checkbox:checked {
+  input.md\:registro-contenedor-checkboxs__checkbox:checked {
     border-color: #4ED164;
     background-color: #4ED164;
     transition-duration: 200ms;
   }
 
-  input.md\:formulario-registro__checkbox:checked:after {
+  input.md\:registro-contenedor-checkboxs__checkbox:checked:after {
     left: 20px;
   }
 
-  .md\:contenedor-select{
+  .md\:registro-contenedor-selects{
     display: flex;
     align-items: center;
     position: relative;
     margin: 0.5rem;
-    position: relative;
-    margin: 0.5rem;
   }
 
-  .md\:formulario-registro__select{
+  .md\:registro-contenedor-selects__select{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -43519,6 +43608,10 @@ input.formulario-registro__checkbox:checked:after {
     border-radius: 0.5rem;
     width: 100%;
     padding: 0.5rem;
+  }
+
+  .md\:registro-contenedor-btns{
+    margin-bottom: 1.5rem;
   }
 
   /* =====================================Registro====================================== */
@@ -64570,9 +64663,9 @@ input.formulario-registro__checkbox:checked:after {
   /* =====================================Registro====================================== */
 
   .lg\:registro-contenedor{
-    height: 100vh;
     background: url('../img/bg.jpg');
     background-size: cover;
+    min-height:100vh;
   }
 
   .lg\:ventana-registro{
@@ -64580,24 +64673,51 @@ input.formulario-registro__checkbox:checked:after {
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity));
     border-radius: 0.5rem;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     min-width: 50%;
   }
 
-  .lg\:formulario-registro__input{
+  .lg\:registro-contenedor-inputs{
+    margin: 0.5rem;
+  }
+
+  .lg\:registro-contenedor-inputs__input{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
-    padding: 0.5rem;
-    margin: 0.5rem;
     border-width: 2px;
     border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
   }
 
-  .lg\:formulario-registro__checkbox{
+  .lg\:contenedor-inputs-error{
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    text-align: center;
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .lg\:contenedor-inputs-error__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .lg\:registro-contenedor-checkboxs__checkbox{
     position: relative;
     --bg-opacity: 1;
     background-color: #fff;
@@ -64609,11 +64729,13 @@ input.formulario-registro__checkbox:checked:after {
     border-width: 2px;
     border-radius: 9999px;
     transition-duration: 100ms;
+    margin: 0.5rem;
+    margin: 0.5rem;
     width: 50px;
     height: 30px;
   }
 
-  input.lg\:formulario-registro__checkbox:after {
+  input.lg\:registro-contenedor-checkboxs__checkbox:after {
     content: "";
     position: absolute;
     top: 0px; left: 0px;
@@ -64623,26 +64745,24 @@ input.formulario-registro__checkbox:checked:after {
     border: 1px solid #e2e8f0;
   }
 
-  input.lg\:formulario-registro__checkbox:checked {
+  input.lg\:registro-contenedor-checkboxs__checkbox:checked {
     border-color: #4ED164;
     background-color: #4ED164;
     transition-duration: 200ms;
   }
 
-  input.lg\:formulario-registro__checkbox:checked:after {
+  input.lg\:registro-contenedor-checkboxs__checkbox:checked:after {
     left: 20px;
   }
 
-  .lg\:contenedor-select{
+  .lg\:registro-contenedor-selects{
     display: flex;
     align-items: center;
     position: relative;
     margin: 0.5rem;
-    position: relative;
-    margin: 0.5rem;
   }
 
-  .lg\:formulario-registro__select{
+  .lg\:registro-contenedor-selects__select{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -64653,6 +64773,10 @@ input.formulario-registro__checkbox:checked:after {
     border-radius: 0.5rem;
     width: 100%;
     padding: 0.5rem;
+  }
+
+  .lg\:registro-contenedor-btns{
+    margin-bottom: 1.5rem;
   }
 
   /* =====================================Registro====================================== */
@@ -85704,9 +85828,9 @@ input.formulario-registro__checkbox:checked:after {
   /* =====================================Registro====================================== */
 
   .xl\:registro-contenedor{
-    height: 100vh;
     background: url('../img/bg.jpg');
     background-size: cover;
+    min-height:100vh;
   }
 
   .xl\:ventana-registro{
@@ -85714,24 +85838,51 @@ input.formulario-registro__checkbox:checked:after {
     background-color: #fff;
     background-color: rgba(255, 255, 255, var(--bg-opacity));
     border-radius: 0.5rem;
-    margin-left: 1.25rem;
-    margin-right: 1.25rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    margin: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     min-width: 50%;
   }
 
-  .xl\:formulario-registro__input{
+  .xl\:registro-contenedor-inputs{
+    margin: 0.5rem;
+  }
+
+  .xl\:registro-contenedor-inputs__input{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
-    padding: 0.5rem;
-    margin: 0.5rem;
     border-width: 2px;
     border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
   }
 
-  .xl\:formulario-registro__checkbox{
+  .xl\:contenedor-inputs-error{
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    text-align: center;
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .xl\:contenedor-inputs-error__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+
+  .xl\:registro-contenedor-checkboxs__checkbox{
     position: relative;
     --bg-opacity: 1;
     background-color: #fff;
@@ -85743,11 +85894,13 @@ input.formulario-registro__checkbox:checked:after {
     border-width: 2px;
     border-radius: 9999px;
     transition-duration: 100ms;
+    margin: 0.5rem;
+    margin: 0.5rem;
     width: 50px;
     height: 30px;
   }
 
-  input.xl\:formulario-registro__checkbox:after {
+  input.xl\:registro-contenedor-checkboxs__checkbox:after {
     content: "";
     position: absolute;
     top: 0px; left: 0px;
@@ -85757,26 +85910,24 @@ input.formulario-registro__checkbox:checked:after {
     border: 1px solid #e2e8f0;
   }
 
-  input.xl\:formulario-registro__checkbox:checked {
+  input.xl\:registro-contenedor-checkboxs__checkbox:checked {
     border-color: #4ED164;
     background-color: #4ED164;
     transition-duration: 200ms;
   }
 
-  input.xl\:formulario-registro__checkbox:checked:after {
+  input.xl\:registro-contenedor-checkboxs__checkbox:checked:after {
     left: 20px;
   }
 
-  .xl\:contenedor-select{
+  .xl\:registro-contenedor-selects{
     display: flex;
     align-items: center;
     position: relative;
     margin: 0.5rem;
-    position: relative;
-    margin: 0.5rem;
   }
 
-  .xl\:formulario-registro__select{
+  .xl\:registro-contenedor-selects__select{
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -85787,6 +85938,10 @@ input.formulario-registro__checkbox:checked:after {
     border-radius: 0.5rem;
     width: 100%;
     padding: 0.5rem;
+  }
+
+  .xl\:registro-contenedor-btns{
+    margin-bottom: 1.5rem;
   }
 
   /* =====================================Registro====================================== */
