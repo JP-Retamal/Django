@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Portal de Ventas{% endblock %}
+
+{% block content %}
+    {% for p in saldos %}       
+        {% if forloop.first %}<div class="row">{% endif %}
+        <div class="col-4">
+            <div class="contenedor-tarjeta">
+                <div class="imagen-tarjeta"></div>
+                    <div class="titulo-tarjeta">
+                        <h2><td>{{ p.2 }} {{ p.3 }}</td></h2>
+                    </div>
+                    <div class="unidad-tarjeta"><span>Unidad:<td>{{ p.1 }}Kilos</td></span></div>
+                <div class="precio-tarjeta">
+                    <h2>${{ p.0 }}<td></td></h2>
+                </div>
+                <div class="boton-tarjeta">
+                    <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
+                        <span class="text-white">Comprar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+        {% if forloop.last  %}</div>{% endif %} 
+    {% endfor %}
+{% endblock %}
