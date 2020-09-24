@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Registro{% endblock %}
+{% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block content %}
 
@@ -31,9 +31,9 @@
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="registro-contenedor-inputs__input focus:outline-none appearance-none focus:outline-none focus:border-orange-500"
 						placeholder="Fecha de Nacimiento" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
-							{{ fechaActual }}.</span>
+							{{ fechaActual|date:"d/m/Y" }}.</span>
 					</div>
 				</div>
 				<!-- Nombre Completo -->

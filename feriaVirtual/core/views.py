@@ -1,15 +1,22 @@
 from django.shortcuts import render
-
+from datetime import date
 # Create your views here. la funcion def home busca el template (controlador)
 
 def home(request):
-
-    return render(request, 'index.html')
+    tituloPagina = 'Inicio'
+    return render(request, 'index.html', { 'tituloPagina' : tituloPagina })
 
 def login(request):
-
-    return render(request, 'login.html')
+    tituloPagina = 'Ingreso'
+    return render(request, 'login.html', { 'tituloPagina' : tituloPagina })
 
 def registro(request):
-    fechaActual = '22/09/2020'
-    return render(request, 'registro.html', { 'fechaActual' : fechaActual })
+    tituloPagina = 'Registro'
+    fechaActual = date.today()
+    return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
+
+def detalle(request):
+    tituloPagina = 'Manzana Candy'
+    precio = '{:,}'.format(1990).replace(',','.')
+    cantidad = '1'
+    return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })

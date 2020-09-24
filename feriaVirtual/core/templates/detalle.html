@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ tituloPagina }} {% endblock %}
+
+{% block content%} 
+<div class="detalle-contenedor">
+        <div class="detalle-contenedor-titulo md:col-span-3">
+            <h1 class="detalle-contenedor-titulo__h1 md:px-20">Manzana Candy</h1>
+        </div>
+    <div class="detalle-contenedor-descripcion  md:grid-cols-3">
+        <div class="detalle-contenedor-imagen centrar-contenedor">
+            <img src="../static/img/parallax.jpg" alt="Manzana Candy" class="detalle-contenedor-imagen__img">
+        </div>
+        <div class="detalle-contenedor-informacion md:col-span-2 md:m-0">
+            <div class="detalle-contenedor-precio md:text-left">
+            <span class="detalle-contenedor-precio__span ">${{ precio }} - {{ cantidad }} Kg</span>
+            </div>
+            <div class="detalle-contenedor-caracteristica md:my-2 md:h-48">
+                <span class="detalle-contenedor-caracteristica__span">Caracteristicas</span>
+                <ul>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 1</li>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 2</li>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 3</li>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 4</li>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 5</li>
+                    <li class="detalle-contenedor-caracteristica__li">Caract 6</li>
+                </ul>
+            </div>
+            <div class="detalle-contenedor-btn centrar-contenedor md:m-0 md:justify-start md:items-end">
+                <span class="btn bg-green-500 w-3/4 md:w-1/3 text-white font-lato">Comprar</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% include 'include/oferta.html' %}
+
+<div class="my-10"></div>
+
+{% endblock %}
