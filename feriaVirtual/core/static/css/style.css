@@ -784,7 +784,10 @@ h6 {
 .contenedor-info__par {
   font-family: Lato, sans-serif;
   font-weight: 300;
+  line-height: 1.5rem;
   text-align: justify;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* =================================Banner================================= */
@@ -934,8 +937,8 @@ h6 {
 }
 
 .seccion-imagen__img {
-  width: 170px;
-  height: 170px;
+  width: 6rem;
+  height: 6rem;
 }
 
 .seccion-info {
@@ -949,7 +952,7 @@ h6 {
   color: rgba(255, 255, 255, var(--text-opacity));
   font-family: Lato, sans-serif;
   font-size: 1.125rem;
-  text-align: center;
+  text-align: justify;
 }
 
 .seccion-enlaces {
@@ -1218,7 +1221,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 }
 
 .registro-contenedor-btns {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 /* =====================================Registro====================================== */
@@ -22096,7 +22099,10 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .sm\:contenedor-info__par {
     font-family: Lato, sans-serif;
     font-weight: 300;
+    line-height: 1.5rem;
     text-align: justify;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   /* =================================Banner================================= */
@@ -22246,8 +22252,8 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .sm\:seccion-imagen__img {
-    width: 170px;
-    height: 170px;
+    width: 6rem;
+    height: 6rem;
   }
 
   .sm\:seccion-info {
@@ -22261,7 +22267,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     color: rgba(255, 255, 255, var(--text-opacity));
     font-family: Lato, sans-serif;
     font-size: 1.125rem;
-    text-align: center;
+    text-align: justify;
   }
 
   .sm\:seccion-enlaces {
@@ -22530,7 +22536,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .sm\:registro-contenedor-btns {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   /* =====================================Registro====================================== */
@@ -43343,7 +43349,10 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .md\:contenedor-info__par {
     font-family: Lato, sans-serif;
     font-weight: 300;
+    line-height: 1.5rem;
     text-align: justify;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   /* =================================Banner================================= */
@@ -43493,8 +43502,8 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .md\:seccion-imagen__img {
-    width: 170px;
-    height: 170px;
+    width: 6rem;
+    height: 6rem;
   }
 
   .md\:seccion-info {
@@ -43508,7 +43517,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     color: rgba(255, 255, 255, var(--text-opacity));
     font-family: Lato, sans-serif;
     font-size: 1.125rem;
-    text-align: center;
+    text-align: justify;
   }
 
   .md\:seccion-enlaces {
@@ -43777,7 +43786,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .md\:registro-contenedor-btns {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   /* =====================================Registro====================================== */
@@ -64590,7 +64599,10 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .lg\:contenedor-info__par {
     font-family: Lato, sans-serif;
     font-weight: 300;
+    line-height: 1.5rem;
     text-align: justify;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   /* =================================Banner================================= */
@@ -64740,8 +64752,8 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .lg\:seccion-imagen__img {
-    width: 170px;
-    height: 170px;
+    width: 6rem;
+    height: 6rem;
   }
 
   .lg\:seccion-info {
@@ -64755,7 +64767,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     color: rgba(255, 255, 255, var(--text-opacity));
     font-family: Lato, sans-serif;
     font-size: 1.125rem;
-    text-align: center;
+    text-align: justify;
   }
 
   .lg\:seccion-enlaces {
@@ -65024,7 +65036,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .lg\:registro-contenedor-btns {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   /* =====================================Registro====================================== */
@@ -85837,7 +85849,10 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .xl\:contenedor-info__par {
     font-family: Lato, sans-serif;
     font-weight: 300;
+    line-height: 1.5rem;
     text-align: justify;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
   /* =================================Banner================================= */
@@ -85987,8 +86002,8 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .xl\:seccion-imagen__img {
-    width: 170px;
-    height: 170px;
+    width: 6rem;
+    height: 6rem;
   }
 
   .xl\:seccion-info {
@@ -86002,7 +86017,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     color: rgba(255, 255, 255, var(--text-opacity));
     font-family: Lato, sans-serif;
     font-size: 1.125rem;
-    text-align: center;
+    text-align: justify;
   }
 
   .xl\:seccion-enlaces {
@@ -86271,7 +86286,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   .xl\:registro-contenedor-btns {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   /* =====================================Registro====================================== */
