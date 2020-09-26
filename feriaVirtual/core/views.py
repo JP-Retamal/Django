@@ -16,13 +16,15 @@ def registro(request):
     fechaActual = date.today()
     return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
 
-def detalle(request):
+def detalle(request, detalle_id):
+    print(listar_detallesaldos(detalle_id))
     tituloPagina = 'Manzana Candy'
     precio = '{:,}'.format(1990).replace(',','.')
     cantidad = '1'
     return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
 
 def portalSaldos(request):
+    #print(listar_saldos())#ver listado en consola
     data = {
         'saldos':listar_saldos()
     }
@@ -42,3 +44,16 @@ def listar_saldos():
         lista.append(fila)
 
     return lista
+
+def listar_detallesaldos(detalle_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_DETALLE_VLOCAL", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista  
