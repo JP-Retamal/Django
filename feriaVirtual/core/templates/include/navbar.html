@@ -27,11 +27,11 @@
       </div>
       <div class="contenedor-btn grid grid-cols-1 col-span-3 md:grid-col-2 md:col-span-2">
           <div class="centrar-contenedor py-2 md:py-0">
-              <a href="http://127.0.0.1:8000/login/" class="btn btn-blue w-full md:w-48 hover:bg-blue-600"><span
+              <a href="{% url 'login' %}" class="btn btn-blue w-full md:w-48 hover:bg-blue-600"><span
                       class="text-white">Ingresar</span></a>
           </div>
           <div class="centrar-contenedor py-2 md:py-0">
-              <a href="http://127.0.0.1:8000/registro/" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
+              <a href="{% url 'registro' %}" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
                       class="text-white">Registrarse</span></a>
           </div>
       </div>
