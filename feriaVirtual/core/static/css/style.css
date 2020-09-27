@@ -834,7 +834,7 @@ h6 {
   background-size: cover;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  background-image: url('../img/frambuesas.jpg');
+  background-image: url("../img/frambuesas.jpg");
   width: 250px;
   height: 250px;
 }

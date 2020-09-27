@@ -13,13 +13,13 @@
                     </div>
                     <div class="unidad-tarjeta"><span>Unidad:<td>{{ p.2 }}Kilos</td></span></div>
                     <div class="unidad-tarjeta"><span>Ide promoción:<td>{{ p.0 }}</td></span></div>
-                <div class="precio-tarjeta">
-                    <h2>${{ p.1 }}<td></td></h2>
-                </div>
-                <div class="boton-tarjeta">
-                    <a href="{% url 'detalle' p.0 %}"><div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
+                    <div class="precio-tarjeta">
+                        <h2>${{ p.1 }}<td></td></h2>
+                    </div>
+                    <div class="boton-tarjeta">
+                        <a href="{% url 'detalle' p.0 %}"><div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
                         <span class="text-white">Comprar</span>
-                    </div> </a>
+                     </div> </a>
                 </div>
             </div>
         </div>
