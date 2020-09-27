@@ -14,7 +14,11 @@ def login(request):
 def registro(request):
     tituloPagina = 'Registro'
     fechaActual = date.today()
-    return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
+    print(listar_por_regiones())#ver listado en consola
+    data = {
+        'regiones':listar_por_regiones()
+    }
+    return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina , 'data':data})
 
 def detalle(request):#detalle_id
    # print(listar_detallesaldos(detalle_id))
@@ -45,6 +49,18 @@ def listar_saldos():
 
     return lista
 
+def listar_por_regiones():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_POR_REGIONES", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
 def listar_detallesaldos(detalle_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()

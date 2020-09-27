@@ -9,7 +9,8 @@
 		<div class="ventana-titulo">
 			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
 		</div>
-		<form id="registro-formulario" action="">
+		<form id="registro-formulario" action="" metod="POST">
+			{% csrf_token %} 
 			<div class="formulario-registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 				<div class="registro-contenedor-inputs">
@@ -97,21 +98,30 @@
 				<div class="registro-contenedor-selects">
 					<select id="registro-region" name="registro-region"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
-						<option selected="true" disabled="disabled">Selecciona Region</option>
+						<option value="" selected="true" disabled="disabled">Selecciona Region</option>
+						{% for p in regiones %} 
+							<option value="{{ p.0 }}">{{ p.0 }}</option>
+						{% endfor %}
 					</select>
 					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
 				</div>
 				<div class="registro-contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
-						<option selected="true" disabled="disabled">Selecciona Provincia</option>
+						<option value="" selected="true" disabled="disabled">Selecciona Provincia</option>
+						{% for p in regiones %} 
+							<option value="{{ p.1 }}">{{ p.1 }}</option>
+						{% endfor %}
 					</select>
 					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
 				</div>
 				<div class="registro-contenedor-selects">
 					<select id="registro-comuna" name="registro-comuna"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
-						<option selected="true" disabled="disabled">Selecciona Comuna</option>
+						<option value="" selected="true" disabled="disabled">Selecciona Comuna</option>
+						{% for p in regiones %} 
+							<option value="{{ p.2 }}">{{ p.2 }}</option>
+						{% endfor %}
 					</select>
 					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
 				</div>
