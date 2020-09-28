@@ -5,11 +5,13 @@ import cx_Oracle
 # Create your views here. la funcion def home busca el template (controlador)
 
 def home(request):
-    tituloPagina = 'Inicio'
+    #print(listar_saldos_calidad_alta())
+    print(saldos_calidad_alta_media())
     data = {
-        'saldos':listar_saldos()
+        'ca_alta':listar_saldos_calidad_alta(),
+        'ca_baja_media':saldos_calidad_alta_media()
     }
-    return render(request, 'index.html', { 'tituloPagina' : tituloPagina, 'data' : data })
+    return render(request, 'index.html', data )
 
 def login(request):
     tituloPagina = 'Ingreso'
@@ -66,6 +68,31 @@ def listar_saldos():
     out_cur = django_cursor.connection.cursor()
 
     cursor.callproc("SP_LISTAR_SALDOS", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def listar_saldos_calidad_alta():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LS_CALIDAD_ALTA", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+def saldos_calidad_alta_media():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LS_CALIDAD_BAJA_MEDIA", [out_cur])
 
     lista = []
     for fila in out_cur:
