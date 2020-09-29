@@ -13,9 +13,9 @@
 			{% csrf_token %} 
 			<div class="formulario-registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Run o Pasaporte" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
@@ -28,9 +28,9 @@
 					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
 						class="registro-contenedor-checkboxs__checkbox" />
 				</div>
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none appearance-none focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none appearance-none focus:outline-none focus:border-orange-500"
 						placeholder="Fecha de Nacimiento" />
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
@@ -38,46 +38,52 @@
 					</div>
 				</div>
 				<!-- Nombre Completo -->
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Nombre" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
 				</div>
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-Paterno" name="registro-Paterno" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Apellido Paterno" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
 				</div>
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Apellido Materno" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
 				</div>
-				<!-- Correo y Numero -->
-				<div class="registro-contenedor-inputs lg:col-span-2">
+				<!-- Genero, Correo y Numero -->
+				<div class="registro-contenedor-selects">
+					<select id="registro-genero" name="registro-genero"
+						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+					</select>
+					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
+				</div>
+				<div class="contenedor-inputs">
 					<input id="registro-correo" name="registro-correo" type="email"
-						class="registro-contenedor-inputs__input lg:w-full focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Correo Electronico" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
 							caracteres alfanumericos, guiones o puntos.</span>
 					</div>
 				</div>
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
-						class="registro-contenedor-inputs__input focus:outline-none appearance-none focus:border-orange-500"
+						class="input focus:outline-none appearance-none focus:border-orange-500"
 						placeholder="Numero de Telefono" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
@@ -85,9 +91,9 @@
 					</div>
 				</div>
 				<!-- Direccion -->
-				<div class="registro-contenedor-inputs lg:col-span-3">
+				<div class="contenedor-inputs lg:col-span-3">
 					<input id="registro-direccion" name="registro-direccion" type="text"
-						class="registro-contenedor-inputs__input lg:w-full focus:outline-none focus:border-orange-500"
+						class="input lg:w-full focus:outline-none focus:border-orange-500"
 						placeholder="Direccion" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
@@ -107,38 +113,49 @@
 				<div class="registro-contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+<<<<<<< HEAD
 						{% for p in region %}
 						<option value="" selected="true" disabled="disabled">Selecciona Provincia</option>
 						 
 							<option value="{{ p.1 }}">{{ p.1 }}</option>
 						{% endfor %}
+=======
+>>>>>>> branch_leo
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="registro-contenedor-selects">
 					<select id="registro-comuna" name="registro-comuna"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+<<<<<<< HEAD
 						<option value="" selected="true" disabled="disabled">Selecciona Comuna</option>
 						{% for p in region %} 
 							<option value="{{ p.2 }}">{{ p.2 }}</option>
 						{% endfor %}
+=======
+>>>>>>> branch_leo
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<!-- Contrasenia -->
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
-						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Contraseña" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">La contrasenia debe contener de 6 a 12
 							caracteres.</span>
 					</div>
 				</div>
-				<div class="registro-contenedor-inputs">
+				<div class="contenedor-inputs">
 					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
+<<<<<<< HEAD
 						class="registro-contenedor-inputs__input focus:outline-none focus:border-orange-500"
 						placeholder="Confirme Contraseña" />
+=======
+						class="input focus:outline-none focus:border-orange-500"
+						placeholder="Repita Contraseña" />
+>>>>>>> branch_leo
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Las contrasenias no coincide.</span>
 					</div>
@@ -266,42 +283,49 @@
 	$(document).ready(function () {
 
 		$("#registro-region").select2({
-			placeholder: "",
+			placeholder: "Selecciona Region",
 			language: {
 				noResults: function () {
-
 					return "No hay resultado";
 				},
 				searching: function () {
-
 					return "Buscando..";
 				}
 			}
 		});
 
 		$("#registro-provincia").select2({
-			placeholder: "",
+			placeholder: "Selecciona Provincia",
 			language: {
 				noResults: function () {
-
 					return "No hay resultado";
 				},
 				searching: function () {
-
 					return "Buscando..";
 				}
 			}
 		});
 
 		$("#registro-comuna").select2({
-			placeholder: "",
+			placeholder: "Selecciona Comuna",
 			language: {
 				noResults: function () {
-
 					return "No hay resultado";
 				},
 				searching: function () {
+					return "Buscando..";
+				}
+			}
+			// theme: "default registro-contenedor-selects__select"
+		});
 
+		$("#registro-genero").select2({
+			placeholder: "Selecciona Genero",
+			language: {
+				noResults: function () {
+					return "No hay resultado";
+				},
+				searching: function () {
 					return "Buscando..";
 				}
 			}
