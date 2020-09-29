@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} {{ tituloPagina }} {% endblock %}
+{% block title %} Registro {% endblock %}
 
 {% block content %}
 
@@ -96,10 +96,9 @@
 				</div>
 				<!-- Selects -->
 				<div class="registro-contenedor-selects">
-					<select id="registro-region" name="registro-region"
-						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
-						<option value="" selected="true" disabled="disabled">Selecciona Region</option>
-						{% for p in regiones %} 
+					<select name="region" id="region" >
+						<option value="">Seleccione Región</option>
+						{% for p in region %} 
 							<option value="{{ p.0 }}">{{ p.0 }}</option>
 						{% endfor %}
 					</select>
@@ -108,8 +107,9 @@
 				<div class="registro-contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						{% for p in region %}
 						<option value="" selected="true" disabled="disabled">Selecciona Provincia</option>
-						{% for p in regiones %} 
+						 
 							<option value="{{ p.1 }}">{{ p.1 }}</option>
 						{% endfor %}
 					</select>
@@ -119,7 +119,7 @@
 					<select id="registro-comuna" name="registro-comuna"
 						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
 						<option value="" selected="true" disabled="disabled">Selecciona Comuna</option>
-						{% for p in regiones %} 
+						{% for p in region %} 
 							<option value="{{ p.2 }}">{{ p.2 }}</option>
 						{% endfor %}
 					</select>
