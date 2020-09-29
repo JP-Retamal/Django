@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Registro {% endblock %}
+{% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block content %}
 
@@ -9,8 +9,7 @@
 		<div class="ventana-titulo">
 			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
 		</div>
-		<form id="registro-formulario" action="" metod="POST">
-			{% csrf_token %} 
+		<form id="registro-formulario" action="">
 			<div class="formulario-registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 				<div class="contenedor-inputs">
@@ -102,11 +101,8 @@
 				</div>
 				<!-- Selects -->
 				<div class="registro-contenedor-selects">
-					<select name="region" id="region" >
-						<option value="">Seleccione Región</option>
-						{% for p in region %} 
-							<option value="{{ p.0 }}">{{ p.0 }}</option>
-						{% endfor %}
+					<select id="registro-region" name="registro-region"
+						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
@@ -137,7 +133,7 @@
 						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Repita Contraseña" />
 					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">Las contrasenias no coincide.</span>
+						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
 					</div>
 				</div>
 				<!-- Btn -->
@@ -145,7 +141,6 @@
 					<button type="submit" class="formulario-login__btn btn w-full focus:outline-none">
 						Registrarse
 					</button>
-					{{mensaje}}
 					<span class="block font-lato text-sm text-center mt-2">Al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad</span>
 				</div>
 			</div>
