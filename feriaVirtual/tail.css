@@ -456,21 +456,21 @@ h6 {
         left: 20px;
     }
 
-    .registro-contenedor-selects {
+    .contenedor-selects {
         @apply flex items-center;
         @apply relative;
         @apply m-2;
     }
 
-    .registro-contenedor-selects__select {
+    .contenedor-selects__select {
         @apply bg-gray-100 appearance-none;
         @apply border-2 rounded-lg;
         @apply w-full;
         @apply p-2;
     }
 
-    .registro-contenedor-btns {
-        @apply mb-3;
+    .contenedor-btns {
+        @apply m-2 mb-3;
     }
 
     /* =====================================Registro====================================== */

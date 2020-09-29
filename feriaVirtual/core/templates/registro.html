@@ -10,7 +10,7 @@
 			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
 		</div>
 		<form id="registro-formulario" action="">
-			<div class="formulario-registro grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
@@ -29,7 +29,7 @@
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
-						class="input focus:outline-none appearance-none focus:outline-none focus:border-orange-500"
+						class="input appearance-none focus:outline-none focus:border-orange-500"
 						placeholder="Fecha de Nacimiento" />
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
@@ -64,14 +64,8 @@
 							alfabeticos.</span>
 					</div>
 				</div>
-				<!-- Genero, Correo y Numero -->
-				<div class="registro-contenedor-selects">
-					<select id="registro-genero" name="registro-genero"
-						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
-					</select>
-					<i class="fas fa-angle-down absolute right-0 mr-2"></i>
-				</div>
-				<div class="contenedor-inputs">
+				<!-- Correo y Numero -->
+				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
 						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Correo Electronico" />
@@ -100,21 +94,21 @@
 					</div>
 				</div>
 				<!-- Selects -->
-				<div class="registro-contenedor-selects">
+				<div class="contenedor-selects">
 					<select id="registro-region" name="registro-region"
-						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
-				<div class="registro-contenedor-selects">
+				<div class="contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
-						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
-				<div class="registro-contenedor-selects">
+				<div class="contenedor-selects">
 					<select id="registro-comuna" name="registro-comuna"
-						class="registro-contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
@@ -137,7 +131,7 @@
 					</div>
 				</div>
 				<!-- Btn -->
-				<div class="registro-contenedor-btns md:col-span-2 lg:col-span-3">
+				<div class="contenedor-btns md:col-span-2 lg:col-span-3">
 					<button type="submit" class="formulario-login__btn btn w-full focus:outline-none">
 						Registrarse
 					</button>
@@ -256,57 +250,23 @@
 
 	// Inicio Select Select2
 	$(document).ready(function () {
+		const selects = document.getElementsByTagName('select');
+		const selectsName = ['Region', 'Provincia', 'Comuna'];
 
-		$("#registro-region").select2({
-			placeholder: "Selecciona Region",
-			language: {
-				noResults: function () {
-					return "No hay resultado";
-				},
-				searching: function () {
-					return "Buscando..";
+		for (let index = 0; index < selects.length; index++) {
+			$(`#${selects[index].id}`).select2({
+				placeholder: `Selecciona ${selectsName[index]}`,
+				language: {
+					noResults: function () {
+						return "No hay resultado";
+					},
+					searching: function () {
+						return "Buscando..";
+					}
 				}
-			}
-		});
-
-		$("#registro-provincia").select2({
-			placeholder: "Selecciona Provincia",
-			language: {
-				noResults: function () {
-					return "No hay resultado";
-				},
-				searching: function () {
-					return "Buscando..";
-				}
-			}
-		});
-
-		$("#registro-comuna").select2({
-			placeholder: "Selecciona Comuna",
-			language: {
-				noResults: function () {
-					return "No hay resultado";
-				},
-				searching: function () {
-					return "Buscando..";
-				}
-			}
 			// theme: "default registro-contenedor-selects__select"
-		});
-
-		$("#registro-genero").select2({
-			placeholder: "Selecciona Genero",
-			language: {
-				noResults: function () {
-					return "No hay resultado";
-				},
-				searching: function () {
-					return "Buscando..";
-				}
-			}
-			// theme: "default registro-contenedor-selects__select"
-		});
-
+			});
+		}
 	});
 	// Fin Select Select2
 </script>

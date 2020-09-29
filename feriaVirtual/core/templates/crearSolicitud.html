@@ -1,12 +1,112 @@
-
-{% extends "ase.html" %}
+{% extends "base.html" %}
 
 {% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block content %}
+<!--
+	SOLICITUD    
+		id_solicitud    
+		especie         
+		variedad
+		cantidad
+		fecha_cosecha
+		id_usuario (FK)
+		id_orden (FK) 
+-->
 
-<div class="contenedor-crearSolicitud">
-    
+<div class="crearSolicitud-contenedor">
+
+	<div class="crearSolicitud-contenedor-formulario">
+		<form id="crearSolicitud-formulario" action="">
+			<!-- Especia -->
+			<div class="contenedor-selects">
+				<select id="crearSolicitud-especie" name="crearSolicitud-especie"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+				</select>
+				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
+			</div>
+			<!-- Variedad -->
+			<div class="contenedor-selects">
+				<select id="crearSolicitud-region" name="crearSolicitud-region"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+				</select>
+				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
+			</div>
+			<!-- Cantidad -->
+			<div class="contenedor-inputs">
+				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
+					class="input focus:outline-none focus:border-orange-500"
+					placeholder="Cantidad Kilos" />
+				<div class="contenedor-inputs-error">
+					<span class="contenedor-inputs-error__span"> La cantidad ingresada no
+						es
+						valida.</span>
+				</div>
+			</div>
+			<!-- Btn -->
+			<div class="contenedor-btns">
+				<button type="menu"
+					class="btn bg-green-500 text-white w-full focus:outline-none">
+					Agregar Fruta
+				</button>
+			</div>
+		</form>
+	</div>
+	<div class="crearSolicitud-contenedor-tabla">
+		<table class="table-fixes">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Fruta</th>
+					<th>Tipo Fruta</th>
+					<th>Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Manzana</td>
+					<td>Candy</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Platano</td>
+					<td>Amarillo</td>
+					<td>15</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Peras</td>
+					<td>Verdes</td>
+					<td>30</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
+
+<script>
+	// Inicio Select Select2
+	$(document).ready(function () {
+
+		const selects = document.getElementsByTagName('select');
+		for (const element of selects) {
+			$(`#${element.id}`).select2({
+				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Tipo Fruta'}`,
+				language: {
+					noResults: function () {
+						return "No hay resultado";
+					},
+					searching: function () {
+						return "Buscando..";
+					}
+				}
+			});
+		}
+
+	});
+// Fin Select Select2
+</script>
 {% endblock %}
