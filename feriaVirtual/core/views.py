@@ -21,7 +21,6 @@ def login(request):
 
 
 def registro(request):
-<<<<<<< HEAD
     #fechaActual = date.today()
     print(listar_por_regiones())  # ver listado en consola
     data = {
@@ -159,18 +158,3 @@ def agregar_comerciante(RUN_USUARIO, NOMBRE, AP_PATERNO, AP_MATERNO, FECHA_NAC, 
   #  precio = '{:,}'.format(1990).replace(',','.')
   #  cantidad = '1'
    # return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
-=======
-    tituloPagina = 'Registro'
-    fechaActual = date.today()
-    return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
-
-def detalle(request):
-    tituloPagina = 'Manzana Candy'
-    precio = '{:,}'.format(1990).replace(',','.')
-    cantidad = '1'
-    return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
-
-def crearSolicitud(request):
-    tituloPagina = 'Crear Solicitud'
-    return render(request, 'crearSolicitud.html', { 'tituloPagina' : tituloPagina})
->>>>>>> branch_leo
