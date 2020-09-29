@@ -20,3 +20,7 @@ def detalle(request):
     precio = '{:,}'.format(1990).replace(',','.')
     cantidad = '1'
     return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
+
+def crearSolicitud(request):
+    tituloPagina = 'Crear Solicitud'
+    return render(request, 'crearSolicitud.html', { 'tituloPagina' : tituloPagina})

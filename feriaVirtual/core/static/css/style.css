@@ -735,11 +735,22 @@ h6 {
   --text-opacity: 1;
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
+  position: relative;
   background: url("../img/parallax.jpg");
   height: 500px;
   background-attachment: fixed;
   background-size: cover;
   background-position: center top;
+}
+
+.contenedor-parallax::before{
+  content:'';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .contenedor-parallax__titulo {
@@ -758,7 +769,6 @@ h6 {
   font-size: 1.5rem;
   font-weight: 300;
   text-align: center;
-  max-width: 56rem;
 }
 
 .contenedor-info {
@@ -837,7 +847,6 @@ h6 {
   background-size: cover;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
-  background-image: url('../img/frambuesas.jpg');
   width: 250px;
   height: 250px;
 }
@@ -1122,11 +1131,11 @@ h6 {
   min-width: 50%;
 }
 
-.registro-contenedor-inputs {
+.contenedor-inputs {
   margin: 0.5rem;
 }
 
-.registro-contenedor-inputs__input {
+.input {
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -22050,11 +22059,22 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     --text-opacity: 1;
     color: #fff;
     color: rgba(255, 255, 255, var(--text-opacity));
+    position: relative;
     background: url("../img/parallax.jpg");
     height: 500px;
     background-attachment: fixed;
     background-size: cover;
     background-position: center top;
+  }
+
+  .sm\:contenedor-parallax::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
   }
 
   .sm\:contenedor-parallax__titulo {
@@ -22073,7 +22093,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     font-size: 1.5rem;
     font-weight: 300;
     text-align: center;
-    max-width: 56rem;
   }
 
   .sm\:contenedor-info {
@@ -22152,7 +22171,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     background-size: cover;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    background-image: url('../img/frambuesas.jpg');
     width: 250px;
     height: 250px;
   }
@@ -22437,11 +22455,11 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     min-width: 50%;
   }
 
-  .sm\:registro-contenedor-inputs {
+  .sm\:contenedor-inputs {
     margin: 0.5rem;
   }
 
-  .sm\:registro-contenedor-inputs__input {
+  .sm\:input {
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -43300,11 +43318,22 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     --text-opacity: 1;
     color: #fff;
     color: rgba(255, 255, 255, var(--text-opacity));
+    position: relative;
     background: url("../img/parallax.jpg");
     height: 500px;
     background-attachment: fixed;
     background-size: cover;
     background-position: center top;
+  }
+
+  .md\:contenedor-parallax::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
   }
 
   .md\:contenedor-parallax__titulo {
@@ -43323,7 +43352,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     font-size: 1.5rem;
     font-weight: 300;
     text-align: center;
-    max-width: 56rem;
   }
 
   .md\:contenedor-info {
@@ -43402,7 +43430,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     background-size: cover;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    background-image: url('../img/frambuesas.jpg');
     width: 250px;
     height: 250px;
   }
@@ -43687,11 +43714,11 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     min-width: 50%;
   }
 
-  .md\:registro-contenedor-inputs {
+  .md\:contenedor-inputs {
     margin: 0.5rem;
   }
 
-  .md\:registro-contenedor-inputs__input {
+  .md\:input {
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -64550,11 +64577,22 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     --text-opacity: 1;
     color: #fff;
     color: rgba(255, 255, 255, var(--text-opacity));
+    position: relative;
     background: url("../img/parallax.jpg");
     height: 500px;
     background-attachment: fixed;
     background-size: cover;
     background-position: center top;
+  }
+
+  .lg\:contenedor-parallax::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
   }
 
   .lg\:contenedor-parallax__titulo {
@@ -64573,7 +64611,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     font-size: 1.5rem;
     font-weight: 300;
     text-align: center;
-    max-width: 56rem;
   }
 
   .lg\:contenedor-info {
@@ -64652,7 +64689,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     background-size: cover;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    background-image: url('../img/frambuesas.jpg');
     width: 250px;
     height: 250px;
   }
@@ -64937,11 +64973,11 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     min-width: 50%;
   }
 
-  .lg\:registro-contenedor-inputs {
+  .lg\:contenedor-inputs {
     margin: 0.5rem;
   }
 
-  .lg\:registro-contenedor-inputs__input {
+  .lg\:input {
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
@@ -85800,11 +85836,22 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     --text-opacity: 1;
     color: #fff;
     color: rgba(255, 255, 255, var(--text-opacity));
+    position: relative;
     background: url("../img/parallax.jpg");
     height: 500px;
     background-attachment: fixed;
     background-size: cover;
     background-position: center top;
+  }
+
+  .xl\:contenedor-parallax::before{
+    content:'';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
   }
 
   .xl\:contenedor-parallax__titulo {
@@ -85823,7 +85870,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     font-size: 1.5rem;
     font-weight: 300;
     text-align: center;
-    max-width: 56rem;
   }
 
   .xl\:contenedor-info {
@@ -85902,7 +85948,6 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     background-size: cover;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
-    background-image: url('../img/frambuesas.jpg');
     width: 250px;
     height: 250px;
   }
@@ -86187,11 +86232,11 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     min-width: 50%;
   }
 
-  .xl\:registro-contenedor-inputs {
+  .xl\:contenedor-inputs {
     margin: 0.5rem;
   }
 
-  .xl\:registro-contenedor-inputs__input {
+  .xl\:input {
     --bg-opacity: 1;
     background-color: #f7fafc;
     background-color: rgba(247, 250, 252, var(--bg-opacity));
