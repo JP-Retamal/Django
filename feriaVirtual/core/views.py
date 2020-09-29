@@ -47,6 +47,9 @@ def registro(request):
 
     return render(request, 'registro.html', data)
 
+def crearSolicitud(request):
+   
+    return render(request, 'crearSolicitud.html')
 
 def detalle(request, detalle_id):
     # print(listar_detallesaldos(detalle_id))
