@@ -104,11 +104,22 @@ h6 {
 
     .contenedor-parallax {
         @apply text-white;
+        position: relative;
         background: url("../img/parallax.jpg");
         height: 500px;
         background-attachment: fixed;
         background-size: cover;
         background-position: center top;
+    }
+
+    .contenedor-parallax::before{
+        content:'';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.4);
     }
 
     .contenedor-parallax__titulo {
@@ -125,7 +136,6 @@ h6 {
         @apply font-lemonada;
         @apply text-2xl font-light;
         @apply text-center;
-        @apply max-w-4xl;
     }
 
     .contenedor-info {
@@ -191,7 +201,6 @@ h6 {
     .imagen-tarjeta {
         @apply bg-cover;
         @apply rounded-t-lg;
-        background-image: url('../img/frambuesas.jpg');
         width: 250px;
         height: 250px;
     }
@@ -394,11 +403,11 @@ h6 {
         min-width: 50%;
     }
 
-    .registro-contenedor-inputs {
+    .contenedor-inputs {
         @apply m-2;
     }
 
-    .registro-contenedor-inputs__input {
+    .input {
         @apply bg-gray-100 border-2 rounded-lg;
         @apply w-full;
         @apply p-2;
