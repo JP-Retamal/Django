@@ -1314,7 +1314,175 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   margin-bottom: 1rem;
 }
 
-/* =====================================Detalle====================================== */
+/* =====================================Detalle===================================== */
+
+/* =====================================CrearSolicitud===================================== */
+
+.crearSolicitud-contendor{
+}
+
+.crearSolicitud-contenedor-titulo{
+  border-bottom-width: 4px;
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.crearSolicitud-contenedor-titulo__h2{
+  font-family: Lato, sans-serif;
+  font-size: 1.875rem;
+  padding: 0.75rem;
+}
+
+.crearSolicitud-contenedor-formulario{
+}
+
+.crearSolicitud-contenedor-tabla{
+  margin: 0.5rem;
+}
+
+.crearSolicitud-contenedor-tabla__table{
+}
+
+.crearSolicitud-contenedor-tabla__tr{
+  --bg-opacity: 1;
+  background-color: #4299e1;
+  background-color: rgba(66, 153, 225, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+}
+
+.crearSolicitud-contenedor-tabla__th{
+  font-family: Lato, sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Hijos Pares */
+
+.crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+  background-color: rgba(66, 153, 225, 0.18)
+}
+
+/* Hijos Impares */
+
+.crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+  background-color: rgba(66, 153, 225, 0.1)
+}
+
+.crearSolicitud-contenedor-tabla__td{
+  font-family: Lato, sans-serif;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* =====================================CrearSolicitud===================================== */
+
+/* =====================================ListarSolicitud===================================== */
+
+.listarSolicitud-contenedor{
+}
+
+.listarSolicitud-contenedor-titulo{
+  border-bottom-width: 4px;
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.listarSolicitud-contenedor-titulo__h2{
+  font-family: Lato, sans-serif;
+  font-size: 1.875rem;
+  padding: 0.75rem;
+}
+
+.listarSolicitud-contenedor-solicitudes{
+  border-width: 2px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+}
+
+.listarSolicitud-contenedor-solicitud{
+  padding: 0.5rem;
+}
+
+.listarSolicitud-contenedor-label{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.listarSolicitud-contenedor-label__label{
+  font-family: Lato, sans-serif;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.listarSolicitud-contenedor-label__span{
+  font-family: Lato, sans-serif;
+  --bg-opacity: 1;
+  background-color: #48bb78;
+  background-color: rgba(72, 187, 120, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.listarSolicitud-contenedor-solicitud-detalle{
+  margin: 0.5rem;
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__table{
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__thead{
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__tr{
+  --bg-opacity: 1;
+  background-color: #4299e1;
+  background-color: rgba(66, 153, 225, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__th{
+  font-family: Lato, sans-serif;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__tbody{
+}
+
+.listarSolicitud-contenedor-solicitud-detalle__td{
+  font-family: Lato, sans-serif;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+/* Hijos Pares */
+
+.listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+  background-color: rgba(66, 153, 225, 0.18)
+}
+
+/* Hijos Impares */
+
+.listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+  background-color: rgba(66, 153, 225, 0.1)
+}
+
+/* =====================================ListarSolicitud===================================== */
 
 .space-y-0 > :not(template) ~ :not(template){
   --space-y-reverse: 0;
@@ -22639,7 +22807,175 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin-bottom: 1rem;
   }
 
-  /* =====================================Detalle====================================== */
+  /* =====================================Detalle===================================== */
+
+  /* =====================================CrearSolicitud===================================== */
+
+  .sm\:crearSolicitud-contendor{
+  }
+
+  .sm\:crearSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:crearSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .sm\:crearSolicitud-contenedor-formulario{
+  }
+
+  .sm\:crearSolicitud-contenedor-tabla{
+    margin: 0.5rem;
+  }
+
+  .sm\:crearSolicitud-contenedor-tabla__table{
+  }
+
+  .sm\:crearSolicitud-contenedor-tabla__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .sm\:crearSolicitud-contenedor-tabla__th{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hijos Pares */
+
+  .sm\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .sm\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  .sm\:crearSolicitud-contenedor-tabla__td{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* =====================================CrearSolicitud===================================== */
+
+  /* =====================================ListarSolicitud===================================== */
+
+  .sm\:listarSolicitud-contenedor{
+  }
+
+  .sm\:listarSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:listarSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitudes{
+    border-width: 2px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud{
+    padding: 0.5rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-label{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-label__label{
+    font-family: Lato, sans-serif;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-label__span{
+    font-family: Lato, sans-serif;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle{
+    margin: 0.5rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__table{
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__thead{
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__th{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__tbody{
+  }
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle__td{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  /* Hijos Pares */
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .sm\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  /* =====================================ListarSolicitud===================================== */
 
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -43899,7 +44235,175 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin-bottom: 1rem;
   }
 
-  /* =====================================Detalle====================================== */
+  /* =====================================Detalle===================================== */
+
+  /* =====================================CrearSolicitud===================================== */
+
+  .md\:crearSolicitud-contendor{
+  }
+
+  .md\:crearSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:crearSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .md\:crearSolicitud-contenedor-formulario{
+  }
+
+  .md\:crearSolicitud-contenedor-tabla{
+    margin: 0.5rem;
+  }
+
+  .md\:crearSolicitud-contenedor-tabla__table{
+  }
+
+  .md\:crearSolicitud-contenedor-tabla__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .md\:crearSolicitud-contenedor-tabla__th{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hijos Pares */
+
+  .md\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .md\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  .md\:crearSolicitud-contenedor-tabla__td{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* =====================================CrearSolicitud===================================== */
+
+  /* =====================================ListarSolicitud===================================== */
+
+  .md\:listarSolicitud-contenedor{
+  }
+
+  .md\:listarSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:listarSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .md\:listarSolicitud-contenedor-solicitudes{
+    border-width: 2px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud{
+    padding: 0.5rem;
+  }
+
+  .md\:listarSolicitud-contenedor-label{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:listarSolicitud-contenedor-label__label{
+    font-family: Lato, sans-serif;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .md\:listarSolicitud-contenedor-label__span{
+    font-family: Lato, sans-serif;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle{
+    margin: 0.5rem;
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__table{
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__thead{
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__th{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__tbody{
+  }
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle__td{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  /* Hijos Pares */
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .md\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  /* =====================================ListarSolicitud===================================== */
 
   .md\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -65159,7 +65663,175 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin-bottom: 1rem;
   }
 
-  /* =====================================Detalle====================================== */
+  /* =====================================Detalle===================================== */
+
+  /* =====================================CrearSolicitud===================================== */
+
+  .lg\:crearSolicitud-contendor{
+  }
+
+  .lg\:crearSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:crearSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .lg\:crearSolicitud-contenedor-formulario{
+  }
+
+  .lg\:crearSolicitud-contenedor-tabla{
+    margin: 0.5rem;
+  }
+
+  .lg\:crearSolicitud-contenedor-tabla__table{
+  }
+
+  .lg\:crearSolicitud-contenedor-tabla__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .lg\:crearSolicitud-contenedor-tabla__th{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hijos Pares */
+
+  .lg\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .lg\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  .lg\:crearSolicitud-contenedor-tabla__td{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* =====================================CrearSolicitud===================================== */
+
+  /* =====================================ListarSolicitud===================================== */
+
+  .lg\:listarSolicitud-contenedor{
+  }
+
+  .lg\:listarSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:listarSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitudes{
+    border-width: 2px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud{
+    padding: 0.5rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-label{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-label__label{
+    font-family: Lato, sans-serif;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-label__span{
+    font-family: Lato, sans-serif;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle{
+    margin: 0.5rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__table{
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__thead{
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__th{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__tbody{
+  }
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle__td{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  /* Hijos Pares */
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .lg\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  /* =====================================ListarSolicitud===================================== */
 
   .lg\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -86419,7 +87091,175 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin-bottom: 1rem;
   }
 
-  /* =====================================Detalle====================================== */
+  /* =====================================Detalle===================================== */
+
+  /* =====================================CrearSolicitud===================================== */
+
+  .xl\:crearSolicitud-contendor{
+  }
+
+  .xl\:crearSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:crearSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .xl\:crearSolicitud-contenedor-formulario{
+  }
+
+  .xl\:crearSolicitud-contenedor-tabla{
+    margin: 0.5rem;
+  }
+
+  .xl\:crearSolicitud-contenedor-tabla__table{
+  }
+
+  .xl\:crearSolicitud-contenedor-tabla__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .xl\:crearSolicitud-contenedor-tabla__th{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Hijos Pares */
+
+  .xl\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .xl\:crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  .xl\:crearSolicitud-contenedor-tabla__td{
+    font-family: Lato, sans-serif;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  /* =====================================CrearSolicitud===================================== */
+
+  /* =====================================ListarSolicitud===================================== */
+
+  .xl\:listarSolicitud-contenedor{
+  }
+
+  .xl\:listarSolicitud-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:listarSolicitud-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.875rem;
+    padding: 0.75rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitudes{
+    border-width: 2px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud{
+    padding: 0.5rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-label{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-label__label{
+    font-family: Lato, sans-serif;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-label__span{
+    font-family: Lato, sans-serif;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle{
+    margin: 0.5rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__table{
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__thead{
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__tr{
+    --bg-opacity: 1;
+    background-color: #4299e1;
+    background-color: rgba(66, 153, 225, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__th{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__tbody{
+  }
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle__td{
+    font-family: Lato, sans-serif;
+    text-align: center;
+    padding: 0.25rem;
+  }
+
+  /* Hijos Pares */
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+    background-color: rgba(66, 153, 225, 0.18)
+  }
+
+  /* Hijos Impares */
+
+  .xl\:listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+    background-color: rgba(66, 153, 225, 0.1)
+  }
+
+  /* =====================================ListarSolicitud===================================== */
 
   .xl\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;

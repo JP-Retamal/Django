@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ tituloPagina }} {% endblock %}
+
+{% block content %}
+<div class="usuario-contenedor grid justify-center mx-2 my-10">
+    <div class="usuario-contenedor-titulo text-center">
+        <h1 class="usuario-contenedor-vista__h1 font-notoserif text-5xl">Bienvenido {{ nombreUsuario }}!</h1>
+    </div>
+    <div class="usuario-contendor-vista grid grid-col-1 lg:grid-cols-4 max-w-6xl">
+        <div class="usuario-contenedor-vista col-span-3">
+            {% block contentSolicitud %} {% endblock %}
+        </div>
+        <div class="usuario-contenedor-aside">
+            <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
+                <!-- Solicitud de Compra -->
+                <div class="usuario-contenedor-btns p-4 border-t-2 centrar-contenedor lg:justify-start">
+                    <a href="http://localhost:8000/usuario/solicitud/crear/" class="">
+                        <i class="fas fa-clipboard-check text-2xl text-gray-700 font-black text-orange-500"></i>
+                        <span class="usuario-contenedor-btns__span font-lato text-lg mx-2 text-gray-700 font-black text-orange-500 hidden lg:inline-block">Solicitud de Compra</span>
+                    </a>
+                </div>
+                <!-- Dejar o no dejar -->
+                <!-- <div class="usuario-contenedor-solicitud hidden" style="display: none;">
+                    <div class="usuario-contenedor-btns p-4 border-t-2">
+                        <a href="http://localhost:8000/usuario/solicitud/crear/">
+                            <span class="usuario-contenedor-btns__span font-lato text-lg ml-16 text-gray-700">Crear Solicitud</span>
+                        </a>
+                    </div>
+                    <div class="usuario-contenedor-btns p-4 border-t-2">
+                        <a href="http://localhost:8000/usuario/solicitud/crear/">
+                            <span class="usuario-contenedor-btns__span font-lato text-lg ml-16 text-gray-700">Listar Solicitudes</span>
+                        </a>
+                    </div>
+                </div> -->
+                <!-- Pedidos -->
+                <div class="usuario-contenedor-btns p-4 border-t-2 centrar-contenedor lg:justify-start">
+                    <a href="">
+                        <i class="fas fa-shopping-cart text-2xl text-gray-700"></i>
+                        <span class="usuario-contenedor-btns__span font-lato text-lg mx-2 text-gray-700 hidden lg:inline-block">Pedidos</span>
+                    </a>
+                </div>
+                <!-- Cuenta -->
+                <div class="usuario-contenedor-btns p-4 border-t-2 centrar-contenedor lg:justify-start">
+                    <a href="">
+                        <i class="fas fa-address-card text-2xl text-gray-700"></i>
+                        <span class="usuario-contenedor-btns__span font-lato text-lg mx-2 text-gray-700 hidden lg:inline-block">Cuenta</span>
+                    </a>
+                </div>
+                <!-- Salir -->
+                <div class="usuario-contenedor-btns p-4 border-t-2 centrar-contenedor lg:justify-start">
+                    <a href="">
+                        <i class="fas fa-sign-out-alt text-2xl text-gray-700"></i>
+                        <span class="usuario-contenedor-btns__span font-lato text-lg mx-2 text-gray-700 hidden lg:inline-block">Salir</span>
+                    </a>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+{% endblock %}

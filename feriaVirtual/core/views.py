@@ -21,6 +21,11 @@ def detalle(request):
     cantidad = '1'
     return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
 
-def crearSolicitud(request):
-    tituloPagina = 'Crear Solicitud'
-    return render(request, 'crearSolicitud.html', { 'tituloPagina' : tituloPagina})
+def usuario(request):
+    tituloPagina = 'Perfil'
+    nombreUsuario = 'Jesus'
+    return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
+
+def solicitud(request):
+    tituloPagina = 'Solicitudes'
+    return render(request, 'solicitud.html', { 'tituloPagina' : tituloPagina})

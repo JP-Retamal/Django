@@ -534,8 +534,127 @@ h6 {
     .detalle-contenedor-btn{
         @apply my-4;
     }
-    /* =====================================Detalle====================================== */
+    /* =====================================Detalle===================================== */
 
+
+    /* =====================================CrearSolicitud===================================== */
+
+    .crearSolicitud-contendor{}
+
+    .crearSolicitud-contenedor-titulo{
+        @apply border-b-4 border-green-500;
+    }
+
+    .crearSolicitud-contenedor-titulo__h2{
+        @apply font-lato text-3xl;
+        @apply p-3;
+    }
+
+    .crearSolicitud-contenedor-formulario{}
+
+    .crearSolicitud-contenedor-tabla{
+        @apply m-2;
+    }
+
+    .crearSolicitud-contenedor-tabla__table{}
+
+    .crearSolicitud-contenedor-tabla__tr{
+        @apply bg-blue-500 text-white;
+    }
+
+    .crearSolicitud-contenedor-tabla__th{
+        @apply font-lato;
+        @apply px-4 py-2;
+    }
+
+    /* Hijos Pares */
+    .crearSolicitud-contenedor-tabla-tbody__tr:nth-child(even) {
+        background-color: rgba(66, 153, 225, 0.18)
+    }
+
+    /* Hijos Impares */
+    .crearSolicitud-contenedor-tabla-tbody__tr:nth-child(odd) {
+        background-color: rgba(66, 153, 225, 0.1)
+    }
+
+    .crearSolicitud-contenedor-tabla__td{
+        @apply font-lato;
+        @apply px-4 py-2;
+    }
+
+    /* =====================================CrearSolicitud===================================== */
+
+    /* =====================================ListarSolicitud===================================== */
+
+    .listarSolicitud-contenedor{}
+
+    .listarSolicitud-contenedor-titulo{
+        @apply border-b-4 border-green-500;
+    }
+
+    .listarSolicitud-contenedor-titulo__h2{
+        @apply font-lato text-3xl;
+        @apply p-3;
+    }
+
+    .listarSolicitud-contenedor-solicitudes{
+        @apply border-2 shadow-lg rounded-lg;
+        @apply m-2;
+    }
+
+    .listarSolicitud-contenedor-solicitud{
+        @apply p-2;
+    }
+
+    .listarSolicitud-contenedor-label{
+        @apply my-2;
+    }
+
+    .listarSolicitud-contenedor-label__label{
+        @apply font-lato;
+        @apply py-1;
+    }
+
+    .listarSolicitud-contenedor-label__span{
+        @apply font-lato bg-green-500 text-white rounded-lg;
+        @apply m-2 p-2;
+    }
+
+    .listarSolicitud-contenedor-solicitud-detalle{
+        @apply m-2;
+    }
+
+    .listarSolicitud-contenedor-solicitud-detalle__table{}
+
+    .listarSolicitud-contenedor-solicitud-detalle__thead{}
+
+    .listarSolicitud-contenedor-solicitud-detalle__tr{
+        @apply bg-blue-500 text-white;
+    }
+
+    .listarSolicitud-contenedor-solicitud-detalle__th{
+        @apply font-lato text-center;
+        @apply p-1;
+    }
+
+    .listarSolicitud-contenedor-solicitud-detalle__tbody{}
+
+    .listarSolicitud-contenedor-solicitud-detalle__td{
+        @apply font-lato text-center;
+        @apply p-1;
+    }
+
+    /* Hijos Pares */
+    .listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(even) {
+        background-color: rgba(66, 153, 225, 0.18)
+    }
+
+    /* Hijos Impares */
+    .listarSolicitud-contenedor-solicitud-detalle-tbody__tr:nth-child(odd) {
+        background-color: rgba(66, 153, 225, 0.1)
+    }
+
+    /* =====================================ListarSolicitud===================================== */
 
 }
 

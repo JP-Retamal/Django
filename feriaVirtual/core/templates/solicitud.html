@@ -1,0 +1,10 @@
+{% extends 'usuario.html' %}
+
+{% block title %} {{ tituloPagina }} {% endblock %}
+
+{% block contentSolicitud %} 
+
+{% include 'include/crearSolicitud.html' %}
+{% include 'include/listarSolicitud.html' %}
+
+{% endblock %}
