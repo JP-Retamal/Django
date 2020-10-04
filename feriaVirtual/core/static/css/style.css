@@ -1316,9 +1316,78 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 
 /* =====================================Detalle===================================== */
 
+/* =====================================Usuario===================================== */
+
+.usuario-contenendor{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.usuario-contenedor-titulo{
+  text-align: center;
+}
+
+.usuario-contenedor-titulo__h1{
+  font-family: Noto Serif JP, serif;
+  font-size: 2.25rem;
+}
+
+.usuario-contenedor-general{
+  max-width: 72rem;
+}
+
+.usuario-contenedor-modal{
+  grid-column: span 3 / span 3;
+}
+
+.usuario-contenedor-aside{
+  margin-bottom: 1.5rem;
+}
+
+.usuario-aside{
+}
+
+.usuario-contenedor-btns{
+  border-top-width: 2px;
+  padding: 1rem;
+}
+
+.usuario-contenedor-btns__i{
+  font-size: 1.5rem;
+  --text-opacity: 1;
+  color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
+}
+
+.usuario-contenedor-btns__span{
+  display: none;
+  font-family: Lato, sans-serif;
+  font-size: 1.125rem;
+  --text-opacity: 1;
+  color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.usuario-contenedor-btns__i--activo{
+  --text-opacity: 1;
+  color: #ed8936;
+  color: rgba(237, 137, 54, var(--text-opacity));
+}
+
+.usuario-contenedor-btns__span--activo{
+  font-weight: 900;
+  --text-opacity: 1;
+  color: #ed8936;
+  color: rgba(237, 137, 54, var(--text-opacity));
+}
+
+/* =====================================Usuario===================================== */
+
 /* =====================================CrearSolicitud===================================== */
 
-.crearSolicitud-contendor{
+.crearSolicitud-contenedor{
 }
 
 .crearSolicitud-contenedor-titulo{
@@ -1483,6 +1552,123 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 }
 
 /* =====================================ListarSolicitud===================================== */
+
+/* =====================================InformacionPersonal===================================== */
+
+.informacionPersonal-contenedor-general{
+}
+
+.informacionPersonal-contenedor-titulo{
+  border-bottom-width: 4px;
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.informacionPersonal-contenedor-titulo__h2{
+  font-family: Lato, sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.informacionPersonal-contenedor-inputs{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.informacionPersonal-contenedor-btns__button{
+  font-family: Lato, sans-serif;
+  font-size: 1.125rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  text-align: center;
+  border-radius: 0.5rem;
+  --bg-opacity: 1;
+  background-color: #48bb78;
+  background-color: rgba(72, 187, 120, var(--bg-opacity));
+}
+
+/* =====================================InformacionPersonal===================================== */
+
+/* =====================================InformacionContacto===================================== */
+
+.informacionContacto-contenedor-general{
+}
+
+.informacionContacto-contenedor-titulo{
+  border-bottom-width: 4px;
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.informacionContacto-contenedor-titulo__h2{
+  font-family: Lato, sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.informacionContacto-contenedor-inputs{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.informacionContacto-contenedor-btns__button{
+  font-family: Lato, sans-serif;
+  font-size: 1.125rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  text-align: center;
+  border-radius: 0.5rem;
+  --bg-opacity: 1;
+  background-color: #48bb78;
+  background-color: rgba(72, 187, 120, var(--bg-opacity));
+}
+
+/* =====================================InformacionContacto===================================== */
+
+/* =====================================InformacionDespacho===================================== */
+
+.informacionDespacho-contenedor-general{
+}
+
+.informacionDespacho-contenedor-titulo{
+  border-bottom-width: 4px;
+  --border-opacity: 1;
+  border-color: #48bb78;
+  border-color: rgba(72, 187, 120, var(--border-opacity));
+}
+
+.informacionDespacho-contenedor-titulo__h2{
+  font-family: Lato, sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.informacionDespacho-contenedor-inputs{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.informacionDespacho-contenedor-btns__button{
+  font-family: Lato, sans-serif;
+  font-size: 1.125rem;
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  text-align: center;
+  border-radius: 0.5rem;
+  --bg-opacity: 1;
+  background-color: #48bb78;
+  background-color: rgba(72, 187, 120, var(--bg-opacity));
+}
+
+/* =====================================InformacionDespacho===================================== */
 
 .space-y-0 > :not(template) ~ :not(template){
   --space-y-reverse: 0;
@@ -22809,9 +22995,78 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 
   /* =====================================Detalle===================================== */
 
+  /* =====================================Usuario===================================== */
+
+  .sm\:usuario-contenendor{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .sm\:usuario-contenedor-titulo{
+    text-align: center;
+  }
+
+  .sm\:usuario-contenedor-titulo__h1{
+    font-family: Noto Serif JP, serif;
+    font-size: 2.25rem;
+  }
+
+  .sm\:usuario-contenedor-general{
+    max-width: 72rem;
+  }
+
+  .sm\:usuario-contenedor-modal{
+    grid-column: span 3 / span 3;
+  }
+
+  .sm\:usuario-contenedor-aside{
+    margin-bottom: 1.5rem;
+  }
+
+  .sm\:usuario-aside{
+  }
+
+  .sm\:usuario-contenedor-btns{
+    border-top-width: 2px;
+    padding: 1rem;
+  }
+
+  .sm\:usuario-contenedor-btns__i{
+    font-size: 1.5rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+  }
+
+  .sm\:usuario-contenedor-btns__span{
+    display: none;
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .sm\:usuario-contenedor-btns__i--activo{
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  .sm\:usuario-contenedor-btns__span--activo{
+    font-weight: 900;
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  /* =====================================Usuario===================================== */
+
   /* =====================================CrearSolicitud===================================== */
 
-  .sm\:crearSolicitud-contendor{
+  .sm\:crearSolicitud-contenedor{
   }
 
   .sm\:crearSolicitud-contenedor-titulo{
@@ -22976,6 +23231,123 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   /* =====================================ListarSolicitud===================================== */
+
+  /* =====================================InformacionPersonal===================================== */
+
+  .sm\:informacionPersonal-contenedor-general{
+  }
+
+  .sm\:informacionPersonal-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:informacionPersonal-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sm\:informacionPersonal-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:informacionPersonal-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionPersonal===================================== */
+
+  /* =====================================InformacionContacto===================================== */
+
+  .sm\:informacionContacto-contenedor-general{
+  }
+
+  .sm\:informacionContacto-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:informacionContacto-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sm\:informacionContacto-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:informacionContacto-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionContacto===================================== */
+
+  /* =====================================InformacionDespacho===================================== */
+
+  .sm\:informacionDespacho-contenedor-general{
+  }
+
+  .sm\:informacionDespacho-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .sm\:informacionDespacho-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .sm\:informacionDespacho-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .sm\:informacionDespacho-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionDespacho===================================== */
 
   .sm\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -44237,9 +44609,78 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 
   /* =====================================Detalle===================================== */
 
+  /* =====================================Usuario===================================== */
+
+  .md\:usuario-contenendor{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .md\:usuario-contenedor-titulo{
+    text-align: center;
+  }
+
+  .md\:usuario-contenedor-titulo__h1{
+    font-family: Noto Serif JP, serif;
+    font-size: 2.25rem;
+  }
+
+  .md\:usuario-contenedor-general{
+    max-width: 72rem;
+  }
+
+  .md\:usuario-contenedor-modal{
+    grid-column: span 3 / span 3;
+  }
+
+  .md\:usuario-contenedor-aside{
+    margin-bottom: 1.5rem;
+  }
+
+  .md\:usuario-aside{
+  }
+
+  .md\:usuario-contenedor-btns{
+    border-top-width: 2px;
+    padding: 1rem;
+  }
+
+  .md\:usuario-contenedor-btns__i{
+    font-size: 1.5rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+  }
+
+  .md\:usuario-contenedor-btns__span{
+    display: none;
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .md\:usuario-contenedor-btns__i--activo{
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  .md\:usuario-contenedor-btns__span--activo{
+    font-weight: 900;
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  /* =====================================Usuario===================================== */
+
   /* =====================================CrearSolicitud===================================== */
 
-  .md\:crearSolicitud-contendor{
+  .md\:crearSolicitud-contenedor{
   }
 
   .md\:crearSolicitud-contenedor-titulo{
@@ -44404,6 +44845,123 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   /* =====================================ListarSolicitud===================================== */
+
+  /* =====================================InformacionPersonal===================================== */
+
+  .md\:informacionPersonal-contenedor-general{
+  }
+
+  .md\:informacionPersonal-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:informacionPersonal-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .md\:informacionPersonal-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:informacionPersonal-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionPersonal===================================== */
+
+  /* =====================================InformacionContacto===================================== */
+
+  .md\:informacionContacto-contenedor-general{
+  }
+
+  .md\:informacionContacto-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:informacionContacto-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .md\:informacionContacto-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:informacionContacto-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionContacto===================================== */
+
+  /* =====================================InformacionDespacho===================================== */
+
+  .md\:informacionDespacho-contenedor-general{
+  }
+
+  .md\:informacionDespacho-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .md\:informacionDespacho-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .md\:informacionDespacho-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .md\:informacionDespacho-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionDespacho===================================== */
 
   .md\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -65665,9 +66223,78 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 
   /* =====================================Detalle===================================== */
 
+  /* =====================================Usuario===================================== */
+
+  .lg\:usuario-contenendor{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .lg\:usuario-contenedor-titulo{
+    text-align: center;
+  }
+
+  .lg\:usuario-contenedor-titulo__h1{
+    font-family: Noto Serif JP, serif;
+    font-size: 2.25rem;
+  }
+
+  .lg\:usuario-contenedor-general{
+    max-width: 72rem;
+  }
+
+  .lg\:usuario-contenedor-modal{
+    grid-column: span 3 / span 3;
+  }
+
+  .lg\:usuario-contenedor-aside{
+    margin-bottom: 1.5rem;
+  }
+
+  .lg\:usuario-aside{
+  }
+
+  .lg\:usuario-contenedor-btns{
+    border-top-width: 2px;
+    padding: 1rem;
+  }
+
+  .lg\:usuario-contenedor-btns__i{
+    font-size: 1.5rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+  }
+
+  .lg\:usuario-contenedor-btns__span{
+    display: none;
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .lg\:usuario-contenedor-btns__i--activo{
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  .lg\:usuario-contenedor-btns__span--activo{
+    font-weight: 900;
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  /* =====================================Usuario===================================== */
+
   /* =====================================CrearSolicitud===================================== */
 
-  .lg\:crearSolicitud-contendor{
+  .lg\:crearSolicitud-contenedor{
   }
 
   .lg\:crearSolicitud-contenedor-titulo{
@@ -65832,6 +66459,123 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   /* =====================================ListarSolicitud===================================== */
+
+  /* =====================================InformacionPersonal===================================== */
+
+  .lg\:informacionPersonal-contenedor-general{
+  }
+
+  .lg\:informacionPersonal-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:informacionPersonal-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .lg\:informacionPersonal-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lg\:informacionPersonal-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionPersonal===================================== */
+
+  /* =====================================InformacionContacto===================================== */
+
+  .lg\:informacionContacto-contenedor-general{
+  }
+
+  .lg\:informacionContacto-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:informacionContacto-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .lg\:informacionContacto-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lg\:informacionContacto-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionContacto===================================== */
+
+  /* =====================================InformacionDespacho===================================== */
+
+  .lg\:informacionDespacho-contenedor-general{
+  }
+
+  .lg\:informacionDespacho-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .lg\:informacionDespacho-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .lg\:informacionDespacho-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .lg\:informacionDespacho-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionDespacho===================================== */
 
   .lg\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;
@@ -87093,9 +87837,78 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 
   /* =====================================Detalle===================================== */
 
+  /* =====================================Usuario===================================== */
+
+  .xl\:usuario-contenendor{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .xl\:usuario-contenedor-titulo{
+    text-align: center;
+  }
+
+  .xl\:usuario-contenedor-titulo__h1{
+    font-family: Noto Serif JP, serif;
+    font-size: 2.25rem;
+  }
+
+  .xl\:usuario-contenedor-general{
+    max-width: 72rem;
+  }
+
+  .xl\:usuario-contenedor-modal{
+    grid-column: span 3 / span 3;
+  }
+
+  .xl\:usuario-contenedor-aside{
+    margin-bottom: 1.5rem;
+  }
+
+  .xl\:usuario-aside{
+  }
+
+  .xl\:usuario-contenedor-btns{
+    border-top-width: 2px;
+    padding: 1rem;
+  }
+
+  .xl\:usuario-contenedor-btns__i{
+    font-size: 1.5rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+  }
+
+  .xl\:usuario-contenedor-btns__span{
+    display: none;
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #4a5568;
+    color: rgba(74, 85, 104, var(--text-opacity));
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .xl\:usuario-contenedor-btns__i--activo{
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  .xl\:usuario-contenedor-btns__span--activo{
+    font-weight: 900;
+    --text-opacity: 1;
+    color: #ed8936;
+    color: rgba(237, 137, 54, var(--text-opacity));
+  }
+
+  /* =====================================Usuario===================================== */
+
   /* =====================================CrearSolicitud===================================== */
 
-  .xl\:crearSolicitud-contendor{
+  .xl\:crearSolicitud-contenedor{
   }
 
   .xl\:crearSolicitud-contenedor-titulo{
@@ -87260,6 +88073,123 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   }
 
   /* =====================================ListarSolicitud===================================== */
+
+  /* =====================================InformacionPersonal===================================== */
+
+  .xl\:informacionPersonal-contenedor-general{
+  }
+
+  .xl\:informacionPersonal-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:informacionPersonal-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .xl\:informacionPersonal-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .xl\:informacionPersonal-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionPersonal===================================== */
+
+  /* =====================================InformacionContacto===================================== */
+
+  .xl\:informacionContacto-contenedor-general{
+  }
+
+  .xl\:informacionContacto-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:informacionContacto-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .xl\:informacionContacto-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .xl\:informacionContacto-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionContacto===================================== */
+
+  /* =====================================InformacionDespacho===================================== */
+
+  .xl\:informacionDespacho-contenedor-general{
+  }
+
+  .xl\:informacionDespacho-contenedor-titulo{
+    border-bottom-width: 4px;
+    --border-opacity: 1;
+    border-color: #48bb78;
+    border-color: rgba(72, 187, 120, var(--border-opacity));
+  }
+
+  .xl\:informacionDespacho-contenedor-titulo__h2{
+    font-family: Lato, sans-serif;
+    font-size: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .xl\:informacionDespacho-contenedor-inputs{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .xl\:informacionDespacho-contenedor-btns__button{
+    font-family: Lato, sans-serif;
+    font-size: 1.125rem;
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    text-align: center;
+    border-radius: 0.5rem;
+    --bg-opacity: 1;
+    background-color: #48bb78;
+    background-color: rgba(72, 187, 120, var(--bg-opacity));
+  }
+
+  /* =====================================InformacionDespacho===================================== */
 
   .xl\:space-y-0 > :not(template) ~ :not(template){
     --space-y-reverse: 0;

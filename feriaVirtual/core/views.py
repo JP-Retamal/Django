@@ -29,3 +29,11 @@ def usuario(request):
 def solicitud(request):
     tituloPagina = 'Solicitudes'
     return render(request, 'solicitud.html', { 'tituloPagina' : tituloPagina})
+
+def pedido(request):
+    tituloPagina = 'Pedidos'
+    return render(request, 'pedido.html', { 'tituloPagina' : tituloPagina})
+
+def informacion(request):
+    tituloPagina = 'Informacion'
+    return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})

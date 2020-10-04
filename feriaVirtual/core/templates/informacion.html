@@ -1,0 +1,11 @@
+{% extends 'usuario.html' %}
+
+{% block title %} {{ tituloPagina }} {% endblock %}
+
+{% block contentUsuario %} 
+
+{% include 'include/informacionPersonal.html' %}
+{% include 'include/informacionContacto.html' %}
+{% include 'include/informacionDespacho.html' %}
+
+{% endblock %}

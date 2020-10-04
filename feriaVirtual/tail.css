@@ -537,9 +537,62 @@ h6 {
     /* =====================================Detalle===================================== */
 
 
+    /* =====================================Usuario===================================== */
+    
+    .usuario-contenendor{
+        @apply mx-2;
+    }
+
+    .usuario-contenedor-titulo{
+        @apply text-center;
+    }
+    
+    .usuario-contenedor-titulo__h1{
+        @apply font-notoserif text-4xl;
+    }
+
+    .usuario-contenedor-general{
+        @apply max-w-6xl;
+    }
+
+    .usuario-contenedor-modal{
+        @apply col-span-3;
+    }
+
+    .usuario-contenedor-aside{
+        @apply mb-6;
+    }
+
+    .usuario-aside{}
+
+    .usuario-contenedor-btns{
+        @apply border-t-2;
+        @apply p-4;
+    }
+
+    .usuario-contenedor-btns__i{
+        @apply text-2xl text-gray-700;
+    }
+
+    .usuario-contenedor-btns__span{
+        @apply hidden;
+        @apply font-lato text-lg text-gray-700;
+        @apply mx-2;
+    }
+
+    .usuario-contenedor-btns__i--activo{
+        @apply text-orange-500;
+    }
+
+    .usuario-contenedor-btns__span--activo{
+        @apply font-black text-orange-500;
+    }
+
+    /* =====================================Usuario===================================== */
+    
     /* =====================================CrearSolicitud===================================== */
 
-    .crearSolicitud-contendor{}
+    .crearSolicitud-contenedor{}
 
     .crearSolicitud-contenedor-titulo{
         @apply border-b-4 border-green-500;
@@ -655,7 +708,82 @@ h6 {
     }
 
     /* =====================================ListarSolicitud===================================== */
+    
+    
+    /* =====================================InformacionPersonal===================================== */
+    
+    .informacionPersonal-contenedor-general{}
 
+    .informacionPersonal-contenedor-titulo{
+        @apply border-b-4 border-green-500;
+    }
+
+    .informacionPersonal-contenedor-titulo__h2{
+        @apply font-lato text-2xl;
+        @apply py-2;
+    }
+
+    .informacionPersonal-contenedor-inputs{
+        @apply my-2;
+    }
+
+    .informacionPersonal-contenedor-btns__button{
+        @apply font-lato text-lg text-white text-center;
+        @apply rounded-lg;
+        @apply bg-green-500;
+    }
+    
+    /* =====================================InformacionPersonal===================================== */
+    
+    /* =====================================InformacionContacto===================================== */
+    
+    .informacionContacto-contenedor-general{}
+
+    .informacionContacto-contenedor-titulo{
+        @apply border-b-4 border-green-500;
+    }
+
+    .informacionContacto-contenedor-titulo__h2{
+        @apply font-lato text-2xl;
+        @apply py-2;
+    }
+
+    .informacionContacto-contenedor-inputs{
+        @apply my-2;
+    }
+
+    .informacionContacto-contenedor-btns__button{
+        @apply font-lato text-lg text-white text-center;
+        @apply rounded-lg;
+        @apply bg-green-500;
+    }
+
+    /* =====================================InformacionContacto===================================== */
+
+    /* =====================================InformacionDespacho===================================== */
+
+    .informacionDespacho-contenedor-general{}
+
+    .informacionDespacho-contenedor-titulo{
+        @apply border-b-4 border-green-500;
+    }
+
+    .informacionDespacho-contenedor-titulo__h2{
+        @apply font-lato text-2xl;
+        @apply py-2;
+    }
+
+    .informacionDespacho-contenedor-inputs{
+        @apply my-2;
+    }
+
+    .informacionDespacho-contenedor-btns__button{
+        @apply font-lato text-lg text-white text-center;
+        @apply rounded-lg;
+        @apply bg-green-500;
+    }
+
+    /* =====================================InformacionDespacho===================================== */
 }
 
 @import "tailwindcss/utilities";
