@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'feriaVirtual.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,19 +74,19 @@ WSGI_APPLICATION = 'feriaVirtual.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.oracle',
-#         'NAME': '192.168.0.10:1521/orcl',
-#         'USER': 'c##feriaVirtual',
-#         'PASSWORD': 'feriaVirtual',
-#         'TEST': {
-#             'USER': 'default_test',
-#             'TBLSPACE': 'default_test_tbls',
-#             'TBLSPACE_TMP': 'default_test_tbls_tmp',
-#         },
-#     },
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': '192.168.0.10:1521/xe',
+        'USER': 'c##feriaVirtual2',
+        'PASSWORD': 'feriaVirtual2',
+        'TEST': {
+            'USER': 'default_test',
+            'TBLSPACE': 'default_test_tbls',
+            'TBLSPACE_TMP': 'default_test_tbls_tmp',
+        },
+    },
+}
 
 
 # Password validation
@@ -121,11 +121,27 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = 'f204d573e739f5'
+EMAIL_HOST_PASSWORD = '4f6f560c630412'
+EMAIL_PORT = '2525'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
-LOGIN_REDIRECT_URL = '../bbb'
-LOGIN_REDIRECT_URL = '/'
+STATICFIES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = ''
+
