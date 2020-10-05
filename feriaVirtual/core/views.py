@@ -1,10 +1,18 @@
 from django.shortcuts import render
 from datetime import date
+import cx_Oracle
+from .metodos_views import *
+import base64
 # Create your views here. la funcion def home busca el template (controlador)
 
 def home(request):
-    tituloPagina = 'Inicio'
-    return render(request, 'index.html', { 'tituloPagina' : tituloPagina })
+    #print(listar_saldos_calidad_baja())
+    data = {
+        'baja': listar_saldos_calidad_baja(),
+        'media_alta': saldos_calidad_alta_media()
+    }
+    
+    return render(request, 'index.html', data)
 
 def login(request):
     tituloPagina = 'Ingreso'
@@ -15,11 +23,12 @@ def registro(request):
     fechaActual = date.today()
     return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
 
-def detalle(request):
-    tituloPagina = 'Manzana Candy'
-    precio = '{:,}'.format(1990).replace(',','.')
-    cantidad = '1'
-    return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
+def detalle(request, detalle_id):
+    # print(listar_detallesaldos(detalle_id))
+    data = {
+        'db_vlocal': listar_detallesaldos(detalle_id)
+    }
+    return render(request, 'detalle.html', data)
 
 def usuario(request):
     tituloPagina = 'Perfil'

@@ -4,73 +4,26 @@
         <h1>Nuestros Productos</h1>
     </div>
     <div class="contenedor-producto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <div class="flex justify-center py-4">
-            <div class="contenedor-tarjeta">
-        <div class="imagen-tarjeta" style="background-image: url('../../static/img/frambuesas.jpg');"></div>
-                <div class="titulo-tarjeta">
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-                <div class="unidad-tarjeta"><span>Unidad</span></div>
-                <div class="precio-tarjeta">
-                    <h2>$10.990</h2>
-                </div>
-                <div class="boton-tarjeta">
-                    <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
-                        <span class="text-white">Comprar</span>
+        {% for p in media_alta %} 
+            <div class="flex justify-center py-4">       
+                <div class="slider__elemento">
+                    <div class="contenedor-tarjeta">
+                        <div class="imagen-tarjeta" style="background-image: url('data:imagen/jpg;base64, {{p.imagen}}');"></div>
+                        <div class="titulo-tarjeta">
+                            <h2><td>{{p.data.5}} {{p.data.6}}</td></h2>
+                        </div>
+                        <div class="unidad-tarjeta"><span>Unidad: <td>{{p.data.4}}</td>Kg.</span></div>
+                        <div class="precio-tarjeta">
+                            <h2>$<td>{{p.data.3}}</td></h2>
+                        </div>
+                        <div class="boton-tarjeta">
+                            <a href="{% url 'detalle' p.data.0 %}"><div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
+                                <span class="text-white">Comprar</span>
+                            </div></a>
+                        </div>
                     </div>
-                </div>
+                </div>      
             </div>
-        </div>
-        <div class="flex justify-center py-4">
-            <div class="contenedor-tarjeta">
-                <div class="imagen-tarjeta"></div>
-                <div class="titulo-tarjeta">
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-                <div class="unidad-tarjeta"><span>Unidad</span></div>
-                <div class="precio-tarjeta">
-                    <h2>$10.990</h2>
-                </div>
-                <div class="boton-tarjeta">
-                    <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
-                        <span class="text-white">Comprar</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center py-4">
-            <div class="contenedor-tarjeta">
-                <div class="imagen-tarjeta"></div>
-                <div class="titulo-tarjeta">
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-                <div class="unidad-tarjeta"><span>Unidad</span></div>
-                <div class="precio-tarjeta">
-                    <h2>$10.990</h2>
-                </div>
-                <div class="boton-tarjeta">
-                    <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
-                        <span class="text-white">Comprar</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center py-4">
-            <div class="contenedor-tarjeta">
-                <div class="imagen-tarjeta"></div>
-                <div class="titulo-tarjeta">
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-                <div class="unidad-tarjeta"><span>Unidad</span></div>
-                <div class="precio-tarjeta">
-                    <h2>$10.990</h2>
-                </div>
-                <div class="boton-tarjeta">
-                    <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
-                        <span class="text-white">Comprar</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
