@@ -1,12 +1,13 @@
 from django.shortcuts import render
+from django.db import connection
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
-import base64
+
 # Create your views here. la funcion def home busca el template (controlador)
 
 def home(request):
-    #print(listar_saldos_calidad_baja())
+    
     data = {
         'baja': listar_saldos_calidad_baja(),
         'media_alta': saldos_calidad_alta_media()
@@ -24,7 +25,7 @@ def registro(request):
     return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
 
 def detalle(request, detalle_id):
-    # print(listar_detallesaldos(detalle_id))
+    
     data = {
         'db_vlocal': listar_detallesaldos(detalle_id)
     }
