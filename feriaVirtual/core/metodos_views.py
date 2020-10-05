@@ -53,7 +53,7 @@ def listar_detallesaldos(detalle_id):
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[9].read()), "utf-8")
+            'img':str(base64.b64encode(fila[9].read()), "utf-8")
         }
 
         lista.append(data)
