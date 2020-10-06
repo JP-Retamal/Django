@@ -11,7 +11,7 @@
 <div class="detalle-contenedor"> 
         {% for d in db_vlocal %} 
         <div class="detalle-contenedor-titulo md:col-span-3">
-            <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.7}} {{d.data.8}}</td></h1>
+            <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.6}} {{d.data.7}}</td></h1>
         </div>
         <div class="detalle-contenedor-descripcion  md:grid-cols-3">
             <div class="detalle-contenedor-imagen centrar-contenedor">
@@ -19,7 +19,7 @@
             </div>
             <div class="detalle-contenedor-informacion md:col-span-2 md:m-0"> 
                 <div class="detalle-contenedor-precio md:text-left">
-                    <span class="detalle-contenedor-precio__span ">$<td> {{d.data.5}} - {{d.data.6}} Kg</td></span>
+                    <span class="detalle-contenedor-precio__span ">$<td> {{d.data.4}} - {{d.data.5}} Kg</td></span>
                 </div>
                 <div class="detalle-contenedor-caracteristica md:my-2 md:h-48">
                     <span class="detalle-contenedor-caracteristica__span">Características</span>
@@ -27,7 +27,7 @@
                      <br>
                         <li class="detalle-contenedor-caracteristica__li">Kilos oferta:<td> {{d.data.6}} K.</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Fecha cosecha:<td> {{d.data.2}}</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Descripción:<td> cvbcv</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Descripción:<br><br><td> {{d.data.10}}</td></li>
                     </ul>
                 </div>              
                 <div class="detalle-contenedor-btn centrar-contenedor md:m-0 md:justify-start md:items-end">

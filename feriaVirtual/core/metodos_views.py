@@ -53,7 +53,7 @@ def listar_detallesaldos(detalle_id):
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
+            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
         }
 
         lista.append(data)
@@ -71,16 +71,6 @@ def agregar_comerciante(RUN_USUARIO, NOMBRE, AP_PATERNO, AP_MATERNO, FECHA_NAC, 
     cursor.callproc('SP_REGISTRO_COMERCIANTES', [RUN_USUARIO, NOMBRE, AP_PATERNO, AP_MATERNO, FECHA_NAC,
                                                  EMAIL, DIRECCION, NUM_CELULAR, CLAVE, ID_ESTADO, ID_COMUNA, ID_ROL, ID_GENERO, ID_EMPRESA])
     return salida.getvalue()
-
-# def detalle(request,detalle_id):#detalle_id
-  #  print(listar_detallesaldos(detalle_id))
-   # data = {
-   #     'BD_VLOCAL':listar_detallesaldos(detalle_id)
-  #  }
-  #  tituloPagina = 'Manzana Candy'
-  #  precio = '{:,}'.format(1990).replace(',','.')
-  #  cantidad = '1'
-   # return render(request, 'detalle.html', { 'tituloPagina' : tituloPagina, 'precio' : precio, 'cantidad' : cantidad })
 
 
 def listar_por_regiones():
