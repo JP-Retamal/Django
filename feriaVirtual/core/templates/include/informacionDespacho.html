@@ -4,7 +4,7 @@
     </div>
     <div class="informacionDespacho-contenedor-inputs grid grid-col-1 lg:grid-col-3">
 		<!-- Direccion -->
-		<div class="contenedor-inputs lg:col-span-3">
+		<div class="contenedor-inputs grid gap-y-2 lg:col-span-3">
             <label class="label" for="informacionDespacho-direccion">Direccion</label>
 			<input id="informacionDespacho-direccion" name="informacionDespacho-direccion" type="text"
 				class="input focus:outline-none focus:border-orange-500" placeholder="Direccion" />
@@ -13,26 +13,31 @@
 					alfabeticos.</span>
 			</div>
 		</div>
-		<!-- Comuna -->
-		<div class="contenedor-selects">
-            <label class="label" for="informacionDespacho-comuna">Comuna</label>
-			<select id="informacionDespacho-comuna" name="informacionDespacho-comuna"
+		<div class="grid grid-cols-1 lg:grid-cols-3">
+			<!-- Comuna -->
+			<div class="contenedor-selects grid gap-y-2">
+				<label class="label" for="informacionDespacho-comuna">Comuna</label>
+				<select id="informacionDespacho-comuna" name="informacionDespacho-comuna"
 				class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-			</select>
-		</div>
-		<!-- Provincia -->
-		<div class="contenedor-selects">
-            <label class="label" for="informacionDespacho-provincia">Provincia</label>
-			<select id="informacionDespacho-provincia" name="informacionDespacho-provincia"
-				class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-			</select>
-		</div>
-		<!-- Region -->
-		<div class="contenedor-selects">
-            <label class="label" for="informacionDespacho-region">Region</label>
-			<select id="informacionDespacho-region" name="informacionDespacho-region"
-				class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-			</select>
+					<option></option>
+				</select>
+			</div>
+			<!-- Provincia -->
+			<div class="contenedor-selects grid gap-y-2">
+				<label class="label" for="informacionDespacho-provincia">Provincia</label>
+				<select id="informacionDespacho-provincia" name="informacionDespacho-provincia"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+					<option></option>
+				</select>
+			</div>
+			<!-- Region -->
+			<div class="contenedor-selects grid gap-y-2">
+				<label class="label" for="informacionDespacho-region">Region</label>
+				<select id="informacionDespacho-region" name="informacionDespacho-region"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500" autofocus>
+					<option></option>
+				</select>
+			</div>
 		</div>
 		<!-- Btn -->
 		<div class="contenedor-btns flex justify-end lg:col-span-3">
@@ -75,6 +80,7 @@
 	return "Buscando..";
 	}
 	},
+
 	// theme: "registro-contenedor-selects__select"
 	});
 	}

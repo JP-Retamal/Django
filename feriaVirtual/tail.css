@@ -54,7 +54,7 @@ h6 {
 
     .contenedor-logo {
         @apply h-full;
-        background: url("../img/BestFruit_Logo_horizontal.png");
+        background: url("/static/img/BestFruit_Logo_horizontal.png");
         background-repeat: no-repeat;
         background-position-x: center;
     }
@@ -105,7 +105,7 @@ h6 {
     .contenedor-parallax {
         @apply text-white;
         position: relative;
-        background: url("../img/parallax.jpg");
+        background: url("/static/img/parallax.jpg");
         height: 500px;
         background-attachment: fixed;
         background-size: cover;
@@ -336,15 +336,13 @@ h6 {
 
     .contenedor-login {
         @apply h-screen;
-        background: url('../img/bg.jpg');
+        background: url('/static/img/bg.jpg');
         background-size: cover;
     }
 
     .ventana-login {
         @apply rounded-lg;
         @apply bg-white;
-        @apply mx-5 px-5;
-        min-width: 30%;
     }
 
     .ventana-titulo {
@@ -362,7 +360,7 @@ h6 {
     }
 
     .formulario-login__input {
-        @apply rounded-lg border-t-2 bg-gray-100;
+        @apply rounded-lg border-t-4 border-gray-200;
         @apply my-4 p-2;
     }
 
@@ -391,7 +389,7 @@ h6 {
     /* =====================================Registro====================================== */
 
     .registro-contenedor {
-        background: url('../img/bg.jpg');
+        background: url('/static/img/bg.jpg');
         background-size: cover;
         min-height: 100vh;
     }
@@ -408,9 +406,13 @@ h6 {
     }
 
     .input {
-        @apply bg-gray-100 border-2 rounded-lg;
+        @apply border-gray-500 border rounded-md;
         @apply w-full;
         @apply p-2;
+    }
+
+    .input::placeholder{
+        @apply text-gray-800
     }
 
     .contenedor-inputs-error {
@@ -463,8 +465,8 @@ h6 {
     }
 
     .contenedor-selects__select {
-        @apply bg-gray-100 appearance-none;
-        @apply border-2 rounded-lg;
+        @apply appearance-none;
+        @apply border-2 border-black rounded-lg;
         @apply w-full;
         @apply p-2;
     }
@@ -539,21 +541,27 @@ h6 {
 
     /* =====================================Usuario===================================== */
     
-    .usuario-contenendor{
-        @apply mx-2;
+    .usuario-contenedor{
+        @apply max-w-6xl;
+        @apply mx-auto;
     }
 
     .usuario-contenedor-titulo{
         @apply text-center;
+    }
+
+    .usuario-contenedor-informacion{}
+
+    .usuario-contenedor-informacion__p{
+        @apply font-lato font-light text-xl;
+        @apply m-4;
     }
     
     .usuario-contenedor-titulo__h1{
         @apply font-notoserif text-4xl;
     }
 
-    .usuario-contenedor-general{
-        @apply max-w-6xl;
-    }
+    .usuario-contenedor-general{}
 
     .usuario-contenedor-modal{
         @apply col-span-3;
@@ -599,7 +607,7 @@ h6 {
     }
 
     .crearSolicitud-contenedor-titulo__h2{
-        @apply font-lato text-3xl;
+        @apply font-lato text-2xl;
         @apply p-3;
     }
 
@@ -646,7 +654,7 @@ h6 {
     }
 
     .listarSolicitud-contenedor-titulo__h2{
-        @apply font-lato text-3xl;
+        @apply font-lato text-2xl;
         @apply p-3;
     }
 
@@ -670,7 +678,7 @@ h6 {
 
     .listarSolicitud-contenedor-label__span{
         @apply font-lato bg-green-500 text-white rounded-lg;
-        @apply m-2 p-2;
+        @apply m-2 px-2 py-4;
     }
 
     .listarSolicitud-contenedor-solicitud-detalle{
@@ -720,7 +728,7 @@ h6 {
 
     .informacionPersonal-contenedor-titulo__h2{
         @apply font-lato text-2xl;
-        @apply py-2;
+        @apply p-4;
     }
 
     .informacionPersonal-contenedor-inputs{
@@ -745,7 +753,7 @@ h6 {
 
     .informacionContacto-contenedor-titulo__h2{
         @apply font-lato text-2xl;
-        @apply py-2;
+        @apply p-4;
     }
 
     .informacionContacto-contenedor-inputs{
@@ -770,7 +778,7 @@ h6 {
 
     .informacionDespacho-contenedor-titulo__h2{
         @apply font-lato text-2xl;
-        @apply py-2;
+        @apply p-4;
     }
 
     .informacionDespacho-contenedor-inputs{
