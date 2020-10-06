@@ -3,21 +3,28 @@
 {% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block content %}
-<div class="usuario-contenedor grid justify-center lg:my-10">
+{% load static %}
+<div class="usuario-contenedor lg:my-10">
     <div class="usuario-contenedor-titulo">
         <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{ nombreUsuario }}!</h1>
     </div>
-    <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4">
+    <div class="usuario-contenedor-informacion">
+        <p class="usuario-contenedor-informacion__p">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae eum consequatur vitae nesciunt impedit aperiam assumenda cum? Porro voluptates minima deserunt, neque sunt eum voluptate voluptatibus sapiente quo! Deleniti, eaque. Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores harum unde iure ut neque vero earum alias dolores ullam veniam facilis nemo exercitationem sint, tempora ex. Quo veritatis est autem?</p>
+    </div>
+    <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4 w-full">
         <div class="usuario-contenedor-modal">
             {% block contentUsuario %} {% endblock %}
         </div>
-        <div class="usuario-contenedor-aside">
+        <div class="usuario-contenedor-aside sticky lg:static bg-white inset-0">
             <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
                 <!-- Solicitud de Compra -->
                 <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                     <a href="http://localhost:8000/usuario/solicitud/" class="">
-                        <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
-                        <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud de Compra</span>
+                        <i
+                            class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
+                        <span
+                            class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud
+                            de Compra</span>
                     </a>
                 </div>
                 <!-- Pedidos -->
@@ -29,14 +36,14 @@
                 </div>
                 <!-- Cuenta -->
                 <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                    <a href="">
+                    <a href="http://localhost:8000/usuario/informacion/">
                         <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
                         <span class="usuario-contenedor-btns__span lg:inline-block">Cuenta</span>
                     </a>
                 </div>
                 <!-- Salir -->
                 <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                    <a href="">
+                    <a href="http://localhost:8000">
                         <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
                         <span class="usuario-contenedor-btns__span lg:inline-block">Salir</span>
                     </a>
