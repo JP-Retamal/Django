@@ -20,9 +20,33 @@ def login(request):
     return render(request, 'login.html', { 'tituloPagina' : tituloPagina })
 
 def registro(request):
-    tituloPagina = 'Registro'
-    fechaActual = date.today()
-    return render(request, 'registro.html', { 'fechaActual' : fechaActual, 'tituloPagina' : tituloPagina })
+    print(listar_regiones())
+    data = {
+        'region': listar_regiones()
+    }
+
+    if request.method == 'POST':
+        run_usuario = request.POST.get('registro-rut')
+        pasaporte = request.POST.get('registro-pasaporte')
+        nombre = request.POST.get('registro-nombre')
+        ap_paterno = request.POST.get('registro-Paterno')
+        ap_materno = request.POST.get('registro-materno')
+        fecha_nac = request.POST.get('registro-fecha')
+        email = request.POST.get('registro-correo')
+        direccion = request.POST.get('registro-direccion')
+        celular = request.POST.get('registro-celular')
+        clave = request.POST.get('registro-contrasenia1')
+        comuna = request.POST.get('registro-comuna')
+        
+        salida = agregar_comerciante(
+            run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
+        if salida == 1:
+            data['mensaje'] = 'Agregado correctamente'
+            
+        else:
+            data['mensaje'] = 'El registro no se agregó'
+        
+    return render(request, 'registro.html', data)
 
 def detalle(request, detalle_id):
     

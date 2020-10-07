@@ -1,4 +1,5 @@
 from django.db import connection
+from datetime import datetime
 from datetime import date
 import cx_Oracle
 import base64
@@ -61,24 +62,20 @@ def listar_detallesaldos(detalle_id):
     return lista
 
 
-def agregar_comerciante(RUN_USUARIO, NOMBRE, AP_PATERNO, AP_MATERNO, FECHA_NAC, EMAIL, DIRECCION, NUM_CELULAR, CLAVE, ID_COMUNA, ID_GENERO):
+def agregar_comerciante(run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    ID_ESTADO = 1
-    ID_ROL = 3 
-    ID_EMPRESA = 0
-    cursor.callproc('SP_REGISTRO_COMERCIANTES', [RUN_USUARIO, NOMBRE, AP_PATERNO, AP_MATERNO, FECHA_NAC,
-                                                 EMAIL, DIRECCION, NUM_CELULAR, CLAVE, ID_ESTADO, ID_COMUNA, ID_ROL, ID_GENERO, ID_EMPRESA])
+    cursor.callproc('SP_AGREGAR_COMERCIANTE', [run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna, salida])
     return salida.getvalue()
 
 
-def listar_por_regiones():
+def listar_regiones():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("SP_LISTAR_POR_REGIONES", [out_cur])
+    cursor.callproc("SP_LISTAR_REGIONES", [out_cur])
 
     lista = []
     for fila in out_cur:

@@ -9,13 +9,14 @@
 		<div class="ventana-titulo">
 			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
 		</div>
-		<form id="registro-formulario" action="">
+		<form id="registro-formulario" action="" method="POST">
+		{% csrf_token %}
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Run o Pasaporte" />
+						placeholder="Run o Pasaporte" required=""  pattern="[0-9]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
 							ser
@@ -30,7 +31,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" />
+						placeholder="Fecha de Nacimiento" required=""/>
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
@@ -40,7 +41,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Nombre" />
+						placeholder="Nombre" required="" pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -49,7 +50,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-Paterno" name="registro-Paterno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Paterno" />
+						placeholder="Apellido Paterno" required="" pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -58,7 +59,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Materno" />
+						placeholder="Apellido Materno" required="" pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -68,7 +69,7 @@
 				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Correo Electronico" />
+						placeholder="Correo Electronico" required="" pattern="[a-z]+@+[a-z]+.+[a-z]"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
 							caracteres alfanumericos, guiones o puntos.</span>
@@ -77,7 +78,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
 						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" />
+						placeholder="Numero de Telefono" required="" pattern="[0-9]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
 							56 9 XXXX XXXX</span>
@@ -87,7 +88,7 @@
 				<div class="contenedor-inputs lg:col-span-3">
 					<input id="registro-direccion" name="registro-direccion" type="text"
 						class="input lg:w-full focus:outline-none focus:border-orange-500"
-						placeholder="Direccion" />
+						placeholder="Direccion" required="" />
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -95,20 +96,32 @@
 				</div>
 				<!-- Selects -->
 				<div class="contenedor-selects">
-					<select id="registro-region" name="registro-region"
+					<select id="registro-region" name="registro-region" required=""
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						{% for p in region %}
+							<option valua=""></option>
+							<option value="{{ p.0 }}">{{ p.0 }}</option>
+						{% endfor %}
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-provincia" name="registro-provincia"
+					<select id="registro-provincia" name="registro-provincia" required=""
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						{% for p in region %}
+							<option valua=""></option>
+							<option value="{{ p.1 }}">{{ p.1}}</option>
+						{% endfor %}
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-comuna" name="registro-comuna"
+					<select id="registro-comuna" name="registro-comuna" required=""
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						{% for p in region %}
+							<option valua=""></option>
+							<option value="{{ p.2 }}">{{ p.3 }}</option>
+						{% endfor %}
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
@@ -116,7 +129,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Contraseña" />
+						placeholder="Contraseña" required=""/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">La contrasenia debe contener de 6 a 12
 							caracteres.</span>
@@ -125,7 +138,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Repita Contraseña" />
+						placeholder="Repita Contraseña" required=""/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
 					</div>
@@ -136,6 +149,8 @@
 						Registrarse
 					</button>
 					<span class="block font-lato text-sm text-center mt-2">Al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad</span>
+					<br>
+					{{mensaje}}
 				</div>
 			</div>
 		</form>
