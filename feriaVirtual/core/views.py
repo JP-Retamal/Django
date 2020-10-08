@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import connection
+from django.http import HttpResponse
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
@@ -41,10 +42,10 @@ def registro(request):
         salida = agregar_comerciante(
             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
         if salida == 1:
-            data['mensaje'] = 'Agregado correctamente'
+            #return redirect("login")
+            return render(request, 'redirecRegistro.html')
         else:
             data['mensaje'] = 'El registro no se agregó'
-        
     return render(request, 'registro.html', data)
 
 def detalle(request, detalle_id):
@@ -54,7 +55,9 @@ def detalle(request, detalle_id):
     }
     return render(request, 'detalle.html', data)
 
-
+def redirecRegistro(request):
+    tituloPagina = 'Registro Exitoso'
+    return render(request, 'redirecRegistro.html', { 'tituloPagina' : tituloPagina })
 
 
 
