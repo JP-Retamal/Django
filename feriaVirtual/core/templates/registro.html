@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} {{ tituloPagina }} {% endblock %}
+{% block title %} Registro {% endblock %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Run o Pasaporte" required=""  pattern="[0-9]+"/>
+						placeholder="Run o Pasaporte" required  pattern="[0-9]+-+[1-9-k]" maxlength="10"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
 							ser
@@ -31,7 +31,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" required=""/>
+						placeholder="Fecha de Nacimiento" required min="1920/10/07"/>
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
@@ -41,7 +41,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Nombre" required="" pattern="[a-z]+"/>
+						placeholder="Nombre" required pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -50,7 +50,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-Paterno" name="registro-Paterno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Paterno" required="" pattern="[a-z]+"/>
+						placeholder="Apellido Paterno" required pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -59,7 +59,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Materno" required="" pattern="[a-z]+"/>
+						placeholder="Apellido Materno" required pattern="[a-z]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -69,7 +69,7 @@
 				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Correo Electronico" required="" pattern="[a-z]+@+[a-z]+.+[a-z]"/>
+						placeholder="Correo Electronico" required pattern="[a-z]+@+[a-z]+.+[a-z]"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
 							caracteres alfanumericos, guiones o puntos.</span>
@@ -78,7 +78,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
 						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" required="" pattern="[0-9]+"/>
+						placeholder="Numero de Telefono" required pattern="[0-9]+"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
 							56 9 XXXX XXXX</span>
@@ -88,7 +88,7 @@
 				<div class="contenedor-inputs lg:col-span-3">
 					<input id="registro-direccion" name="registro-direccion" type="text"
 						class="input lg:w-full focus:outline-none focus:border-orange-500"
-						placeholder="Direccion" required="" />
+						placeholder="Direccion" required/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -96,7 +96,7 @@
 				</div>
 				<!-- Selects -->
 				<div class="contenedor-selects">
-					<select id="registro-region" name="registro-region" required=""
+					<select id="registro-region" name="registro-region" required
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -106,7 +106,7 @@
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-provincia" name="registro-provincia" required=""
+					<select id="registro-provincia" name="registro-provincia" required
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -116,7 +116,7 @@
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-comuna" name="registro-comuna" required=""
+					<select id="registro-comuna" name="registro-comuna" required
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -127,13 +127,19 @@
 				</div>
 				<!-- Contrasenia -->
 				<div class="contenedor-inputs">
-					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
+					<input id="registro-contrasenia1" name="registro-contrasenia1" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Contraseña" required=""/>
+						placeholder="Contraseña" required/>
 					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">La contrasenia debe contener de 6 a 12
-							caracteres.</span>
+						<span class="contenedor-inputs-error__span"></span>
+						<div id="mensaje"></div>
 					</div>
+					<ul>				
+						<li id="special">Caracter especial</li>
+						<li id="numbers">Números</li>
+						<li id="lower">Letras</li>
+						<li id="len">Mínimo 8 caractéres</li>
+					</ul>
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
@@ -141,7 +147,11 @@
 						placeholder="Repita Contraseña" required=""/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
+						<span id="mensaje2"></span>
 					</div>
+					<ul>				
+						<li id="pass2">Contraseña1 = Contraseña2</li>
+					</ul>
 				</div>
 				<!-- Btn -->
 				<div class="contenedor-btns md:col-span-2 lg:col-span-3">
@@ -151,6 +161,7 @@
 					<span class="block font-lato text-sm text-center mt-2">Al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad</span>
 					<br>
 					{{mensaje}}
+					<meta http-equiv="Refresh" contetnt="5;url= login ">
 				</div>
 			</div>
 		</form>
@@ -258,7 +269,8 @@
 	$('#registro-fecha').datepicker({
 		changeMonth: true,
 		changeYear: true,
-		maxDate: "+0D"
+		maxDate: "+0D",
+		minDate: "-100Y"
 	});
 	// Fin DatePicker JQuery
 

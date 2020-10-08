@@ -9,14 +9,14 @@
         <div class="ventana-titulo">
             <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
         </div>
-        <form action="">
+        <form action="" id="formlogin">
             <div class="formulario-login">
                 <input id="login-correo" name="login-correo" type="email"
                     class="formulario-login__input focus:outline-none focus:border-orange-500"
-                    placeholder="Correo Electrónico">
-                <input id="login-contrasenia" name="login-contrasenia" type="password"
+                    placeholder="Correo Electrónico" required pattern="[a-z]+@+[a-z]+.+[a-z]">
+                <input id="login-contrasenia" name="login-contrasenia" type="password" required
                     class="formulario-login__input focus:outline-none focus:border-orange-500" placeholder="Contraseña">
-                <div class="contenedor-inputs-error">
+                <div class="contenedor-inputs-error" id="error">
                     <span class="contenedor-inputs-error__span">Debe completar todos los campos.</span>
                 </div>
                 <div class="contenedor-inputs-error">

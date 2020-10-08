@@ -42,7 +42,6 @@ def registro(request):
             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
         if salida == 1:
             data['mensaje'] = 'Agregado correctamente'
-            
         else:
             data['mensaje'] = 'El registro no se agregó'
         
@@ -54,6 +53,15 @@ def detalle(request, detalle_id):
         'db_vlocal': listar_detallesaldos(detalle_id)
     }
     return render(request, 'detalle.html', data)
+
+
+
+
+
+
+
+
+    
 
 def usuario(request):
     tituloPagina = 'Perfil'

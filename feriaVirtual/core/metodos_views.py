@@ -61,7 +61,7 @@ def listar_detallesaldos(detalle_id):
 
     return lista
 
-
+# METODOS PARA AGREGAR UN COMERCIANTE EN PAGINA DE REGISTRO
 def agregar_comerciante(run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -76,6 +76,21 @@ def listar_regiones():
     out_cur = django_cursor.connection.cursor()
 
     cursor.callproc("SP_LISTAR_REGIONES", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+# METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
+
+def accesoComerciante():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_ACCSESO_USUARIO", [out_cur])
 
     lista = []
     for fila in out_cur:
