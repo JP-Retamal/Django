@@ -79,6 +79,11 @@ def detalle(request, detalle_id):
     }
     return render(request, 'detalle.html', data)
 
+
+def comprar(request):
+
+    return render(request, 'comprar.html')
+
 def redirecRegistro(request):
     tituloPagina = 'Registro Exitoso'
     return render(request, 'redirecRegistro.html', { 'tituloPagina' : tituloPagina })

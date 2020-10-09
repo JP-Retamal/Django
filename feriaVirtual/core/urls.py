@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, login, registro, detalle, usuario, solicitud, pedido, informacion, redirecRegistro
+from .views import *
 
 #esta url en core se encarga de rutear las views
 
@@ -9,6 +9,7 @@ urlpatterns = [
    path('registro/', registro, name="registro"),
    path('registroExitoso/', redirecRegistro, name="registroExitoso"),
    path('detalle/<int:detalle_id>', detalle, name="detalle"),
+   path('comprar/',comprar, name="comprar"),
    path('usuario/', usuario, name="detalle"),
    path('usuario/solicitud/', solicitud, name="solicitud"),
    path('usuario/pedido/', pedido, name="pedido"),
