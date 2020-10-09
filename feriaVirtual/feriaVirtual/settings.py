@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'core',
 ]
 
@@ -78,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '192.168.0.10:1521/xe',
-        'USER': 'c##feriaVirtual2',
-        'PASSWORD': 'feriaVirtual2',
+        'USER': 'c##feriaVirtual',
+        'PASSWORD': 'feriaVirtual',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',

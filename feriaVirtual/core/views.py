@@ -9,7 +9,7 @@ from .metodos_views import *
 # Create your views here. la funcion def home busca el template (controlador)
 
 def home(request):
-    
+   
     data = {
         'baja': listar_saldos_calidad_baja(),
         'media_alta': saldos_calidad_alta_media()
@@ -73,27 +73,25 @@ def registro(request):
     return render(request, 'registro.html', data)
 
 def detalle(request, detalle_id):
-    
+   
     data = {
         'db_vlocal': listar_detallesaldos(detalle_id)
     }
     return render(request, 'detalle.html', data)
 
 
-def comprar(request):
+def comprar(request, detalle_id):
 
-    return render(request, 'comprar.html')
+    data = {
+        'db_vlocal': listar_detallesaldos(detalle_id)
+    }
+    return render(request, 'comprar.html', data)
+
 
 def redirecRegistro(request):
     tituloPagina = 'Registro Exitoso'
     return render(request, 'redirecRegistro.html', { 'tituloPagina' : tituloPagina })
 
-
-
-
-
-
-    
 
 def usuario(request):
     tituloPagina = 'Perfil'

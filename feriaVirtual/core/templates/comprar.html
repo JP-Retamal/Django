@@ -1,8 +1,47 @@
-{% extends "base_comerciante.html" %}
-
-{% block title %} Comprar {% endblock %}
-
+{% extends "base_comerciante.html" %} {% block title %} Comprar {% endblock %}
+{%load humanize%}
 {% block content %}
-
-
-{% endblock %}
+<form class="formulario">
+  <h1>Realizar Pago</h1>
+  {% for d in db_vlocal %}
+  <div class="contenedor">
+    <br />
+    <h2>Datos compra</h2>
+    <br />
+    <div class="contenedor_compra">
+      <h2>
+        <td>
+          {{d.data.5}} {{d.data.6}} costo: $ {{d.data.3|intcomma}} - {{d.data.4}} Kg.
+        </td>
+      </h2>
+    </div>
+    <br />
+    <div class="contenedor_compra">
+      <h2>nombre usuario logueado</h2>
+    </div>
+    <br />
+    <div class="input-contenedor">
+      <i class="fas fa-envelope icon"></i>
+      <input type="text" placeholder="Número de cuenta" required/>
+    </div>
+    <br />
+    <div class="input-contenedor">
+      <i class="fas fa-key icon"></i>
+      <input type="password" placeholder="Contraseña" required />
+    </div>
+    <br />
+    <br />
+    <input type="submit" value="Confirmar pago" class="button" />
+    <br />
+    <br />
+    <div class="contenedor_f">
+      <p>Después de completar los campos</p>
+      <p>confirma el pago para finalizar la compra.</p>
+    </div>
+  </div>
+</form>
+<br />
+<br />
+<br />
+<br />
+{% endfor %} {% endblock %}

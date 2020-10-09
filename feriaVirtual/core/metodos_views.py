@@ -3,7 +3,7 @@ from datetime import datetime
 from datetime import date
 import cx_Oracle
 import base64
-# METODOS PARA ACCEDER A DATOS DEL PLSQL
+# METODOS PARA ACCEDER A DATOS DEL PLSQL INDEX
 
 def listar_saldos_calidad_baja():
     django_cursor = connection.cursor()
@@ -35,7 +35,7 @@ def saldos_calidad_alta_media():
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[7].read()), "utf-8")
+            'imagen':str(base64.b64encode(fila[7].read()), 'utf-8')
         }
 
         lista.append(data)
@@ -43,6 +43,7 @@ def saldos_calidad_alta_media():
     return lista
 
 
+#PASAR DE INDEX A DETALLE DE TARGETA PUBLICACION DE VENTA LOCAL.
 def listar_detallesaldos(detalle_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -54,7 +55,7 @@ def listar_detallesaldos(detalle_id):
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
+            'imagen':str(base64.b64encode(fila[7].read()), 'utf-8')
         }
 
         lista.append(data)
