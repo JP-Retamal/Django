@@ -83,6 +83,21 @@ def listar_regiones():
 
     return lista
 
+
+def validaRegistroRut(run):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salidaR = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc("SP_BUSCA_RUT", [run, salidaR])
+    return salidaR.getvalue()
+
+def validaRegistroEmail(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salidaC = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc("SP_BUSCA_EMAIL", [correo, salidaC])
+    return salidaC.getvalue()   
+
 # METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
 
 def accesoComerciante():

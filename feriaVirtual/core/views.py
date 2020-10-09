@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
+from passlib.hash import pbkdf2_sha256
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
@@ -28,7 +29,7 @@ def registro(request):
 
     if request.method == 'POST':
         run_usuario = request.POST.get('registro-rut')
-        pasaporte = request.POST.get('registro-pasaporte')
+        #pasaporte = request.POST.get('registro-pasaporte')
         nombre = request.POST.get('registro-nombre')
         ap_paterno = request.POST.get('registro-Paterno')
         ap_materno = request.POST.get('registro-materno')
@@ -37,15 +38,38 @@ def registro(request):
         direccion = request.POST.get('registro-direccion')
         celular = request.POST.get('registro-celular')
         clave = request.POST.get('registro-contrasenia1')
+        clave2 = request.POST.get('registro-contrasenia2')
         comuna = request.POST.get('registro-comuna')
-        
-        salida = agregar_comerciante(
-            run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
-        if salida == 1:
-            #return redirect("login")
-            return render(request, 'redirecRegistro.html')
+
+        if clave!=clave2:
+            data['mensaje2'] = 'Las contraseñas no coinciden'
         else:
-            data['mensaje'] = 'El registro no se agregó'
+            salidaR = validaRegistroRut(run_usuario)
+            if salidaR ==1:
+                data['mensaje'] = 'El rut ingresasdo ya existe'
+            else:
+                if salidaR == 2:
+                    salidaC = validaRegistroEmail(email)
+                    if salidaC ==1:
+                        data['mensaje'] = 'El email ingresasdo ya existe'
+                    else:
+                        if salidaC == 2:
+                            enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
+                            clave = enc_clave
+                            salida = agregar_comerciante(
+                            run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
+                            if salida == 1:
+                                #return redirect("login")
+                                return render(request, 'redirecRegistro.html')
+                            else:
+                                data['mensaje'] = 'Error al guardar el registro'
+                        else:
+                            if salidaC == 3:
+                                data['mensaje'] = 'Error al guardar el registro'
+                else:
+                    if salidaR == 3:
+                        data['mensaje'] = 'Error al guardar el registro'
+                        
     return render(request, 'registro.html', data)
 
 def detalle(request, detalle_id):

@@ -28,10 +28,11 @@
 					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
 						class="registro-contenedor-checkboxs__checkbox" />
 				</div>
+				
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" required min="1920/10/07"/>
+						placeholder="Fecha de Nacimiento" required/>
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
@@ -144,10 +145,9 @@
 				<div class="contenedor-inputs">
 					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Repita Contraseña" required=""/>
+						placeholder="Repita Contraseña" required/>
 					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
-						<span id="mensaje2"></span>
+						<span class="contenedor-inputs-error__span" id="mensaje2">Las contrasenias no coincides.</span>
 					</div>
 					<ul>				
 						<li id="pass2">Contraseña1 = Contraseña2</li>
@@ -267,7 +267,7 @@
 	$('#registro-fecha').datepicker({
 		changeMonth: true,
 		changeYear: true,
-		maxDate: "+0D",
+		maxDate: "+0D-18Y",
 		minDate: "-100Y"
 	});
 	// Fin DatePicker JQuery
