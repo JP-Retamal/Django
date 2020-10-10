@@ -398,7 +398,7 @@ h6 {
         @apply bg-white;
         @apply rounded-lg;
         @apply m-4 px-4;
-        min-width: 50%;
+        width: 78%;
     }
 
     .contenedor-inputs {
@@ -473,6 +473,24 @@ h6 {
 
     .contenedor-btns {
         @apply m-2 mb-3;
+    }
+
+    .contenedor-formulario-completo{
+        @apply text-center bg-blue-400;
+        @apply border-2 border-blue-500 rounded-lg;
+        @apply m-2 mb-4 p-2;
+        display: none;
+    }
+
+    .contenedor-formulario-incompleto{
+        @apply text-center bg-red-400;
+        @apply border-2 border-red-500 rounded-lg;
+        @apply m-2 mb-4 p-2;
+        display: none;
+    }
+
+    .contenedor-formulario-estado__span{
+        @apply font-lato text-gray-900 font-semibold text-base;
     }
 
     /* =====================================Registro====================================== */
