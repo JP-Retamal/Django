@@ -5,9 +5,9 @@
   <h1>Realizar Pago</h1>
   {% for d in db_vlocal %}
   <div class="contenedor">
-    <br />
+    <br>
     <h2>Datos compra</h2>
-    <br />
+    <br>
     <div class="contenedor_compra">
       <h2>
         <td>
@@ -15,33 +15,43 @@
         </td>
       </h2>
     </div>
-    <br />
+    <br>
     <div class="contenedor_compra">
       <h2>nombre usuario logueado</h2>
     </div>
-    <br />
+    <br>
+    <div class="contenedor_compra">
+      <h2>
+        Fecha:
+        <script>
+        var f = new Date();
+        fecha = document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+        </script> 
+      </h2>
+    </div>
+    <br>
     <div class="input-contenedor">
-      <i class="fas fa-envelope icon"></i>
+      <i class="fas fa-wallet icon"></i>
       <input type="text" placeholder="Número de cuenta" required/>
     </div>
-    <br />
+    <br>
     <div class="input-contenedor">
       <i class="fas fa-key icon"></i>
       <input type="password" placeholder="Contraseña" required />
     </div>
-    <br />
-    <br />
+    <br>
+    <br>
     <input type="submit" value="Confirmar pago" class="button" />
-    <br />
-    <br />
+    <br>
+    <br>
     <div class="contenedor_f">
       <p>Después de completar los campos</p>
       <p>confirma el pago para finalizar la compra.</p>
     </div>
   </div>
 </form>
-<br />
-<br />
-<br />
-<br />
+<br>
+<br>
+<br>
+<br>
 {% endfor %} {% endblock %}

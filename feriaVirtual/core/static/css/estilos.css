@@ -66,24 +66,19 @@ input[type="password"]{
 .button{
     border: none;
     width: 100%;
-    color: white;
+    color: #fff;
     font-size: 20px;
-    background:  #0b0650;
+    background:   #48bb78;
     padding: 15px 20px;
     border-radius: 5px;
     cursor: pointer;
 }
 .button:hover{
-    background: cadetblue;
+    background: #48bb78;
 }
 p{
     text-align: center;
 }
-
-
-
-
-
 
 @media(min-width:768px)
 {

@@ -16,7 +16,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Run o Pasaporte" required  pattern="[0-9]+-+[1-9-k]" maxlength="10"/>
+						placeholder="Run o Pasaporte"required/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
 							ser
@@ -32,7 +32,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" required/>
+						placeholder="Fecha de Nacimiento"/>
 					<div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
@@ -42,7 +42,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Nombre" required pattern="[a-z]+"/>
+						placeholder="Nombre"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -51,7 +51,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-Paterno" name="registro-Paterno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Paterno" required pattern="[a-z]+"/>
+						placeholder="Apellido Paterno"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -60,7 +60,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Materno" required pattern="[a-z]+"/>
+						placeholder="Apellido Materno"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -70,7 +70,7 @@
 				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Correo Electronico" required pattern="[a-z]+@+[a-z]+.+[a-z]"/>
+						placeholder="Correo Electronico" required/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
 							caracteres alfanumericos, guiones o puntos.</span>
@@ -79,7 +79,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
 						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" required pattern="[0-9]+"/>
+						placeholder="Numero de Telefono"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
 							56 9 XXXX XXXX</span>
@@ -89,7 +89,7 @@
 				<div class="contenedor-inputs lg:col-span-3">
 					<input id="registro-direccion" name="registro-direccion" type="text"
 						class="input lg:w-full focus:outline-none focus:border-orange-500"
-						placeholder="Direccion" required/>
+						placeholder="Direccion"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -97,7 +97,7 @@
 				</div>
 				<!-- Selects -->
 				<div class="contenedor-selects">
-					<select id="registro-region" name="registro-region" required
+					<select id="registro-region" name="registro-region"
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -107,7 +107,7 @@
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-provincia" name="registro-provincia" required
+					<select id="registro-provincia" name="registro-provincia"
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -117,7 +117,7 @@
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
-					<select id="registro-comuna" name="registro-comuna" required
+					<select id="registro-comuna" name="registro-comuna"
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 						{% for p in region %}
 							<option valua=""></option>
@@ -128,7 +128,7 @@
 				</div>
 				<!-- Contrasenia -->
 				<div class="contenedor-inputs">
-					<input id="registro-contrasenia1" name="registro-contrasenia1" type="text"
+					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
 						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Contraseña" required/>
 					<div class="contenedor-inputs-error">

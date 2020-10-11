@@ -21,6 +21,7 @@ def login(request):
     tituloPagina = 'Ingreso'
     return render(request, 'login.html', { 'tituloPagina' : tituloPagina })
 
+#Registro de usuario comerciante
 def registro(request):
     print(listar_regiones())
     data = {
@@ -88,6 +89,7 @@ def comprar(request, detalle_id):
     return render(request, 'comprar.html', data)
 
 
+#Registro de usuario comerciante
 def redirecRegistro(request):
     tituloPagina = 'Registro Exitoso'
     return render(request, 'redirecRegistro.html', { 'tituloPagina' : tituloPagina })
