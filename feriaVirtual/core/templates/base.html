@@ -20,18 +20,20 @@
   <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> -->
   <link href="{% static 'css/select2.css' %}" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+  <!-- Validaciones -->
 </head>
 
 <body>
-    {% include 'include/navbar.html' %}
-
-    {% block content %} {% endblock %}
-
-    {% include 'include/footer.html' %}
-
-    <script src="{% static 'js/glide.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
-    <script src="https://kit.fontawesome.com/f126795e7d.js" crossorigin="anonymous"></script>
+  {% include 'include/navbar.html' %}
+  
+  {% block content %} {% endblock %}
+  
+  {% include 'include/footer.html' %}
+  
+  <script src="{% static 'js/glide.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
+  <script src="https://kit.fontawesome.com/f126795e7d.js" crossorigin="anonymous"></script>
+  <script src="{% static 'js/validacionRegistro.js' %}" /></script>
 </body>
 
 </html>

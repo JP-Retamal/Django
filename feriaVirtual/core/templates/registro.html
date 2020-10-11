@@ -9,29 +9,28 @@
 		<div class="ventana-titulo">
 			<h2 class="ventana-titulo__h1">Formulario de Registro</h2>
 		</div>
-		<form id="registro-formulario" action="">
+		<form id="registro-formulario" action="POST">
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
-						class="input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none"
 						placeholder="Run o Pasaporte" />
-					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
-							ser
-							el numero de pasaporte, favor activar la opcion "Es Pasaporte?".</span>
+					<div class="contenedor-inputs-error" name="registro-error-rut">
+						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. Ej. 11222333-4. En caso de
+							ser el numero de pasaporte, favor activar la opcion "Es Pasaporte?".</span>
 					</div>
 				</div>
 				<div class="registro-contenedor-checkboxs flex justify-center">
 					<p class="font-lato m-4">Es pasaporte?</p>
 					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
-						class="registro-contenedor-checkboxs__checkbox" />
+						class="registro-contenedor-checkboxs__checkbox bg-gray-400" />
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
-						class="input appearance-none focus:outline-none focus:border-orange-500"
+						class="input appearance-none focus:outline-none"
 						placeholder="Fecha de Nacimiento" />
-					<div class="contenedor-inputs-error block">
+					<div class="contenedor-inputs-error" name="registro-error-fecha">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
 					</div>
@@ -39,27 +38,27 @@
 				<!-- Nombre Completo -->
 				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
-						class="input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none"
 						placeholder="Nombre" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-nombre">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
 				</div>
 				<div class="contenedor-inputs">
-					<input id="registro-Paterno" name="registro-Paterno" type="text"
-						class="input focus:outline-none focus:border-orange-500"
+					<input id="registro-paterno" name="registro-paterno" type="text"
+						class="input focus:outline-none"
 						placeholder="Apellido Paterno" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-paterno">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
-						class="input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none"
 						placeholder="Apellido Materno" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-materno">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
@@ -67,28 +66,28 @@
 				<!-- Correo y Numero -->
 				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
-						class="input focus:outline-none focus:border-orange-500"
+						class="input focus:outline-none"
 						placeholder="Correo Electronico" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-correo">
 						<span class="contenedor-inputs-error__span">Correo ingresado no valido. Solo se aceptan
 							caracteres alfanumericos, guiones o puntos.</span>
 					</div>
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
-						class="input focus:outline-none appearance-none focus:border-orange-500"
+						class="input focus:outline-none appearance-none"
 						placeholder="Numero de Telefono" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-celular">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
-							56 9 XXXX XXXX</span>
+							9 XXXX XXXX</span>
 					</div>
 				</div>
 				<!-- Direccion -->
 				<div class="contenedor-inputs lg:col-span-3">
 					<input id="registro-direccion" name="registro-direccion" type="text"
-						class="input lg:w-full focus:outline-none focus:border-orange-500"
+						class="input lg:w-full focus:outline-none"
 						placeholder="Direccion" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-direccion">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
 					</div>
@@ -96,38 +95,38 @@
 				<!-- Selects -->
 				<div class="contenedor-selects">
 					<select id="registro-region" name="registro-region"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none">
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<div class="contenedor-selects">
 					<select id="registro-comuna" name="registro-comuna"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+						class="contenedor-selects__select focus:outline-none">
 					<option></option>
 				</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
 				<!-- Contrasenia -->
 				<div class="contenedor-inputs">
-					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
-						class="input focus:outline-none focus:border-orange-500"
+					<input id="registro-contrasenia1" name="registro-contrasenia1" type="text"
+						class="input focus:outline-none"
 						placeholder="Contraseña" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-contrasenia1">
 						<span class="contenedor-inputs-error__span">La contrasenia debe contener de 6 a 12
 							caracteres.</span>
 					</div>
 				</div>
 				<div class="contenedor-inputs">
-					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
-						class="input focus:outline-none focus:border-orange-500"
+					<input id="registro-contrasenia2" name="registro-contrasenia2" type="text"
+						class="input focus:outline-none"
 						placeholder="Repita Contraseña" />
-					<div class="contenedor-inputs-error">
+					<div class="contenedor-inputs-error" name="registro-error-contrasenia2">
 						<span class="contenedor-inputs-error__span">Las contrasenias no coincides.</span>
 					</div>
 				</div>
@@ -137,6 +136,14 @@
 						Registrarse
 					</button>
 					<span class="block font-lato text-sm text-center mt-2">Al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad</span>
+				</div>
+
+				<div class="contenedor-formulario-completo md:col-span-2 lg:col-span-3" name="contenedor-formulario-completo">
+					<span class="contenedor-formulario-estado__span">Ya se encuentra registrado en el sistema. Redireccionando en...</span>
+				</div>
+
+				<div class="contenedor-formulario-incompleto md:col-span-2 lg:col-span-3" name="contenedor-formulario-incompleto">
+					<span class="contenedor-formulario-estado__span">Debe completar todos los campos del formulario.</span>
 				</div>
 			</div>
 		</form>
@@ -244,7 +251,7 @@
 	$('#registro-fecha').datepicker({
 		changeMonth: true,
 		changeYear: true,
-		maxDate: "+0D"
+		maxDate: "-18Y"
 	});
 	// Fin DatePicker JQuery
 
@@ -271,5 +278,7 @@
 	});
 	// Fin Select Select2
 </script>
+
+
 
 {% endblock %}

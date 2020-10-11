@@ -1123,7 +1123,7 @@ h6 {
   margin: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
-  min-width: 50%;
+  width: 78%;
 }
 
 .contenedor-inputs {
@@ -1245,6 +1245,47 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
 .contenedor-btns {
   margin: 0.5rem;
   margin-bottom: 0.75rem;
+}
+
+.contenedor-formulario-completo{
+  text-align: center;
+  --bg-opacity: 1;
+  background-color: #63b3ed;
+  background-color: rgba(99, 179, 237, var(--bg-opacity));
+  border-width: 2px;
+  --border-opacity: 1;
+  border-color: #4299e1;
+  border-color: rgba(66, 153, 225, var(--border-opacity));
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  display: none;
+}
+
+.contenedor-formulario-incompleto{
+  text-align: center;
+  --bg-opacity: 1;
+  background-color: #fc8181;
+  background-color: rgba(252, 129, 129, var(--bg-opacity));
+  border-width: 2px;
+  --border-opacity: 1;
+  border-color: #f56565;
+  border-color: rgba(245, 101, 101, var(--border-opacity));
+  border-radius: 0.5rem;
+  margin: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  display: none;
+}
+
+.contenedor-formulario-estado__span{
+  font-family: Lato, sans-serif;
+  --text-opacity: 1;
+  color: #1a202c;
+  color: rgba(26, 32, 44, var(--text-opacity));
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* =====================================Registro====================================== */
@@ -22825,7 +22866,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    min-width: 50%;
+    width: 78%;
   }
 
   .sm\:contenedor-inputs {
@@ -22947,6 +22988,47 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .sm\:contenedor-btns {
     margin: 0.5rem;
     margin-bottom: 0.75rem;
+  }
+
+  .sm\:contenedor-formulario-completo{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #63b3ed;
+    background-color: rgba(99, 179, 237, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .sm\:contenedor-formulario-incompleto{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .sm\:contenedor-formulario-estado__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #1a202c;
+    color: rgba(26, 32, 44, var(--text-opacity));
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   /* =====================================Registro====================================== */
@@ -44462,7 +44544,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    min-width: 50%;
+    width: 78%;
   }
 
   .md\:contenedor-inputs {
@@ -44584,6 +44666,47 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .md\:contenedor-btns {
     margin: 0.5rem;
     margin-bottom: 0.75rem;
+  }
+
+  .md\:contenedor-formulario-completo{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #63b3ed;
+    background-color: rgba(99, 179, 237, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .md\:contenedor-formulario-incompleto{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .md\:contenedor-formulario-estado__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #1a202c;
+    color: rgba(26, 32, 44, var(--text-opacity));
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   /* =====================================Registro====================================== */
@@ -66099,7 +66222,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    min-width: 50%;
+    width: 78%;
   }
 
   .lg\:contenedor-inputs {
@@ -66221,6 +66344,47 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .lg\:contenedor-btns {
     margin: 0.5rem;
     margin-bottom: 0.75rem;
+  }
+
+  .lg\:contenedor-formulario-completo{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #63b3ed;
+    background-color: rgba(99, 179, 237, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .lg\:contenedor-formulario-incompleto{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .lg\:contenedor-formulario-estado__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #1a202c;
+    color: rgba(26, 32, 44, var(--text-opacity));
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   /* =====================================Registro====================================== */
@@ -87736,7 +87900,7 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
     margin: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
-    min-width: 50%;
+    width: 78%;
   }
 
   .xl\:contenedor-inputs {
@@ -87858,6 +88022,47 @@ input.registro-contenedor-checkboxs__checkbox:checked:after {
   .xl\:contenedor-btns {
     margin: 0.5rem;
     margin-bottom: 0.75rem;
+  }
+
+  .xl\:contenedor-formulario-completo{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #63b3ed;
+    background-color: rgba(99, 179, 237, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #4299e1;
+    border-color: rgba(66, 153, 225, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .xl\:contenedor-formulario-incompleto{
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #fc8181;
+    background-color: rgba(252, 129, 129, var(--bg-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #f56565;
+    border-color: rgba(245, 101, 101, var(--border-opacity));
+    border-radius: 0.5rem;
+    margin: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: none;
+  }
+
+  .xl\:contenedor-formulario-estado__span{
+    font-family: Lato, sans-serif;
+    --text-opacity: 1;
+    color: #1a202c;
+    color: rgba(26, 32, 44, var(--text-opacity));
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   /* =====================================Registro====================================== */

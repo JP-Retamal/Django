@@ -4,6 +4,67 @@
 
 {% block contentUsuario %}
 
-Funcioanndo
+<div class="listarSolicitud-contenedor">
+    <div class="listarSolicitud-contenedor-titulo">
+        <h2 class="listarSolicitud-contenedor-titulo__h2">Estado Pedidos</h2>
+    </div>
+    <div class="listarSolicitud-contenedor-solicitudes">
+        <div class="listarSolicitud-contenedor-solicitud grid grid-cols-1 lg:grid-cols-4">
+            <div class="listarSolicitud-contenedor-label grid grid-cols-3 lg:grid-cols-1">
+                <label for="" class="listarSolicitud-contenedor-label__label font-semibold">N
+                    Solicitud</label>
+                <label for="" class="listarSolicitud-contenedor-label__label col-span-2">12345678</label>
+            </div>
+            <div class="listarSolicitud-contenedor-label grid grid-cols-3 lg:grid-cols-1 my-2">
+                <label for="" class="listarSolicitud-contenedor-label__label font-semibold">Fecha
+                    Recepcion</label>
+                <label for=""
+                    class="listarSolicitud-contenedor-label__label col-span-2">30/11/1997</label>
+            </div>
+            <div class="listarSolicitud-contenedor-label grid grid-cols-3 lg:grid-cols-1 my-2">
+                <label for="" class="listarSolicitud-contenedor-label__label font-semibold">Estado</label>
+                <label for="" class="listarSolicitud-contenedor-label__label col-span-2">Pendiente</label>
+            </div>
+            <div class="listarSolicitud-contenedor-label centrar-contenedor">
+                <span
+                    class="listarSolicitud-contenedor-label__span"
+                    style="cursor:pointer;">Ver Detalle</span>
+            </div>
+        </div>
+        <div class="listarSolicitud-contenedor-solicitud-detalle hidden">
+            <table class="listarSolicitud-contenedor-solicitud-detalle__table">
+                <thead class="listarSolicitud-contenedor-solicitud-detalle__thead">
+                    <tr class="listarSolicitud-contenedor-solicitud-detalle__tr">
+                        <th class="listarSolicitud-contenedor-solicitud-detalle__th w-1/12">#</th>
+                        <th class="listarSolicitud-contenedor-solicitud-detalle__th w-1/3">Fruta</th>
+                        <th class="listarSolicitud-contenedor-solicitud-detalle__th w-1/12">Cantidad</th>
+                        <th class="listarSolicitud-contenedor-solicitud-detalle__th w-1/3">Precio</th>
+                    </tr>
+                </thead>
+                <tbody class="listarSolicitud-contenedor-solicitud-detalle__tbody">
+                    <tr class="listarSolicitud-contenedor-solicitud-detalle-tbody__tr">
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">1</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">Manzana Candy</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">10</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">$20.000</td>
+                    </tr>
+                    <tr class="listarSolicitud-contenedor-solicitud-detalle-tbody__tr">
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">2</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">Platano Amarillo</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">15</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td">$25.000</td>
+                    </tr>
+                    <tr class="listarSolicitud-contenedor-solicitud-detalle-tbody__tr" style="background-color: rgba(66, 153, 225, 0.4)">
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td font-bold"></td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td font-bold">Total</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td font-bold">35</td>
+                        <td class="listarSolicitud-contenedor-solicitud-detalle__td font-bold">$35.000</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
