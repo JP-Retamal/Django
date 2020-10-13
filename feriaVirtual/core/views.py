@@ -33,7 +33,7 @@ def login(request):
                     print('Cliente externo')
                 else:
                     if rol==3.0:
-                        return redirect("home")
+                        return redirect(to="home")
                     else:
                         if rol==4.0:
                             print('Producror')
