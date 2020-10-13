@@ -26,7 +26,6 @@ def login(request):
         respuesta = verificarPassword(clave, salida)
         if respuesta==True:
             rol = buscaUsuario(correo)
-            print(rol)
             if rol==1.0:
                 print('Administrador')
             else:
@@ -42,7 +41,7 @@ def login(request):
                             print('Rol no existe')
         else:
             print(respuesta)
-                                                              
+
     return render(request, 'login.html')
 
 #Registro de usuario comerciante
