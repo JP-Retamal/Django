@@ -1,3 +1,4 @@
+from django.shortcuts import render, redirect
 from django.db import connection
 from datetime import datetime
 from datetime import date
@@ -125,8 +126,7 @@ def verificarPassword(clave, salida):
 def buscaUsuario(correo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    salida = cursor.var(cx_Oracle.STRING)
+    salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("SP_USUARIO", [correo, salida])
     return salida.getvalue()
 
- 

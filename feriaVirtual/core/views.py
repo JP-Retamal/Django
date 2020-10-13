@@ -27,8 +27,22 @@ def login(request):
         if respuesta==True:
             rol = buscaUsuario(correo)
             print(rol)
+            if rol==1.0:
+                print('Administrador')
+            else:
+                if rol==2.0:
+                    print('Cliente externo')
+                else:
+                    if rol==3.0:
+                        return redirect("home")
+                    else:
+                        if rol==4.0:
+                            print('Producror')
+                        else:
+                            print('Rol no existe')
         else:
-            print(respuesta)                                                  
+            print(respuesta)
+                                                              
     return render(request, 'login.html')
 
 #Registro de usuario comerciante
