@@ -1,12 +1,18 @@
 {% extends "base_comerciante.html" %} {% block title %} Comprar {% endblock %}
 {%load humanize%}
 {% block content %}
-<form class="formulario">
+<form class="formulario" action="" method="POST">
+  {% csrf_token %}
   <h1>Realizar Pago</h1>
   {% for d in db_vlocal %}
   <div class="contenedor">
     <br>
     <h2>Datos compra</h2>
+    <input type="hidden" value="{{d.data.0}}" name="idVentaLocal">
+    <input type="hidden" value="{{d.data.5}} {{d.data.6}}" name="descripcion">
+    <input type="hidden" value="{{d.data.3}}" name="monto">
+    <input type="hidden" value="{{d.data.4}}" name="kilos">
+    <input type="hidden" value="{{d.data.1}}" name="idStock">
     <br>
     <div class="contenedor_compra">
       <h2>
@@ -45,6 +51,7 @@
     <br>
     <br>
     <div class="contenedor_f">
+      
       <p>Después de completar los campos</p>
       <p>confirma el pago para finalizar la compra.</p>
     </div>

@@ -1,6 +1,7 @@
 from django.db import connection
 from datetime import datetime
 from datetime import date
+from passlib.hash import pbkdf2_sha256
 import cx_Oracle
 import base64
 # METODOS PARA ACCEDER A DATOS DEL PLSQL INDEX
@@ -99,17 +100,33 @@ def validaRegistroEmail(correo):
     cursor.callproc("SP_BUSCA_EMAIL", [correo, salidaC])
     return salidaC.getvalue()   
 
-# METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
 
-def accesoComerciante():
+# METODO PARA REALIZAR COMPRA DE PROMOCIÓN
+def agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_PAGO', [descripcion, monto, idVentaLocal, kilos, idStock, salida])
+    return salida.getvalue()
 
-    cursor.callproc("SP_ACCSESO_USUARIO", [out_cur])
+# METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
 
-    lista = []
-    for fila in out_cur:
-        lista.append(fila)
+def acceso(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.STRING)
+    cursor.callproc("SP_ACCESO", [correo, salida])
+    return salida.getvalue()
 
-    return lista
+def verificarPassword(clave, salida):
+
+    return pbkdf2_sha256.verify(clave, salida)
+
+def buscaUsuario(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.STRING)
+    cursor.callproc("SP_USUARIO", [correo, salida])
+    return salida.getvalue()
+
+ 

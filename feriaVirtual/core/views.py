@@ -18,8 +18,18 @@ def home(request):
     return render(request, 'index.html', data)
 
 def login(request):
-    tituloPagina = 'Ingreso'
-    return render(request, 'login.html', { 'tituloPagina' : tituloPagina })
+
+    if request.method == 'POST':
+        correo  = request.POST.get('login-correo')
+        clave   = request.POST.get('login-contrasenia')
+        salida  = acceso(correo)
+        respuesta = verificarPassword(clave, salida)
+        if respuesta==True:
+            rol = buscaUsuario(correo)
+            print(rol)
+        else:
+            print(respuesta)                                                  
+    return render(request, 'login.html')
 
 #Registro de usuario comerciante
 def registro(request):
@@ -30,20 +40,20 @@ def registro(request):
 
     if request.method == 'POST':
         run_usuario = request.POST.get('registro-rut')
-        #pasaporte = request.POST.get('registro-pasaporte')
-        nombre = request.POST.get('registro-nombre')
-        ap_paterno = request.POST.get('registro-Paterno')
-        ap_materno = request.POST.get('registro-materno')
-        fecha_nac = request.POST.get('registro-fecha')
-        email = request.POST.get('registro-correo')
-        direccion = request.POST.get('registro-direccion')
-        celular = request.POST.get('registro-celular')
-        clave = request.POST.get('registro-contrasenia1')
-        clave2 = request.POST.get('registro-contrasenia2')
-        comuna = request.POST.get('registro-comuna')
+        #pasaporte  = request.POST.get('registro-pasaporte')
+        nombre      = request.POST.get('registro-nombre')
+        ap_paterno  = request.POST.get('registro-Paterno')
+        ap_materno  = request.POST.get('registro-materno')
+        fecha_nac   = request.POST.get('registro-fecha')
+        email       = request.POST.get('registro-correo')
+        direccion   = request.POST.get('registro-direccion')
+        celular     = request.POST.get('registro-celular')
+        clave       = request.POST.get('registro-contrasenia1')
+        clave2      = request.POST.get('registro-contrasenia2')
+        comuna      = request.POST.get('registro-comuna')
 
         if clave!=clave2:
-            data['mensaje2'] = 'Las contraseñas no coinciden'
+            data['mensaje'] = 'Las contraseñas no coinciden'
         else:
             salidaR = validaRegistroRut(run_usuario)
             if salidaR ==1:
@@ -86,6 +96,18 @@ def comprar(request, detalle_id):
     data = {
         'db_vlocal': listar_detallesaldos(detalle_id)
     }
+    if request.method == 'POST':
+        descripcion  = request.POST.get('descripcion')
+        monto        = request.POST.get('monto')
+        idVentaLocal = request.POST.get('idVentaLocal')
+        kilos        = request.POST.get('kilos')
+        idStock      = request.POST.get('idStock')
+        salida = agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock)
+        if salida == 1:
+                data['mensaje'] = 'Registro exitoso'
+                return redirect("/")              
+        else:
+            data['mensaje'] = 'Error al guardar el registro'
     return render(request, 'comprar.html', data)
 
 

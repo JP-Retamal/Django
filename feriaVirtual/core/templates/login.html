@@ -9,7 +9,8 @@
         <div class="ventana-titulo">
             <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
         </div>
-        <form action="" id="formlogin">
+        <form action="" id="formlogin" action="" method="POST">
+        {% csrf_token %}
             <div class="formulario-login">
                 <input id="login-correo" name="login-correo" type="email"
                     class="formulario-login__input focus:outline-none focus:border-orange-500"
