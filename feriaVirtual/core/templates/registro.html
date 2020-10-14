@@ -16,7 +16,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Run o Pasaporte"required maxlength="10"/>
+						placeholder="Run o Pasaporte"required maxlength="10" minlength="10"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
 							ser
@@ -32,11 +32,11 @@
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" required/>
-					<div class="contenedor-inputs-error block">
+						placeholder="Fecha de Nacimiento" required maxlength="10" minlength="10"/>
+					<!-- <div class="contenedor-inputs-error block">
 						<span class="contenedor-inputs-error__span">Fecha ingresada no valida. Ej.
 							{{ fechaActual|date:"d/m/Y" }}.</span>
-					</div>
+					</div> -->
 				</div>
 				<!-- Nombre Completo -->
 				<div class="contenedor-inputs">
@@ -79,7 +79,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
 						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" required maxlength="9"/>
+						placeholder="Numero de Telefono" required maxlength="9" minlength="9"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres numericos. Ej.
 							56 9 XXXX XXXX</span>
@@ -135,12 +135,12 @@
 						<span class="contenedor-inputs-error__span"></span>
 						<div id="mensaje"></div>
 					</div>
-					<ul>				
+					<!-- <ul>				
 						<li id="special">Caracter especial</li>
 						<li id="numbers">Números</li>
 						<li id="lower">Letras</li>
 						<li id="len">Mínimo 8 caractéres</li>
-					</ul>
+					</ul>-->
 				</div>
 				<div class="contenedor-inputs">
 					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
@@ -149,9 +149,9 @@
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span" id="mensaje2">Las contrasenias no coincides.</span>
 					</div>
-					<ul>				
+					<!--<ul>				
 						<li id="pass2">Contraseña1 = Contraseña2</li>
-					</ul>
+					</ul> -->
 				</div>
 				<!-- Btn -->
 				<div class="contenedor-btns md:col-span-2 lg:col-span-3">

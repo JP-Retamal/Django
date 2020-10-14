@@ -7,6 +7,9 @@ import cx_Oracle
 from .metodos_views import *
 
 # Create your views here. la funcion def home busca el template (controlador)
+def ver(request):
+   
+    return render(request, 'grafico.html')
 
 def home(request):
    
