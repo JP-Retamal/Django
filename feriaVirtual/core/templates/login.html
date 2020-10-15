@@ -1,37 +1,58 @@
-{% extends "base.html" %}
-
-{% block title %} {{ tituloPagina }} {% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %} {{ tituloPagina }} {% endblock %}
+ {%block content %}
 
 <div class="contenedor-login centrar-contenedor">
-    <div class="ventana-login">
-        <div class="ventana-titulo">
-            <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
-        </div>
-        <form action="" id="formlogin" action="" method="POST">
-        {% csrf_token %}
-            <div class="formulario-login">
-                <input id="login-correo" name="login-correo" type="email"
-                    class="formulario-login__input focus:outline-none focus:border-orange-500"
-                    placeholder="Correo Electrónico" required pattern="[a-z]+@+[a-z]+.+[a-z]">
-                <input id="login-contrasenia" name="login-contrasenia" type="password" required
-                    class="formulario-login__input focus:outline-none focus:border-orange-500" placeholder="Contraseña">
-                <div class="contenedor-inputs-error" id="error">
-                    <span class="contenedor-inputs-error__span">Debe completar todos los campos.</span>
-                </div>
-                <div class="contenedor-inputs-error">
-                    <span class="contenedor-inputs-error__span">Correo electronico o contrasenia no son
-                        correctos.</span>
-                </div>
-                <button type="submit" class="formulario-login__btn btn focus:outline-none">Entrar</button>
-            </div>
-        </form>
-        <div class="enlace-sign">
-            <span class="enlace-sign__span">¿No posees cuenta? <a href="{% url 'registro' %}"
-                    class="enlace-sign__a">Puedes registrarte aquí.</a></span>
-        </div>
+  <div class="ventana-login">
+    <div class="ventana-titulo">
+      <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
     </div>
+    <form action="" id="formlogin" action="" method="POST">
+      {% csrf_token %}
+      <div class="formulario-login">
+        <input
+          id="login-correo"
+          name="login-correo"
+          type="email"
+          class="formulario-login__input focus:outline-none focus:border-orange-500"
+          placeholder="Correo Electrónico"
+          required
+        />
+
+        <input
+          id="login-contrasenia"
+          name="login-contrasenia"
+          type="password"
+          class="formulario-login__input focus:outline-none focus:border-orange-500"
+          placeholder="Contraseña"
+        />
+
+        <div class="contenedor-inputs-error" id="error">
+          <span class="contenedor-inputs-error__span"
+            >Debe completar todos los campos.</span
+          >
+        </div>
+        <div class="contenedor-inputs-error">
+          <span class="contenedor-inputs-error__span"
+            >Correo electronico o contrasenia no son correctos.</span
+          >
+        </div>
+        <button
+          type="submit"
+          class="formulario-login__btn btn focus:outline-none"
+        >
+          Entrar
+        </button>
+      </div>
+    </form>
+    <div class="enlace-sign">
+      <span class="enlace-sign__span"
+        >¿No posees cuenta?
+        <a href="{% url 'registro' %}" class="enlace-sign__a"
+          >Puedes registrarte aquí.</a
+        ></span
+      >
+    </div>
+  </div>
 </div>
 
 {% endblock %}

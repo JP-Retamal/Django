@@ -107,7 +107,7 @@ def detalle(request, detalle_id):
     return render(request, 'detalle.html', data)
 
 
-def comprar(request, detalle_id):
+def comprar(request, cantidad, detalle_id):
 
     data = {
         'db_vlocal': listar_detallesaldos(detalle_id)
