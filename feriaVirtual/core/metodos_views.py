@@ -152,7 +152,7 @@ def datosLogin(correo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
-
+    
     cursor.callproc("SP_USUARIO", [out_cur])
 
     lista = []
@@ -161,4 +161,3 @@ def datosLogin(correo):
 
     return lista
 
-    

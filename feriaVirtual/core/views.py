@@ -7,6 +7,7 @@ from .metodos_views import *
 
 
 
+
 # Create your views here. la funcion def home busca el template (controlador)
 def ver(request):
    
@@ -33,19 +34,19 @@ def login(request):
             num = validaRol(correo, clave)
             R = rol(num)
             if R==3:
-                return redirect("detalle")
+                return redirect("/")
             else:
                 return redirect("/")
           
         else:
-            print("Datos invalidos")
-        
+            print("Datos invalidos") 
+
 
     return render(request, 'login.html')
 
 #Registro de usuario comerciante
 def registro(request):
-    print(listar_regiones())
+    #print(listar_regiones())
     data = {
         'region': listar_regiones()
     }

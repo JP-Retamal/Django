@@ -39,8 +39,8 @@ class InvalidPassword(AuthException):
 class PermissionError(Exception):
     pass
 
-#class NotLoggedInError(AuthException):
- #   pass
+class NotLoggedInError(AuthException):
+    pass
 
 class NotPermittedError(AuthException):
     pass
@@ -62,13 +62,12 @@ class Authenticator:
         try:
             user = self.users[username]
         except KeyError:
-             print("user mal")
+            raise InvalidUsername(User)
         if not user.check_password(password):
-             print("invalido")
+            raise InvalidPassword(username, user)
 
         user.is_logged_in = True
         return True
-
     def is_logged_in(self, username):
         if username in self.users:
             return self.users[username].is_logged_in
@@ -94,8 +93,7 @@ class Authorizor:
         try:
             perm_set = self.permissions[perm_name]
         except KeyError:
-            #raise PermissionError("Permiso no Existe")
-            print("permiso no xeiste")
+            raise PermissionError("Permiso no Existe")
         else:
             if username not in self.authenticator.users:
                 raise InvalidUsername(username)
@@ -103,8 +101,7 @@ class Authorizor:
 
     def check_permission(self, perm_name, username):
         if not self.authenticator.is_logged_in(username):
-           # raise NotLoggedInError(username)
-           print("mal+")
+            raise NotLoggedInError(username)
         try:
             perm_set = self.permissions[perm_name]
         except KeyError:
