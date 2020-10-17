@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
-from passlib.hash import pbkdf2_sha256
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
+
+
 
 # Create your views here. la funcion def home busca el template (controlador)
 def ver(request):
@@ -25,25 +26,20 @@ def login(request):
     if request.method == 'POST':
         correo  = request.POST.get('login-correo')
         clave   = request.POST.get('login-contrasenia')
-        salida  = acceso(correo)
-        respuesta = verificarPassword(clave, salida)
+        salida  = validaCorreo(correo)
+        respuesta = validaClave(clave, salida)
         if respuesta==True:
-            rol = buscaUsuario(correo)
-            if rol==1.0:
-                print('Administrador')
+           #datosLogin(correo)
+            num = validaRol(correo, clave)
+            R = rol(num)
+            if R==3:
+                return redirect("detalle")
             else:
-                if rol==2.0:
-                    print('Cliente externo')
-                else:
-                    if rol==3.0:
-                        return redirect(to="home")
-                    else:
-                        if rol==4.0:
-                            print('Producror')
-                        else:
-                            print('Rol no existe')
+                return redirect("/")
+          
         else:
-            print(respuesta)
+            print("Datos invalidos")
+        
 
     return render(request, 'login.html')
 
@@ -81,8 +77,8 @@ def registro(request):
                         data['mensaje'] = 'El email ingresasdo ya existe'
                     else:
                         if salidaC == 2:
-                            enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
-                            clave = enc_clave
+                           # enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
+                           # clave = enc_clave
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
                             if salida == 1:

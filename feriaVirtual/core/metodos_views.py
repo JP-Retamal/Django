@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.db import connection
 from datetime import datetime
 from datetime import date
-from passlib.hash import pbkdf2_sha256
 import cx_Oracle
 import base64
 # METODOS PARA ACCEDER A DATOS DEL PLSQL INDEX
@@ -64,6 +63,7 @@ def listar_detallesaldos(detalle_id):
 
     return lista
 
+
 # METODOS PARA AGREGAR UN COMERCIANTE EN PAGINA DE REGISTRO
 def agregar_comerciante(run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna):
     django_cursor = connection.cursor()
@@ -94,6 +94,7 @@ def validaRegistroRut(run):
     cursor.callproc("SP_BUSCA_RUT", [run, salidaR])
     return salidaR.getvalue()
 
+
 def validaRegistroEmail(correo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -110,23 +111,54 @@ def agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock):
     cursor.callproc('SP_AGREGAR_PAGO', [descripcion, monto, idVentaLocal, kilos, idStock, salida])
     return salida.getvalue()
 
+
 # METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
 
-def acceso(correo):
+def validaCorreo(correo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.STRING)
-    cursor.callproc("SP_ACCESO", [correo, salida])
+    cursor.callproc("SP_VALIDA_CORREO", [correo, salida])
     return salida.getvalue()
 
-def verificarPassword(clave, salida):
 
-    return pbkdf2_sha256.verify(clave, salida)
+def validaClave(clave, salida):
 
-def buscaUsuario(correo):
+    if  clave==salida:
+        print("valido")
+        return True
+    else:
+        print("invalido")
+        return False
+    
+
+def validaRol(correo, clave):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc("SP_USUARIO", [correo, salida])
+    salida = cursor.var(cx_Oracle.STRING)
+    cursor.callproc("SP_VALIDA_ROL", [correo, clave, salida])
     return salida.getvalue()
+    
 
+def rol(num):
+    valor = int(num)-2
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.STRING)
+    cursor.callproc("SP_BuscaRol", [valor, salida])
+    return salida.getvalue()
+    
+def datosLogin(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_USUARIO", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+    

@@ -13,7 +13,7 @@ class User:
         hash_string = hash_string.encode("utf8")
         return hashlib.sha256(hash_string).hexdigest()
 
-    def check_password(self, password)
+    def check_password(self, password):
         #verifica la password
         encrypted = self._encrypt_pw(password)
         return encrypted == self.password
@@ -39,8 +39,8 @@ class InvalidPassword(AuthException):
 class PermissionError(Exception):
     pass
 
-class NotLoggedInError(AuthException):
-    pass
+#class NotLoggedInError(AuthException):
+ #   pass
 
 class NotPermittedError(AuthException):
     pass
@@ -62,12 +62,13 @@ class Authenticator:
         try:
             user = self.users[username]
         except KeyError:
-            raise InvalidUsername(User)
+             print("user mal")
         if not user.check_password(password):
-            raise InvalidPassword(username, user)
+             print("invalido")
 
         user.is_logged_in = True
         return True
+
     def is_logged_in(self, username):
         if username in self.users:
             return self.users[username].is_logged_in
@@ -75,8 +76,8 @@ class Authenticator:
 
 #mapea los permisos de los usuarios los restringe si no esta logueado.
 class Authorizor:
-    def __init__(self, Authenticator):
-        self.Authenticator = authenticator
+    def __init__(self, authenticator):
+        self.authenticator = authenticator
         self.permissions = {}
 
     def add_permission(self, perm_name):
@@ -93,15 +94,17 @@ class Authorizor:
         try:
             perm_set = self.permissions[perm_name]
         except KeyError:
-            raise PermissionError("Permiso no Existe")
+            #raise PermissionError("Permiso no Existe")
+            print("permiso no xeiste")
         else:
             if username not in self.authenticator.users:
                 raise InvalidUsername(username)
             perm_set.add(username)
 
     def check_permission(self, perm_name, username):
-        if not self.Authenticator.is_logged_in(username):
-            raise NotLoggedInError(username)
+        if not self.authenticator.is_logged_in(username):
+           # raise NotLoggedInError(username)
+           print("mal+")
         try:
             perm_set = self.permissions[perm_name]
         except KeyError:
@@ -113,8 +116,8 @@ class Authorizor:
                 return True
 
 
-AuthException = Authenticator()
-Authorizor = Authorizor(authenticator)
+authenticator = Authenticator() 
+authorizor = Authorizor(authenticator)
 
 
 
