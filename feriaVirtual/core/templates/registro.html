@@ -13,20 +13,32 @@
 		{% csrf_token %}
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
+			
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Run o Pasaporte"required maxlength="10" minlength="10"/>
+						placeholder="Ingrese Run" maxlength="10" minlength="10"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
 							ser
 							el numero de pasaporte, favor activar la opcion "Es Pasaporte?".</span>
 					</div>
 				</div>
-				<div class="registro-contenedor-checkboxs flex justify-center">
+				<div class="contenedor-inputs">
+					<input id="registro-pass" name="registro-pass" type="text"
+						class="input focus:outline-none focus:border-orange-500"
+						 placeholder="Ingrese Pasaporte"/>
+					<div class="contenedor-inputs-error">
+						<span class="contenedor-inputs-error__span">El Run ingresado no es valido. En caso de
+							ser
+							el numero de pasaporte, favor activar la opcion "Es Pasaporte?".</span>
+					</div>
+				</div>
+				<input type="hidden" value="" name="check">
+				<div class="registro-contenedor-checkboxs flex justify-center" >
 					<p class="font-lato m-4">Es pasaporte?</p>
 					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
-						class="registro-contenedor-checkboxs__checkbox" />
+						class="registro-contenedor-checkboxs__checkbox" value="false"/>
 				</div>
 				
 				<div class="contenedor-inputs">
@@ -292,6 +304,32 @@
 			// theme: "default registro-contenedor-selects__select"
 			});
 		}
+	});
+
+	$(document).ready(function(){
+		$('#registro-pasaporte').on('change',function(){
+			if(this.checked) {
+				$('#registro-rut').hide();
+				$('#registro-pass').show();
+			}else{
+				$('#registro-rut').show();
+				$('#registro-pass').hide();
+			}
+		})
+	});
+	if($('registro-pasaporte').prop('checked')){
+		$('#registro-pass').show();
+	}else{
+		$('#registro-pass').hide();
+	}
+	$(document).ready(function()
+		{
+			$('registro-pasaporte').click(function()
+			{
+				check+=$(this).val()
+			});
+			$('#check').val(check);
+		});
 	});
 	// Fin Select Select2
 </script>

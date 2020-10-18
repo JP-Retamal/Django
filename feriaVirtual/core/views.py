@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
@@ -24,22 +25,7 @@ def home(request):
 
 def login(request):
 
-    if request.method == 'POST':
-        correo  = request.POST.get('login-correo')
-        clave   = request.POST.get('login-contrasenia')
-        salida  = validaCorreo(correo)
-        respuesta = validaClave(clave, salida)
-        if respuesta==True:
-           #datosLogin(correo)
-            num = validaRol(correo, clave)
-            R = rol(num)
-            if R==3:
-                return redirect("/")
-            else:
-                return redirect("/")
-          
-        else:
-            print("Datos invalidos") 
+   
 
 
     return render(request, 'login.html')
@@ -52,8 +38,13 @@ def registro(request):
     }
 
     if request.method == 'POST':
-        run_usuario = request.POST.get('registro-rut')
-        #pasaporte  = request.POST.get('registro-pasaporte')
+        
+        if  request.POST.get('registro-pasaporte'):
+            
+            run_usuario  =   request.POST.get('registro-pass')
+        else:
+            run_usuario = request.POST.get('registro-rut')
+
         nombre      = request.POST.get('registro-nombre')
         ap_paterno  = request.POST.get('registro-Paterno')
         ap_materno  = request.POST.get('registro-materno')
@@ -78,7 +69,7 @@ def registro(request):
                         data['mensaje'] = 'El email ingresasdo ya existe'
                     else:
                         if salidaC == 2:
-                           # enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
+                           #enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
                            # clave = enc_clave
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
@@ -103,7 +94,7 @@ def detalle(request, detalle_id):
     }
     return render(request, 'detalle.html', data)
 
-
+@login_required
 def comprar(request, cantidad, detalle_id):
 
     data = {
