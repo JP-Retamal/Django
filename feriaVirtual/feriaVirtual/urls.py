@@ -18,12 +18,14 @@ from django.conf import settings
 from django.views.static import serve
 from django.urls import path,include,re_path
 from django.urls import path, include
+from django.contrib.auth.views import login_required, logout_then_login
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', include('core.urls')),
     path('admin/', admin.site.urls),
-    # path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('core.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('logout/', logout_then_login, name='logout'),
     
 ]
 

@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
-from passlib.hash import pbkdf2_sha256
+from django.contrib.auth.decorators import login_required
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
+
+
+
 
 # Create your views here. la funcion def home busca el template (controlador)
 def ver(request):
@@ -22,41 +25,26 @@ def home(request):
 
 def login(request):
 
-    if request.method == 'POST':
-        correo  = request.POST.get('login-correo')
-        clave   = request.POST.get('login-contrasenia')
-        salida  = acceso(correo)
-        respuesta = verificarPassword(clave, salida)
-        if respuesta==True:
-            rol = buscaUsuario(correo)
-            if rol==1.0:
-                print('Administrador')
-            else:
-                if rol==2.0:
-                    print('Cliente externo')
-                else:
-                    if rol==3.0:
-                        return redirect(to="home")
-                    else:
-                        if rol==4.0:
-                            print('Producror')
-                        else:
-                            print('Rol no existe')
-        else:
-            print(respuesta)
+   
+
 
     return render(request, 'login.html')
 
 #Registro de usuario comerciante
 def registro(request):
-    print(listar_regiones())
+    #print(listar_regiones())
     data = {
         'region': listar_regiones()
     }
 
     if request.method == 'POST':
-        run_usuario = request.POST.get('registro-rut')
-        #pasaporte  = request.POST.get('registro-pasaporte')
+        
+        if  request.POST.get('registro-pasaporte'):
+            
+            run_usuario  =   request.POST.get('registro-pass')
+        else:
+            run_usuario = request.POST.get('registro-rut')
+
         nombre      = request.POST.get('registro-nombre')
         ap_paterno  = request.POST.get('registro-Paterno')
         ap_materno  = request.POST.get('registro-materno')
@@ -81,8 +69,8 @@ def registro(request):
                         data['mensaje'] = 'El email ingresasdo ya existe'
                     else:
                         if salidaC == 2:
-                            enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
-                            clave = enc_clave
+                           #enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
+                           # clave = enc_clave
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
                             if salida == 1:
@@ -106,8 +94,8 @@ def detalle(request, detalle_id):
     }
     return render(request, 'detalle.html', data)
 
-
-def comprar(request, detalle_id):
+@login_required
+def comprar(request, cantidad, detalle_id):
 
     data = {
         'db_vlocal': listar_detallesaldos(detalle_id)
