@@ -71,6 +71,7 @@ def comprar(request):
         idVentaLocal = request.POST.get('idVentaLocal')#numver
         idStock      = request.POST.get('idStock')#number
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
+        print('total')
         if salida == 1:
             return redirect("/")              
        

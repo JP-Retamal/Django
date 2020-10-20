@@ -31,12 +31,12 @@
           <input class="input_pago" type="hidden" value="{{kilos}}" name="val2">
         <br>
         <div class="contenedor_compra_pago">
-          <h2 class="h2_pago">Usuario: {{user.username | upper}}</h2>
+          <h2 class="h2_pago">Usuario: {{user.first_name | upper}} {{user.last_name | upper}}</h2>
         </div>
 
         <br>
         <div class="contenedor_compra_pago">       
-          <h2 class="h2_pago">Total a Pagar: $ <input type="number" value="" id="total" name="total" onchange="format(this)" disabled></h2>
+          <h2 class="h2_pago">Total a Pagar: $ <input type="number" value="" id="total" name="total" readonly></h2>
         </div>
 
         <br>
@@ -52,7 +52,7 @@
 
         <br>
 
-          <input type="hidden" value="{{d.data.5}} {{d.data.6}} {{d.data.4}}K" name="descripcion">
+          <input type="hidden" value="{{d.data.5}} {{d.data.6}}" name="descripcion">
           <input type="hidden" id="kilos" value="{{kilos}}" name="kilos" input="calcular()">     
           <input type="hidden" value="{{user.username}}" name="usuario">
           <input type="hidden" value="{{d.data.12}}" name="especie">
@@ -98,6 +98,9 @@
         document.getElementById("total").value = r;
       }catch (e) {}
       }
+
+
+
       function format(input)
       {
         var num = input.value.replace(/\./g,'');
