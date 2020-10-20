@@ -1,29 +1,30 @@
 {% extends "base.html" %} {% block title %} Comprar {% endblock %}
 {%load humanize%}
 {% block content %}
-<form class="formulario" action="" method="POST">
-  {% csrf_token %}
+
   <h1>Realizar Pago</h1>
+  
   {% for d in db_vlocal %}
   <div class="contenedor">
     <br>
     <h2>Datos compra</h2>
-    <input type="hidden" value="{{d.data.0}}" name="idVentaLocal">
-    <input type="hidden" value="{{d.data.5}} {{d.data.6}} {{d.data.4}}K" name="descripcion">
-    <input type="hidden" value="{{d.data.3}}" name="monto">
-    <input type="hidden" value="{{d.data.4}}" name="kilos">
-    <input type="hidden" value="{{d.data.1}}" name="idStock">
-    <br>
     <div class="contenedor_compra">
       <h2>
         <td>
-          {{d.data.5}} {{d.data.6}} costo: $ {{d.data.3|intcomma}} - {{d.data.4}} Kg.
+          {{d.data.5}} {{d.data.6}} costo: $ {{d.data.3|intcomma}} x {{kilos}} Kg.
         </td>
+         <input type="hidden" value="{{d.data.3}}" name="val1">
+         <input type="hidden" value="{{kilos}}" name="val2">
       </h2>
     </div>
     <br>
     <div class="contenedor_compra">
-      <h2>nombre usuario logueado</h2>
+      <h2>Usuario: {{user.username | upper}}</h2>
+    </div>
+    <br>
+    <div class="contenedor_compra">
+    
+      <h2>Total a Pagar: $ <input type="number" value="" id="total" name="total" onchange="format(this)" disabled></h2>
     </div>
     <br>
     <div class="contenedor_compra">
@@ -36,27 +37,62 @@
       </h2>
     </div>
     <br>
-    <div class="input-contenedor">
-      <i class="fas fa-wallet icon"></i>
-      <input type="text" placeholder="Número de cuenta" required/>
-    </div>
-    <br>
-    <div class="input-contenedor">
-      <i class="fas fa-key icon"></i>
-      <input type="password" placeholder="Contraseña" required />
-    </div>
-    <br>
-    <br>
-    <input type="submit" value="Confirmar pago" class="button" />
-    <br>
-    <br>
-    <div class="contenedor_f">
+    <form class="formulario" action="" method="POST">
+      {% csrf_token %}
       
-      <p>Después de completar los campos</p>
-      <p>confirma el pago para finalizar la compra.</p>
-    </div>
+      <input type="hidden" value="{{d.data.5}} {{d.data.6}} {{d.data.4}}K" name="descripcion">
+      <input type="hidden" value=" " name="monto">
+      <input type="hidden" value=" " name="fechapago">
+      <input type="hidden" id="kilos" value="{{kilos}}" name="kilos" input="calcular()">     
+      <input type="hidden" value="{{user.username}}" name="usuario">
+      <input type="hidden" value="{{d.data.5}}" name="especie">
+      <input type="hidden" value="{{d.data.6}} " name="variedad">
+      <input type="hidden" value="{{d.data.0}}" name="idVentaLocal">
+      <input type="hidden" value="{{d.data.1}}" name="idStock">
+      <input type="hidden" id="precio" value="{{d.data.3}} " name="precio" input="calcular()">
+      
+      <br>
+      <div class="input-contenedor">
+        <i class="fas fa-wallet icon"></i>
+        <input type="text" placeholder="Número de cuenta" required/>
+      </div>
+      <br>
+      <div class="input-contenedor">
+        <i class="fas fa-key icon"></i>
+        <input type="password" placeholder="Contraseña" required/>
+      </div>
+      <br>
+      <br>
+      <input type="submit" value="Confirmar pago" class="button"/>
+      <br>
+      <br>
+      <div class="contenedor_f">      
+        <p>Después de completar los campos</p>
+        <p>confirma el pago para finalizar la compra.</p>
+      </div>
+    <script type="text/javascript">
+      window.onload = function calcular(){
+        try{
+          var a = document.getElementById("kilos").value;
+          var b = document.getElementById("precio").value;
+          r=a*b;
+          document.getElementById("total").value = r;
+        }catch (e) {}
+      }
+      function format(input)
+      {
+        var num = input.value.replace(/\./g,'');
+        if(!isNaN(num)){
+          num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+          num = num.split('').reverse().join('').replace(/^[\.]/,'');
+          input.value = num;
+      } 
+      else{ alert('Solo se permiten numeros');
+        input.value = input.value.replace(/[^\d\.]*/g,'');
+        }
+      }
+    </script>
   </div>
-</form>
 <br>
 <br>
 <br>

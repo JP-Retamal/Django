@@ -4,7 +4,21 @@
 
 /* Document
    ========================================================================== */
-
+   /* botones tarjetas*/
+.button2{
+  border: none;
+  width: 100%;
+  color: #fff;
+  font-size: 20px;
+  background:   #48bb78;
+  padding: 10px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.button2:hover{
+  background: #48bb78;
+}
+/*-----------------------------------------------------------------------*/
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.

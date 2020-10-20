@@ -2,11 +2,10 @@ from django.shortcuts import render, redirect
 from django.db import connection
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.template import Template, Context
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
-
-
 
 
 # Create your views here. la funcion def home busca el template (controlador)
@@ -21,14 +20,64 @@ def home(request):
         'media_alta': saldos_calidad_alta_media()
     }
     
-    return render(request, 'index.html', data)
+    if request.method == 'POST':
+        id_Publicacion = request.POST.get('Publicacion')
+        context = {
+            'db_vlocal': listar_detallesaldos(id_Publicacion)
+        }
+        return render(request,'detalle.html', context)
+    else:   
+
+        return render(request, 'index.html', data)
+
+
+def detalle(request):
+   
+    if request.method == 'GET':
+        
+        kilos = request.GET.get('valorslider')
+        context = {}
+        context['kilos']=kilos
+        return render(request, 'comprar.html"', context)
+    else:
+        return render(request, 'detalle.html')
+
+def detalle2(request):
+    plantilla = open("C:/Development/proyecto 3/Django/feriaVirtual/core/templates/detalle.html")
+    template = Template(plantilla.read())
+    plantilla.close()
+    contexto = Context()
+    documento = template.render(contexto)
+    return HttpResponse(documento)
+
+
+@login_required
+def comprar(request):
+    id=request.GET['Publicacion']
+    cant=request.GET['valorslider']
+    context={
+        'db_vlocal': listar_detallesaldos(id)
+    }
+    context['kilos']=cant
+
+    if request.method == 'POST':
+        descripcion  = request.POST.get('descripcion')
+        monto        = request.POST.get('monto')
+        idVentaLocal = request.POST.get('idVentaLocal')
+        kilos        = request.POST.get('kilos')
+        idStock      = request.POST.get('idStock')
+        salida = agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock)
+        if salida == 1:
+            return redirect("/")              
+       
+    return render(request, 'comprar.html', context)
+
 
 def login(request):
 
    
-
-
     return render(request, 'login.html')
+
 
 #Registro de usuario comerciante
 def registro(request):
@@ -87,32 +136,7 @@ def registro(request):
                         
     return render(request, 'registro.html', data)
 
-def detalle(request, detalle_id):
-   
-    data = {
-        'db_vlocal': listar_detallesaldos(detalle_id)
-    }
-    return render(request, 'detalle.html', data)
 
-@login_required
-def comprar(request, cantidad, detalle_id):
-
-    data = {
-        'db_vlocal': listar_detallesaldos(detalle_id)
-    }
-    if request.method == 'POST':
-        descripcion  = request.POST.get('descripcion')
-        monto        = request.POST.get('monto')
-        idVentaLocal = request.POST.get('idVentaLocal')
-        kilos        = request.POST.get('kilos')
-        idStock      = request.POST.get('idStock')
-        salida = agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock)
-        if salida == 1:
-                data['mensaje'] = 'Registro exitoso'
-                return redirect("/")              
-        else:
-            data['mensaje'] = 'Error al guardar el registro'
-    return render(request, 'comprar.html', data)
 
 
 #Registro de usuario comerciante
