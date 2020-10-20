@@ -104,11 +104,11 @@ def validaRegistroEmail(correo):
 
 
 # METODO PARA REALIZAR COMPRA DE PROMOCIÓN
-def agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock):
+def agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_AGREGAR_PAGO', [descripcion, monto, idVentaLocal, kilos, idStock, salida])
+    cursor.callproc('SP_AGREGAR_PAGO', [descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock, salida])
     return salida.getvalue()
 
 

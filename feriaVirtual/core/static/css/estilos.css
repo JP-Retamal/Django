@@ -2,11 +2,11 @@
 
 
 /* ----- -----  Barra lateral derecho cuando los formualrios son largos  ----- ----- */
-.formulario::-webkit-scrollbar {
+.formulario_pago::-webkit-scrollbar {
 	width: 10px;
 }
 
-.formulario::-webkit-scrollbar-thumb {
+.formulario_pago::-webkit-scrollbar-thumb {
   background: #414141;
   border-radius: 5px;
 }
@@ -18,52 +18,58 @@
 
 
 /* ----- -----  Estilos para formularios ----- ----- */
-.contenedor{
+
+.contenedor_pago{
     width: 100%;
-    padding: 15px;
-    border: 1px solid #aaa;
+    padding: 15px; 
 }
 
-.contenedor_compra{
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #aaa;
-}
-
-.formulario{
-    background: #fff;
+.formulario_pago{
+    background: white;
     margin-top: 20px;
     padding: 5px;
+    text-align: center;
 }
-h1{
+
+.contenedor_compra_pago{
+  width: auto;
+  padding: 15px;
+
+}
+
+.h1_pago{
     text-align: center;
     color: #1a2537;
     font-size: 40px;
 }
 
-h2{
+.h2_pago{
   text-align: center;
   color: #1a2537;
   font-size: 20px;
 }
 
-input[type="text"],
-input[type="password"]{
+.input_pago[type="text"],
+.input_pago[type="password"]{
     font-size: 20px;
     width: 82%;
     padding: 10px;
     border: none;
+    text-align: center;
 }
-.input-contenedor{
+
+.input-contenedor_pago{
     margin-bottom: 15px;
     border: 1px solid #aaa;
 }
+
 .icon{
     min-width: 50px;
     text-align: center;
     color: #999;
 }
-.button{
+
+.button_pago{
     border: none;
     width: 100%;
     color: #fff;
@@ -73,22 +79,24 @@ input[type="password"]{
     border-radius: 5px;
     cursor: pointer;
 }
-.button:hover{
+
+.button_pago:hover{
     background: #48bb78;
 }
-p{
+
+.p_pago{
     text-align: center;
 }
 
 @media(min-width:768px)
 {
-    .formulario{
+    .formulario_pago{
         margin: auto;
         width: 500px;
         margin-top: 30px;
         border-radius: 5%;
     }
-    .p{
+    .p_pago{
       margin: auto;
       width: 500px;
       margin-top: 10px;

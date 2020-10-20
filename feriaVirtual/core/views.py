@@ -62,11 +62,15 @@ def comprar(request):
 
     if request.method == 'POST':
         descripcion  = request.POST.get('descripcion')
-        monto        = request.POST.get('monto')
-        idVentaLocal = request.POST.get('idVentaLocal')
-        kilos        = request.POST.get('kilos')
-        idStock      = request.POST.get('idStock')
-        salida = agregar_compra(descripcion, monto, idVentaLocal, kilos, idStock)
+        monto        = request.POST.get('total')#number
+        fecha_pago   = date.today()#date
+        kilos        = request.POST.get('kilos')#number
+        usuario      = request.POST.get('usuario')#varchar2
+        especie      = request.POST.get('especie')#number
+        variedad      = request.POST.get('variedad')#number
+        idVentaLocal = request.POST.get('idVentaLocal')#numver
+        idStock      = request.POST.get('idStock')#number
+        salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
         if salida == 1:
             return redirect("/")              
        
