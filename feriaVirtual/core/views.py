@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
-from django.db import connection
-from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.db import connection
+
+
 from django.contrib import auth
 from django.template import Template, Context
 from datetime import date
@@ -44,7 +47,7 @@ def detalle(request):
         return render(request, 'detalle.html')
 
 
-@login_required
+@permission_required('core.add_pago')
 def comprar(request):
     id=request.GET['Publicacion']
     cant=request.GET['valorslider']
@@ -156,18 +159,25 @@ def registro(request):
     return render(request, 'registro.html', data)
 
 
+
 def usuario(request):
     tituloPagina = 'Perfil'
     nombreUsuario = 'Jesus'
     return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
 
+
+
 def solicitud(request):
     tituloPagina = 'Solicitudes'
     return render(request, 'solicitud.html', { 'tituloPagina' : tituloPagina})
 
+
+
 def pedido(request):
     tituloPagina = 'Pedidos'
     return render(request, 'pedido.html', { 'tituloPagina' : tituloPagina})
+
+
 
 def informacion(request):
     tituloPagina = 'Informacion'

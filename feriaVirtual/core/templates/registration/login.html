@@ -6,14 +6,13 @@
     {% if form.errors %}
       <p>Los datos ingresados no son válidos. Inténtalo de nuevo.</p>
     {% endif %}
-    {% if next %}
-      {% if user.is_authenticated %}
-        <p>Tu cuenta no tiene acceso a esta página. Para proceder,
-        inicie sesión con una cuenta que tenga acceso.</p>
-      {% else %}
-        <p>Inicie sesión para ver esta página.</p>
+      {% if next %}
+        {% if user.is_authenticated %}
+          <p>Tu cuenta no tiene acceso a esta página. </p>
+        {% else %}
+          <p>Inicie sesión para ver esta página.</p>
+        {% endif %}
     {% endif %}
-{% endif %}
     <div class="ventana-titulo">
       <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
     </div>

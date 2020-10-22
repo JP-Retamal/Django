@@ -1,3 +1,4 @@
+from django.contrib.auth.views import login_required
 from django.urls import path, include
 from .views import *
 
@@ -9,7 +10,7 @@ urlpatterns = [
    path('logout/', logout, name="logout"),
    path('registro/', registro, name="registro"),
    path('detalle/', detalle, name="detalle"),
-   path('comprar/', comprar, name="comprar"),
+   path('comprar/', login_required(comprar), name="comprar"),
    path('usuario/', usuario, name="usuario"),
    path('usuario/solicitud/', solicitud, name="solicitud"),
    path('usuario/pedido/', pedido, name="pedido"),
