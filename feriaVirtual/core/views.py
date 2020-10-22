@@ -3,8 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db import connection
-
-
 from django.contrib import auth
 from django.template import Template, Context
 from datetime import date
@@ -12,18 +10,19 @@ import cx_Oracle
 from .metodos_views import *
 
 
-# Create your views here. la funcion def home busca el template (controlador)
+# Create your views here. la funcion def home busca el template (controlador).
 def ver(request):
    
     return render(request, 'grafico.html')
 
+#ver pagina de inicio.
 def home(request):
-   
+    #listar tarjetas de venta local.
     data = {
         'baja': listar_saldos_calidad_baja(),
         'media_alta': saldos_calidad_alta_media()
     }
-    
+    #enviar información de targeta a detalle.
     if request.method == 'POST':
         id_Publicacion = request.POST.get('Publicacion')
         context = {
@@ -34,11 +33,10 @@ def home(request):
 
         return render(request, 'index.html', data)
 
-
+#vista detalle de venta local.
 def detalle(request):
-   
-    if request.method == 'GET':
-        
+    #capturar informacón de detalle de tarjeta, renderizar y enviar selección de k a comprar.
+    if request.method == 'GET':  
         kilos = request.GET.get('valorslider')
         context = {}
         context['kilos']=kilos
@@ -47,15 +45,17 @@ def detalle(request):
         return render(request, 'detalle.html')
 
 
+#permiso de usuario
 @permission_required('core.add_pago')
 def comprar(request):
+    #obtener valores y renderizar venta.
     id=request.GET['Publicacion']
     cant=request.GET['valorslider']
     context={
         'db_vlocal': listar_detallesaldos(id)
     }
     context['kilos']=cant
-
+    #enviar información para registrar.
     if request.method == 'POST':
         descripcion  = request.POST.get('descripcion')
         monto        = request.POST.get('total')#number
@@ -67,7 +67,7 @@ def comprar(request):
         idVentaLocal = request.POST.get('idVentaLocal')#numver
         idStock      = request.POST.get('idStock')#number
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
-        print('total')
+        #si en exittosa o no, la compra se informa al usuario.
         if salida == 1:
             context['mensaje'] =  'Compra exitosa :) !!!'
             return redirect("/")              
@@ -78,6 +78,7 @@ def comprar(request):
 
 
 def login(request):
+    #validar datos de usuarios.
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -85,21 +86,24 @@ def login(request):
         
         if user is not None and user.is_active:
             print('valido')
-            # Correct password, and the user is marked "active"
+            # validación del usuario y estado de usuario.(activo)
             auth.login(request, user)
-            # Redirect to a success page.
+            # Redirecionar pagina de usuario.
             return HttpResponseRedirect("/usuario/")
         else:
-            # Show an error page
+            # ver errores y redireccionr.
             print('invalido')
             return HttpResponseRedirect("/login/")
  
     return render(request, 'login.html')
 
+
+#cerrar sesión de usuario.
 def logout(request):
     auth.logout(request)
     # Redirect to a success page.
     return HttpResponseRedirect("/")
+
 
 #Registro de usuario comerciante
 def registro(request):
@@ -126,7 +130,7 @@ def registro(request):
         clave       = request.POST.get('registro-contrasenia1')
         clave2      = request.POST.get('registro-contrasenia2')
         comuna      = request.POST.get('registro-comuna')
-
+        #validaciones de BD y enviar mensaje al usuario.
         if clave!=clave2:
             data['mensaje'] = 'Las contraseñas no coinciden'
         else:
@@ -159,7 +163,7 @@ def registro(request):
     return render(request, 'registro.html', data)
 
 
-
+# vistas de usuario
 def usuario(request):
     tituloPagina = 'Perfil'
     nombreUsuario = 'Jesus'

@@ -7,10 +7,14 @@
         </a>
         <div class="contenedor-enlace md:col-span-3">
             <ul class="contenedor-enlace__ul grid grid-cols-1 md:grid-cols-5">
-            {% if user.is_authenticated %}
+            {% if perms.core.view_pago %}
                 <a href="{% url 'home' %}"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
                     <li>Inicio</li>
+                </a>
+                <a href="#"
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    <li></li>
                 </a>
                 <a href="#"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
@@ -25,23 +29,44 @@
                     <li>Puntos</li>
                 </a>
             {% else %}
-                <a href="{% url 'home' %}"
-                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
-                    <li>Inicio</li>
-                </a>
-                <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                    <li>Qué Hacemos?</li>
-                </a>
-                <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                    <li>Servicios</li>
-                </a>
-                <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                    <li>Contactanos</li>
-                </a>
-                <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                    <li>Donaciones</li>
-                </a>
+                {% if perms.core.view_solicitud %}
+                    
+                    <a href="{% url 'home' %}"
+                        class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                        <li>Inicio</li>
+                    </a>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li></li>
+                    </a>
+                    <a href="{% url 'solicitud' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Solicitudes de Compra</li>
+                    </a>
+                    <a href="{% url 'pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Pedidos</li>
+                    </a>
+                    <a href="{% url 'informacion' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Cuenta</li>
+                    </a>
+                    
+                {% else %}
+                    <a href="{% url 'home' %}"
+                        class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                        <li>Inicio</li>
+                    </a>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Qué Hacemos?</li>
+                    </a>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Servicios</li>
+                    </a>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Contactanos</li>
+                    </a>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Donaciones</li>
+                    </a>
                 {% endif %}
+            {% endif %}
             </ul>
         </div>
         {% if user.is_authenticated %}

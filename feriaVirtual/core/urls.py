@@ -11,10 +11,10 @@ urlpatterns = [
    path('registro/', registro, name="registro"),
    path('detalle/', detalle, name="detalle"),
    path('comprar/', login_required(comprar), name="comprar"),
-   path('usuario/', usuario, name="usuario"),
-   path('usuario/solicitud/', solicitud, name="solicitud"),
-   path('usuario/pedido/', pedido, name="pedido"),
-   path('usuario/informacion/', informacion, name="informacion"),
+   path('usuario/', login_required(usuario), name="usuario"),
+   path('usuario/solicitud/', login_required(solicitud), name="solicitud"),
+   path('usuario/pedido/', login_required(pedido), name="pedido"),
+   path('usuario/informacion/', login_required(informacion), name="informacion"),
    path('grafico/', ver, name="grafico"),
 ]
 
