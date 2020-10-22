@@ -5,7 +5,7 @@
 {% block content %}
 <div class="usuario-contenedor grid justify-center lg:my-10">
     <div class="usuario-contenedor-titulo">
-        <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{ nombreUsuario }}!</h1>
+        <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{user.get_full_name }}!</h1>
     </div>
     <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4">
         <div class="usuario-contenedor-modal">
@@ -13,16 +13,17 @@
         </div>
         <div class="usuario-contenedor-aside">
             <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
+
                 <!-- Solicitud de Compra -->
                 <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                    <a href="http://localhost:8000/usuario/solicitud/" class="">
+                    <a href="{% url 'solicitud' %}" class="">
                         <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                         <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud de Compra</span>
                     </a>
                 </div>
                 <!-- Pedidos -->
                 <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                    <a href="http://localhost:8000/usuario/pedido/">
+                    <a href="{% url 'pedido' %}">
                         <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
                         <span class="usuario-contenedor-btns__span lg:inline-block">Pedidos</span>
                     </a>
@@ -41,6 +42,7 @@
                         <span class="usuario-contenedor-btns__span lg:inline-block">Salir</span>
                     </a>
                 </div>
+
             </aside>
         </div>
     </div>

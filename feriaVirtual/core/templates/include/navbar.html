@@ -7,6 +7,24 @@
         </a>
         <div class="contenedor-enlace md:col-span-3">
             <ul class="contenedor-enlace__ul grid grid-cols-1 md:grid-cols-5">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home' %}"
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    <li>Inicio</li>
+                </a>
+                <a href="#"
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    <li>Historial Compras</li>
+                </a>
+                <a href="#"
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    <li>Cuenta</li>
+                </a>
+                <a href="#"
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    <li>Puntos</li>
+                </a>
+            {% else %}
                 <a href="{% url 'home' %}"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
                     <li>Inicio</li>
@@ -23,6 +41,7 @@
                 <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                     <li>Donaciones</li>
                 </a>
+                {% endif %}
             </ul>
         </div>
         {% if user.is_authenticated %}
@@ -32,8 +51,8 @@
                         class="text-white">Cerrar sesión</span></a>
             </div>
             <div class="centrar-contenedor py-2 md:py-0">
-                <a href="#" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
-                        class="text-white">Usuario: {{user.first_name | upper}} {{user.last_name | upper}}</span></a>
+                <a href="{% url 'usuario' %}" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
+                        class="text-white">Usuario: {{user.get_full_name | upper}}</span></a>
             </div>
         </div>
         {% else %}

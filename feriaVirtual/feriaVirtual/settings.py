@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from django.urls import reverse_lazy
+from django.contrib.messages import constants as message_constants
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,7 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL  = reverse_lazy('home')
+LOGIN_REDIRECT_URL  = reverse_lazy('usuario')
   
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
 
@@ -43,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'core',
+    
+    #Paquetes del proyecto
+    'crispy_forms',
 
 ]
 
@@ -148,6 +152,13 @@ STATICFIES_DIRS =[
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-
-
+#template formularios boostrap 4
+CRYSPY_TEMPLATE_PACK ='boostrap4'
+#clases para los mensajes flash de bootstrap
+MESSAGE_TAGS = {
+    message_constants.DEBUG:   'debug',
+    message_constants.INFO:    'info',
+    message_constants.SUCCESS: 'success',
+    message_constants.WARNING: 'warning',
+    message_constants.ERROR:   'error'
+}

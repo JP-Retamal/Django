@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.db import connection
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 from django.template import Template, Context
 from datetime import date
 import cx_Oracle
@@ -42,14 +43,6 @@ def detalle(request):
     else:
         return render(request, 'detalle.html')
 
-def detalle2(request):
-    plantilla = open("C:/Development/proyecto 3/Django/feriaVirtual/core/templates/detalle.html")
-    template = Template(plantilla.read())
-    plantilla.close()
-    contexto = Context()
-    documento = template.render(contexto)
-    return HttpResponse(documento)
-
 
 @login_required
 def comprar(request):
@@ -67,22 +60,43 @@ def comprar(request):
         kilos        = request.POST.get('kilos')#number
         usuario      = request.POST.get('usuario')#varchar2
         especie      = request.POST.get('especie')#number
-        variedad      = request.POST.get('variedad')#number
+        variedad     = request.POST.get('variedad')#number
         idVentaLocal = request.POST.get('idVentaLocal')#numver
         idStock      = request.POST.get('idStock')#number
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
         print('total')
         if salida == 1:
+            context['mensaje'] =  'Compra exitosa :) !!!'
             return redirect("/")              
-       
+        else:
+            context['mensaje'] = 'Lo sentimos nose pudo efectuar la compra :( !!!'
+
     return render(request, 'comprar.html', context)
 
 
 def login(request):
-
-   
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        
+        if user is not None and user.is_active:
+            print('valido')
+            # Correct password, and the user is marked "active"
+            auth.login(request, user)
+            # Redirect to a success page.
+            return HttpResponseRedirect("/usuario/")
+        else:
+            # Show an error page
+            print('invalido')
+            return HttpResponseRedirect("/login/")
+ 
     return render(request, 'login.html')
 
+def logout(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect("/")
 
 #Registro de usuario comerciante
 def registro(request):
@@ -128,8 +142,8 @@ def registro(request):
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
                             if salida == 1:
-                                #return redirect("login")
-                                return render(request, 'redirecRegistro.html')
+                                data['mensaje'] =  'Registro exitoso'
+                                return redirect("/") 
                             else:
                                 data['mensaje'] = 'Error al guardar el registro'
                         else:
@@ -140,14 +154,6 @@ def registro(request):
                         data['mensaje'] = 'Error al guardar el registro'
                         
     return render(request, 'registro.html', data)
-
-
-
-
-#Registro de usuario comerciante
-def redirecRegistro(request):
-    tituloPagina = 'Registro Exitoso'
-    return render(request, 'redirecRegistro.html', { 'tituloPagina' : tituloPagina })
 
 
 def usuario(request):

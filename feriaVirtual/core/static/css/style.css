@@ -1089,9 +1089,9 @@ h6 {
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.8rem;
 }
 
 .formulario-login__btn {
