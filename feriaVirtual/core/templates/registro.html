@@ -23,7 +23,7 @@
 		<!-- Fin Mensajes de Verificación -->
 
 		<form id="registro-formulario" action="" method="POST" onsubmit="verificarPasswords(); return false">
-		{% csrf_token %}
+			{% csrf_token %}
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				<!-- Identificacion -->
 			
@@ -56,7 +56,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-nombre" name="registro-nombre" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Nombre" required maxlength="50"/>
+						placeholder="Nombre" required maxlength="50" minlength="3"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -66,7 +66,7 @@
 				<div class="contenedor-inputs">
 					<input id="registro-Paterno" name="registro-Paterno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Paterno" required maxlength="25"/>
+						placeholder="Apellido Paterno" required maxlength="25" minlength="3"/>
 					<div class="contenedor-inputs-error">
 						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
 							alfabeticos.</span>
@@ -76,14 +76,14 @@
 				<div class="contenedor-inputs">
 					<input id="registro-materno" name="registro-materno" type="text"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Materno" required maxlength="25"/>
+						placeholder="Apellido Materno" required maxlength="25" minlength="3"/>
 				</div>
 
 				<!-- Correo y Numero -->
 				<div class="contenedor-inputs lg:col-span-2">
 					<input id="registro-correo" name="registro-correo" type="email"
 						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Correo Electronico" required maxlength="250"/>
+						placeholder="Correo Electronico" required maxlength="50" />
 				</div>
 
 				<div class="contenedor-inputs">

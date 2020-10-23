@@ -149,6 +149,7 @@ def registro(request):
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
                             if salida == 1:
+                                userDjango(email, nombre, ap_paterno, clave)
                                 data['mensaje'] =  'Registro exitoso'
                                 return redirect("/") 
                             else:

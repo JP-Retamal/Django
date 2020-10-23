@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.db import connection
 from datetime import datetime
 from datetime import date
@@ -161,3 +162,8 @@ def datosLogin(correo):
 
     return lista
 
+def userDjango(email, nombre, ap_paterno, clave):
+    user = User.objects.create_user(username=email, first_name=nombre, last_name=ap_paterno, email=email, password=clave)
+    user.is_staff = False
+    user.groups.add(2)
+    user.save()
