@@ -44,7 +44,7 @@
                         </a>
                     </div>
 
-                 {% else %}
+                {% else %}
                     {% if perms.core.view_solicitud %}
                         <!-- Solicitud de Compra -->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
@@ -74,6 +74,76 @@
                                 <span class="usuario-contenedor-btns__span lg:inline-block">Salir</span>
                             </a>
                         </div>
+                    {% else %}
+                        {% if perms.core.view_detalleoferta %}
+                            <!-- historial de Ofertas-->
+                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                <a href="#" class="">
+                                    <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
+                                    Historial de Ofertas</span>
+                                </a>
+                            </div>
+                            <!-- Pedidospuntos -->
+                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                <a href="#">
+                                    <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    Portal de Ofertas</span>
+                                </a>
+                            </div>
+                            <!-- Cuenta -->
+                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                <a href="{% url 'informacion' %}">
+                                    <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    Cuenta</span>
+                                </a>
+                            </div>
+                            <!-- Salir -->
+                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                <a href="{% url 'logout' %}">
+                                    <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    Salir</span>
+                                </a>
+                            </div>
+                            {% else %}
+                                {% if perms.core.view_ventalocal %}
+                                    <!-- historial de Ofertas-->
+                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                        <a href="#" class="">
+                                            <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
+                                            <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
+                                            Pedidos</span>
+                                        </a>
+                                    </div>
+                                    <!-- Pedidospuntos -->
+                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                        <a href="#">
+                                            <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
+                                            <span class="usuario-contenedor-btns__span lg:inline-block">
+                                            Publicaciones</span>
+                                        </a>
+                                    </div>
+                                    <!-- Cuenta -->
+                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                        <a href="{% url 'informacion' %}">
+                                            <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
+                                            <span class="usuario-contenedor-btns__span lg:inline-block">
+                                            Cuenta</span>
+                                        </a>
+                                    </div>
+                                    <!-- Salir -->
+                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                        <a href="{% url 'logout' %}">
+                                            <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
+                                            <span class="usuario-contenedor-btns__span lg:inline-block">
+                                            Salir</span>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                        {% endif %}
                     {% endif %}
                 {% endif %}
             </aside>
