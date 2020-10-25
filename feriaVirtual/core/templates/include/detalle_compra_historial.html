@@ -1,0 +1,41 @@
+<div class="HistorialCompra-contenedor">
+	<div class="HistorialCompra-contenedor-titulo">
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Detalle Historial de Compras </h2>
+    </div>
+    <div class="HistorialCompra-contenedor-tabla"> 
+        <div class="detalle-contenedor-descripcion  md:grid-cols-3" >
+            {% for h in historial_hc %}
+            <div class="detalle-contenedor-imagen centrar-contenedor " >
+                <img class="detalle-contenedor-imagen__img" style="background-image: url('data:imagen/jpg;base64, {{h.imagen}}'); 
+                -webkit-background-size: 100% 100% !important;
+                -moz-background-size: 100% 100% !important;
+                  -o-background-size: 100% 100% !important;
+                     background-size: 100% 100% !important;">      
+            </div>
+            <div class="detalle-contenedor-informacion md:col-span-2 md:m-0 " style="margin-left: 20px !important;margin-right: 20px !important; "> 
+                <div class="detalle-contenedor-caracteristica " >
+                    <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{h.data.2}}</td></h1>
+                    <br>
+                    <ul>
+                    <br>
+                        <li class="detalle-contenedor-caracteristica__li"><b>Fecha de Compra: </b><td>{{h.data.3}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><b>Kilos: </b><td>{{h.data.4}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><b>Monto: </b>$<td>{{h.data.5}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><b>Descripcion de artículo: </b><td>{{h.data.6}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><b>Fecha de cosecha: </b><td>{{h.data.7}}</td></li>
+
+                    </ul> 
+                </div>
+            </div>
+            {% endfor %}
+            <div class="contenedor-btns centrar-contenedor">
+                <button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none" onClick="javascript:history.go(-1);">
+                    Volver
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

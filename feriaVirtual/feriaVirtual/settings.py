@@ -50,6 +50,8 @@ INSTALLED_APPS = [
 
 ]
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,7 +89,7 @@ WSGI_APPLICATION = 'feriaVirtual.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.0.10:1521/xe',
+        'NAME': 'localhost:1521/orcl',
         'USER': 'c##feriaVirtual',
         'PASSWORD': 'feriaVirtual',
         'TEST': {

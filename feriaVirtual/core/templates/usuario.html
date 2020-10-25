@@ -15,13 +15,28 @@
             <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
                 {% if perms.core.view_pago %}
                     <!-- historial de compra-->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="#" class="">
+
+                    <form action="{% url 'historial_compra' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{user.username}}" name="valcorreo">
+
+
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                            
+                            <div class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"  >
+                                <input class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo" type="submit" value="historial_compra"  style="background-color: transparent !important; outline:none !important;"/>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!--<div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'historial_compra' %}" class="">
                             <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                             <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
                             Historial de Compras</span>
                         </a>
-                    </div>
+                    </div>-->
                     <!-- Pedidospuntos -->
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                         <a href="#">

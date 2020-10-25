@@ -5,6 +5,7 @@ from datetime import datetime
 from datetime import date
 import cx_Oracle
 import base64
+
 # METODOS PARA ACCEDER A DATOS DEL PLSQL INDEX
 
 def listar_saldos_calidad_baja():
@@ -167,3 +168,33 @@ def userDjango(email, nombre, ap_paterno, clave):
     user.is_staff = False
     user.groups.add(2)
     user.save()
+
+def listar_historial_compra(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_HISTORIAL_COMPRA", [correo,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def listar_detalle_historial_compra(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_DETALLE_HISTORIAL_COMPRA", [id_venta, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[1].read()), 'utf-8')
+        }
+
+        lista.append(data)
+
+    return lista

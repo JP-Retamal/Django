@@ -16,6 +16,9 @@ urlpatterns = [
    path('usuario/pedido/', login_required(pedido), name="pedido"),
    path('usuario/informacion/', login_required(informacion), name="informacion"),
    path('grafico/', ver, name="grafico"),
+   path('usuario/historial_compra',login_required(historial_compra), name= "historial_compra"),
+   path('usuario/detalle_historial_compra',login_required(detalle_historial_compra), name= "detalle_historial_compra"),
+   
 ]
 
 #Add Django site authentication urls (for login, logout, password management)

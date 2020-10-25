@@ -10,6 +10,7 @@ import cx_Oracle
 from .metodos_views import *
 
 
+
 # Create your views here. la funcion def home busca el template (controlador).
 def ver(request):
    
@@ -187,3 +188,27 @@ def pedido(request):
 def informacion(request):
     tituloPagina = 'Informacion'
     return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})
+
+
+def historial_compra(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'registros': listar_historial_compra(info)
+    }
+
+    return render(request, 'historial_compra.html', data)
+
+def detalle_historial_compra(request):
+
+
+    id=request.POST.get('idventa')
+    print(id)
+    context = {
+        'historial_hc': listar_detalle_historial_compra(id),
+    }
+        
+    return render(request, 'detalle_historial_compra.html', context)
+
+    
+
