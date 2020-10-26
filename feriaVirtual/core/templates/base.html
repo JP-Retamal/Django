@@ -25,7 +25,9 @@
 
 <body>
     {% include 'include/navbar.html' %}
-
+    {% if perms.core.view_ventalocal %}
+      {% include 'include/navbar-admin.html' %}                  
+    {% endif %}
     {% include 'include/messages.html' %}
 
     {% block content %} {% endblock %}

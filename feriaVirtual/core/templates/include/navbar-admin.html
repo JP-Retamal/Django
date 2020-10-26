@@ -1,0 +1,88 @@
+<div class="admin-contenedor-navbar bg-green-500 sm:w-20 fixed inset-x-0 bottom-0 z-10">
+    <ul class="admin-contenedor-listaBotones flex flex-row sm:flex-col sm:h-screen"
+        style="justify-content: center;">
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600 hidden sm:block">
+         <div class="flex justify-center items-center">
+             <i class="fas fa-angle-double-right text-white text-4xl"></i>
+             <span class="admin-contenedor-listaBotones__li-span
+              ml-20 text-white text-2xl font-lato hidden">Menu</span>
+         </div>
+        </li>
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600">
+            <a href="{% url 'solicitudAdmin' %}" class="flex justify-center items-center">
+                <i class="fas fa-file-alt text-white text-4xl"></i>
+                <span
+                    class="admin-contenedor-listaBotones__li-span
+                    ml-6 text-white text-2xl font-lato hidden">Solicitudes</span>
+            </a>
+        </li>
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600">
+            <a href="{% url 'home' %}" class="flex justify-center items-center">
+                <i class="fas fa-file-alt text-white text-4xl"></i>
+                <span
+                    class="admin-contenedor-listaBotones__li-span
+                     ml-6 text-white text-2xl font-lato hidden">Saldos</span>
+            </a>
+        </li>
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600">
+            <a href="{% url 'portalDeOfertas' %}" class="flex justify-center items-center">
+                <i class="fas fa-file-alt text-white text-4xl"></i>
+                <span
+                    class="admin-contenedor-listaBotones__li-span
+                     ml-6 text-white text-2xl font-lato hidden">Pedidos</span>
+            </a>
+        </li>
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600">
+            <a href="" class="flex justify-center items-center">
+                <i class="fas fa-chart-pie text-white text-4xl"></i>
+                <span
+                    class="admin-contenedor-listaBotones__li-span
+                    ml-4 text-white text-2xl font-lato hidden">Estadisticas</span>
+            </a>
+        </li>
+        <li class="admin-contenedor-listaBotones__li py-4 w-full
+         hover:bg-green-600">
+            <a href="{% url 'logout' %}" class="flex justify-center items-center">
+                <i class="fas fa-sign-out-alt text-white text-4xl"></i>
+                <span class="admin-contenedor-listaBotones__li-span
+                ml-6 text-white text-2xl font-lato hidden">Salir</span>
+            </a>
+        </li>
+        <li class="admin-contenedor-listaBotones__li sm:mt-auto hidden sm:block">
+            <a href="" class="flex justify-center items-center my-4">
+                <img src="\static\img\BestFruit.png" alt="Logo" class="w-10 h-10">
+                <span class="admin-contenedor-listaBotones__li-span
+                ml-4 text-white text-2xl font-lato hidden">Best Fruit</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const $li = document.querySelector('.admin-contenedor-listaBotones__li');
+    const $span = document.querySelectorAll('.admin-contenedor-listaBotones__li-span');
+
+    const openMenu = e => {
+        // TRANSICION AL ABRIR EL MENU
+        document.getElementsByClassName('admin-contenedor-navbar')[0].style.transitionProperty = 'width';
+        document.getElementsByClassName('admin-contenedor-navbar')[0].style.transitionDuration = '200ms';
+        document.getElementsByClassName('admin-contenedor-navbar')[0].classList.toggle('sm:w-56');
+
+        // TRANSICION PARA HACER ROTAR EL ICONO DEL MENU
+        $li.querySelector('i').style.transitionProperty = 'transform';
+        $li.querySelector('i').style.transitionDuration = '500ms';
+        $li.querySelector('i').classList.toggle('transform');
+        $li.querySelector('i').classList.toggle('-rotate-180');
+
+        $span.forEach(span => {
+            span.classList.toggle('hidden');
+        });
+    }
+
+    $li.onclick = openMenu;
+</script>

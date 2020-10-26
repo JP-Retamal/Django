@@ -15,6 +15,10 @@ urlpatterns = [
    path('usuario/solicitud/', login_required(solicitud), name="solicitud"),
    path('usuario/pedido/', login_required(pedido), name="pedido"),
    path('usuario/informacion/', login_required(informacion), name="informacion"),
+   path('administracion/', homeAdmin, name="homeAdmin"),
+   path('administracion/solicitud/', solicitudAdmin, name="solicitudAdmin"),
+   path('portalDeOfertas', portalDeOfertas, name="portalDeOfertas"),
+   path('detallePedido', detallePedido, name="detallePedido"),
    path('grafico/', ver, name="grafico"),
 ]
 

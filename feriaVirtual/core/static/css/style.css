@@ -27,6 +27,7 @@
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  position: relative;
 }
 
 /* Sections
@@ -930,6 +931,7 @@ h6 {
   --bg-opacity: 1;
   background-color: #ed8936;
   background-color: rgba(237, 137, 54, var(--bg-opacity));
+  position: absolute;
 }
 
 .seccion {

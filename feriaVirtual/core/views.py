@@ -1,10 +1,11 @@
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
+from django.template import Template, Context
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
 from django.db import connection
 from django.contrib import auth
-from django.template import Template, Context
 from datetime import date
 import cx_Oracle
 from .metodos_views import *
@@ -84,15 +85,12 @@ def login(request):
         password = request.POST['password']
         user = auth.authenticate(username=username, password=password)
         
-        if user is not None and user.is_active:
-            print('valido')
+        if user is not None and user.is_active:   
             # validación del usuario y estado de usuario.(activo)
             auth.login(request, user)
-            # Redirecionar pagina de usuario.
-            return HttpResponseRedirect("/usuario/")
         else:
             # ver errores y redireccionr.
-            print('invalido')
+            
             return HttpResponseRedirect("/login/")
  
     return render(request, 'login.html')
@@ -114,12 +112,7 @@ def registro(request):
 
     if request.method == 'POST':
         
-        if  request.POST.get('registro-pasaporte'):
-            
-            run_usuario  =   request.POST.get('registro-pass')
-        else:
-            run_usuario = request.POST.get('registro-rut')
-
+        run_usuario = request.POST.get('registro-rut')
         nombre      = request.POST.get('registro-nombre')
         ap_paterno  = request.POST.get('registro-Paterno')
         ap_materno  = request.POST.get('registro-materno')
@@ -170,7 +163,29 @@ def usuario(request):
     nombreUsuario = 'Jesus'
     return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
 
+def portalDeOfertas(request):
+    data = {
+        'bd_pedido': lista_pedido()
+    }
+    if request.method == 'POST':
+        id_Publicacion = request.POST.get('Publicacion')
+        context = {
+            'detallepedidos': listar_detallePedidos(id_Publicacion)
+        }
+        return render(request,'detallePedido.html', context)
+    else:   
+        return render(request, 'portalDeOfertas.html', data)
 
+
+def detallePedido(request):
+    #capturar informacón de detalle de tarjeta, renderizar y enviar selección de k a comprar.
+    if request.method == 'GET':  
+        kilos = request.GET.get('valorslider')
+        context = {}
+        context['kilos']=kilos
+        return render(request, 'comprar.html"', context)
+    else:
+        return render(request, 'detalle.html')
 
 def solicitud(request):
     tituloPagina = 'Solicitudes'
@@ -187,3 +202,14 @@ def pedido(request):
 def informacion(request):
     tituloPagina = 'Informacion'
     return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})
+
+
+def homeAdmin(request):
+    tituloPagina = 'Administracion'
+    return render(request, 'base-admin.html', { 'tituloPagina' : tituloPagina})
+
+
+
+def solicitudAdmin(request):
+    tituloPagina = 'Solicitudes'
+    return render(request, 'solicitud-admin.html', { 'tituloPagina' : tituloPagina})

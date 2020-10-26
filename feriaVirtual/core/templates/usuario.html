@@ -2,10 +2,56 @@
 
 {% block title %} {{ tituloPagina }} {% endblock %}
 
+{% block navbar %}  
+
+{% include 'include/navbar-admin.html' %}
+
+{% endblock %}
+
 {% block content %}
-<div class="usuario-contenedor grid justify-center lg:my-10">
-    <div class="usuario-contenedor-titulo">
-        <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{user.get_full_name }}!</h1>
+    <div class="usuario-contenedor grid justify-center lg:my-10">
+        <div class="usuario-contenedor-titulo">
+            <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{user.get_full_name }}!</h1>
+            <br>
+            {% if perms.core.view_ventalocal %}
+            <h3>Nuevas solicitudes:</h3>
+            <div class="admin-solicitudListar-contenedor-general m-4 mb-20 sm:mb-0 sm:ml-24">
+                <div class="admin-solicitudListar-body">
+                    <div class="admin-solicitudListar-listado my-4">
+                        <table class="admin-solicitudListar-table sm:w-full" role="table">
+                            <thead class="admin-solicitudListar-table__thead" role="rowgroup">
+                                <!-- SOLICITUD -->
+                                <th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2 rounded-tl-md"
+                                role="columnheader">N SOLICITUD</th>
+                                <!-- SOLICITUD -->
+                                <th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
+                                role="columnheader">FECHA CREACION</th>
+                                <!-- SOLICITUD -->
+                                <th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
+                                role="columnheader">SOLICITANTE</th>
+                                <!-- SOLICITUD -->
+                                <th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
+                                role="columnheader">ESTADO</th>
+                                <!-- SOLICITUD -->
+                                <th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
+                                role="columnheader">TOTAL</th>                        
+                            </thead>
+
+                            <tbody role="rowgroup">
+                            <tr role="trow">
+                                <td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">202010212019</td>
+                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">21/10/2020</td>
+                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">JaneDoe</td>
+                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">Nueva</td>
+                                <td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
     </div>
     <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4">
         <div class="usuario-contenedor-modal">
@@ -110,38 +156,7 @@
                             </div>
                             {% else %}
                                 {% if perms.core.view_ventalocal %}
-                                    <!-- historial de Ofertas-->
-                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                        <a href="#" class="">
-                                            <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
-                                            <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
-                                            Pedidos</span>
-                                        </a>
-                                    </div>
-                                    <!-- Pedidospuntos -->
-                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                        <a href="#">
-                                            <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
-                                            <span class="usuario-contenedor-btns__span lg:inline-block">
-                                            Publicaciones</span>
-                                        </a>
-                                    </div>
-                                    <!-- Cuenta -->
-                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                        <a href="{% url 'informacion' %}">
-                                            <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
-                                            <span class="usuario-contenedor-btns__span lg:inline-block">
-                                            Cuenta</span>
-                                        </a>
-                                    </div>
-                                    <!-- Salir -->
-                                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                        <a href="{% url 'logout' %}">
-                                            <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
-                                            <span class="usuario-contenedor-btns__span lg:inline-block">
-                                            Salir</span>
-                                        </a>
-                                    </div>
+                                    
                                 {% endif %}
                         {% endif %}
                     {% endif %}

@@ -21,31 +21,17 @@
 			Las Contraseñas coinciden ! (Procesando formulario ... {{mensaje}})
 		</div>
 		<!-- Fin Mensajes de Verificación -->
-
 		<form id="registro-formulario" action="" method="POST" onsubmit="verificarPasswords(); return false">
 			{% csrf_token %}
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-				<!-- Identificacion -->
-			
+				
+				<!-- Identificacion -->			
 				<div class="contenedor-inputs">
 					<input id="registro-rut" name="registro-rut" type="text"
 						class="input focus:outline-none focus:border-orange-500"
 						placeholder="Ingrese Run" maxlength="10" minlength="10"/>
 				</div>
 
-				<div class="contenedor-inputs">
-					<input id="registro-pass" name="registro-pass" type="text"
-						class="input focus:outline-none focus:border-orange-500"
-						 placeholder="Ingrese Pasaporte"/>
-				</div>
-
-				<input type="hidden" value="" name="check">
-				<div class="registro-contenedor-checkboxs flex justify-center" >
-					<p class="font-lato m-4">Es pasaporte?</p>
-					<input id="registro-pasaporte" name="registro-pasaporte" type="checkbox"
-						class="registro-contenedor-checkboxs__checkbox" value="false"/>
-				</div>
-				
 				<div class="contenedor-inputs">
 					<input id="registro-fecha" name="registro-fecha" type="text"
 						class="input appearance-none focus:outline-none focus:border-orange-500"
@@ -111,7 +97,7 @@
 					</select>
 					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 				</div>
-
+				
 				<div class="contenedor-selects">
 					<select id="registro-provincia" name="registro-provincia"
 						class="contenedor-selects__select focus:outline-none focus:border-orange-500" required>

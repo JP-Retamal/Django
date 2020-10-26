@@ -136,7 +136,7 @@ def validaClave(clave, salida):
 def validaRol(correo, clave):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    salida = cursor.var(cx_Oracle.STRING)
+    salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("SP_VALIDA_ROL", [correo, clave, salida])
     return salida.getvalue()
     
@@ -146,7 +146,7 @@ def rol(num):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.STRING)
-    cursor.callproc("SP_BuscaRol", [valor, salida])
+    cursor.callproc("SP_BUSCAROL", [valor, salida])
     return salida.getvalue()
     
 def datosLogin(correo):
@@ -167,3 +167,58 @@ def userDjango(email, nombre, ap_paterno, clave):
     user.is_staff = False
     user.groups.add(2)
     user.save()
+
+def admin(user):
+    return user.is_authenticated() and user.has_perm("view_ventalocal")
+
+
+def listar_pedidos():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_PEDIDOS", [ out_cur])
+
+    lista = []
+    for fila in out_cur:
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
+        }
+
+        lista.append(data)
+
+    return lista
+
+
+def lista_pedido():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_PEDIDO", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+
+def listar_detallePedidos(detalle_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_DETALLE_PEDIDO", [detalle_id, out_cur])
+
+    lista = []  
+    for fila in out_cur:
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
+        }
+
+        lista.append(data)
+
+    return lista
