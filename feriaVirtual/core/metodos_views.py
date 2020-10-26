@@ -222,3 +222,35 @@ def listar_detallePedidos(detalle_id):
         lista.append(data)
 
     return lista
+
+
+def listar_historial_compra(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_HISTORIAL_COMPRA", [correo,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def listar_detalle_historial_compra(id_venta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_DETALLE_HISTORIAL_COMPRA", [id_venta, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[1].read()), 'utf-8')
+        }
+
+        lista.append(data)
+
+    return lista

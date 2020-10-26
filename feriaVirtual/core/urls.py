@@ -19,6 +19,8 @@ urlpatterns = [
    path('administracion/solicitud/', solicitudAdmin, name="solicitudAdmin"),
    path('portalDeOfertas', portalDeOfertas, name="portalDeOfertas"),
    path('detallePedido', detallePedido, name="detallePedido"),
+   path('usuario/historial_compra',login_required(historial_compra), name= "historial_compra"),
+   path('usuario/detalle_historial_compra',login_required(detalle_historial_compra), name= "detalle_historial_compra"),
    path('grafico/', ver, name="grafico"),
 ]
 

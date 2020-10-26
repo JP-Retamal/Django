@@ -22,9 +22,22 @@
                     <li></li>
                 </a>
                 <a href="#"
-                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
+                    class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 " id="send">
                     <li>Historial Compras</li>
                 </a>
+                <form action="{% url 'historial_compra' %}" method="POST" hidden="hidden">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{user.username}}" name="valcorreo">
+                    <input type="submit" id="subir_btn" name="subir_btn" value="historial_compra"  hidden="hidden"/>
+                </form>
+                <script>
+                        const subir_btn = document.getElementById('subir_btn');
+                        const send = document.getElementById('send');
+
+                        send.addEventListener("click",function () {
+    	                subir_btn.click();
+                        });
+                </script>
                 <a href="#"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
                     <li>Cuenta</li>

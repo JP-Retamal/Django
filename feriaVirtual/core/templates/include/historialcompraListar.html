@@ -1,0 +1,82 @@
+{%load humanize%}
+<div class="HistorialCompra-contenedor">
+	<div class="HistorialCompra-contenedor-titulo">
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Historial de Compras </h2>
+	</div>
+    
+	<div class="HistorialCompra-contenedor-tabla">
+		{% if registros %}
+			<input id="valcorreo" name="valcorreo" type="hidden" value="comerciante@gmail.com">
+            <h1></h1>
+			<table class="HistorialCompra-contenedor-tabla__table">
+				<thead>
+					<tr class="HistorialCompra-contenedor-tabla__tr">
+
+						<th class="HistorialCompra-contenedor-tabla__th w-1/12">Descripcion</th>
+						<th class="HistorialCompra-contenedor-tabla__th w-1/3 text-left">Fecha Compra</th>
+						<th class="HistorialCompra-contenedor-tabla__th w-1/12">Total</th>
+						<th class="HistorialCompra-contenedor-tabla__th w-1/12">Estado</th>
+						<th class="HistorialCompra-contenedor-tabla__th w-1/12">Ver Detalle</th>
+					</tr>
+				</thead>
+				<tbody class="HistorialCompra-contenedor-tabla__tbody">
+					{% for h in registros %}
+
+					<tr class="HistorialCompra-contenedor-tabla-tbody__tr">
+						<td class="HistorialCompra-contenedor-tabla__td text-center">{{h.1}}</td>
+						<td class="HistorialCompra-contenedor-tabla__td">{{h.2}}</td>
+						<td class="HistorialCompra-contenedor-tabla__td">{{h.3|intcomma}}</td>
+						<td class="HistorialCompra-contenedor-tabla__td text-center">{{h.4}}</td>
+						<td class="HistorialCompra-contenedor-tabla__td text-center">
+							
+							<form action="{% url 'detalle_historial_compra' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{h.0}}" name="idventa">
+								<button type="menu" class="px-2 py-1 rounded-lg bg-blue-500 text-white focus:outline-none">
+									<i class="fas fa-book-open"></i>
+									<input class="" type="submit" value=""  style="background-color: transparent !important; outline:none !important;"/>
+								</button>
+							</form>
+							
+						</td>
+					</tr>
+					
+					
+					
+					{% endfor %}
+				</tbody>
+            </table>
+            
+            {% else %}
+            <h1>No hay historial de compras</h1>
+            {% endif %}
+		<!--<div class="contenedor-btns centrar-contenedor">
+			<button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none">
+				Enviar Solicitud
+			</button>
+        </div>-->
+        
+	</div>
+</div>
+
+<!--<script>
+	$(document).ready(function () {
+
+		const selects = document.getElementsByTagName('select');
+		for (const element of selects) {
+			$(`#${element.id}`).select2({
+				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Variedad Fruta'}`,
+				language: {
+					noResults: function () {
+						return "No hay resultado";
+					},
+					searching: function () {
+						return "Buscando..";
+					}
+				},
+			});
+		}
+
+	});
+	// Fin Select Select2
+</script>-->

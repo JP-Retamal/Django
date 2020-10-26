@@ -213,3 +213,25 @@ def homeAdmin(request):
 def solicitudAdmin(request):
     tituloPagina = 'Solicitudes'
     return render(request, 'solicitud-admin.html', { 'tituloPagina' : tituloPagina})
+
+
+@permission_required('core.add_pago')
+def historial_compra(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'registros': listar_historial_compra(info)
+    }
+
+    return render(request, 'historial_compra.html', data)
+
+
+@permission_required('core.add_pago')
+def detalle_historial_compra(request):
+    id=request.POST.get('idventa')
+    print(id)
+    context = {
+        'historial_hc': listar_detalle_historial_compra(id),
+    }
+        
+    return render(request, 'detalle_historial_compra.html', context)
