@@ -1,12 +1,12 @@
 {%load humanize%}
 <div class="HistorialCompra-contenedor">
 	<div class="HistorialCompra-contenedor-titulo">
-		<h2 class="HistorialCompra-contenedor-titulo__h2">Historial de Compras </h2>
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Historial de Compras</h2>
 	</div>
     
 	<div class="HistorialCompra-contenedor-tabla">
 		{% if registros %}
-			<input id="valcorreo" name="valcorreo" type="hidden" value="comerciante@gmail.com">
+			<input id="valcorreo" name="valcorreo" type="hidden" value="{{request.user.username}}">
             <h1></h1>
 			<table class="HistorialCompra-contenedor-tabla__table">
 				<thead>
@@ -41,12 +41,14 @@
 						</td>
 					</tr>
 					
-					
-					
 					{% endfor %}
 				</tbody>
             </table>
-            
+            <br>
+			<br>
+			<br>
+			<br>
+			<br>
             {% else %}
             <h1>No hay historial de compras</h1>
             {% endif %}

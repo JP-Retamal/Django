@@ -63,8 +63,8 @@
                     <a href="{% url 'pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                         <li>Pedidos</li>
                     </a>
-                    <a href="{% url 'informacion' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                        <li>Cuenta</li>
+                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li></li>
                     </a>    
 
                 {% else %}
@@ -77,14 +77,23 @@
                         <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                             <li></li>
                         </a>
-                        <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <a href="javascript:enviar_formulario()" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                             <li>Historial de Ofertas</li>
                         </a>
+                        <form action="{% url 'historial_ofertas' %}" method="POST" hidden="hidden" name="formulario3">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{user.username}}" name="valcorreo">
+                        </form>
+                        <script>
+                                function enviar_formulario(){
+                                document.formulario3.submit()
+                            }
+                        </script>
                         <a href="{% url 'portalDeOfertas' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                             <li>Portal de Ofertas</li>
                         </a>
-                        <a href="{% url 'informacion' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                            <li>Cuenta</li>
+                        <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                            <li></li>
                         </a>
                     
                     {% else %}

@@ -16,7 +16,7 @@ def ver(request):
    
     return render(request, 'grafico.html')
 
-#ver pagina de inicio.
+# ver pagina de inicio.
 def home(request):
     #listar tarjetas de venta local.
     data = {
@@ -34,7 +34,7 @@ def home(request):
 
         return render(request, 'index.html', data)
 
-#vista detalle de venta local.
+# vista detalle de venta local.
 def detalle(request):
     #capturar informacón de detalle de tarjeta, renderizar y enviar selección de k a comprar.
     if request.method == 'GET':  
@@ -46,7 +46,7 @@ def detalle(request):
         return render(request, 'detalle.html')
 
 
-#permiso de usuario
+# usuario comerciante
 @permission_required('core.add_pago')
 def comprar(request):
     #obtener valores y renderizar venta.
@@ -78,8 +78,32 @@ def comprar(request):
     return render(request, 'comprar.html', context)
 
 
+# usuario comerciante
+@permission_required('core.add_pago')
+def historial_compra(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'registros': listar_historial_compra(info)
+    }
+
+    return render(request, 'historial_compra.html', data)
+
+
+@permission_required('core.add_pago')
+def detalle_historial_compra(request):
+    id=request.POST.get('idventa')
+    print(id)
+    context = {
+        'historial_hc': listar_detalle_historial_compra(id),
+    }
+        
+    return render(request, 'detalle_historial_compra.html', context)
+
+#--------------------------------------------------------------------------------------------
+
 def login(request):
-    #validar datos de usuarios.
+    # validar datos de usuarios.
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -91,19 +115,19 @@ def login(request):
         else:
             # ver errores y redireccionr.
             
-            return HttpResponseRedirect("/login/")
+            return HttpResponseRedirect("/login")
  
     return render(request, 'login.html')
 
 
-#cerrar sesión de usuario.
+# cerrar sesión de usuario.
 def logout(request):
     auth.logout(request)
     # Redirect to a success page.
     return HttpResponseRedirect("/")
 
 
-#Registro de usuario comerciante
+# Registro de usuario comerciante
 def registro(request):
     #print(listar_regiones())
     data = {
@@ -155,14 +179,22 @@ def registro(request):
                         data['mensaje'] = 'Error al guardar el registro'
                         
     return render(request, 'registro.html', data)
+#--------------------------------------------------------------------------
 
-
-# vistas de usuario
+# vistas de usuario inicio general
 def usuario(request):
     tituloPagina = 'Perfil'
     nombreUsuario = 'Jesus'
     return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
 
+# ver información cuentas general
+def informacion(request):
+    tituloPagina = 'Informacion'
+    return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})
+
+#-------------------------------------------------------------------------
+
+# usuario productor
 def portalDeOfertas(request):
     data = {
         'bd_pedido': lista_pedido()
@@ -187,6 +219,27 @@ def detallePedido(request):
     else:
         return render(request, 'detalle.html')
 
+
+def historial_ofertas(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'registros': listar_ofertas(info)
+    }
+
+    return render(request, 'historial_ofertas.html', data)
+
+def datalle_historial_ofertas(request):
+    id=request.POST.get('idventa')
+    print(id)
+    context = {
+        'detalle_ho': listar_detalle_historial_oferta(id),
+    }
+
+    return render(request, 'detalle_historial_ofertas.html', context)
+
+#--------------------------------------------------------------------------------------
+# 
 def solicitud(request):
     tituloPagina = 'Solicitudes'
     return render(request, 'solicitud.html', { 'tituloPagina' : tituloPagina})
@@ -198,40 +251,17 @@ def pedido(request):
     return render(request, 'pedido.html', { 'tituloPagina' : tituloPagina})
 
 
-
-def informacion(request):
-    tituloPagina = 'Informacion'
-    return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})
-
-
+@permission_required('core.view_ventalocal')
 def homeAdmin(request):
     tituloPagina = 'Administracion'
     return render(request, 'base-admin.html', { 'tituloPagina' : tituloPagina})
 
 
-
+@permission_required('core.view_ventalocal')
 def solicitudAdmin(request):
     tituloPagina = 'Solicitudes'
     return render(request, 'solicitud-admin.html', { 'tituloPagina' : tituloPagina})
 
-
-@permission_required('core.add_pago')
-def historial_compra(request):
-    info = request.POST.get("valcorreo")
-    print(info)
-    data = {
-        'registros': listar_historial_compra(info)
-    }
-
-    return render(request, 'historial_compra.html', data)
+#---------------------------------------------------------------------------
 
 
-@permission_required('core.add_pago')
-def detalle_historial_compra(request):
-    id=request.POST.get('idventa')
-    print(id)
-    context = {
-        'historial_hc': listar_detalle_historial_compra(id),
-    }
-        
-    return render(request, 'detalle_historial_compra.html', context)

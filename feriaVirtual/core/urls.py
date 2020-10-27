@@ -6,7 +6,7 @@ from .views import *
 
 urlpatterns = [
    path('', home, name="home"),
-   path('login/', login, name="login"),
+   path('login', login, name="login"),
    path('logout/', logout, name="logout"),
    path('registro/', registro, name="registro"),
    path('detalle/', detalle, name="detalle"),
@@ -16,11 +16,13 @@ urlpatterns = [
    path('usuario/pedido/', login_required(pedido), name="pedido"),
    path('usuario/informacion/', login_required(informacion), name="informacion"),
    path('administracion/', homeAdmin, name="homeAdmin"),
-   path('administracion/solicitud/', solicitudAdmin, name="solicitudAdmin"),
-   path('portalDeOfertas', portalDeOfertas, name="portalDeOfertas"),
-   path('detallePedido', detallePedido, name="detallePedido"),
+   path('administracion/solicitud/', login_required(solicitudAdmin), name="solicitudAdmin"),
+   path('portalDeOfertas', login_required(portalDeOfertas), name="portalDeOfertas"),
+   path('detallePedido', login_required(detallePedido), name="detallePedido"),
    path('usuario/historial_compra',login_required(historial_compra), name= "historial_compra"),
    path('usuario/detalle_historial_compra',login_required(detalle_historial_compra), name= "detalle_historial_compra"),
+   path('usuario/historial_ofertas', historial_ofertas, name="historial_ofertas"),
+   path('usuario/detalle_hitorial_ofertas', datalle_historial_ofertas, name="detalle_historial_ofertas"),
    path('grafico/', ver, name="grafico"),
 ]
 

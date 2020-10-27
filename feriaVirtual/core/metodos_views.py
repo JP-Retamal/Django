@@ -254,3 +254,34 @@ def listar_detalle_historial_compra(id_venta):
         lista.append(data)
 
     return lista
+
+def listar_ofertas(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_HISTORIAL_OFERTA", [correo, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def listar_detalle_historial_oferta(id_oferta):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_DETALLE_HISTORIAL_OFERTA", [id_oferta, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
+        }
+
+        lista.append(data)
+
+    return lista

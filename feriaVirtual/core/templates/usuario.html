@@ -62,11 +62,20 @@
                 {% if perms.core.view_pago %}
                     <!-- historial de compra-->
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="#" class="">
+                        <a href="javascript:enviar_formulario()">
                             <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                             <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
                             Historial de Compras</span>
                         </a>
+                        <form action="{% url 'historial_compra' %}" method="POST" name="formulario2">
+                            {% csrf_token %}
+                            <input type="hidden" name="valcorreo" value="{{user.email}}" >
+                        </form>
+                        <script>
+                            function enviar_formulario(){
+                                document.formulario2.submit()
+                            }
+                        </script>
                     </div>
                     <!-- Pedidospuntos -->
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
@@ -124,15 +133,24 @@
                         {% if perms.core.view_detalleoferta %}
                             <!-- historial de Ofertas-->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="#" class="">
+                                <a href="javascript:enviar_formulario()">
                                     <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                                     <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
                                     Historial de Ofertas</span>
                                 </a>
+                                <form action="{% url 'historial_ofertas' %}" method="POST" hidden="hidden" name="formulario4" >
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                </form>
+                                <script>
+                                    function enviar_formulario(){
+                                    document.formulario4.submit()
+                                    }
+                                </script>
                             </div>
                             <!-- Pedidospuntos -->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="#">
+                                <a href="{% url 'portalDeOfertas' %}">
                                     <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
                                     <span class="usuario-contenedor-btns__span lg:inline-block">
                                     Portal de Ofertas</span>
