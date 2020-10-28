@@ -216,24 +216,20 @@ def portalDeOfertas(request):
         'bd_pedido': lista_pedido()
     }
     if request.method == 'POST':
-        id_Publicacion = request.POST.get('Publicacion')
-        context = {
-            'detallepedidos': listar_detallePedidos(id_Publicacion)
-        }
-        return render(request,'detallePedido.html', context)
+        return render(request,'detallePedido.html')
     else:   
         return render(request, 'portalDeOfertas.html', data)
 
 
 def detallePedido(request):
-    #capturar informacón de detalle de tarjeta, renderizar y enviar selección de k a comprar.
-    if request.method == 'GET':  
-        kilos = request.GET.get('valorslider')
-        context = {}
-        context['kilos']=kilos
-        return render(request, 'comprar.html"', context)
+    if request.method == 'GET': 
+        id_Publicacion = request.GET.get('Publicacion')
+        context = {
+            'detallepedidos': listar_detallePedidos(id_Publicacion)
+        }
+        return render(request, 'detallePedido.html', context)
     else:
-        return render(request, 'detalle.html')
+        return render(request, 'detallePedido.html')
 
 
 def historial_ofertas(request):

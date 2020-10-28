@@ -4,30 +4,29 @@
 {% block title %} Detalle Pedido {% endblock %}
 
 {% block content%} 
-<br>
-    <br>
-    <br>
-    <br>
-    <br>
-<div class="detalle-contenedor" style="padding-left:5rem"> 
-        
+
+<div class="detalle-contenedor"> 
+        <div class="detalle-contenedor-titulo md:col-span-3">
+            <h1 class="detalle-contenedor-titulo__h1 md:px-20">Variedades solicitadas</h1>
+        </div>
+        <div class="detalle-contenedor-titulo md:col-span-3">
+            <p class="detalle-contenedor md:px-20"><td>
+            kilos totales para esta solicitud:{{d.data.7}}</td></p>
+        </div>
         {% for d in detallepedidos %} 
         <div class="detalle-contenedor-titulo md:col-span-3">
-            <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.5}} {{d.data.6}}</td></h1>
+            <h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.5}} {{d.data.6}}</td></h2>
         </div>
         <div class="detalle-contenedor-descripcion  md:grid-cols-3">
             <div class="detalle-contenedor-imagen centrar-contenedor">
                 <img src="data:imagen/jpg;base64, {{d.imagen}}" alt="{{d.data.5}} {{d.data.6}}" class="detalle-contenedor-imagen__img">       
             </div>
             <div class="detalle-contenedor-informacion md:col-span-2 md:m-0"> 
-                <div class="detalle-contenedor-precio md:text-left">
-                    <span class="detalle-contenedor-precio__span "><td> {{d.data.7}} Kg.</td></span>
-                </div>
                 <div class="detalle-contenedor-caracteristica md:my-2 md:h-48">
                     <span class="detalle-contenedor-caracteristica__span">Características:</span>
                     <ul>
                      <br>
-                        <li class="detalle-contenedor-caracteristica__li">Kilos Disponibles:<td> {{d.data.2}} Kg.</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Kilos Solicitados:<td> {{d.data.7}} Kg.</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Fecha cosecha:<td> {{d.data.4}}</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Fruta solicitada:<td> {{d.data.5}} {{d.data.6}}</td></li>
                     </ul>
@@ -38,7 +37,7 @@
         <div class="detalle-contenedor-titulo md:col-span-3">
             <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>Ofertar</td></h1>
             <br>
-             <form action="#" method="POST">
+             <form class="detalle-contenedor-titulo__h1 md:px-20" action="#" method="POST">
                 {% csrf_token %}                
                 <input type="hidden" value="{{d.data.0}}" name="Publicacion">
                 <div class="boton-tarjeta">
@@ -48,14 +47,5 @@
                 </div>
             </form>  
         </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
 {% endblock %}

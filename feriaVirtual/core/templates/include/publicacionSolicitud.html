@@ -17,7 +17,7 @@
                         <div class="precio-tarjeta">
                             <h2>Pedido:<td> {{p.1}}K</td></h2>
                         </div>
-                        <form action="" method="POST">
+                        <form action="detallePedido" method="GET">
                             {% csrf_token %}
                             <input type="hidden" value="{{p.0}}" name="Publicacion">
                             <div class="boton-tarjeta">

@@ -28,6 +28,9 @@
     {% if perms.core.view_ventalocal %}
       {% include 'include/navbar-admin.html' %}                  
     {% endif %}
+
+    {% block titulo %} {% endblock %}
+
     {% include 'include/messages.html' %}
 
     {% block content %} {% endblock %}
