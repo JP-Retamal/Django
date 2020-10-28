@@ -87,6 +87,12 @@ def listar_regiones():
 
     return lista
 
+def buscaComuna_id(comuna):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salidacomuna = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc("SP_BUSCA_COMUNA", [comuna, salidacomuna])
+    return salidacomuna.getvalue()
 
 def validaRegistroRut(run):
     django_cursor = connection.cursor()
@@ -299,11 +305,11 @@ def buscar_usuario(correo):
     return lista
 
 
-def modificar_comerciante(email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion):
+def modificar_usuario( email, celular, direccion, comuna):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_MODIFICAR_COMERCIANTE', [email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion, salida])
+    cursor.callproc('SP_MODIFICAR_USUARIO', [email, celular, direccion, comuna, salida])
     return salida.getvalue()
 
 

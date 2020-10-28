@@ -9,6 +9,7 @@ from django.db import connection
 from django.contrib import auth
 from datetime import date
 import cx_Oracle
+from .models import Usuario
 from .metodos_views import *
 
 
@@ -183,11 +184,19 @@ def registro(request):
 
 # actualizar datos cuenta
 def informacion(request):
-    info = request.POST.get("valcorreo")
-    print(info)
+    info = request.GET.get("valcorreo")
     data = {
-        'usuario': buscar_usuario(info)
+        'usuario': buscar_usuario(info),
+        'region': listar_regiones()
     }
+    if request.method =="POST":
+        celular = request.POST.get('informacion-telefono')
+        direccion   = request.POST.get('informacion-direccion')
+        id_comuna     = request.POST.get('comuna')
+        salida=modificar_usuario( info, celular, direccion, id_comuna)
+        if salida==1:
+           data['mensaje']="Datos actualizados" 
+           data['usuario']=buscar_usuario(info)
     return  render(request, 'informacion.html', data) 
 
 #--------------------------------------------------------------------------

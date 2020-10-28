@@ -140,7 +140,7 @@
                             <span class="usuario-contenedor-btns__span lg:inline-block">
                             Cuenta</span>
                         </a>
-                        <form action="{% url 'informacion' %}" method="POST" hidden="hidden" name="formulario5" >
+                        <form action="{% url 'informacion' %}" method="GET" hidden="hidden" name="formulario5" >
                             {% csrf_token %}
                             <input type="hidden" value="{{request.user.username}}" name="valcorreo">
                         </form>
