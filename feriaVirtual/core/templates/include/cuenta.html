@@ -1,0 +1,163 @@
+<div class="contenedor-general" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+    <div class="HistorialCompra-contenedor-titulo">
+		<h3 class="HistorialCompra-contenedor-titulo__h2">Informacion Personal </h3>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+       {% for message in messages %}
+       <li>{% if message.tags %} class="{{ message.tags }}"{% endif %} >{{ message }}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
+    {% if usuario %}
+    {% for u in usuario %}
+    
+    <form id="#" action="" method="GET" >
+        {% csrf_token %}
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+
+		    <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Nombres:</h4></b>
+                <input id="informacionPersonal-nombre" name="informacion-nombre" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Ej: Nombres"
+                    value = "{{u.2}}"/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 class="label" style="margin: 5px; font-size: 15px;">Apellido Paterno</h4></b>
+
+			    <input id="informacionPersonal-paterno" name="informacion-paterno" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Ej: Apellido Paterno"
+                    value = "{{u.3}}"/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 class="label" style="margin: 5px; font-size: 15px;">Apellido Materno</h4></b>
+			    <input id="informacionPersonal-materno" name="informacion-materno" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Ej: Apellido Materno"
+                    value = "{{u.4}}"/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Fecha de Nacimiento:</h4></b>
+                <input id="registro-fecha" name="informacion-fecha" type="text"
+                    class="input appearance-none focus:outline-none focus:border-orange-500" required maxlength="10" minlength="10" 
+                    placeholder="Fecha de Nacimiento"
+                    value = "{{u.5}}"/>
+            </div>
+        
+        </div>
+        <div class="HistorialCompra-contenedor-titulo">
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Informacion de Contacto </h3>
+	    </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Correo Electronico</h4></b>
+			    <input name="correo" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.6}}" />
+            </div>
+		    
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Numero de Telefono:</h4></b>
+			    <input id="informacionContacto-telefono" name="informacion-telefono" type="text" minlength="9" maxlength="9" required
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Ej: 9 XXXX XXXX" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                value = "{{u.8}}"/>
+            </div>
+        </div>
+        <div class="HistorialCompra-contenedor-titulo">
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Informacion de Despacho </h3>
+	    </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+		    <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Direccion:</h4></b>
+                <input id="informacionDespacho-direccion" name="informacion-direccion" type="text"
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Direccion" 
+                    value = "{{u.7}}"/>
+            </div>
+        </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Region:</h4></b>
+			    <select id="informacionDespacho-region" name="region" class="contenedor-selects__select focus:outline-none focus:border-orange-500" disabled="disabled">
+                    <option value="{{u.13}}">{{u.14}}</option>
+			    </select>
+            </div>
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Provincia:</h4></b>
+			    <select id="informacionDespacho-provincia" name="provincia" class="contenedor-selects__select focus:outline-none focus:border-orange-500" disabled="disabled">
+                    <option value="{{u.11}}">{{u.12}}</option>
+                </select>
+            </div>
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Comuna:</h4></b>
+			    <select id="informacionDespacho-comuna" name="comuna" class="contenedor-selects__select focus:outline-none focus:border-orange-500" disabled="disabled">
+                    <option value="{{u.9}}">{{u.10}}</option>
+                </select>
+            </div>       
+        </div>
+        {% endfor %}
+		    <div class="contenedor-btns flex justify-end lg:col-span-3">
+                <input type="hidden" value="{{user.username}}" name="valcorreo3">
+			    <button type="submit" class="informacionDespacho-contenedor-btns__button btn w-1/3 lg:w-1/4 focus:outline-none">Guardar</button>
+            </div>
+        {% else %}
+            <h1>No se pueden desplegar sus datos</h1>
+        {% endif %}
+    </form>
+</div>
+
+<script>
+    function validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+    }
+
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+			'Noviembre', 'Diciembre'],
+
+		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$('#registro-fecha').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "-18Y",
+		minDate: "-100Y"
+	});
+
+	$(document).ready(function () {
+		const selects = document.getElementsByTagName('select');
+		const selectsName = ['Region', 'Provincia', 'Comuna'];
+
+		for (let index = 0; index < selects.length; index++) {
+			$(`#${selects[index].id}`).select2({
+				placeholder: `Selecciona ${selectsName[index]}`,
+				language: {
+					noResults: function () {
+						return "No hay resultado";
+					},
+					searching: function () {
+						return "Buscando..";
+					}
+				}
+			});
+		}
+	});
+</script>

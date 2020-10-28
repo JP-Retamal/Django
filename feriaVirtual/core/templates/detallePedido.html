@@ -9,7 +9,7 @@
     <br>
     <br>
     <br>
-<div class="detalle-contenedor"> 
+<div class="detalle-contenedor" style="padding-left:5rem"> 
         
         {% for d in detallepedidos %} 
         <div class="detalle-contenedor-titulo md:col-span-3">
@@ -29,7 +29,7 @@
                      <br>
                         <li class="detalle-contenedor-caracteristica__li">Kilos Disponibles:<td> {{d.data.2}} Kg.</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Fecha cosecha:<td> {{d.data.4}}</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Descripción:<br><br><td>{{d.data.5}} {{d.data.6}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Fruta solicitada:<td> {{d.data.5}} {{d.data.6}}</td></li>
                     </ul>
                 </div>             
             </div>

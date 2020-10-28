@@ -4,6 +4,7 @@ from django.template import Template, Context
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
 from datetime import date
@@ -179,6 +180,16 @@ def registro(request):
                         data['mensaje'] = 'Error al guardar el registro'
                         
     return render(request, 'registro.html', data)
+
+# actualizar datos cuenta
+def informacion(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'usuario': buscar_usuario(info)
+    }
+    return  render(request, 'informacion.html', data) 
+
 #--------------------------------------------------------------------------
 
 # vistas de usuario inicio general
@@ -187,10 +198,6 @@ def usuario(request):
     nombreUsuario = 'Jesus'
     return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
 
-# ver información cuentas general
-def informacion(request):
-    tituloPagina = 'Informacion'
-    return render(request, 'informacion.html', { 'tituloPagina' : tituloPagina})
 
 #-------------------------------------------------------------------------
 

@@ -3,8 +3,11 @@
 {% block title %} Portal De Ofertas {% endblock %}
 
 {% block content %}
-
-{% include 'include/banner.html' %}
-{% include 'include/publicacionSolicitud.html' %}
-
+    
+{% if perms.core.view_ventalocal %}
+    {% include 'include/publicacionSolicitud.html' %}                 
+{% else %} 
+    {% include 'include/banner.html' %}
+    {% include 'include/publicacionSolicitud.html' %}
+{% endif %}
 {% endblock %}

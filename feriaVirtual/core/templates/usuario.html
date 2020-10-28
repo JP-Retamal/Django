@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="usuario-contenedor grid justify-center lg:my-10">
+    <div class="usuario-contenedor grid justify-center lg:my-10" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
         <div class="usuario-contenedor-titulo">
             <h1 class="usuario-contenedor-titulo__h1">Bienvenido {{user.get_full_name }}!</h1>
             <br>
@@ -38,13 +38,13 @@
                             </thead>
 
                             <tbody role="rowgroup">
-                            <tr role="trow">
-                                <td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">202010212019</td>
-                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">21/10/2020</td>
-                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">JaneDoe</td>
-                                <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">Nueva</td>
-                                <td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">0</td>
-                            </tr>
+                                <tr role="trow">
+                                    <td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">202010212019</td>
+                                    <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">21/10/2020</td>
+                                    <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">JaneDoe</td>
+                                    <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">Nueva</td>
+                                    <td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">0</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -62,7 +62,7 @@
                 {% if perms.core.view_pago %}
                     <!-- historial de compra-->
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="javascript:enviar_formulario()">
+                        <a href="javascript:enviar_formulario2()">
                             <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                             <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
                             Historial de Compras</span>
@@ -72,7 +72,7 @@
                             <input type="hidden" name="valcorreo" value="{{user.email}}" >
                         </form>
                         <script>
-                            function enviar_formulario(){
+                            function enviar_formulario2(){
                                 document.formulario2.submit()
                             }
                         </script>
@@ -84,21 +84,6 @@
                             <span class="usuario-contenedor-btns__span lg:inline-block">Puntos</span>
                         </a>
                     </div>
-                    <!-- Cuenta -->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="{% url 'informacion' %}">
-                            <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block">Cuenta</span>
-                        </a>
-                    </div>
-                    <!-- Salir -->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block">Salir</span>
-                        </a>
-                    </div>
-
                 {% else %}
                     {% if perms.core.view_solicitud %}
                         <!-- Solicitud de Compra -->
@@ -115,25 +100,11 @@
                                 <span class="usuario-contenedor-btns__span lg:inline-block">Pedidos</span>
                             </a>
                         </div>
-                        <!-- Cuenta -->
-                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="{% url 'informacion' %}">
-                                <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
-                                <span class="usuario-contenedor-btns__span lg:inline-block">Cuenta</span>
-                            </a>
-                        </div>
-                        <!-- Salir -->
-                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="{% url 'logout' %}">
-                                <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
-                                <span class="usuario-contenedor-btns__span lg:inline-block">Salir</span>
-                            </a>
-                        </div>
                     {% else %}
                         {% if perms.core.view_detalleoferta %}
                             <!-- historial de Ofertas-->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="javascript:enviar_formulario()">
+                                <a href="javascript:enviar_formulario4()">
                                     <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
                                     <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
                                     Historial de Ofertas</span>
@@ -143,7 +114,7 @@
                                     <input type="hidden" value="{{request.user.username}}" name="valcorreo">
                                 </form>
                                 <script>
-                                    function enviar_formulario(){
+                                    function enviar_formulario4(){
                                     document.formulario4.submit()
                                     }
                                 </script>
@@ -156,28 +127,37 @@
                                     Portal de Ofertas</span>
                                 </a>
                             </div>
-                            <!-- Cuenta -->
-                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="{% url 'informacion' %}">
-                                    <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
-                                    <span class="usuario-contenedor-btns__span lg:inline-block">
-                                    Cuenta</span>
-                                </a>
-                            </div>
-                            <!-- Salir -->
-                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="{% url 'logout' %}">
-                                    <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
-                                    <span class="usuario-contenedor-btns__span lg:inline-block">
-                                    Salir</span>
-                                </a>
-                            </div>
-                            {% else %}
-                                {% if perms.core.view_ventalocal %}
-                                    
-                                {% endif %}
                         {% endif %}
                     {% endif %}
+                {% endif %}
+                {% if perms.core.view_ventalocal %}
+                                    
+                 {% else %}              
+                    <!-- Cuenta -->
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="javascript:enviar_formulario5()">
+                            <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
+                            <span class="usuario-contenedor-btns__span lg:inline-block">
+                            Cuenta</span>
+                        </a>
+                        <form action="{% url 'informacion' %}" method="POST" hidden="hidden" name="formulario5" >
+                            {% csrf_token %}
+                            <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                        </form>
+                        <script>
+                            function enviar_formulario5(){
+                            document.formulario5.submit()
+                            }
+                        </script>
+                    </div>
+                    <!-- Salir -->
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'logout' %}">
+                            <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
+                            <span class="usuario-contenedor-btns__span lg:inline-block">
+                            Salir</span>
+                        </a>
+                    </div>
                 {% endif %}
             </aside>
         </div>

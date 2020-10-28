@@ -126,26 +126,16 @@
             </ul>
         </div>
         {% if user.is_authenticated %}
-        <div class="contenedor-btn grid grid-cols-1 col-span-3 md:grid-col-2 md:col-span-2">
-            {% if user.is_staff %}
-                <div class="centrar-contenedor py-2 md:py-0">
-                   
-                </div>
-                <div class="centrar-contenedor py-2 md:py-0">
-                    <a href="{% url 'usuario' %}" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
-                            class="text-white"> {{user.get_full_name | upper}}</span></a>
-                </div>
-            {% else %}
+            <div class="contenedor-btn grid grid-cols-1 col-span-3 md:grid-col-2 md:col-span-2">
                 <div class="centrar-contenedor py-2 md:py-0">
                     <a href="{% url 'logout' %}" class="btn btn-blue w-full md:w-48 hover:bg-blue-600"><span
-                            class="text-white">Cerrar sesión</span></a>
+                    class="text-white">Cerrar sesión</span></a>
                 </div>
                 <div class="centrar-contenedor py-2 md:py-0">
                     <a href="{% url 'usuario' %}" class="btn btn-orange w-full md:w-48 hover:bg-orange-600"><span
-                            class="text-white"> {{user.get_full_name | upper}}</span></a>
+                    class="text-white"> {{user.get_full_name | upper}}</span></a>
                 </div>
-            {% endif %}
-        </div>
+            </div>
         {% else %}
         <div class="contenedor-btn grid grid-cols-1 col-span-3 md:grid-col-2 md:col-span-2">
             <div class="centrar-contenedor py-2 md:py-0">

@@ -285,3 +285,42 @@ def listar_detalle_historial_oferta(id_oferta):
         lista.append(data)
 
     return lista
+#--modificar cuenta de usuario
+def buscar_usuario(correo):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_USUARIO", [correo, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def modificar_comerciante(email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_MODIFICAR_COMERCIANTE', [email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion, salida])
+    return salida.getvalue()
+
+
+def userDjangoMod(correoc, nombre, ap_paterno):
+    user = User.objects.get(username=correoc)
+    user.is_staff = False
+    user.first_name = nombre
+    user.last_name = ap_paterno
+    user.save()
+
+
+#def comercianteMod(email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion):
+#    comerc = Usuario.objects.get(email=email)
+#    comerc.nombre = nombre
+#    comerc.ap_paterno = ap_paterno
+#    comerc.ap_materno = ap_materno
+#    comerc.fecha_nac = fecha_nac
+#    comerc.num_celular = celular
+#    comerc.direccion = direccion
+#    comerc.save()

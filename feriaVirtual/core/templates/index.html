@@ -3,9 +3,12 @@
 {% block title %} Index {% endblock %}
 
 {% block content %}
-
-{% include 'include/banner.html' %}
-{% include 'include/oferta.html' %}
-{% include 'include/producto.html' %}
-
+{% if perms.core.view_ventalocal %}
+    {% include 'include/oferta.html' %}
+    {% include 'include/producto.html' %}
+{% else %}
+    {% include 'include/banner.html' %}
+    {% include 'include/oferta.html' %}
+    {% include 'include/producto.html' %}
+{% endif %}
 {% endblock %}
