@@ -288,11 +288,30 @@ def homeAdmin(request):
 
 @permission_required('core.view_ventalocal')
 def solicitudAdmin(request):
-    tituloPagina = 'Solicitudes'
-    return render(request, 'solicitud-admin.html', { 'tituloPagina' : tituloPagina})
+    data = {
+        'lista_solicitudes': listar_solicitudes()
+    }
+    if request.method =="POST":
+        if(request.POST.get('idsol1') != None):
+            idsolA = request.POST.get('idsol1')
+            salida1=aprobar_solicitud(idsolA)
+            if salida1==1:
+                data['mensaje']="Solicitud Aprobada" 
+                data['lista_solicitudes'] = listar_solicitudes()
+        elif(request.POST.get('idsol2') != None):
+            idsolR = request.POST.get('idsol2')
+            salida2=rechazar_solicitud(idsolR)
+            if salida2==1:
+                data['mensaje']="Solicitud Rechazada"
+                data['lista_solicitudes'] = listar_solicitudes()
+    return render(request, 'solicitud-admin.html', data)
 
 #---------------------------------------------------------------------------
 
-def publicacion_solicitud(request):
-
-    return render(request, 'publicacion_admin.html')
+def detallesolicitudAdmin(request):
+    info = request.POST.get("idsol")
+    data = {
+        'detalle_lista_solicitudes': listar_detalle_solicitudes(info)
+    }
+    print(data)
+    return render(request, 'solicitud-detalle-admin.html', data)

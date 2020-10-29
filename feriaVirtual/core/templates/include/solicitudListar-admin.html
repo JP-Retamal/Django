@@ -1,113 +1,81 @@
-<!-- admin-solicitudLintar-seccion-... -->
-<div class="admin-solicitudListar-contenedor-general m-4 mb-20 sm:mb-0 sm:ml-24"style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
-	<div class="admin-solicitudListar-header">
-		<h1 class="admin-solicitudListar-header__h1 font-lato">SOLICITUD</h1>
-		<p class="admin-solicitudListar-header__p font-lato text-lg">
-			Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi illum fugit soluta totam suscipit, provident
-			numquam error harum velit placeat sequi, voluptate reiciendis, deleniti itaque laboriosam earum maxime? Eum,
-			laudantium.
-		</p>
-	</div>
-	
-	<div class="admin-solicitudListar-body">
-		<div class="admin-solicitudListar-filtro grid grid-cols-1 my-2 sm:grid-cols-2 sm:gap-x-2">
-			<div class="admin-solicitudListar-filtro-titulo sm:col-span-2">
-				<h3 class="admin-solicitudListar-filtro__h3 font-lato font-bold">Filtro</h3>
-			</div>
-			<div class="admin-solicitudListar-contenedor-input my-2">
-				<label for="buscador">Palabra Clave</label>
-				<!-- EL EVENTO 'ONKEYPRESS' NO FUNCIONA CORRECTAMENTE SI SE ENCUETRA DENTRO DE UNA ETIQUETA SCRIPT, POR ESE MOTIVO, SE COLOCA EN EL INPUT  -->
-				<!-- LA VALIDACION CONSTA DE LO SIGUIENTE  -->
-				<!-- [0-9] || [a-zA-Z] || [0-9](BLOQ NUM) || [ - || . || _ || @ ] -->
-				<input type="text" name="buscador" id="buscador" class="admin-solicitudListar-contenedor-input__input input" onkeypress="return (event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 105) || (event.keyCode === 45 || event.keyCode === 46 || event.keyCode === 95 ||event.keyCode === 64)">	
-			</div>
-			<div class="admin-solicitudListar-contenedor-input grid grid-cols-2 gap-x-2 my-2">
-				<div class="admin-solicitudListar-contenedor-input-fecha">
-				<label for="buscador">Fecha Desde</label>
-				<input type="text" name="fecha-desde" id="fecha-desde" class="admin-solicitudListar-contenedor-input-fecha__input input">
-				</div>
-				<div class="admin-solicitudListar-contenedor-input-fecha">
-				<label for="buscador">Fecha Hasta</label>
-				<input type="text" name="fecha-hasta" id="fecha-hasta" class="admin-solicitudListar-contenedor-input-fecha__input input">
-				</div>
-			</div>
-		</div>
-		<div class="admin-solicitudListar-listado my-4">
-			<table class="admin-solicitudListar-table sm:w-full" role="table">
-				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
-					<!-- SOLICITUD -->
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2 rounded-tl-md"
-						role="columnheader">N SOLICITUD</th>
-					<!-- SOLICITUD -->
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
-						role="columnheader">FECHA CREACION</th>
-					<!-- SOLICITUD -->
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
-						role="columnheader">SOLICITANTE</th>
-					<!-- SOLICITUD -->
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
-						role="columnheader">ESTADO</th>
 
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2"
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+	<div class="admin-solicitudListar-header">
+		<h1 class="admin-solicitudListar-header__h1 font-lato">PUBLICACIONES</h1>
+	</div>
+	{% if messages %}
+    <ul class="messages">
+       {% for message in messages %}
+       <li>{% if message.tags %} class="{{ message.tags }}"{% endif %} >{{ message }}</li>
+       {% endfor %}
+    </ul>
+    {% endif %}
+	<div class="admin-solicitudListar-body">
+		{% if lista_solicitudes %}
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">N SOLICITUD</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">FECHA CREACION</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">SOLICITANTE</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">ESTADO</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
 						role="columnheader">DETALLE</th>
-					
-					<th class="admin-solicitudListar-table__thead-th font-lato border border-gray-400 sm:border-0 sm:text-white sm:text-sm sm:border-b sm:border-gray-500 sm:bg-gray-500 sm:p-2 rounded-tr-md"
-						role="columnheader">ACEPTAR</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+						role="columnheader">PUBLICAR</th>
+				
 				</thead>
 
 				<tbody role="rowgroup">
+					{% for lsu in lista_solicitudes %}
 					<tr role="trow">
-						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">202010212019</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">21/10/2020</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">JaneDoe</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell">Pendiente</td>
-						<td class="admin-solicitudListar-table__td flex justify-center font-lato border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell"><button class="admin-solicitudListar-table__td-button-detalle btn bg-green-500 font-lato text-white text-sm mt-1 w-20">Ver Detalle</button></td>
-						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 sm:border-0 sm:text-sm sm:text-center sm:border-b sm:border-gray-500 sm:p-2" role="cell"><button class="admin-solicitudListar-table__td-button-aceptar btn bg-blue-500 font-lato text-white text-sm mt-1 w-40 sm:m-auto">Aceptar Solicitud</button></td>
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.0}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.2}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.3}} {{lsu.4}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.5}}</td>
+
+						<td class="admin-solicitudListar-table__td font-lato flex justify-center border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="margin-bottom: -1px !important;">
+							<form action="{% url 'detallesolicitudAdmin' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{lsu.0}}" name="idsol">
+								<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" >Ver Detalle</button>
+							</form>
+						</td>				
+
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<div class="flex flex-row md:justify-center">
+								<form id="#" action="" method="POST" >
+									{% csrf_token %}
+									<input type="hidden" value="{{lsu.0}}" name="idsol1">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
+								</form>
+								<form id="#" action="" method="POST" >
+									{% csrf_token %}
+									<input type="hidden" value="{{lsu.0}}" name="idsol2">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
+								</form>
+							</div>
+						</td>
 					</tr>
+					{% endfor %}
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div class="admin-solicitudListar-modal flex justify-center align-top hidden" >
-		<div class="admin-solicitudListar-capaGris fixed inset-0 z-20 w-full h-full bg-gray-800 opacity-75"></div>
-		<div class="admin-solicitudListar-ventana  fixed  z-30 bg-white w-11/12 rounded-2xl p-4 sm:w-2/3 md:w-3/4 lg:w-2/3 xl:w-2/4" style="max-height: 20rem; top: 30%; ">
-			<div class="admin-solicitudListar-ventana-titulo border-b-2 border-gray-500">
-				<h3 class="admin-solicitudListar-ventana-titulo__h3 font-lato text-xl font-bold py-2">Solicitud N 123</h3>
-			</div>
-			<div class="admin-solicitudListar-contendor-tabla overflow-auto my-4" style="max-height: 12rem;">
-				<table class="admin-solicitudListar-table">
-					<thead class="admin-solicitudListar-table__thead">
-						<th class="admin-solicitudListar-table__thead-th w-1/6 font-lato text-white border-b border-gray-500 bg-gray-500 p-2 rounded-tl-md">#</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-2/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2">FRUTA</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-2/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2">VARIEDAD</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-1/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2 rounded-tr-md">CANTIDAD</th>
-					</thead>
+	{% else %}
+        <h1>No hay peticiones de compra disponibles</h1>
+    {% endif %}
 	
-					<tbody>
-						<tr>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">1</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">MANZANA</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">FUJI</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">100</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="admin-solicitudListar-ventana-boton flex justify-end">
-				<button class="admin-solicitudListar-ventana-boton__button btn bg-red-600 font-lato text-white w-48 p-2">Cerrar</button>
-			</div>
-		</div>
-	</div>
 </div>
 
 <style>
-	/*
-Max width before this PARTICULAR table gets nasty. This query will take effect for any full smaller than 760px and also iPads specifically.
-*/
-	@media only screen and (max-width: 639px) {
+
+	@media only screen and (max-width: 767px) {
 
 		/* Force table to not be like tables anymore */
 		table[role='table'],
@@ -130,7 +98,6 @@ Max width before this PARTICULAR table gets nasty. This query will take effect f
 
 		tr:nth-child(even) {
 			background:   #e5e8e8  ;
- ;
 		}
 
 		td[role='cell'] {
@@ -176,11 +143,24 @@ You could also use a data-* attribute and content for this. That way "bloats" th
 		}
 
 		td[role='cell']:nth-of-type(6):before {
-			content: "ACEPTAR";
+			content: "PUBLICAR";
 		}
 	}
-
-	@keyframes abrirModal{
+	@media only screen and (min-width: 640px) and (max-width: 765px) {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+		}
+	}
+	
+	@media only screen and (min-width: 765px)  {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+			padding-right: 8rem;
+		}
+	}
+	/*@keyframes abrirModal{
 		from {
 			opacity: 0%;
 		}
@@ -203,7 +183,7 @@ You could also use a data-* attribute and content for this. That way "bloats" th
 	.admin-solicitudListar-modal {
 		animation-duration: .5s;
 		animation-fill-mode: forwards;
-	}
+	}*/
 
 </style>
 
@@ -236,4 +216,32 @@ You could also use a data-* attribute and content for this. That way "bloats" th
 		}
 	});
 
+	function soloLetras(e) {
+		key = e.keyCode || e.which;
+		tecla = String.fromCharCode(key).toString();
+		letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+		especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+		tecla_especial = false
+		for(var i in especiales) {
+			if(key == especiales[i]) {
+				tecla_especial = true;
+				break;
+			}
+		}
+		if(letras.indexOf(tecla) == -1 && !tecla_especial){
+			return false;
+		}
+
+	}
+
+	function noPuntoComa(event) {
+		var e = event || window.event;
+		var key = e.keyCode || e.which;
+		if ( key === 110 || key === 190 || key === 188 ) {     
+			e.preventDefault();
+		}
+	}
+
 </script>
+
+

@@ -344,11 +344,45 @@ def listar_especie():
         lista.append(fila)
     
     return lista
+# solicitudes admin aceptar, rechazar, ver.
 
-
-
-
-def agregarSolicitud(fecha):
+def listar_solicitudes():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('sp_ingresar_solicitud',[fecha])
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_SOLICITUDES", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def listar_detalle_solicitudes(id_detalle):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_DETALLE_SOLICITUDES", [id_detalle,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def aprobar_solicitud( id_detalle):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_APROBAR_SOLICITUD', [id_detalle, salida])
+    return salida.getvalue()
+
+
+def rechazar_solicitud( id_detalle):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_RECHAZAR_SOLICITUD', [id_detalle, salida])
+    return salida.getvalue()

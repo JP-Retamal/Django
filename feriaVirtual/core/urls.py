@@ -17,6 +17,7 @@ urlpatterns = [
    path('usuario/informacion', login_required(informacion), name="informacion"),
    path('administracion/', homeAdmin, name="homeAdmin"),
    path('administracion/solicitud', login_required(solicitudAdmin), name="solicitudAdmin"),
+   path('administracion/solicitud_detalle', detallesolicitudAdmin, name="detallesolicitudAdmin"),
    path('portalDeOfertas', login_required(portalDeOfertas), name="portalDeOfertas"),
    path('detallePedido', login_required(detallePedido), name="detallePedido"),
    path('usuario/historial_compra',login_required(historial_compra), name= "historial_compra"),
@@ -25,7 +26,7 @@ urlpatterns = [
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', ofertaPruductor, name="oferta_productor"),
    path('variedades', variedad_por_especie, name="variedades"),
-   path('usuario/publicacion_solicitud', publicacion_solicitud, name="publicacion_solicitud"),
+
  
    path('grafico/', ver, name="grafico"),
 ]

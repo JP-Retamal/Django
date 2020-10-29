@@ -1,0 +1,149 @@
+{%load humanize%}
+
+
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+	
+	{% if detalle_lista_solicitudes %}
+	
+	<div class="admin-solicitudListar-header">
+		<div class="admin-solicitudListar-ventana-titulo border-b-2 border-gray-500">
+			<h3 class="admin-solicitudListar-ventana-titulo__h3 font-lato text-xl font-bold py-2">Solicitud N°: </h3>
+		</div>
+	</div>
+	
+	<div class="admin-solicitudListar-body">
+		
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">#</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">FRUTA</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">VARIEDAD</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">CANTIDAD</th>
+				
+				</thead>
+
+				<tbody role="rowgroup">
+					{% for dls in detalle_lista_solicitudes %}
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{dls.1}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{dls.2}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{dls.3}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{dls.4|intcomma}} Kg.</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+				
+			</table>
+			<div class="contenedor-btns centrar-contenedor">
+				<button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none" onClick="javascript:history.go(-1);">
+					Volver
+				</button>
+			</div>
+		</div>
+	</div>
+	{% else %}
+        <h2>No hay detalle de solicitud disponible</h2>
+    {% endif %}
+</div>
+
+
+<style>
+
+	@media only screen and (max-width: 767px) {
+
+		/* Force table to not be like tables anymore */
+		table[role='table'],
+		thead[role='rowgroup'],
+		tbody[role='rowgroup'],
+		th[role='columnheader'],
+		td[role='cell'],
+		tr[role='trow'] {
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead[role='rowgroup'] th[role='columnheader'] {
+			display: none;
+		}
+
+		tr[role='trow'] {
+			margin: 0 0 1rem 0;
+		}
+
+		tr:nth-child(even) {
+			background:   #e5e8e8  ;
+		}
+
+		td[role='cell'] {
+			position: relative;
+			padding-left: 50%;
+			height: 50px;
+			line-height: 45px;
+		}
+
+		td[role='cell']:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			line-height: 45px;
+			left: 20px;
+			width: 45%;
+			/* padding-right: 10px; */
+			white-space: nowrap;
+		}
+
+		/*
+Label the data
+You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+*/
+		td[role='cell']:nth-of-type(1):before {
+			content: "N SOLICITUD";
+		}
+
+		td[role='cell']:nth-of-type(2):before {
+			content: "FECHA CREACION";
+		}
+
+		td[role='cell']:nth-of-type(3):before {
+			content: "SOLICITANTE";
+		}
+
+		td[role='cell']:nth-of-type(4):before {
+			content: "ESTADO";
+		}
+
+		td[role='cell']:nth-of-type(5):before {
+			content: "DETALLE";
+		}
+
+		td[role='cell']:nth-of-type(6):before {
+			content: "PUBLICAR";
+		}
+	}
+	@media only screen and (min-width: 640px) and (max-width: 765px) {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+		}
+	}
+	
+	@media only screen and (min-width: 765px)  {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+			padding-right: 8rem;
+		}
+	}
+	
+
+</style>
+
+
+
+
