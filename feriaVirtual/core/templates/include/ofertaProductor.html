@@ -3,16 +3,9 @@
 		<div class="ventana-titulo">
 			<h2 class="ventana-titulo__h1">Formulario de Oferta</h2>
 		</div>
-		<div id="msg"></div>
-		<!-- Mensajes de Verificación -->
-		<div id="error" class="alert alert-danger ocultar" role="alert">
-			Las Contraseñas no coinciden, vuelve a intentar !
-		</div>
-		<div id="ok" class="alert alert-success ocultar" role="alert">
-			Las Contraseñas coinciden ! (Procesando formulario ... {{mensaje}})
-		</div>
+	
 		<!-- Fin Mensajes de Verificación -->
-		<form id="registro-formulario" action="" method="POST" onsubmit="verificarPasswords(); return false">
+		<form id="registro-formulario" action="" method="POST">
 			{% csrf_token %}
 			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 				
@@ -131,9 +124,9 @@
 				<!-- Btn -->
 				<div class="contenedor-btns md:col-span-2 lg:col-span-3">
 					<button type="submit" class="formulario-login__btn btn w-full focus:outline-none" >
-						Registrarse
+						Confirmar Ofertar
 					</button>
-					<span class="block font-lato text-sm text-center mt-2">Al registrarte, aceptas nuestras condiciones de uso y políticas de privacidad</span>
+					<span class="block font-lato text-sm text-center mt-2"></span>
 					<br>
 				</div>
 			</div>

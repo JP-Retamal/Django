@@ -215,22 +215,21 @@ def portalDeOfertas(request):
     data = {
         'bd_pedido': lista_pedido()
     }
-    if request.method == 'POST':
-        return render(request,'detallePedido.html')
-    else:   
-        return render(request, 'portalDeOfertas.html', data)
+   
+    return render(request, 'portalDeOfertas.html', data)
 
 
 def detallePedido(request):
-    if request.method == 'GET': 
-        id_Publicacion = request.GET.get('Publicacion')
-        context = {
-            'detallepedidos': listar_detallePedidos(id_Publicacion)
-        }
-        return render(request, 'detallePedido.html', context)
-    else:
-        return render(request, 'detallePedido.html')
+    id_Publicacion = request.GET.get('Publicacion')
+    context = {
+        'detallepedidos': listar_detallePedidos(id_Publicacion)
+    }
+        
+    return render(request, 'detallePedido.html', context)
 
+def ofertaPruductor(request):
+
+    return render(request, 'formulario_oferta.html')
 
 def historial_ofertas(request):
     info = request.POST.get("valcorreo")
@@ -276,4 +275,6 @@ def solicitudAdmin(request):
 
 #---------------------------------------------------------------------------
 
+def publicacion_solicitud(request):
 
+    return render(request, 'publicacion_admin.html')
