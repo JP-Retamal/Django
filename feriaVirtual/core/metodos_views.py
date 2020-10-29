@@ -313,13 +313,6 @@ def modificar_usuario( email, celular, direccion, comuna):
     return salida.getvalue()
 
 
-def userDjangoMod(correoc, nombre, ap_paterno):
-    user = User.objects.get(username=correoc)
-    user.is_staff = False
-    user.first_name = nombre
-    user.last_name = ap_paterno
-    user.save()
-
 def agregarfruta(especie,variedad,cantidad):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -352,18 +345,7 @@ def listar_especie():
     
     return lista
 
-def listar_variedad(especie):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
-    
-    cursor.callproc("sp_listar_variedad",[out_cur, especie])
 
-    lista=[]
-    for fila in out_cur:
-        lista.append(fila)
-    
-    return lista
 
 
 def agregarSolicitud(fecha):

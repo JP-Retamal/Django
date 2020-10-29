@@ -4,7 +4,6 @@ from django.template import Template, Context
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.core import serializers
 from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
