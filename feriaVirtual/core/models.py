@@ -7,9 +7,8 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Calidad(models.Model):
-    id_calidad = models.BooleanField(primary_key=True)
+    id_calidad = models.IntegerField(primary_key=True)
     detalle = models.CharField(max_length=20)
 
     class Meta:

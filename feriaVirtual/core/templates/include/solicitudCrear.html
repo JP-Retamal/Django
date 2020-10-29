@@ -14,18 +14,25 @@
 	</div>
 	<form id="crearSolicitud-formulario" action="">
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
-			<!-- Especia -->
+			<!-- Especie -->
 			<div class="contenedor-selects">
-				<select id="crearSolicitud-especie" name="crearSolicitud-especie"
+				<select id="especie" name="especie" onchange="cambiarVariedad()"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+					{% for e in especie %}
+						<option value=""></option>
+						<option value="{{ e.0 }}">{{ e.1 }}</option>
+					{% endfor %}
 				</select>
+
 				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 			</div>
 			<!-- Variedad -->
 			<div class="contenedor-selects">
-				<select id="crearSolicitud-region" name="crearSolicitud-region"
+				<select id="variedadEspecie" name="variedad"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+
 				</select>
+
 				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 			</div>
 			<!-- Cantidad -->
@@ -47,7 +54,7 @@
 		</div>
 	</form>
 	<div class="crearSolicitud-contenedor-tabla">
-			<table class="crearSolicitud-contenedor-tabla__table">
+			<table class="listarSolicitud-contenedor-solicitudes">
 				<thead>
 					<tr class="crearSolicitud-contenedor-tabla__tr">
 						<th class="crearSolicitud-contenedor-tabla__th w-1/12">#</th>
@@ -98,14 +105,29 @@
 	</div>
 </div>
 
+
 <script>
+
+	function cambiarVariedad(){
+		let categoriaId = document.getElementById('especie').value;
+		//alert(categoriaId);
+		let url='variedades/?especie='+categoriaId;
+		fech(url)
+		.then(function(result){
+			return result.text();
+		})
+		.then(function(result){
+			document.getElementById('variedadEspecie').innerHTML = result ;
+		})
+	}
+
 	// Inicio Select Select2
 	$(document).ready(function () {
 
 		const selects = document.getElementsByTagName('select');
 		for (const element of selects) {
 			$(`#${element.id}`).select2({
-				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Variedad Fruta'}`,
+				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Especie'}`,
 				language: {
 					noResults: function () {
 						return "No hay resultado";

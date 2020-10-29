@@ -4,13 +4,15 @@ from django.template import Template, Context
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.core import serializers
 from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
-from datetime import date
-import cx_Oracle
 from .models import Usuario
 from .metodos_views import *
+from datetime import date
+import cx_Oracle
+
 
 
 # Create your views here. la funcion def home busca el template (controlador).
@@ -250,12 +252,29 @@ def datalle_historial_ofertas(request):
     return render(request, 'detalle_historial_ofertas.html', context)
 
 #--------------------------------------------------------------------------------------
-# 
+#COPIAR DESDE AQUI
+# Usuario externo.
+def variedad_por_especie(request):
+    especie = request.GET.get('especie')
+    data = {
+        'variedadEspecie':listar_subcategorias_por_categoria(especie)
+    }
+
+    return render(request, 'variedades.html', data)
+
+
+
 def solicitud(request):
-    tituloPagina = 'Solicitudes'
-    return render(request, 'solicitud.html', { 'tituloPagina' : tituloPagina})
+   
+    data = {
+        'especie':listar_especie(),
+    }    
+
+    return render(request, 'solicitud.html', data)
 
 
+
+#----------------------------------------------------------------------------------
 
 def pedido(request):
     tituloPagina = 'Pedidos'

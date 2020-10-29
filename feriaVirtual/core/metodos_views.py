@@ -320,13 +320,53 @@ def userDjangoMod(correoc, nombre, ap_paterno):
     user.last_name = ap_paterno
     user.save()
 
+def agregarfruta(especie,variedad,cantidad):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc('sp_agregar_fruta',[especie,variedad,cantidad])
 
-#def comercianteMod(email, nombre, ap_paterno, ap_materno, fecha_nac, celular, direccion):
-#    comerc = Usuario.objects.get(email=email)
-#    comerc.nombre = nombre
-#    comerc.ap_paterno = ap_paterno
-#    comerc.ap_materno = ap_materno
-#    comerc.fecha_nac = fecha_nac
-#    comerc.num_celular = celular
-#    comerc.direccion = direccion
-#    comerc.save()
+def listar_subcategorias_por_categoria(categoria_id):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("sp_listar_variedad_por_especies",[out_cur, categoria_id])
+
+    lista=[]
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+    
+
+def listar_especie():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("sp_listar_especie",[out_cur])
+
+    lista=[]
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+def listar_variedad(especie):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("sp_listar_variedad",[out_cur, especie])
+
+    lista=[]
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+
+def agregarSolicitud(fecha):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc('sp_ingresar_solicitud',[fecha])

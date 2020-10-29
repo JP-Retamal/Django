@@ -24,7 +24,9 @@ urlpatterns = [
    path('usuario/historial_ofertas', login_required(historial_ofertas), name="historial_ofertas"),
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', ofertaPruductor, name="oferta_productor"),
+   path('variedades', variedad_por_especie, name="variedades"),
    path('usuario/publicacion_solicitud', publicacion_solicitud, name="publicacion_solicitud"),
+ 
    path('grafico/', ver, name="grafico"),
 ]
 
