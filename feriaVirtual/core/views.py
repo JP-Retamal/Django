@@ -7,12 +7,18 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
-from .models import Usuario
+#-----------------------------------------
+from .models import Usuario, pruebadetalle
+#-----------------------------------------
 from .metodos_views import *
 from datetime import date
 import cx_Oracle
 
-
+from django.views.generic import TemplateView, View, DeleteView
+from django.core import serializers
+from django.http import JsonResponse
+import json
+#------------------------------
 
 # Create your views here. la funcion def home busca el template (controlador).
 def ver(request):
@@ -257,27 +263,101 @@ def datalle_historial_ofertas(request):
     return render(request, 'detalle_historial_ofertas.html', context)
 
 #--------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------
 #COPIAR DESDE AQUI
-# Usuario externo.
+
 def variedad_por_especie(request):
     especie = request.GET.get('especie')
     data = {
-        'variedadEspecie':listar_subcategorias_por_categoria(especie)
+        'variedad':listar_variedad(especie)
     }
 
-    return render(request, 'variedades.html', data)
-
+    return render(request, 'variedad_por_especie.html', data)
 
 
 def solicitud(request):
-   
+    tituloPagina = 'Solicitudes'
     data = {
         'especie':listar_especie(),
     }    
-
     return render(request, 'solicitud.html', data)
 
 
+class CreateCrudUser(View):
+    def  get(self, request):
+
+        name1 = request.GET.get('especie', None)
+        address1 = request.GET.get('variedad', None)
+        age1 = request.GET.get('cantidad', None)
+        print(name1)
+        agregarfruta(name1,address1,age1)
+
+
+
+        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
+
+        data = {
+            'user': user
+        }
+        return JsonResponse(data)
+
+class CreateCrudUser2(View):
+    def  get(self, request):
+
+        fecha = request.GET.get('fecha', None)
+
+        print(fecha)
+        agregarSolicitud(fecha)
+
+        
+
+        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
+
+        data = {
+            'user': user
+        }
+        return JsonResponse(data)
+
+def agregarfruta(especie,variedad,cantidad):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc('sp_agregar_prueba',[especie,variedad,cantidad])
+    
+
+def listar_especie():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("sp_listar_especie",[out_cur])
+
+    lista=[]
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+def listar_variedad(especie):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("sp_listar_variedad",[out_cur, especie])
+
+    lista=[]
+    for fila in out_cur:
+        lista.append(fila)
+    
+    return lista
+
+
+def agregarSolicitud(fecha):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc('sp_ingresar_solicitud',[fecha])
+
+
+#HASTA AQUII
 
 #----------------------------------------------------------------------------------
 

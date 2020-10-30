@@ -7,6 +7,17 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+#---------------------------------
+class pruebadetalle(models.Model):
+    especie = models.CharField(max_length=30)
+    variedad = models.CharField(max_length=30)
+    cantidad = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'pruebadetalle'
+#---------------------------------
+
 class Calidad(models.Model):
     id_calidad = models.IntegerField(primary_key=True)
     detalle = models.CharField(max_length=20)

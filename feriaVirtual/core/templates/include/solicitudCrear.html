@@ -1,43 +1,33 @@
-<!--
-	SOLICITUD
-		id_solicitud
-		especie
-		variedad
-		cantidad
-		id_usuario (FK)
-		id_orden (FK)
--->
 
-<div class="crearSolicitud-contenedor" style="padding-left:2rem; padding-right:2rem; padding-bottom:2rem">
+
+<div class="crearSolicitud-contenedor" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
 	<div class="crearSolicitud-contenedor-titulo">
 		<h2 class="crearSolicitud-contenedor-titulo__h2">Crear Solicitud</h2>
 	</div>
-	<form id="crearSolicitud-formulario" action="">
+	
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
-			<!-- Especie -->
 			<div class="contenedor-selects">
-				<select id="especie" name="especie" onchange="cambiarVariedad()"
-					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-					{% for e in especie %}
-						<option value=""></option>
-						<option value="{{ e.0 }}">{{ e.1 }}</option>
+				<select id="especie" name="crearSolicitud-especie"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500" required
+					onchange="cambiarvariedad()">
+					<option value="0" disabled selected>Lista de frutas</option>
+					{% for c in especie%}
+					<option value="{{c.1}}" name="{{c.1}}"> {{c.1}}
+					</option>
 					{% endfor %}
+
 				</select>
 
-				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 			</div>
-			<!-- Variedad -->
 			<div class="contenedor-selects">
-				<select id="variedadEspecie" name="variedad"
+				<select id="variedad" name="crearSolicitud-region"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-
+	
+					<!-- VACIO-->
 				</select>
-
-				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 			</div>
-			<!-- Cantidad -->
 			<div class="contenedor-inputs">
-				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
+				<input id="cantidad" name="crearSolicitud-cantidad" type="text"
 					class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos" />
 				<div class="contenedor-inputs-error">
 					<span class="contenedor-inputs-error__span"> La cantidad ingresada no
@@ -45,89 +35,50 @@
 						valida.</span>
 				</div>
 			</div>
-			<!-- Btn -->
-			<div class="contenedor-btns">
-				<button type="menu" class="btn bg-green-500 text-white w-full focus:outline-none">
-					Agregar Fruta
-				</button>
+			<div class="input field col s4">
+				<label for="fecha">Fecha:</label>
+				<input type="text" class="datepicker" id="fecha" name="fecha" required>
 			</div>
 		</div>
-	</form>
-	<div class="crearSolicitud-contenedor-tabla">
-			<table class="listarSolicitud-contenedor-solicitudes">
-				<thead>
-					<tr class="crearSolicitud-contenedor-tabla__tr">
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">#</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Fruta</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Variedad Fruta</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Cantidad</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
-					</tr>
-				</thead>
-				<tbody class="crearSolicitud-contenedor-tabla__tbody">
-					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
-						<td class="crearSolicitud-contenedor-tabla__td text-center">1</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Manzana</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Candy</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">10</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">
-							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
-									class="fas fa-trash"></i></button>
-						</td>
-					</tr>
-					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
-						<td class="crearSolicitud-contenedor-tabla__td text-center">2</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Platano</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Amarillo</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">15</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">
-							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
-									class="fas fa-trash"></i></button>
-						</td>
-					</tr>
-					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
-						<td class="crearSolicitud-contenedor-tabla__td text-center">3</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Peras</td>
-						<td class="crearSolicitud-contenedor-tabla__td">Verdes</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">30</td>
-						<td class="crearSolicitud-contenedor-tabla__td text-center">
-							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
-									class="fas fa-trash"></i></button>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		<div class="contenedor-btns centrar-contenedor">
-			<button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none">
-				Enviar Solicitud
+		<div class="contenedor-btns">
+			<button onclick="agregarFila(especie.value, variedad.value, cantidad.value)" type="menu"
+				class="btn bg-green-500 text-white w-1/4 focus:outline-none">
+				Agregar Fruta
 			</button>
 		</div>
-	</div>
+
+		<form id="guardarSolicitud" action="">
+			<div class="crearSolicitud-contenedor-tabla">
+				<table class="crearSolicitud-contenedor-tabla__table">
+					<thead>
+						<tr class="crearSolicitud-contenedor-tabla__tr">
+							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">nombre</th>
+							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">variedad</th>
+							<th class="crearSolicitud-contenedor-tabla__th w-1/12">cantidad</th>
+							<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
+						</tr>
+					</thead>
+					<tbody id="tablaItems" class="crearSolicitud-contenedor-tabla__tbody">
+						<!--aqui se Agregar-->
+					</tbody>
+				</table>
+				<div class="contenedor-btns centrar-contenedor">
+					<button class="btn bg-green-500 text-white w-1/4 focus:outline-none" type="submit" >Enviar
+						Solicitud</button>
+				</div>
+			</div>
+
+		</form>
 </div>
 
-
 <script>
-
-	function cambiarVariedad(){
-		let categoriaId = document.getElementById('especie').value;
-		//alert(categoriaId);
-		let url='variedades/?especie='+categoriaId;
-		fech(url)
-		.then(function(result){
-			return result.text();
-		})
-		.then(function(result){
-			document.getElementById('variedadEspecie').innerHTML = result ;
-		})
-	}
-
 	// Inicio Select Select2
 	$(document).ready(function () {
 
 		const selects = document.getElementsByTagName('select');
 		for (const element of selects) {
 			$(`#${element.id}`).select2({
-				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Especie'}`,
+				placeholder: `Selecciona ${element.id === 'crearSolicitud-especie' ? 'Fruta' : 'Variedad Fruta'}`,
 				language: {
 					noResults: function () {
 						return "No hay resultado";
@@ -141,5 +92,128 @@
 		}
 
 	});
-	// Fin Select Select2
+// Fin Select Select2
+</script>
+
+<script>
+	// Create Django Ajax Call
+	function agregarFila(especie, variedad, cantidad) {
+
+		if (especie && variedad && cantidad) {
+		
+
+			var table = document.getElementById("tablaItems");
+			var row = table.insertRow(-1);
+
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			// Add some text to the new cells:
+			var valor1 = document.getElementById(variedad).textContent;
+
+			cell1.innerHTML = especie;
+			cell2.innerHTML = valor1;
+			cell3.innerHTML = cantidad;
+			cell4.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
+
+		}else{
+			alert("Agregue una fruta con su Cantidad")
+		}
+	}
+
+	function eliminarFila() {
+		document.getElementById("tablaItems").deleteRow(-1);
+	}
+
+	function eliminarFilaID(r) {
+		var i = r.parentNode.parentNode.rowIndex;
+		document.getElementById("tablaItems").deleteRow(i - 1);
+	}
+
+	$("form#guardarSolicitud").submit(function () {
+		var filas = [];
+
+		let fecha = document.getElementById("fecha").value;
+		
+		//alert(fecha)
+
+		$.ajax({
+				url: '{% url "crud_ajax_create2" %}',
+				data: {
+					'fecha': fecha
+				},
+				dataType: 'json',
+				async: false,
+				success: function (data) {
+					if (data.user) {
+						appendToUsrTable(data.user);
+					}
+				}
+			});
+
+
+
+		$('#tablaItems tr').each(function () {
+			var especie = $(this).find('td').eq(0).text();
+			var variedad = $(this).find('td').eq(1).text();
+			var cantidad = $(this).find('td').eq(2).text();
+			$.ajax({
+				url: '{% url "crud_ajax_create" %}',
+				data: {
+					'especie': especie,
+					'variedad': variedad,
+					'cantidad': cantidad
+				},
+				dataType: 'json',
+				async: false,
+				success: function (data) {
+					if (data.user) {
+						appendToUsrTable(data.user);
+
+					}
+				}
+			
+			});
+
+	});
+		console.log(filas)
+		// Create Ajax Call
+		$('form#addUser').trigger("reset");
+		alert("solicitud creada")
+		window.location.href = "{% url 'home' %}";
+
+	});
+
+	function cambiarvariedad() {
+		let categoriaid = document.getElementById("especie").value;
+		let url = '/variedad/?especie=' + categoriaid;
+
+		fetch(url)
+			.then(function (result) {
+				return result.text();
+			})
+			.then(function (result) {
+				document.getElementById('variedad').innerHTML = result;
+			})
+
+	}
+
+
+
+</script>
+
+<script>
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = date.getMonth();
+	var day = date.getDate();
+	var date = new Date(year, month, day);
+
+	$('.datepicker').datepicker({
+		autoClose: true,
+		defaultDate: date,
+		setDefaultDate: true,
+		dateFormat: 'dd-mm-yy'
+	});
 </script>

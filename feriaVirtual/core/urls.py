@@ -12,7 +12,6 @@ urlpatterns = [
    path('detalle/', detalle, name="detalle"),
    path('comprar/', login_required(comprar), name="comprar"),
    path('usuario/', login_required(usuario), name="usuario"),
-   path('usuario/solicitud', login_required(solicitud), name="solicitud"),
    path('usuario/pedido', login_required(pedido), name="pedido"),
    path('usuario/informacion', login_required(informacion), name="informacion"),
    path('administracion/', homeAdmin, name="homeAdmin"),
@@ -26,7 +25,12 @@ urlpatterns = [
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', ofertaPruductor, name="oferta_productor"),
    path('variedades', variedad_por_especie, name="variedades"),
-
+   #-------------------
+    path('usuario/solicitud', login_required(solicitud), name="solicitud"),
+    path('ajax/crud/create/', CreateCrudUser.as_view(), name='crud_ajax_create'),
+    path('ajax/crud/create_2/', CreateCrudUser2.as_view(), name='crud_ajax_create2'),
+    path('variedad/', variedad_por_especie, name="variedad"),
+#-------------------
  
    path('grafico/', ver, name="grafico"),
 ]
