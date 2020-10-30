@@ -222,15 +222,21 @@ def portalDeOfertas(request):
 
 def detallePedido(request):
     id_Publicacion = request.GET.get('Publicacion')
+    
     context = {
         'detallepedidos': listar_detallePedidos(id_Publicacion)
     }
-        
+    context['id_oferta']=id_Publicacion
     return render(request, 'detallePedido.html', context)
 
 def ofertaPruductor(request):
+    id_Publicacion = request.GET.get('Publicacion')
+    context = {
+        'detallepedidos': listar_detallePedidos(id_Publicacion)
+    }
+    return render(request, 'formulario_oferta.html',context)
 
-    return render(request, 'formulario_oferta.html')
+
 
 def historial_ofertas(request):
     info = request.POST.get("valcorreo")

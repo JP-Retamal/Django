@@ -21,7 +21,7 @@
 				</thead>
 				<tbody class="HistorialCompra-contenedor-tabla__tbody">
 					{% for h in registros %}
-					<tr class="HistorialCompra-contenedor-tabla-tbody__tr">
+					<tr class="listarSolicitud-contenedor-solicitudes">
 						<td class="HistorialCompra-contenedor-tabla__td text-center">{{h.0}}</td>
 						<td class="HistorialCompra-contenedor-tabla__td">{{h.1}}</td>
 						<td class="HistorialCompra-contenedor-tabla__td">{{h.2}}</td>
@@ -30,7 +30,7 @@
 
 							<form action="{% url 'detalle_historial_ofertas' %}" method="POST">
 								{% csrf_token %}
-								<input type="hidden" value="{{h.0}}" name="idventa">
+								<input type="hidden" value="{{h.0}}" name="id">
 								<button type="menu" class="px-2 py-1 rounded-lg bg-blue-500 text-white focus:outline-none">
 									<i class="fas fa-book-open"></i>
 									<input class="" type="submit" value=""  style="background-color: transparent !important; outline:none !important;"/>

@@ -1,135 +1,102 @@
-<div class="registro-contenedor centrar-contenedor">
-	<div class="ventana-registro">
-		<div class="ventana-titulo">
-			<h2 class="ventana-titulo__h1">Formulario de Oferta</h2>
+<div class="crearSolicitud-contenedor" style="padding-left:2rem; padding-right:2rem; padding-bottom:2rem">
+
+	<form id="oferta-productor" action="">
+		{% for d in detallepedidos %}
+		<div class="HistorialCompra-contenedor-titulo">
+			<h2 class="HistorialCompra-contenedor-titulo__h4">Variedad Solicitada:</h2>
 		</div>
-	
-		<!-- Fin Mensajes de Verificación -->
-		<form id="registro-formulario" action="" method="POST">
-			{% csrf_token %}
-			<div class="registro-contenedor-formulario grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-				
-				<!-- Identificacion -->			
-				<div class="contenedor-inputs">
-					<input id="registro-rut" name="registro-rut" type="text"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Ingrese Run" maxlength="10" minlength="10"/>
-				</div>
-
-				<div class="contenedor-inputs">
-					<input id="registro-fecha" name="registro-fecha" type="text"
-						class="input appearance-none focus:outline-none focus:border-orange-500"
-						placeholder="Fecha de Nacimiento" required maxlength="10" minlength="10"/>
-				</div>
-
-				<!-- Nombre Completo -->
-				<div class="contenedor-inputs">
-					<input id="registro-nombre" name="registro-nombre" type="text"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Nombre" required maxlength="50" minlength="3"/>
-					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
-							alfabeticos.</span>
-					</div>
-				</div>
-
-				<div class="contenedor-inputs">
-					<input id="registro-Paterno" name="registro-Paterno" type="text"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Paterno" required maxlength="25" minlength="3"/>
-					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span">Solo se aceptan caracteres
-							alfabeticos.</span>
-					</div>
-				</div>
-
-				<div class="contenedor-inputs">
-					<input id="registro-materno" name="registro-materno" type="text"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Apellido Materno" required maxlength="25" minlength="3"/>
-				</div>
-
-				<!-- Correo y Numero -->
-				<div class="contenedor-inputs lg:col-span-2">
-					<input id="registro-correo" name="registro-correo" type="email"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Correo Electronico" required maxlength="50" />
-				</div>
-
-				<div class="contenedor-inputs">
-					<input id="registro-celular" name="registro-celular" type="text"
-						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" required maxlength="9" minlength="9"/>
-				</div>
-
-				<!-- Direccion -->
-				<div class="contenedor-inputs lg:col-span-3">
-					<input id="registro-direccion" name="registro-direccion" type="text"
-						class="input lg:w-full focus:outline-none focus:border-orange-500"
-						placeholder="Direccion" required maxlength="150"/>
-				</div>
-
-				<!-- Selects -->
-				<div class="contenedor-selects">
-					<select id="registro-region" name="registro-region"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500"
-						 required>
-						{% for p in region %}
-							<option valua=""></option>
-							<option value="{{ p.0 }}">{{ p.0 }}</option>
-						{% endfor %}
-					</select>
-					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
-				</div>
-				
-				<div class="contenedor-selects">
-					<select id="registro-provincia" name="registro-provincia"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500" required>
-						{% for p in region %}
-							<option valua=""></option>
-							<option value="{{ p.1 }}">{{ p.1}}</option>
-						{% endfor %}
-					</select>
-					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
-				</div>
-
-				<div class="contenedor-selects">
-					<select id="registro-comuna" name="registro-comuna"
-						class="contenedor-selects__select focus:outline-none focus:border-orange-500" required>
-						{% for p in region %}
-							<option valua=""></option>
-							<option value="{{ p.2 }}">{{ p.3 }}</option>
-						{% endfor %}
-					</select>
-					<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
-				</div>
-
-				<!-- Contrasenia -->
-				<div class="contenedor-inputs">
-					<input id="registro-contrasenia1" name="registro-contrasenia1" type="password"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Contraseña" minlength="6" required/>
-					<div class="contenedor-inputs-error">
-						<span class="contenedor-inputs-error__span"></span>
-						<div id="mensaje"></div>
-					</div>
-				</div>
-
-				<div class="contenedor-inputs">
-					<input id="registro-contrasenia2" name="registro-contrasenia2" type="password"
-						class="input focus:outline-none focus:border-orange-500"
-						placeholder="Repita Contraseña" minlength="6" required/>
-				</div>
-
-				<!-- Btn -->
-				<div class="contenedor-btns md:col-span-2 lg:col-span-3">
-					<button type="submit" class="formulario-login__btn btn w-full focus:outline-none" >
-						Confirmar Ofertar
-					</button>
-					<span class="block font-lato text-sm text-center mt-2"></span>
-					<br>
-				</div>
+		<br>
+		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
+			
+			<!-- Especie -->
+			<div class="contenedor-selects">
+				<select id="especie" name="especie" onchange="cambiarVariedad()"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+					<option value=""> {{d.data.5}}</option>
+		
+				</select>
+				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
 			</div>
-		</form>
+			<!-- Variedad -->
+			<div class="contenedor-selects">
+				<select id="variedadEspecie" name="variedad"
+					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+					<option value=""> {{d.data.6}}</option>
+				</select>
+
+				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
+			</div>
+			<!-- Cantidad -->
+			<div class="contenedor-inputs">
+				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
+					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese kilos:" />
+			</div>
+			<div class="contenedor-inputs">
+				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
+					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese precio:" />
+			</div>
+			
+			<!-- Btn -->
+			<div class="contenedor-btns">
+				<button type="menu" class="btn bg-green-500 text-white w-full focus:outline-none">
+					Agregar Fruta
+				</button>
+			</div>
+		</div>
+		{% endfor %}
+	</form>
+	<br>
+	<h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>Confirmar oferta:</td></h2>
+	<div class="crearSolicitud-contenedor-tabla">
+			<table class="listarSolicitud-contenedor-solicitudes">
+				<thead>
+					<tr class="crearSolicitud-contenedor-tabla__tr">
+						<th class="crearSolicitud-contenedor-tabla__th w-1/12">#</th>
+						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Fruta</th>
+						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Variedad Fruta</th>
+						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Cantidad</th>
+						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
+					</tr>
+				</thead>
+				<tbody class="crearSolicitud-contenedor-tabla__tbody">
+					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
+						<td class="crearSolicitud-contenedor-tabla__td text-center">1</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Manzana</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Candy</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">10</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">
+							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
+									class="fas fa-trash"></i></button>
+						</td>
+					</tr>
+					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
+						<td class="crearSolicitud-contenedor-tabla__td text-center">2</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Platano</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Amarillo</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">15</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">
+							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
+									class="fas fa-trash"></i></button>
+						</td>
+					</tr>
+					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
+						<td class="crearSolicitud-contenedor-tabla__td text-center">3</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Peras</td>
+						<td class="crearSolicitud-contenedor-tabla__td">Verdes</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">30</td>
+						<td class="crearSolicitud-contenedor-tabla__td text-center">
+							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
+									class="fas fa-trash"></i></button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+		<div class="contenedor-btns centrar-contenedor">
+			<button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none">
+				Enviar Solicitud
+			</button>
+		</div>
 	</div>
 </div>
+

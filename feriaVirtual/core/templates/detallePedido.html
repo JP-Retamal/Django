@@ -35,9 +35,9 @@
         <div class="detalle-contenedor-titulo md:col-span-3">
             <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>Ofertar</td></h1>
             <br>
-             <form class="detalle-contenedor-titulo__h1 md:px-20" action="oferta_productor" method="POST">
+             <form class="detalle-contenedor-titulo__h1 md:px-20" action="oferta_productor" method="GET">
                 {% csrf_token %}                
-                <input type="hidden" value="{{d.data.0}}" name="Publicacion">
+                <input type="hidden" value="{{id_oferta}}" name="Publicacion">
                 <div class="boton-tarjeta">
                     <div class="detalle-contenedor-btn centrar-contenedor md:m-0 md:justify-start md:items-end">
                         <input type="submit" value="Ofertar" class="button2" />

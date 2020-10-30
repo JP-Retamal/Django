@@ -1,5 +1,5 @@
 {%load humanize%}
-<div class="HistorialCompra-contenedor" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+<div class="HistorialCompra-contenedor" style="padding-left:2rem; padding-right:2rem; padding-bottom:2rem">
 	<div class="HistorialCompra-contenedor-titulo">
 		<h2 class="HistorialCompra-contenedor-titulo__h2">Historial de Compras</h2>
 	</div>
@@ -8,7 +8,7 @@
 		{% if registros %}
 			<input id="valcorreo" name="valcorreo" type="hidden" value="{{request.user.username}}">
             <h1></h1>
-			<table class="HistorialCompra-contenedor-tabla__table">
+			<table class="listarSolicitud-contenedor-solicitudes">
 				<thead>
 					<tr class="HistorialCompra-contenedor-tabla__tr">
 
