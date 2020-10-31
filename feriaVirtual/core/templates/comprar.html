@@ -52,36 +52,17 @@
 
         <br>
 
-          <input type="hidden" value="{{d.data.5}} {{d.data.6}}" name="descripcion">
+         
           <input type="hidden" id="kilos" value="{{kilos}}" name="kilos" input="calcular()">     
-          <input type="hidden" value="{{user.username}}" name="usuario">
-          <input type="hidden" value="{{d.data.12}}" name="especie">
-          <input type="hidden" value="{{d.data.13}} " name="variedad">
-          <input type="hidden" value="{{d.data.0}}" name="idVentaLocal">
-          <input type="hidden" value="{{d.data.1}}" name="idStock">
+          <input type="hidden" value="{{d.data.0}}" name="Publicacion">
           <input type="hidden" id="precio" value="{{d.data.3}} " name="precio" input="calcular()">
           
           <br>
-          <div class="input-contenedor_pago">
-            <i class="fas fa-wallet icon"></i>
-            <input class="input_pago" type="text" placeholder="Número de cuenta" required/>
-          </div>
-
           <br>
-          <div class="input-contenedor_pago">
-            <i class="fas fa-key icon"></i>
-            <input class="input_pago" type="password" placeholder="Contraseña" required/>
-          </div>
-
+          <input type="submit" value="Pagar" class="button_pago"/>
           <br>
           <br>
-          <input type="submit" value="Confirmar pago" class="button_pago"/>
-          <br>
-          <br>
-          <div class="contenedor_f">      
-            <p class="p_pago">Después de completar los campos</p>
-            <p class="p_pago">confirma el pago para finalizar la compra.</p>
-          </div>
+          
     </div>
   </form>
     <br>

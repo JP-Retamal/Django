@@ -1,0 +1,59 @@
+
+{%load humanize%}
+
+<!-- Contenedor principal de la página -->
+<div class="contenedor-pago-transbank2">
+    <!-- Columnas con frases -->
+    <div class="contenedor-texto-cabereca grid grid-cols-2">
+        <div class="contenedor-texto-barra md:flex">
+            <p class="font-sans tracking-wider text-2xl text-gray-900 text-opacity-75">ESTÁS PAGANDO EN</p>
+            <p class="text-2xl text-transparent">-</p>
+            <p class="font-semibold tracking-wider text-2xl">WEBPAY.CL</p>
+        </div>
+        <div class="contenedor-texto-barra md:flex">
+            <p class="font-sans tracking-wider text-2xl text-gray-900 text-opacity-75">COMPLETA LOS DATOS</p>
+        </div>
+    </div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for d in db_vlocal %}
+        <!-- columnas con monto y medio de pago -->
+            <div class="contenedor-texto-pago-tarjetas grid grid-cols-2">
+                <div class="contenedor-texto-pago1 grid grid-cols-2 md:flex">
+                    <p class="font-semibold text-lg text-gray-800 text-left">$
+                    <!-- Entrada para monto a pagar -->
+                    <input class="text-gray-800 color-input-pago tracking-wider text-4xl w-48" type="number" value="" id="total" name="total" readonly/>CLP</p>
+                    <div class="contenedor-logo-chico md:flex"></div>
+                </div> 
+                    <!-- Botón para pago con débito -->
+                <div class="contenedor-datos-pago">
+                    
+                    <p class="contenedor-texto-cuenta md:flex">Número de Cuenta</p>
+                    <input class="input-pago" type="text" placeholder="" required/>
+                    <p class="contenedor-texto-cuenta md:flex">Contraseña</p>
+                    <input class="input-pago" type="password" placeholder="" required/>
+                    <input type="hidden" value="{{user.username}}" name="usuario">
+                    <input type="hidden" value="{{d.data.12}}" name="especie">
+                    <input type="hidden" value="{{d.data.13}} " name="variedad">
+                    <input type="hidden" value="{{d.data.0}}" name="idVentaLocal">
+                    <input type="hidden" value="{{d.data.1}}" name="idStock">
+                    <input type="hidden" value="{{d.data.5}} {{d.data.6}}" name="descripcion">
+                    <input type="hidden" id="kilos" value="{{kilos}}" name="kilos" input="calcular()">     
+                    <input type="hidden" value="{{d.data.0}}" name="Publicacion">
+                    <input type="hidden" id="precio" value="{{d.data.3}} " name="precio" input="calcular()">
+                    <input type="submit" value="Confirmar compra" class="boton-pago-final"/>
+                </div>
+            </div>
+        {% endfor %}
+    </form>
+</div>
+<script>
+window.onload = function calcular(){
+      try{
+        var a = document.getElementById("kilos").value;
+        var b = document.getElementById("precio").value;
+        r=a*b;
+        document.getElementById("total").value = r;
+      }catch (e) {}
+      }
+</script>

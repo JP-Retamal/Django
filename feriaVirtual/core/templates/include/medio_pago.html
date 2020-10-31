@@ -1,0 +1,55 @@
+{%load humanize%}
+<!-- Barra superior con logo de webpay -->
+<div class="contenedor-barra grid grid-cols-2">
+    <div class="contenedor-logo-barra md:flex"></div>
+    <div class="contenedor-logo-candado md:flex"></div>
+</div>
+<!-- Contenedor principal de la página -->
+<div class="contenedor-pago-transbank1">
+    <!-- Columnas con frases -->
+    <div class="contenedor-texto-cabereca grid grid-cols-2">
+        <div class="contenedor-texto-barra md:flex">
+            <p class="font-sans tracking-wider text-2xl text-gray-900 text-opacity-75">ESTÁS PAGANDO EN</p>
+            <p class="text-2xl text-transparent">-</p>
+            <p class="font-semibold tracking-wider text-2xl">WEBPAY.CL</p>
+        </div>
+        <div class="contenedor-texto-barra md:flex">
+            <p class="font-sans tracking-wider text-2xl text-gray-900 text-opacity-75">SELECCIONA TU MEDIO DE PAGO</p>
+        </div>
+    </div>
+    {% for d in db_vlocal %}
+        <!-- columnas con monto y medio de pago -->
+        <input type="hidden" id="precio" value="{{d.data.3}}" name="precio" input="calcular()">
+        <div class="contenedor-texto-pago-tarjetas grid grid-cols-2">
+            <div class="contenedor-texto-pago md:flex">
+                <p class="font-semibold text-lg text-gray-800 text-left">$
+                <!-- Entrada para monto a pagar -->
+                <input class="text-gray-800 color-input-pago tracking-wider text-4xl w-48" type="number" value="" id="total" name="total" readonly/>CLP</p>
+            </div>
+    <form action="{% url 'medioPago' %}" method="GET">
+            {% csrf_token %}
+                <!-- Botón para pago con débito -->
+                <input type="submit" value="TARJETA DE DÉDITO" class="boton-comprar contenedor-logo-tarjeta-debito"/>
+        </div>
+        <!-- Columna con medio de pago -->
+        <input type="hidden" id="kilos" value="{{kilos}}" name="kilos" input="calcular()">     
+        <input type="hidden" value="{{d.data.0}}" name="Publicacion">
+        <div class="contenedor-texto-pago-tarjetas grid grid-cols-2">
+            <!-- Columna vacía -->
+            <div class="contenedor-texto-pago"></div>
+            <!-- Botón para pago con crédito -->
+            <input type="submit" value="TARJETA DE CRÉDITO" class="boton-comprar contenedor-logo-tarjeta-credito"/>
+        </div>
+    {% endfor %}
+    </form>
+</div>
+<script>
+window.onload = function calcular(){
+      try{
+        var a = document.getElementById("kilos").value;
+        var b = document.getElementById("precio").value;
+        r=a*b;
+        document.getElementById("total").value = r;
+      }catch (e) {}
+      }
+</script>

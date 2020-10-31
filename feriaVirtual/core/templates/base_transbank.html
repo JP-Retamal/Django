@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="{% static '../static/css/style.css' %}"/> 
+    <link rel="stylesheet" href="{% static '../static/css/styles-transbank.css' %}"/> 
+    <!-- Glider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.css" />
+    <!-- JQuery -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{% static '../static/css/jquery-ui.css' %}" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    {% block css %} {% endblock %}
+</head>
+
+<body>
+    
+    {% block content %} {% endblock %}
+
+    <script src="{% static '../static/js/glide.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
+    <script src="https://kit.fontawesome.com/f126795e7d.js" crossorigin="anonymous"></script>
+    {% block script %} {% endblock %}
+</body>
+
+</html>

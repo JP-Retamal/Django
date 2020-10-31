@@ -67,6 +67,43 @@ def comprar(request):
     context['kilos']=cant
     #enviar información para registrar.
     if request.method == 'POST':
+        id_Publicacion = request.POST.get('Publicacion')
+        context = {
+            'db_vlocal': listar_detallesaldos(id_Publicacion)
+        }
+        context['kilos']=cant
+        return render(request,'transbank.html', context)
+
+    return render(request, 'comprar.html', context)
+
+def transbank(request):
+   
+    id=request.POST.get['Publicacion']
+    cant=request.POST.get['valorslider']
+    context={
+        'db_vlocal': listar_detallesaldos(id)
+    }
+    context['kilos']=cant
+    #enviar información para registrar.
+    if request.method == 'GET':
+        id_Publicacion = request.POST.get('Publicacion')
+        context = {
+            'db_vlocal': listar_detallesaldos(id_Publicacion)
+        }
+        context['kilos']=cant
+        return render(request,'redcompra.html', context)
+  
+    return render(request, 'transbank.html', context)
+
+def medioPago(request):
+    #obtener valores y renderizar venta.
+    id=request.GET['Publicacion']
+    cant=request.GET['kilos']
+    context={
+        'db_vlocal': listar_detallesaldos(id)
+    }
+    context['kilos']=cant
+    if request.method == 'POST':
         descripcion  = request.POST.get('descripcion')
         monto        = request.POST.get('total')#number
         fecha_pago   = date.today()#date
@@ -79,13 +116,11 @@ def comprar(request):
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
         #si en exittosa o no, la compra se informa al usuario.
         if salida == 1:
-            context['mensaje'] =  'Compra exitosa :) !!!'
+            context['mensaje'] = 'compra exitosa!!!'
             return redirect("/")              
         else:
             context['mensaje'] = 'Lo sentimos nose pudo efectuar la compra :( !!!'
-
-    return render(request, 'comprar.html', context)
-
+    return render(request, 'redcompra.html',context)
 
 # usuario comerciante
 @permission_required('core.add_pago')
