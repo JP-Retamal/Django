@@ -289,7 +289,7 @@ def historial_ofertas(request):
     return render(request, 'historial_ofertas.html', data)
 
 def datalle_historial_ofertas(request):
-    id=request.POST.get('idventa')
+    id=request.POST.get('id')
     print(id)
     context = {
         'detalle_ho': listar_detalle_historial_oferta(id),

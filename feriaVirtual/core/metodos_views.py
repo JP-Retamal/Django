@@ -285,7 +285,7 @@ def listar_detalle_historial_oferta(id_oferta):
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
+            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
         }
 
         lista.append(data)
