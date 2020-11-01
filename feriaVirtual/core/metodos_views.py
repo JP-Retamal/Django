@@ -386,3 +386,8 @@ def rechazar_solicitud( id_detalle):
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_RECHAZAR_SOLICITUD', [id_detalle, salida])
     return salida.getvalue()
+
+
+
+
+

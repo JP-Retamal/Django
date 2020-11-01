@@ -75,7 +75,8 @@
 				<div class="contenedor-inputs">
 					<input id="registro-celular" name="registro-celular" type="text"
 						class="input focus:outline-none appearance-none focus:border-orange-500"
-						placeholder="Numero de Telefono" required maxlength="9" minlength="9"/>
+						placeholder="Numero de Telefono" required maxlength="9" minlength="9"
+						onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 				</div>
 
 				<!-- Direccion -->
@@ -149,6 +150,14 @@
 		</form>
 	</div>
 </div>
+<script>
+	function validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+    }
+</script>
 
 <script>
 	// Inicio DatePicker JQuery

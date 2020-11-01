@@ -436,3 +436,7 @@ def detallesolicitudAdmin(request):
     }
     print(data)
     return render(request, 'solicitud-detalle-admin.html', data)
+
+def p_oferta(request):
+
+    return render(request, 'ofertas_publicacion.html')

@@ -34,6 +34,8 @@ urlpatterns = [
    path('ajax/crud/create_2/', CreateCrudUser2.as_view(), name='crud_ajax_create2'),
    path('variedad/', variedad_por_especie, name="variedad"),
 
+   path('p_oferta', p_oferta, name='p_oferta'),
+
  
    path('grafico/', ver, name="grafico"),
 ]

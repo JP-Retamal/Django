@@ -4,7 +4,7 @@
 	<div class="crearSolicitud-contenedor-titulo">
 		<h2 class="crearSolicitud-contenedor-titulo__h2">Crear Solicitud</h2>
 	</div>
-	
+		<br>
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			<div class="contenedor-selects">
 				<select id="especie" name="crearSolicitud-especie"
@@ -28,25 +28,24 @@
 			</div>
 			<div class="contenedor-inputs">
 				<input id="cantidad" name="crearSolicitud-cantidad" type="text"
-					class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos" />
-				<div class="contenedor-inputs-error">
-					<span class="contenedor-inputs-error__span"> La cantidad ingresada no
-						es
-						valida.</span>
-				</div>
+					class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos" 
+					onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+				
 			</div>
-			<div class="input field col s4">
-				<label for="fecha">Fecha:</label>
-				<input type="text" class="datepicker" id="fecha" name="fecha" required>
+			<div class="contenedor-inputs">
+				<input id="fecha" name="fecha" type="text"
+				class="input appearance-none focus:outline-none focus:border-orange-500"
+				placeholder="Plazo Estimado" required maxlength="10" minlength="10"/>
 			</div>
 		</div>
+		<br>
 		<div class="contenedor-btns">
 			<button onclick="agregarFila(especie.value, variedad.value, cantidad.value)" type="menu"
 				class="btn bg-green-500 text-white w-1/4 focus:outline-none">
 				Agregar Fruta
 			</button>
 		</div>
-
+		<br>
 		<form id="guardarSolicitud" action="">
 			<div class="crearSolicitud-contenedor-tabla">
 				<table class="crearSolicitud-contenedor-tabla__table">
@@ -62,6 +61,8 @@
 						<!--aqui se Agregar-->
 					</tbody>
 				</table>
+				<br>
+				<br>
 				<div class="contenedor-btns centrar-contenedor">
 					<button class="btn bg-green-500 text-white w-1/4 focus:outline-none" type="submit" >Enviar
 						Solicitud</button>
@@ -93,6 +94,14 @@
 
 	});
 // Fin Select Select2
+</script>
+<script>
+	function validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+    }
 </script>
 
 <script>
@@ -204,16 +213,32 @@
 </script>
 
 <script>
-	var date = new Date();
-	var year = date.getFullYear();
-	var month = date.getMonth();
-	var day = date.getDate();
-	var date = new Date(year, month, day);
+	// Inicio DatePicker JQuery
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+			'Noviembre', 'Diciembre'],
 
-	$('.datepicker').datepicker({
-		autoClose: true,
-		defaultDate: date,
-		setDefaultDate: true,
-		dateFormat: 'dd-mm-yy'
+		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$('#fecha').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "1Y",
+		minDate: "+D"
 	});
 </script>

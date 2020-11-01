@@ -29,11 +29,13 @@
 			<!-- Cantidad -->
 			<div class="contenedor-inputs">
 				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
-					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese kilos:" />
+					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese kilos:"
+					  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 			</div>
 			<div class="contenedor-inputs">
 				<input id="crearSolicitud-cantidad" name="crearSolicitud-cantidad" type="text"
-					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese precio:" />
+					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese precio:" 
+					 onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 			</div>
 			
 			<!-- Btn -->
@@ -99,4 +101,12 @@
 		</div>
 	</div>
 </div>
+<script>
+	function validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+    }
+</script>
 
