@@ -325,7 +325,8 @@ class CreateCrudUser(View):
         address1 = request.GET.get('variedad', None)
         age1 = request.GET.get('cantidad', None)
         print(name1)
-        agregarfruta(name1,address1,age1)
+        print(address1)
+        agregarfruta(name1.strip(),address1.strip(),age1.strip())
 
 
 
@@ -417,6 +418,7 @@ def solicitudAdmin(request):
             idsolA = request.POST.get('idsol1')
             salida1=aprobar_solicitud(idsolA)
             if salida1==1:
+
                 data['mensaje']="Solicitud Aprobada" 
                 data['lista_solicitudes'] = listar_solicitudes()
         elif(request.POST.get('idsol2') != None):

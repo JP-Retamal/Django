@@ -11,20 +11,20 @@
         </div>
         {% for d in detallepedidos %} 
         <div class="detalle-contenedor-titulo md:col-span-3">
-            <h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.5}} {{d.data.6}}</td></h2>
+            <h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>{{d.data.1}} {{d.data.2}}</td></h2>
         </div>
         <div class="detalle-contenedor-descripcion  md:grid-cols-3">
             <div class="detalle-contenedor-imagen centrar-contenedor">
-                <img src="data:imagen/jpg;base64, {{d.imagen}}" alt="{{d.data.5}} {{d.data.6}}" class="detalle-contenedor-imagen__img">       
+                <img src="data:imagen/jpg;base64, {{d.imagen}}" alt="{{d.data.1}} {{d.data.2}}" class="detalle-contenedor-imagen__img">       
             </div>
             <div class="detalle-contenedor-informacion md:col-span-2 md:m-0"> 
                 <div class="detalle-contenedor-caracteristica md:my-2 md:h-48">
                     <span class="detalle-contenedor-caracteristica__span">Características:</span>
                     <ul>
                      <br>
-                        <li class="detalle-contenedor-caracteristica__li">Kilos Solicitados:<td> {{d.data.7}} Kg.</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Fecha:<td> {{d.data.4}}</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Fruta solicitada:<td> {{d.data.5}} {{d.data.6}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Kilos Solicitados:<td> {{d.data.3}} Kg.</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Fecha:<td> {{d.data.5}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li">Fruta solicitada:<td> {{d.data.1}} {{d.data.2}}</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Descripción:<br> Si cumple con lo solicitado, ingrese en la opción de 
                         ofertar,<br> donde podrá indicar la cantidad y el precio de sus productos.</li>
                     </ul>

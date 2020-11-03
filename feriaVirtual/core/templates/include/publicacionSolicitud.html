@@ -19,7 +19,7 @@
                         </div>
                         <form action="detallePedido" method="GET">
                             {% csrf_token %}
-                            <input type="hidden" value="{{p.0}}" name="Publicacion">
+                            <input type="hidden" value="{{p.2}}" name="Publicacion">
                             <div class="boton-tarjeta">
                                 <div class="btn bg-green-500 hover:bg-green-600 mx-10 mt-1">
                                     <input type="submit" value="Detalle" class="button2" />

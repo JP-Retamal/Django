@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'feriaVirtual.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
-        'NAME': '192.168.0.4:1521/xe',
+        'NAME': 'localhost:1521/xe',
         'USER': 'c##feriaVirtual',
         'PASSWORD': 'feriaVirtual',
         'TEST': {
