@@ -387,7 +387,73 @@ def rechazar_solicitud( id_detalle):
     cursor.callproc('SP_RECHAZAR_SOLICITUD', [id_detalle, salida])
     return salida.getvalue()
 
+#------------------------------------------------------------
 
+def listar_publicaciones_of_activas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_LISTAR_PUBLICACIONES_OFERTADAS",[out_cur])
 
+    lista = []
+    for fila in out_cur:
+    #    data = {
+    #        'data':fila,
+    #        'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
+    #    }
 
+        #lista.append(data)
+        lista.append(fila)
 
+    return lista
+
+def listar_detalle_publicaciones_of_activas(id_solicitud,especi, varied ):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_LISTAR_DETALLE_PUBLICACIONES_OFERTADAS",[id_solicitud, especi,varied,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def listar_total_publicaciones_of_activas(id_solicitud,especi, varied ):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_TOTAL_PUBLICACIONES_OFERTADAS",[id_solicitud, especi,varied,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def Codex_Seleccion(id_solicitud, especie, variedad):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_CODEX_OFERTA', [id_solicitud, especie, variedad, salida])
+    return salida.getvalue()
+####-----------------------------------------------------------------------------------------------------------
+def agregar_temporal_ofertar(v_des_especie, v_des_variedad, v_kilos, v_precio):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_TEMPORAL_OFERTA', [v_des_especie, v_des_variedad, v_kilos, v_precio, salida])
+    return salida.getvalue()
+
+def listar_temporal_ofertar():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_TEMPORAL_OFERTA", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista

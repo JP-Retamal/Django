@@ -76,6 +76,7 @@ def comprar(request):
 
     return render(request, 'comprar.html', context)
 
+@permission_required('core.add_pago')
 def transbank(request):
    
     id=request.POST.get['Publicacion']
@@ -95,6 +96,7 @@ def transbank(request):
   
     return render(request, 'transbank.html', context)
 
+@permission_required('core.add_pago')
 def medioPago(request):
     #obtener valores y renderizar venta.
     id=request.GET['Publicacion']
@@ -253,6 +255,7 @@ def usuario(request):
 #-------------------------------------------------------------------------
 
 # usuario productor
+
 def portalDeOfertas(request):
     data = {
         'bd_pedido': lista_pedido()
@@ -270,13 +273,16 @@ def detallePedido(request):
     context['id_oferta']=id_Publicacion
     return render(request, 'detallePedido.html', context)
 
+######################################################################################################
+@permission_required('core.add_detalleoferta')
 def ofertaPruductor(request):
     id_Publicacion = request.GET.get('Publicacion')
     context = {
-        'detallepedidos': listar_detallePedidos(id_Publicacion)
+        'detallepedidos': listar_detallePedidos(id_Publicacion),
+        'bd_temporal': listar_temporal_ofertar()
     }
+    
     return render(request, 'formulario_oferta.html',context)
-
 
 
 def historial_ofertas(request):
@@ -287,6 +293,7 @@ def historial_ofertas(request):
     }
 
     return render(request, 'historial_ofertas.html', data)
+
 
 def datalle_historial_ofertas(request):
     id=request.POST.get('id')
@@ -341,11 +348,9 @@ class CreateCrudUser2(View):
     def  get(self, request):
 
         fecha = request.GET.get('fecha', None)
+        externo = request.GET.get('usuariox',None)
 
-        print(fecha)
-        agregarSolicitud(fecha)
-
-        
+        agregarSolicitud(fecha,externo)
 
         user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
 
@@ -387,10 +392,10 @@ def listar_variedad(especie):
     return lista
 
 
-def agregarSolicitud(fecha):
+def agregarSolicitud(fecha,usua):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('sp_ingresar_solicitud',[fecha])
+    cursor.callproc('sp_ingresar_solicitud',[fecha,usua])
 
 
 #HASTA AQUII
@@ -442,3 +447,36 @@ def detallesolicitudAdmin(request):
 def p_oferta(request):
 
     return render(request, 'ofertas_publicacion.html')
+
+#----------------------------------------------------------------------
+
+def revisar_publicaciones_pedidos(request):
+    context = {
+        'lista_publicaciones': listar_publicaciones_of_activas()
+    }
+    if request.method =="POST":
+        if(request.POST.get('idsol') != None):
+            if(request.POST.get("espec") != None):
+                if(request.POST.get("varie") != None):
+                    idsox = request.POST.get("idsol")
+                    espex = request.POST.get("espec")
+                    varix = request.POST.get("varie")
+                    salida=Codex_Seleccion( idsox, espex, varix)
+                    if salida==1:
+                        context['mensaje']="Seleccion Terminada" 
+                        context['lista_publicaciones'] = listar_publicaciones_of_activas()
+    return render(request, 'revisar_publicacion_admin.html', context)
+
+def revisar_detalle_pedido(request):
+    idso = request.POST.get("idsol")
+    espe = request.POST.get("espec")
+    vari = request.POST.get("varie")
+    variedad = vari.strip()
+    
+    context = {
+        'lista_detalle_publicaciones': listar_detalle_publicaciones_of_activas(idso, espe, variedad),
+        'lista_total_detalle_publicaciones': listar_total_publicaciones_of_activas(idso, espe, variedad)
+    }
+    print(context)
+    return render(request, 'revisar_detalle_publicacion_admin.html',context)
+

@@ -63,8 +63,9 @@
 				<br>
 				<br>
 				<div class="contenedor-btns centrar-contenedor">
+					<input type="hidden" value="{{user.username}}" id="usuariox" name="usuariox">
 					<button class="btn bg-green-500 text-white w-1/4 focus:outline-none" type="submit" >Enviar
-						Solicitud</button>
+					Solicitud</button>
 				</div>
 			</div>
 
@@ -143,13 +144,15 @@
 		var filas = [];
 
 		let fecha = document.getElementById("fecha").value;
+		let usuarioe = document.getElementById("usuariox").value;
 		
-		//alert(fecha)
+		//alert(usuarioe)
 
 		$.ajax({
 				url: '{% url "crud_ajax_create2" %}',
 				data: {
-					'fecha': fecha
+					'fecha': fecha,
+					'usuariox': usuarioe 
 				},
 				dataType: 'json',
 				async: false,
@@ -206,8 +209,6 @@
 			})
 
 	}
-
-
 
 </script>
 

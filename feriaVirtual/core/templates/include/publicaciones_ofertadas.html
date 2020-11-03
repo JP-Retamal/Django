@@ -1,0 +1,200 @@
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+	<div class="admin-solicitudListar-header">
+		<h1 class="admin-solicitudListar-header__h1 font-lato">Pedidos Ofertados</h1>
+	</div>
+
+	<div class="admin-solicitudListar-body">
+
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">N Publicacion Solicitud</th>
+					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Imagen</th>-->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Descripcion</th>
+					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">ESTADO</th>-->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Detalle Estado de Oferta</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+						role="columnheader">Cerrar Pedido</th>
+				
+				</thead>
+
+				<tbody role="rowgroup">
+					{% for lp in lista_publicaciones %}
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lp.0}}<br>{{lp.10}}</td>
+
+						<!--<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<div class="detalle-contenedor-imagen centrar-contenedor " >
+								<img class="" style="
+									width: 100%;
+									height: 15vh;
+									border-radius: 5%;
+								background-image: url(''data:imagen/jpg;base64, {{lp.imagen}}''); 
+								-webkit-background-size: 100% 100px !important;
+								-moz-background-size: 100% 100px !important;
+								  -o-background-size: 100% 100px !important;
+									 background-size: 100% 100px !important;
+								">  
+							</div>N/A
+						</td>-->
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="text-align: left ;">
+							<table class="admin-solicitudListar-table md:w-full" role="table">
+								<tbody role="rowgroup">
+									<tr role="trow">
+										<td class="admin-solicitudListar-table__td font-lato  border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2" style="text-align: left ;">
+										<div class="detalle-contenedor-informacion md:col-span-2 md:m-0 " >
+											<div class="detalle-contenedor-caracteristica " >
+												<ul>
+													<li class="detalle-contenedor-caracteristica__li"><b>Solicitud: </b>{{lp.8}}</li>
+													<li class="detalle-contenedor-caracteristica__li"><b>Nombre: </b>{{lp.1}} {{lp.2}}</li>
+													<li class="detalle-contenedor-caracteristica__li"><b>Kilos: </b>{{lp.3}}</li>
+													<li class="detalle-contenedor-caracteristica__li"><b>Fecha Publicacion: </b>{{lp.6}}</li>
+													<li class="detalle-contenedor-caracteristica__li"><b>Fecha Entrega: </b>{{lp.4}}</li>
+													
+												</ul> 
+											</div>
+										</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</td>
+
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" >
+
+							<form action="{% url 'revisar_detalle_pedido' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{lp.8}}" name="idsol">
+									<input type="hidden" value="{{lp.2}}" name="varie">
+									<input type="hidden" value="{{lp.1}}" name="espec">
+								<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" style="display: inline;">Ver Detalle</button>
+							</form>
+						</td>
+			
+
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<div class="flex flex-row md:justify-center">
+								<form id="#" action="" method="POST" >
+									{% csrf_token %}
+									<input type="hidden" value="{{lp.8}}" name="idsol">
+									<input type="hidden" value="{{lp.2}}" name="varie">
+									<input type="hidden" value="{{lp.1}}" name="espec">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-12 h-12 bg-yellow-500 font-lato text-white text-3xl mx-2 px-2"><i class="fas fa-clipboard-check"></i></button>
+								</form>
+							</div>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	
+</div>
+
+<style>
+
+	@media only screen and (max-width: 767px) {
+
+
+		table[role='table'],
+		thead[role='rowgroup'],
+		tbody[role='rowgroup'],
+		th[role='columnheader'],
+		td[role='cell'],
+		tr[role='trow'] {
+			display: block;
+		}
+
+
+		thead[role='rowgroup'] th[role='columnheader'] {
+			display: none;
+		}
+
+		tr[role='trow'] {
+			margin: 0 0 1rem 0;
+		}
+
+		tr:nth-child(even) {
+			background:   #e5e8e8  ;
+		}
+
+		td[role='cell'] {
+			position: relative;
+			padding-left: 50%;
+			height: auto;
+			line-height: 45px;
+		}
+
+		td[role='cell']:before {
+
+			position: absolute;
+			
+			line-height: 45px;
+			left: 20px;
+			width: 45%;
+
+			white-space: nowrap;
+		}
+
+		td[role='cell']:nth-of-type(1):before {
+			content: "N Publicacion Solicitud:";
+		}
+
+		td[role='cell']:nth-of-type(2):before {
+			content: "Imagen:";
+		}
+
+		td[role='cell']:nth-of-type(3):before {
+			content: "Descripcion:";
+		}
+
+		td[role='cell']:nth-of-type(4):before {
+			content: "Detalle Estado de Oferta:";
+		}
+
+		td[role='cell']:nth-of-type(5):before {
+			content: "Cerrar Pedido:";
+		}
+
+	}
+	@media only screen and (min-width: 640px) and (max-width: 765px) {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+		}
+	}
+	
+	@media only screen and (min-width: 765px)  {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+			padding-right: 8rem;
+		}
+	}
+	@media (min-width: 768px){
+		.md\:p-2 {
+    		padding: 0.2rem;
+		}
+	}
+	
+
+
+</style>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,173 @@
+{%load humanize%}
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+	<div class="admin-solicitudListar-header">
+		<h1 class="admin-solicitudListar-header__h1 font-lato">Detalle Pedido Ofertado</h1>
+	</div>
+
+	<div class="admin-solicitudListar-body">
+
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">N° Oferta</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Nombre Productor</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Fecha de Oferta</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+                        role="columnheader">Kilos Ofertados</th>
+                        <th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Precio Ofertado</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+						role="columnheader">Fecha de Cosecha Producto</th>
+				
+				</thead>
+				<tbody role="rowgroup">
+					
+					{% for ldp in lista_detalle_publicaciones %}
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{ldp.0}}<br>{{ldp.1}}</td>
+
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							{{ldp.2}} {{ldp.3}}
+                        </td>
+                        <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							{{ldp.4}} 
+						</td>
+						<td  class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+                            {{ldp.5|intcomma}} Kg.
+                        </td>
+                        <td  class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" >
+                            ${{ldp.6|intcomma}}.-
+                        </td>
+                        <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" >
+                            {{ldp.7}}
+						</td>
+
+						
+					</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot role="rowgroup">
+					{% for ltdp in lista_total_detalle_publicaciones %}
+					<tr role="trow">
+						<td colspan="3" class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2">Total:</td>
+						<td id="total_catidad" class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2">{{ltdp.0|intcomma}} Kg.</td>
+						<td id="total_precio" class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2">${{ltdp.1|intcomma}}.-</td>
+						
+					</tr>
+					{% endfor %}
+				</tfoot>
+			</table>
+			<div class="contenedor-btns centrar-contenedor">
+                <button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none" onClick="javascript:history.go(-1);">
+                    Volver
+                </button>
+            </div>
+		</div>
+	</div>
+
+	
+</div>
+
+<style>
+
+	@media only screen and (max-width: 767px) {
+
+
+		table[role='table'],
+		thead[role='rowgroup'],
+		tbody[role='rowgroup'],
+		th[role='columnheader'],
+		td[role='cell'],
+		tr[role='trow'] {
+			display: block;
+		}
+
+
+		thead[role='rowgroup'] th[role='columnheader'] {
+			display: none;
+		}
+
+		tr[role='trow'] {
+			margin: 0 0 1rem 0;
+		}
+
+		tr:nth-child(even) {
+			background:   #e5e8e8  ;
+		}
+
+		td[role='cell'] {
+			position: relative;
+			padding-left: 50%;
+			height: auto;
+			line-height: 45px;
+		}
+
+		td[role='cell']:before {
+
+			position: absolute;
+			
+			line-height: 45px;
+			left: 20px;
+			width: 45%;
+
+			white-space: nowrap;
+		}
+
+		td[role='cell']:nth-of-type(1):before {
+			content: "N° Oferta:";
+		}
+
+		td[role='cell']:nth-of-type(2):before {
+			content: "Nombre Productor:";
+		}
+
+		td[role='cell']:nth-of-type(3):before {
+			content: "Fecha de Oferta:";
+		}
+
+		td[role='cell']:nth-of-type(4):before {
+			content: "Kilos Ofertados:";
+		}
+
+		td[role='cell']:nth-of-type(5):before {
+			content: "Precio Ofertado:";
+		}
+
+        td[role='cell']:nth-of-type(5):before {
+			content: "Fecha de Cosecha:";
+		}
+        
+
+	}
+	@media only screen and (min-width: 640px) and (max-width: 765px) {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+		}
+	}
+	
+	@media only screen and (min-width: 765px)  {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+			padding-right: 8rem;
+		}
+	}
+	@media (min-width: 768px){
+		.md\:p-2 {
+    		padding: 0.2rem;
+		}
+	}
+	
+
+
+</style>
+
+
+
+
+

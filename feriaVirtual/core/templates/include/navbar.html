@@ -98,8 +98,12 @@
                     
                     {% else %}
                         {% if perms.core.view_ventalocal %}
-                            
-                            
+                            <a href="{% url 'revisar_publicaciones_pedidos' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>Publiciones Ofertadas</li>
+                            </a>
+                            <a href="{% url 'revisar_detalle_pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>Detalle P. Ofertadas</li>
+                            </a>
                         {% else %}
                             <a href="{% url 'home' %}"
 
