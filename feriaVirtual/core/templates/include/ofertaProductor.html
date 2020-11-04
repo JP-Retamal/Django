@@ -1,7 +1,8 @@
 <div class="crearSolicitud-contenedor" style="padding-left:2rem; padding-right:2rem; padding-bottom:2rem">
 
-	<form id="oferta-productor" action="">
-		{% for d in detallepedidos %}
+	<form id="oferta-productor" action=""  method="POST" name="oferta-productor">
+		{% csrf_token %}
+		{% for d in bd_pedido %}
 		<div class="HistorialCompra-contenedor-titulo">
 			<h2 class="HistorialCompra-contenedor-titulo__h4">Variedad Solicitada:</h2>
 		</div>
@@ -9,39 +10,36 @@
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			
 			<!-- Especie -->
-			<div class="contenedor-selects">
-				<select id="especie" name="especie" onchange="cambiarVariedad()"
-					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-					<option value=" {{d.data.1}} Kg."> {{d.data.1}}</option>
-		
-				</select>
-				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
+			<div class="contenedor-inputs">
+				<input id="especie" name="especie" type="text"
+					class="input focus:outline-none focus:border-orange-500" value="{{d.5}}" readonly/>
 			</div>
 			<!-- Variedad -->
-			<div class="contenedor-selects">
-				<select id="variedadEspecie" name="variedad"
-					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
-					<option value="{{d.data.2}}"> {{d.data.2}}</option>
-				</select>
-
-				<!-- <i class="fas fa-angle-down absolute right-0 mr-2"></i> -->
+			<div class="contenedor-inputs">
+				<input id="variedad" name="variedad" type="text"
+					class="input focus:outline-none focus:border-orange-500" value="{{d.6}}" readonly/>
 			</div>
 			<!-- Cantidad -->
 			<div class="contenedor-inputs">
-				<input id="crearSolicitud-kilos" name="crearSolicitud-cantidad" type="text"
+				<input id="crearSolicitud-kilos" name="kilos" type="text"
 					class="input focus:outline-none focus:border-orange-500" placeholder="kilos:{{d.data.3}}max."
 					  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 			</div>
 			<div class="contenedor-inputs">
-				<input id="crearSolicitud-precio" name="crearSolicitud-cantidad" type="text"
+				<input id="crearSolicitud-precio" name="precio" type="text"
 					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese precio:" 
 					 onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+			</div>
+			<div class="contenedor-inputs">
+				<input id="registro-fecha" name="fecha" type="text"
+					class="input appearance-none focus:outline-none focus:border-orange-500"
+					placeholder="Fecha de Nacimiento" required maxlength="10" minlength="10"/>
 			</div>
 			
 			<!-- Btn -->
 			<div class="contenedor-btns">
-				<button type="menu" class="btn bg-green-500 text-white w-full focus:outline-none" id="add_row">
-					Agregar Fruta
+				<button type="menu" class="btn bg-green-500 text-white w-full focus:outline-none" >
+					Agregar Oferta
 				</button>
 			</div>
 		</div>
@@ -52,6 +50,7 @@
 	<br>
 	<h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>Confirmar oferta:</td></h2>
 	<div class="crearSolicitud-contenedor-tabla">
+			<form id="guardar" method="POST" name="guardar">
 			<table class="listarSolicitud-contenedor-solicitudes" id="tabla_factura">
 				<thead>
 					<tr class="crearSolicitud-contenedor-tabla__tr">
@@ -62,19 +61,20 @@
 						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
 					</tr>
 				</thead>
+
 				<tbody class="crearSolicitud-contenedor-tabla__tbody" id="content_table">
 					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
 						<td class="crearSolicitud-contenedor-tabla__td">{{t.0}}</td>
-						<td class="crearSolicitud-contenedor-tabla__td">{{t.1}}</td>
-						<td class="crearSolicitud-contenedor-tabla__td">{{t.2}}</td>	
-						<td class="crearSolicitud-contenedor-tabla__td">{{t.3}}</td>
+						<td class="crearSolicitud-contenedor-tabla__td"><input name="especie_bd" value="{{t.1}}">{{t.1}}</td>
+						<td class="crearSolicitud-contenedor-tabla__td"><input name="variedad_bd" value="{{t.2}}">{{t.2}}</td>	
+						<td class="crearSolicitud-contenedor-tabla__td"><input name="especie_bd" value="{{t.3}}">{{t.3}}</td>
 
 						<td class="crearSolicitud-contenedor-tabla__td text-center">
 							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
 									class="fas fa-trash"></i></button>
 						</td>
 					</tr>
-				
+				</form>
 				</tbody>
 			</table>
 			<br>
@@ -83,6 +83,7 @@
 				Enviar Solicitud
 			</button>
 		</div>
+
 	</div>
 	{% endfor %}
 </div>
@@ -94,4 +95,35 @@
      return false;        
     }
 </script>
+<script>
+	// Inicio DatePicker JQuery
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+			'Noviembre', 'Diciembre'],
 
+		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'dd/mm/yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$('#registro-fecha').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "+D",
+		minDate: "-1Y"
+	});
+	// Fin DatePicker JQuery
+
+</script>

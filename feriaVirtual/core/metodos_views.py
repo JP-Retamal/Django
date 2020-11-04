@@ -229,6 +229,19 @@ def listar_detallePedidos(detalle_id):
 
     return lista
 
+def detalle_pedido_ofertar(detalle_id, variedad):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_BUSCAR_DETALLE_VARIEDAD", [detalle_id, variedad, out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
 
 def listar_historial_compra(correo):
     django_cursor = connection.cursor()
@@ -285,7 +298,7 @@ def listar_detalle_historial_oferta(id_oferta):
     for fila in out_cur:
         data = {
             'data':fila,
-            'imagen':str(base64.b64encode(fila[8].read()), 'utf-8')
+            'imagen':str(base64.b64encode(fila[6].read()), 'utf-8')
         }
 
         lista.append(data)
@@ -438,6 +451,19 @@ def Codex_Seleccion(id_solicitud, especie, variedad):
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_CODEX_OFERTA', [id_solicitud, especie, variedad, salida])
     return salida.getvalue()
+
+
+
+
+
+
+
+
+
+
+
+
+
 ####-----------------------------------------------------------------------------------------------------------
 def agregar_temporal_ofertar(v_des_especie, v_des_variedad, v_kilos, v_precio):
     django_cursor = connection.cursor()

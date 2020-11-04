@@ -27,12 +27,25 @@
                         <li class="detalle-contenedor-caracteristica__li">Fruta solicitada:<td> {{d.data.1}} {{d.data.2}}</td></li>
                         <li class="detalle-contenedor-caracteristica__li">Descripción:<br> Si cumple con lo solicitado, ingrese en la opción de 
                         ofertar,<br> donde podrá indicar la cantidad y el precio de sus productos.</li>
+                        <li class="detalle-contenedor-caracteristica__li">
+                            <form class="" action="oferta_productor" method="GET">
+                                {% csrf_token %}                
+                                <input type="hidden" value="{{id_oferta}}" name="Publicacion">
+                                <input type="hidden" value="{{d.data.2}}" name="variedad">
+                                <div class="boton-tarjeta">
+                                    <div class="detalle-contenedor-btn centrar-contenedor  md:justify-start ">
+                                        <input type="submit" value="Ofertar" class="button2" />
+                                    </div> 
+                                </div>
+                            </form>
+                        </li>
                     </ul>
                 </div>             
             </div>
         </div>
         {% endfor %}
-        <div class="detalle-contenedor-titulo md:col-span-3">
+        <div class="detalle-contenedor-titulo__h1 md:col-span-3"></div>
+       <!-- <div class="detalle-contenedor-titulo md:col-span-3">
             <h1 class="detalle-contenedor-titulo__h1 md:px-20"><td>Ofertar</td></h1>
             <br>
              <form class="detalle-contenedor-titulo__h1 md:px-20" action="oferta_productor" method="GET">
@@ -44,6 +57,6 @@
                     </div> 
                 </div>
             </form>  
-        </div>
+        </div>-->
 
 {% endblock %}

@@ -277,14 +277,22 @@ def detallePedido(request):
 @permission_required('core.add_detalleoferta')
 def ofertaPruductor(request):
     id_Publicacion = request.GET.get('Publicacion')
+    variedad = request.GET.get('variedad')
     context = {
-        'detallepedidos': listar_detallePedidos(id_Publicacion),
-        'bd_temporal': listar_temporal_ofertar()
+        'bd_pedido': detalle_pedido_ofertar(id_Publicacion, variedad)
+        
     }
-    
+    if request.method =="POST":
+        especie = request.POST.get('especie')
+        variedad = request.POST.get('variedad')
+        kilos = request.POST.get('kilos')
+        precio = request.POST.get('precio')
+        fecha_cosecha = request.POST.get('fecha')
+        return redirect("usuario/") 
+
     return render(request, 'formulario_oferta.html',context)
 
-
+########################################################################################################
 def historial_ofertas(request):
     info = request.POST.get("valcorreo")
     print(info)
@@ -433,6 +441,8 @@ def solicitudAdmin(request):
                 data['mensaje']="Solicitud Rechazada"
                 data['lista_solicitudes'] = listar_solicitudes()
     return render(request, 'solicitud-admin.html', data)
+
+
 
 #---------------------------------------------------------------------------
 
