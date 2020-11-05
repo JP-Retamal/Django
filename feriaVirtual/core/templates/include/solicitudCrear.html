@@ -1,11 +1,12 @@
 
 <div class="crearSolicitud-contenedor" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
 	<div class="crearSolicitud-contenedor-titulo">
-		<h2 class="crearSolicitud-contenedor-titulo__h2">Crear Solicitud</h2>
+		<h2 class="crearSolicitud-contenedor-titulo__h2">Agregar Fruta</h2>
 	</div>
 		<br>
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			<div class="contenedor-selects">
+				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Fruta:</h4></b>
 				<select id="especie" name="crearSolicitud-especie"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500" required
 					onchange="cambiarvariedad()">
@@ -18,7 +19,9 @@
 				</select>
 
 			</div>
+			
 			<div class="contenedor-selects">
+				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Variedad:</h4></b>
 				<select id="variedad" name="crearSolicitud-region"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 	
@@ -26,12 +29,14 @@
 				</select>
 			</div>
 			<div class="contenedor-inputs">
+				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Kilos Fruta:</h4></b>
 				<input id="cantidad" name="crearSolicitud-cantidad" type="text"
 					class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos" 
 					onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 				
 			</div>
 			<div class="contenedor-inputs">
+				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Entrega Estimada:</h4></b>
 				<input id="fecha" name="fecha" type="text"
 				class="input appearance-none focus:outline-none focus:border-orange-500"
 				placeholder="Plazo Estimado" required maxlength="10" minlength="10"/>
@@ -45,19 +50,25 @@
 			</button>
 		</div>
 		<br>
+		<div class="crearSolicitud-contenedor-titulo">
+			<h2 class="crearSolicitud-contenedor-titulo__h2">Enviar Solicitud</h2>
+		</div>
 		<form id="guardarSolicitud" action="">
-			<div class="crearSolicitud-contenedor-tabla">
-				<table class="crearSolicitud-contenedor-tabla__table">
+			<div class="HistorialCompra-contenedor-tabla">
+				<table class="listarSolicitud-contenedor-solicitudes">
 					<thead>
-						<tr class="crearSolicitud-contenedor-tabla__tr">
+						<tr class="HistorialCompra-contenedor-tabla__tr">
 							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">nombre</th>
 							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">variedad</th>
-							<th class="crearSolicitud-contenedor-tabla__th w-1/12">cantidad</th>
+							<th class="crearSolicitud-contenedor-tabla__th w-1/12 text-left">Kilos</th>
+							<th class="crearSolicitud-contenedor-tabla__th w-1/12 text-left">Fecha Estimada</th>
 							<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
 						</tr>
 					</thead>
 					<tbody id="tablaItems" class="crearSolicitud-contenedor-tabla__tbody">
+						<tr class="HistorialCompra-contenedor-tabla-tbody__tr">
 						<!--aqui se Agregar-->
+						</tr>
 					</tbody>
 				</table>
 				<br>
@@ -108,7 +119,7 @@
 	// Create Django Ajax Call
 	function agregarFila(especie, variedad, cantidad) {
 
-		if (especie && variedad && cantidad) {
+		if (especie && variedad && cantidad ) {
 		
 
 			var table = document.getElementById("tablaItems");
@@ -118,16 +129,18 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
+			//var cell5 = row.insertCell(4);
 			// Add some text to the new cells:
 			var valor1 = document.getElementById(variedad).textContent;
 
-			cell1.innerHTML = especie;
-			cell2.innerHTML = valor1;
-			cell3.innerHTML = cantidad;
+			cell1.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+especie+'</td>';
+			cell2.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+valor1+'</td>';
+			cell3.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+cantidad+'</td>';
+			//cell4.innerHTML = fecha;
 			cell4.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
 
 		}else{
-			alert("Agregue una fruta con su Cantidad")
+			alert("Complete los campos para crear la solicitud!!!")
 		}
 	}
 

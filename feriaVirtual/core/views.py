@@ -313,7 +313,6 @@ def datalle_historial_ofertas(request):
     return render(request, 'detalle_historial_ofertas.html', context)
 
 #--------------------------------------------------------------------------------------
-#--------------------------------------------------------------------------------------
 #COPIAR DESDE AQUI
 
 def variedad_por_especie(request):
