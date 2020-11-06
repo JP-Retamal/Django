@@ -30,7 +30,6 @@ urlpatterns = [
    path('usuario/solicitud', login_required(solicitud), name="solicitud"),
    path('ajax/crud/create/', login_required(CreateCrudUser.as_view()), name='crud_ajax_create'),
    path('ajax/crud/create_2/',login_required(CreateCrudUser2.as_view()), name='crud_ajax_create2'),
-
    path('administracion/publicaciones_ofertadas', login_required(revisar_publicaciones_pedidos), name="revisar_publicaciones_pedidos"),
    path('administracion/detalle_publicacion_ofertada', login_required(revisar_detalle_pedido), name="revisar_detalle_pedido"),
 

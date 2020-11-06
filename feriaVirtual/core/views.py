@@ -407,11 +407,16 @@ def agregarSolicitud(fecha,usua):
 
 #HASTA AQUII
 
-#----------------------------------------------------------------------------------
+##################################################################################################
 
 def pedido(request):
-    tituloPagina = 'Pedidos'
-    return render(request, 'pedido.html', { 'tituloPagina' : tituloPagina})
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'bd_ex_pedido': listar_historial_solicitudes(info)
+    }
+    
+    return render(request, 'pedido.html', data)
 
 
 @permission_required('core.view_ventalocal')

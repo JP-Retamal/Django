@@ -51,11 +51,21 @@
                         </div>
                         <!-- Pedidos -->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="{% url 'pedido' %}">
+                            <a href="javascript:enviar_formulario7()">
                                 <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
                                 <span class="usuario-contenedor-btns__span lg:inline-block">Pedidos</span>
                             </a>
                         </div>
+                        <form action="{% url 'pedido' %}" method="POST" hidden="hidden" name="formulario7" >
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                </form>
+                        </form>
+                            <script>
+                            function enviar_formulario7(){
+                            document.formulario7.submit()
+                            }
+                        </script>
                     {% else %}
                         {% if perms.core.view_detalleoferta %}
                             <!-- historial de Ofertas-->

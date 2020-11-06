@@ -60,9 +60,19 @@
                     <a href="{% url 'solicitud' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                         <li>Solicitudes de Compra</li>
                     </a>
-                    <a href="{% url 'pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                    <a href="javascript:enviar_formulario6()" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                         <li>Pedidos</li>
                     </a>
+                    <form action="{% url 'pedido' %}" method="POST" hidden="hidden" name="formulario6">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{user.username}}" name="valcorreo">
+                    </form>
+                        <script>
+                            function enviar_formulario6(){
+                            document.formulario6.submit()
+                            }
+                    </script>
+
                     <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                         <li></li>
                     </a>    

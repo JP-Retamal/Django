@@ -453,32 +453,13 @@ def Codex_Seleccion(id_solicitud, especie, variedad):
     return salida.getvalue()
 
 
-
-
-
-
-
-
-
-
-
-
-
-####-----------------------------------------------------------------------------------------------------------
-def agregar_temporal_ofertar(v_des_especie, v_des_variedad, v_kilos, v_precio):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_AGREGAR_TEMPORAL_OFERTA', [v_des_especie, v_des_variedad, v_kilos, v_precio, salida])
-    return salida.getvalue()
-
-def listar_temporal_ofertar():
+def listar_historial_solicitudes(email):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("SP_BUSCAR_TEMPORAL_OFERTA", [out_cur])
-
+    cursor.callproc("SP_EX_PEDIDO",[email, out_cur])
+   
     lista = []
     for fila in out_cur:
         lista.append(fila)
