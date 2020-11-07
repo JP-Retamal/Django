@@ -24,7 +24,7 @@ import json
 def ver(request):
    
     return render(request, 'grafico.html')
-
+########################################            TODOS LOS USUARIOS         #################################################################
 # ver pagina de inicio.
 def home(request):
     #listar tarjetas de venta local.
@@ -54,7 +54,54 @@ def detalle(request):
     else:
         return render(request, 'detalle.html')
 
+# ACCESO USUARIOS AL SITEMA      
+def login(request):
+    # validar datos de usuarios.
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        
+        if user is not None and user.is_active:   
+            # validación del usuario y estado de usuario.(activo)
+            auth.login(request, user)
+        else:
+            # ver errores y redireccionr.
+            
+            return HttpResponseRedirect("/login")
+ 
+    return render(request, 'login.html')
 
+
+# cerrar sesión de usuario.
+def logout(request):
+    auth.logout(request)
+    # Redirect to a success page.
+    return HttpResponseRedirect("/")
+
+# actualizar datos cuenta
+def informacion(request):
+    info = request.GET.get("valcorreo")
+    data = {
+        'usuario': buscar_usuario(info),
+        'region': listar_regiones()
+    }
+    if request.method =="POST":
+        celular = request.POST.get('informacion-telefono')
+        direccion   = request.POST.get('informacion-direccion')
+        id_comuna     = request.POST.get('comuna')
+        salida=modificar_usuario( info, celular, direccion, id_comuna)
+        if salida==1:
+           data['mensaje']="Datos actualizados" 
+           data['usuario']=buscar_usuario(info)
+    return  render(request, 'informacion.html', data) 
+
+# vistas de usuario inicio general
+def usuario(request):
+   
+    return render(request, 'usuario.html')
+
+##############################################          USUARIO COMERCIANTE        ############################################################
 # usuario comerciante
 @permission_required('core.add_pago')
 def comprar(request):
@@ -76,6 +123,7 @@ def comprar(request):
 
     return render(request, 'comprar.html', context)
 
+# usuario comerciante
 @permission_required('core.add_pago')
 def transbank(request):
    
@@ -96,6 +144,7 @@ def transbank(request):
   
     return render(request, 'transbank.html', context)
 
+# usuario comerciante
 @permission_required('core.add_pago')
 def medioPago(request):
     #obtener valores y renderizar venta.
@@ -135,7 +184,7 @@ def historial_compra(request):
 
     return render(request, 'historial_compra.html', data)
 
-
+# usuario comerciante
 @permission_required('core.add_pago')
 def detalle_historial_compra(request):
     id=request.POST.get('idventa')
@@ -145,32 +194,6 @@ def detalle_historial_compra(request):
     }
         
     return render(request, 'detalle_historial_compra.html', context)
-
-#--------------------------------------------------------------------------------------------
-
-def login(request):
-    # validar datos de usuarios.
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(username=username, password=password)
-        
-        if user is not None and user.is_active:   
-            # validación del usuario y estado de usuario.(activo)
-            auth.login(request, user)
-        else:
-            # ver errores y redireccionr.
-            
-            return HttpResponseRedirect("/login")
- 
-    return render(request, 'login.html')
-
-
-# cerrar sesión de usuario.
-def logout(request):
-    auth.logout(request)
-    # Redirect to a success page.
-    return HttpResponseRedirect("/")
 
 
 # Registro de usuario comerciante
@@ -207,7 +230,7 @@ def registro(request):
                         data['mensaje'] = 'El email ingresasdo ya existe'
                     else:
                         if salidaC == 2:
-                           #enc_clave = pbkdf2_sha256.encrypt(clave,rounds=12000,salt_size=32)
+                           #enc_clave = pbkdf2_sha256.encrypt(clave,roundlt_s=12000,sasize=32)
                            # clave = enc_clave
                             salida = agregar_comerciante(
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
@@ -226,35 +249,9 @@ def registro(request):
                         
     return render(request, 'registro.html', data)
 
-# actualizar datos cuenta
-def informacion(request):
-    info = request.GET.get("valcorreo")
-    data = {
-        'usuario': buscar_usuario(info),
-        'region': listar_regiones()
-    }
-    if request.method =="POST":
-        celular = request.POST.get('informacion-telefono')
-        direccion   = request.POST.get('informacion-direccion')
-        id_comuna     = request.POST.get('comuna')
-        salida=modificar_usuario( info, celular, direccion, id_comuna)
-        if salida==1:
-           data['mensaje']="Datos actualizados" 
-           data['usuario']=buscar_usuario(info)
-    return  render(request, 'informacion.html', data) 
+##################################################         USUARIO PRODUCTOR              #####################################################
 
-#--------------------------------------------------------------------------
-
-# vistas de usuario inicio general
-def usuario(request):
-    tituloPagina = 'Perfil'
-    nombreUsuario = 'Jesus'
-    return render(request, 'usuario.html', { 'tituloPagina' : tituloPagina, 'nombreUsuario' : nombreUsuario})
-
-
-#-------------------------------------------------------------------------
-
-# usuario productor
+# LOS VEN PRODUCTOR Y ADMIN
 
 def portalDeOfertas(request):
     data = {
@@ -263,6 +260,7 @@ def portalDeOfertas(request):
    
     return render(request, 'portalDeOfertas.html', data)
 
+# LOS VEN PRODUCTOR Y ADMIN
 
 def detallePedido(request):
     id_Publicacion = request.GET.get('Publicacion')
@@ -273,7 +271,7 @@ def detallePedido(request):
     context['id_oferta']=id_Publicacion
     return render(request, 'detallePedido.html', context)
 
-######################################################################################################
+# USUARIO PRODUCTOR
 @permission_required('core.add_detalleoferta')
 def ofertaPruductor(request):
     id_Publicacion = request.GET.get('Publicacion')
@@ -283,16 +281,42 @@ def ofertaPruductor(request):
         
     }
     if request.method =="POST":
-        especie = request.POST.get('especie')
-        variedad = request.POST.get('variedad')
-        kilos = request.POST.get('kilos')
-        precio = request.POST.get('precio')
-        fecha_cosecha = request.POST.get('fecha')
-        return redirect("usuario/") 
+        especie          = request.POST.get('especie')
+        variedad         = request.POST.get('variedad')
+        kilos            = request.POST.get('kilos')
+        precio           = request.POST.get('precio')
+        fecha_cosecha    = request.POST.get('fecha')
+        id_solicitud     = request.POST.get('solicitud')
+        nombre_usuario   = request.POST.get('user')
+        correo           = request.POST.get('correo')
+      
+        usuarioid        = SP_BUSCA_NUM_USUARIO(correo)
+
+        especieid        = SP_BUSCA_NUM_especie(especie)
+
+        salida           = OFERTA_PRODUCTOR(int(usuarioid))
+
+        if salida == 1:
+            print('Registro oferta productor Exitoso !!!')
+            salida2 = OFERTA_PRODUCTOR_DETALLE(kilos, precio, fecha_cosecha, variedad, especieid, id_solicitud)
+            if salida2 == 1:
+                print('Registro oferta productor detalle Exitoso !!!')
+                salida3 = OFERTA_PRODUCTOR_PUBLICACION(nombre_usuario, kilos, precio, fecha_cosecha, especie, usuarioid, variedad)
+                if salida3 == 1:
+                    print('Registro oferta productor publicación Exitoso !!!')
+                    context['mensaje'] =  'Registro oferta Exitoso !!!'
+                    return redirect("usuario/") 
+                else:
+                    print('fallo al insertar Registro oferta productor publicación :(')
+            else:
+                print('fallo al insertar Registro oferta detalle productor :(')
+        else:
+            print('fallo al insertar Registro oferta productor :(')
 
     return render(request, 'formulario_oferta.html',context)
 
-########################################################################################################
+# USUARIO PRODUCTOR
+@permission_required('core.add_detalleoferta')
 def historial_ofertas(request):
     info = request.POST.get("valcorreo")
     print(info)
@@ -302,7 +326,8 @@ def historial_ofertas(request):
 
     return render(request, 'historial_ofertas.html', data)
 
-
+# USUARIO PRODUCTOR
+@permission_required('core.add_detalleoferta')
 def datalle_historial_ofertas(request):
     id=request.POST.get('id')
     print(id)
@@ -312,9 +337,10 @@ def datalle_historial_ofertas(request):
 
     return render(request, 'detalle_historial_ofertas.html', context)
 
-#--------------------------------------------------------------------------------------
-#COPIAR DESDE AQUI
+##################################################         USUARIO CLIENTE EXTERNO          ###################################################
 
+# cliente externo
+@permission_required('core.add_solicitud')
 def variedad_por_especie(request):
     especie = request.GET.get('especie')
     data = {
@@ -323,7 +349,8 @@ def variedad_por_especie(request):
 
     return render(request, 'variedad_por_especie.html', data)
 
-
+# cliente externo
+@permission_required('core.add_solicitud')
 def solicitud(request):
     tituloPagina = 'Solicitudes'
     data = {
@@ -331,7 +358,7 @@ def solicitud(request):
     }    
     return render(request, 'solicitud.html', data)
 
-
+# cliente externo
 class CreateCrudUser(View):
     def  get(self, request):
 
@@ -351,6 +378,7 @@ class CreateCrudUser(View):
         }
         return JsonResponse(data)
 
+# cliente externo
 class CreateCrudUser2(View):
     def  get(self, request):
 
@@ -366,12 +394,13 @@ class CreateCrudUser2(View):
         }
         return JsonResponse(data)
 
+# cliente externo
 def agregarfruta(especie,variedad,cantidad):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_agregar_prueba',[especie,variedad,cantidad])
     
-
+# cliente externo
 def listar_especie():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -385,6 +414,7 @@ def listar_especie():
     
     return lista
 
+# cliente externo
 def listar_variedad(especie):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -398,17 +428,15 @@ def listar_variedad(especie):
     
     return lista
 
-
+# cliente externo
+@permission_required('core.add_solicitud')
 def agregarSolicitud(fecha,usua):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_ingresar_solicitud',[fecha,usua])
 
-
-#HASTA AQUII
-
-##################################################################################################
-
+# cliente externo
+@permission_required('core.add_solicitud')
 def pedido(request):
     info = request.POST.get("valcorreo")
     print(info)
@@ -417,6 +445,8 @@ def pedido(request):
     }
     
     return render(request, 'pedido.html', data)
+
+##################################################        USUARIO ADMINISTRADOR       #########################################################
 
 
 @permission_required('core.view_ventalocal')
@@ -447,9 +477,6 @@ def solicitudAdmin(request):
     return render(request, 'solicitud-admin.html', data)
 
 
-
-#---------------------------------------------------------------------------
-
 def detallesolicitudAdmin(request):
     info = request.POST.get("idsol")
     data = {
@@ -458,11 +485,6 @@ def detallesolicitudAdmin(request):
     print(data)
     return render(request, 'solicitud-detalle-admin.html', data)
 
-def p_oferta(request):
-
-    return render(request, 'ofertas_publicacion.html')
-
-#----------------------------------------------------------------------
 
 def revisar_publicaciones_pedidos(request):
     context = {
@@ -494,3 +516,9 @@ def revisar_detalle_pedido(request):
     print(context)
     return render(request, 'revisar_detalle_publicacion_admin.html',context)
 
+
+
+
+def p_oferta(request):
+
+    return render(request, 'ofertas_publicacion.html')

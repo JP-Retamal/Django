@@ -50,53 +50,16 @@
 		</div>
 		<!-- Btn -->
 		<div class="contenedor-btns flex justify-end lg:col-span-3">
-            <input type="hidden" value="{{user.username}}" name="valcorreo3">
+            <input type="hidden" value="{{user.username}}" name="correo">
+			<input type="hidden" value="{{d.1}}" name="solicitud">
+			<input type="hidden" value="{{user.get_full_name}}" name="user">
 			<button type="submit" class="informacionDespacho-contenedor-btns__button btn w-1/3 lg:w-1/4 focus:outline-none"
             >Guardar</button>
         </div>
 		{% endfor %}
+		{{mensaje}}
 	<!---------------------------------------------------------------------------------------------------------------------------->
 	</form>
-	{% for t in bd_temporal %}
-	<br>
-	<h2 class="detalle-contenedor-titulo__h1 md:px-20"><td>Confirmar oferta:</td></h2>
-	<div class="crearSolicitud-contenedor-tabla">
-			<form id="guardar" method="POST" name="guardar">
-			<table class="listarSolicitud-contenedor-solicitudes" id="tabla_factura">
-				<thead>
-					<tr class="crearSolicitud-contenedor-tabla__tr">
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">N°</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Fruta</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Variedad Fruta</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Cantidad</th>
-						<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
-					</tr>
-				</thead>
-
-				<tbody class="crearSolicitud-contenedor-tabla__tbody" id="content_table">
-					<tr class="crearSolicitud-contenedor-tabla-tbody__tr">
-						<td class="crearSolicitud-contenedor-tabla__td">{{t.0}}</td>
-						<td class="crearSolicitud-contenedor-tabla__td"><input name="especie_bd" value="{{t.1}}">{{t.1}}</td>
-						<td class="crearSolicitud-contenedor-tabla__td"><input name="variedad_bd" value="{{t.2}}">{{t.2}}</td>	
-						<td class="crearSolicitud-contenedor-tabla__td"><input name="especie_bd" value="{{t.3}}">{{t.3}}</td>
-
-						<td class="crearSolicitud-contenedor-tabla__td text-center">
-							<button type="menu" class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none"><i
-									class="fas fa-trash"></i></button>
-						</td>
-					</tr>
-				</form>
-				</tbody>
-			</table>
-			<br>
-		<div class="contenedor-btns centrar-contenedor">
-			<button type="menu" class="btn bg-green-500 text-white w-1/4 focus:outline-none">
-				Enviar Solicitud
-			</button>
-		</div>
-
-	</div>
-	{% endfor %}
 </div>
 <script>
 	function validaNumericos(event) {
