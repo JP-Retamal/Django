@@ -155,23 +155,35 @@ def listar_historial_compra(correo):
     return lista
 
 
-def listar_detalle_historial_compra(id_venta):
+def listar_detalle_historial_compra(id_venta, correo):
     django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
+    cursor        = django_cursor.connection.cursor()
+    out_cur       = django_cursor.connection.cursor()
 
-    cursor.callproc("SP_LISTAR_DETALLE_HISTORIAL_COMPRA", [id_venta, out_cur])
+    cursor.callproc("SP_LISTAR_DETALLE_HISTORIAL_COMPRA", [id_venta, correo, out_cur])
 
     lista = []
     for fila in out_cur:
-        data = {
-            'data':fila,
-            'imagen':str(base64.b64encode(fila[1].read()), 'utf-8')
-        }
-
-        lista.append(data)
+        lista.append(fila)
 
     return lista
+
+def imagen_detalle(variedad):
+    django_cursor = connection.cursor()
+    cursor        = django_cursor.connection.cursor()
+    out_cur       = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_DETALLE_HISTORIAL_COMPRA_IMAGEN", [variedad, out_cur])
+
+    lista2 = []  
+    for fila in out_cur:
+        data = {
+            'imagen':str(base64.b64encode(fila[0].read()), 'utf-8')
+        }
+
+        lista2.append(data)
+
+    return lista2
 
 def userDjango(email, nombre, ap_paterno, clave):
     user = User.objects.create_user(username=email, first_name=nombre, last_name=ap_paterno, email=email, password=clave)
@@ -179,11 +191,12 @@ def userDjango(email, nombre, ap_paterno, clave):
     user.groups.add(2)
     user.save()
 
+
 def admin(user):
     return user.is_authenticated() and user.has_perm("view_ventalocal")
 
 
-##################################################         USUARIO PRODUCTOR              #####################################################
+##################################################          USUARIO PRODUCTOR            #####################################################
 
 
 # METODOS PARA ACCEDER AL SISTEMA EN LOGIN DE USUARIO COMERCIANTE
@@ -200,6 +213,7 @@ def lista_pedido():
         lista.append(fila)
 
     return lista
+
 
 def listar_detallePedidos(detalle_id):
     django_cursor = connection.cursor()
@@ -218,6 +232,7 @@ def listar_detallePedidos(detalle_id):
         lista.append(data)
 
     return lista
+
 
 def detalle_pedido_ofertar(detalle_id, variedad):
     django_cursor = connection.cursor()
@@ -250,12 +265,14 @@ def listar_pedidos():
 
     return lista
 
+
 def OFERTA_PRODUCTOR(usuarioid):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_OFERTA_PRODUCTOR', [usuarioid, salida])
     return salida.getvalue()
+
 
 def OFERTA_PRODUCTOR_DETALLE(kilos, precio, fecha_cosecha, variedad, especieid, id_solicitud):
     django_cursor = connection.cursor()
@@ -264,12 +281,14 @@ def OFERTA_PRODUCTOR_DETALLE(kilos, precio, fecha_cosecha, variedad, especieid, 
     cursor.callproc('SP_OFERTA_PRODUCTOR_DETALLE', [kilos, precio, fecha_cosecha, variedad, especieid, id_solicitud, salida])
     return salida.getvalue()
 
+
 def OFERTA_PRODUCTOR_PUBLICACION(nombre_usuario, kilo, precio, fecha_cosecha, especie, usuarioid, variedad):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_OFERTA_PRODUCTOR_PUBLICACION', [nombre_usuario, kilo, precio, fecha_cosecha, especie, usuarioid, variedad, salida])
     return salida.getvalue()
+
 
 def SP_BUSCA_NUM_USUARIO(correo):
     django_cursor = connection.cursor()
@@ -278,12 +297,14 @@ def SP_BUSCA_NUM_USUARIO(correo):
     cursor.callproc("SP_BUSCA_NUM_USUARIO",[correo, salida])
     return salida.getvalue()
 
+
 def SP_BUSCA_NUM_especie(especie):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("SP_BUSCA_NUM_especie",[especie, salida])
     return salida.getvalue()
+
 
 def listar_ofertas(correo):
     django_cursor = connection.cursor()
@@ -324,6 +345,7 @@ def agregarfruta(especie,variedad,cantidad):
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_agregar_fruta',[especie,variedad,cantidad])
 
+
 def listar_subcategorias_por_categoria(categoria_id):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -351,6 +373,7 @@ def listar_especie():
     
     return lista
 # solicitudes admin aceptar, rechazar, ver.
+
 
 def listar_solicitudes():
     django_cursor = connection.cursor()
@@ -408,7 +431,6 @@ def rechazar_solicitud( id_detalle):
     cursor.callproc('SP_RECHAZAR_SOLICITUD', [id_detalle, salida])
     return salida.getvalue()
 
-#------------------------------------------------------------
 
 def listar_publicaciones_of_activas():
     django_cursor = connection.cursor()
@@ -429,6 +451,7 @@ def listar_publicaciones_of_activas():
 
     return lista
 
+
 def listar_detalle_publicaciones_of_activas(id_solicitud,especi, varied ):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -441,6 +464,7 @@ def listar_detalle_publicaciones_of_activas(id_solicitud,especi, varied ):
         lista.append(fila)
     return lista
 
+
 def listar_total_publicaciones_of_activas(id_solicitud,especi, varied ):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -452,6 +476,7 @@ def listar_total_publicaciones_of_activas(id_solicitud,especi, varied ):
     for fila in out_cur:
         lista.append(fila)
     return lista
+
 
 def Codex_Seleccion(id_solicitud, especie, variedad):
     django_cursor = connection.cursor()
@@ -495,7 +520,8 @@ def rol(num):
     salida = cursor.var(cx_Oracle.STRING)
     cursor.callproc("SP_BUSCAROL", [valor, salida])
     return salida.getvalue()
-    
+
+
 def datosLogin(correo):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()

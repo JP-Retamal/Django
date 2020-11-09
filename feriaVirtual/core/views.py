@@ -188,11 +188,14 @@ def historial_compra(request):
 @permission_required('core.add_pago')
 def detalle_historial_compra(request):
     id=request.POST.get('idventa')
-    print(id)
+    email=request.POST.get('correo')
+    variedad=request.POST.get('variedad')
+    
     context = {
-        'historial_hc': listar_detalle_historial_compra(id),
+        'historial_hc': listar_detalle_historial_compra(id, email),
+        'detalle_imagen':imagen_detalle(variedad)
     }
-        
+    
     return render(request, 'detalle_historial_compra.html', context)
 
 
@@ -387,7 +390,7 @@ class CreateCrudUser2(View):
 
         agregarSolicitud(fecha,externo)
 
-        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
+        user = {'ok':'ok'}
 
         data = {
             'user': user
@@ -433,6 +436,7 @@ def listar_variedad(especie):
 def agregarSolicitud(fecha,usua):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
+    print(fecha,usua)
     cursor.callproc('sp_ingresar_solicitud',[fecha,usua])
 
 # cliente externo
