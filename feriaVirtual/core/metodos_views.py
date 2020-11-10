@@ -416,6 +416,19 @@ def listar_historial_solicitudes(email):
 
 ##################################################        USUARIO ADMINISTRADOR       #########################################################
 
+def contar_solicitudes_nuevas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_CONTAR_SOLICITUDES_NUEVAS", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+
 def aprobar_solicitud( id_detalle):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()

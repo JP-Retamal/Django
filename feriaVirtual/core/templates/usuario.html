@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{%load humanize%}
+
 {% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block navbar %} {% include 'include/navbar-admin.html' %} {% endblock %}
@@ -97,6 +99,15 @@
                     {% endif %}
                 {% endif %}
                 {% if perms.core.view_ventalocal %}
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'solicitudAdmin' %}">                        
+                            {% for c in v_salida %}
+                                <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">
+                                 Hay {{c.0}} solicitudes nuevas</span>
+                            {% endfor %}
+                        </a>
+                    </div>
                                     
                  {% else %}              
                     <!-- Cuenta -->

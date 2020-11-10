@@ -44,7 +44,7 @@
 		</div>
 		<br>
 		<div class="contenedor-btns">
-			<button onclick="agregarFila(especie.value, variedad.value, cantidad.value)" type="menu"
+			<button onclick="agregarFila(especie.value, variedad.value, cantidad.value, fecha.value)" type="menu"
 				class="btn bg-green-500 text-white w-1/4 focus:outline-none">
 				Agregar Fruta
 			</button>
@@ -74,7 +74,9 @@
 				<br>
 				<br>
 				<div class="contenedor-btns centrar-contenedor">
-					<input type="hidden" value="{{user.username}}" id="usuariox" name="usuariox">
+			
+					<input type="hidden" value="{{user.get_username}}" id="usuariox" name="usuariox">
+
 					<button class="btn bg-green-500 text-white w-1/4 focus:outline-none" type="submit" >Enviar
 					Solicitud</button>
 				</div>
@@ -117,9 +119,9 @@
 
 <script>
 	// Create Django Ajax Call
-	function agregarFila(especie, variedad, cantidad) {
+	function agregarFila(especie, variedad, cantidad, fecha) {
 
-		if (especie && variedad && cantidad ) {
+		if (especie && variedad && cantidad && fecha) {
 		
 
 			var table = document.getElementById("tablaItems");
@@ -129,15 +131,15 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
-			//var cell5 = row.insertCell(4);
+			var cell5 = row.insertCell(4);
 			// Add some text to the new cells:
 			var valor1 = document.getElementById(variedad).textContent;
 
 			cell1.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+especie+'</td>';
 			cell2.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+valor1+'</td>';
 			cell3.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+cantidad+'</td>';
-			//cell4.innerHTML = fecha;
-			cell4.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
+			cell4.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+fecha+'</td>';
+			cell5.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
 
 		}else{
 			alert("Complete los campos para crear la solicitud!!!")
@@ -153,62 +155,6 @@
 		document.getElementById("tablaItems").deleteRow(i - 1);
 	}
 
-	$("form#guardarSolicitud").submit(function () {
-		var filas = [];
-
-		let fecha = document.getElementById("fecha").value;
-		let usuarioe = document.getElementById("usuariox").value;
-		
-		//alert(usuarioe)
-
-		$.ajax({
-				url: '{% url "crud_ajax_create2" %}',
-				data: {
-					'fecha': fecha,
-					'usuariox': usuarioe 
-				},
-				dataType: 'json',
-				async: false,
-				success: function (data) {
-					if (data.user) {
-						appendToUsrTable(data.user);
-					}
-				}
-			});
-
-
-
-		$('#tablaItems tr').each(function () {
-			var especie = $(this).find('td').eq(0).text();
-			var variedad = $(this).find('td').eq(1).text();
-			var cantidad = $(this).find('td').eq(2).text();
-			$.ajax({
-				url: '{% url "crud_ajax_create" %}',
-				data: {
-					'especie': especie,
-					'variedad': variedad,
-					'cantidad': cantidad
-				},
-				dataType: 'json',
-				async: false,
-				success: function (data) {
-					if (data.user) {
-						appendToUsrTable(data.user);
-
-					}
-				}
-			
-			});
-
-	});
-		console.log(filas)
-		// Create Ajax Call
-		$('form#addUser').trigger("reset");
-		alert("solicitud creada")
-		window.location.href = "{% url 'home' %}";
-
-	});
-
 	function cambiarvariedad() {
 		let categoriaid = document.getElementById("especie").value;
 		let url = '/variedad/?especie=' + categoriaid;
@@ -223,7 +169,85 @@
 
 	}
 
+	function agregarFila(especie, variedad, cantidad, fecha) {
+
+		if (especie && variedad && cantidad && fecha) {
+			
+
+			var table = document.getElementById("tablaItems");
+			var row = table.insertRow(-1);
+
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			// Add some text to the new cells:
+			var valor1 = document.getElementById(variedad).textContent;
+
+			cell1.innerHTML = especie;
+			cell2.innerHTML = valor1;
+			cell3.innerHTML = cantidad;
+			cell4.innerHTML = fecha;
+			cell5.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
+
+		}else{
+			alert("Agregue una fruta con su Cantidad")
+		}
+		}
+
+		function eliminarFila() {
+			document.getElementById("tablaItems").deleteRow(-1);
+		}
+
+		function eliminarFilaID(r) {
+			var i = r.parentNode.parentNode.rowIndex;
+			document.getElementById("tablaItems").deleteRow(i - 1);
+		}
+
 </script>
+
+<script>
+	// Create Django Ajax Call
+	$("form#guardarSolicitud").submit(function () {
+		var filas = [];
+
+		let fecha = document.getElementById("fecha").value;
+		let usuario = document.getElementById("usuariox").value;
+			
+		$('#tablaItems tr').each(function () {
+			var especie = $(this).find('td').eq(0).text();
+			var variedad = $(this).find('td').eq(1).text();
+			var cantidad = $(this).find('td').eq(2).text();
+			$.ajax({
+				url: '{% url "crud_ajax_create" %}',
+				data: {
+					'especie' : especie,
+					'variedad': variedad,
+					'cantidad': cantidad,
+					'fecha'   : fecha,
+					'usuario' : usuario
+				},
+				dataType: 'json',
+				async: false,
+				success: function (data) {
+					if (data.user) {
+						appendToUsrTable(data.user);
+
+					}
+				}
+				
+			});
+
+		});
+		console.log(filas)
+		// Create Ajax Call
+		$('form#addUser').trigger("reset");
+		alert("solicitud creada")
+		window.location.href = "{% url 'home' %}";
+
+	});
+</script>		
 
 <script>
 	// Inicio DatePicker JQuery

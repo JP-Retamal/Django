@@ -98,8 +98,10 @@ def informacion(request):
 
 # vistas de usuario inicio general
 def usuario(request):
-   
-    return render(request, 'usuario.html')
+    data = {
+        'v_salida': contar_solicitudes_nuevas()
+    }
+    return render(request, 'usuario.html', data)
 
 ##############################################          USUARIO COMERCIANTE        ############################################################
 # usuario comerciante
@@ -357,40 +359,30 @@ def variedad_por_especie(request):
 def solicitud(request):
     tituloPagina = 'Solicitudes'
     data = {
-        'especie':listar_especie(),
-    }    
+        'especie':listar_especie()
+    }
+
     return render(request, 'solicitud.html', data)
 
 # cliente externo
 class CreateCrudUser(View):
     def  get(self, request):
 
-        name1 = request.GET.get('especie', None)
-        address1 = request.GET.get('variedad', None)
-        age1 = request.GET.get('cantidad', None)
-        print(name1)
-        print(address1)
-        agregarfruta(name1.strip(),address1.strip(),age1.strip())
+        especie  = request.GET.get('especie', None)
+        variedad = request.GET.get('variedad', None)
+        cantidad = request.GET.get('cantidad', None)
+        fecha    = request.GET.get('fecha', None)
+        externo    = request.GET.get('usuario',None)
+        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
+        print(fecha, externo, usuarioid)
+        agregarSolicitud(fecha, usuario)
 
+        print(especie.strip(), variedad.strip(), cantidad.strip())
 
+        #agregarfruta(especie.strip(), variedad.strip(), cantidad.strip())
 
-        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
-
-        data = {
-            'user': user
-        }
-        return JsonResponse(data)
-
-# cliente externo
-class CreateCrudUser2(View):
-    def  get(self, request):
-
-        fecha = request.GET.get('fecha', None)
-        externo = request.GET.get('usuariox',None)
-
-        agregarSolicitud(fecha,externo)
-
-        user = {'ok':'ok'}
+        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad,
+                'fecha':obj.fecha,'usuarioid':obj.usuarioid}
 
         data = {
             'user': user
@@ -402,7 +394,40 @@ def agregarfruta(especie,variedad,cantidad):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_agregar_prueba',[especie,variedad,cantidad])
+
+# cliente externo
+class CreateCrudUser2(View):
+    def  get(self, request):
+
+        fecha      = request.GET.get('fecha', None)
+        externo    = request.GET.get('usuario',None)
+        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
+
+        print(externo)
+        print(fecha)
+        usuario = int(usuarioid)
+        print(usuario)
+
+        agregarSolicitud(fecha, usuario)
+
+        print('Registro de solicitud Exitoso !!!')
+
+        user = {'fecha':obj.fecha,'usuarioid':obj.usuarioid}
+
+        data = {
+            'user': user
+        }
     
+        return JsonResponse(data)
+
+# cliente externo
+@permission_required('core.add_solicitud')
+def agregarSolicitud(fecha_entrega, id_usuario):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    cursor.callproc('sp_ingresar_solicitud',[fecha_entrega, id_usuario])
+
+
 # cliente externo
 def listar_especie():
     django_cursor = connection.cursor()
@@ -430,14 +455,6 @@ def listar_variedad(especie):
         lista.append(fila)
     
     return lista
-
-# cliente externo
-@permission_required('core.add_solicitud')
-def agregarSolicitud(fecha,usua):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    print(fecha,usua)
-    cursor.callproc('sp_ingresar_solicitud',[fecha,usua])
 
 # cliente externo
 @permission_required('core.add_solicitud')

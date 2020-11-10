@@ -1,6 +1,6 @@
 <div class="contenedor-general" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
     <div class="HistorialCompra-contenedor-titulo">
-		<h3 class="HistorialCompra-contenedor-titulo__h2">Informacion Personal </h3>
+		<h3 class="HistorialCompra-contenedor-titulo__h2">Información Personal </h3>
     </div>
     {% if messages %}
     <ul class="messages">
@@ -47,36 +47,36 @@
         
         </div>
         <div class="HistorialCompra-contenedor-titulo">
-		    <h3 class="HistorialCompra-contenedor-titulo__h2">Informacion de Contacto </h3>
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Información de Contacto </h3>
 	    </div>
         <div class=" grid grid-cols-1 lg:grid-cols-3">
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Correo Electronico</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Correo Electrónico</h4></b>
 			    <input name="correo" type="text" 
                     class="input focus:outline-none focus:border-orange-500" value = "{{u.6}}" readonly/>
             </div>
 		    
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Numero de Telefono:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Número de Teléfono:</h4></b>
 			    <input id="informacionContacto-telefono" name="informacion-telefono" type="text" minlength="9" maxlength="9" required
                     class="input focus:outline-none focus:border-orange-500" placeholder="Ej: 9 XXXX XXXX"
                 value = "{{u.8}}" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
             </div>
         </div>
         <div class="HistorialCompra-contenedor-titulo">
-		    <h3 class="HistorialCompra-contenedor-titulo__h2">Informacion de Despacho </h3>
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Información de Despacho </h3>
 	    </div>
         <div class=" grid grid-cols-1 lg:grid-cols-3">
 		    <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Direccion:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Dirección:</h4></b>
                 <input id="informacionDespacho-direccion" name="informacion-direccion" type="text"
-                    class="input focus:outline-none focus:border-orange-500" placeholder="Direccion" 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Dirección" 
                     value = "{{u.7}}"/>
             </div>
         </div>
         <div class=" grid grid-cols-1 lg:grid-cols-3">
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Region:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Región:</h4></b>
 			    <select id="informacionDespacho-region" name="region" class="contenedor-selects__select focus:outline-none focus:border-orange-500">
                     {% for p in region %}
                         <option value="{{u.13}}">{{u.14}}</option>

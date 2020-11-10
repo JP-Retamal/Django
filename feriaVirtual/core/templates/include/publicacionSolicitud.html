@@ -4,6 +4,7 @@
     <div class="contenedor-titulo">
         <h1>Pedidos con demanda en el Extranjero</h1>
     </div>
+    {% if bd_pedido  %}
     <div class="contenedor-producto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {% for p in bd_pedido %} 
             <div class="flex justify-center py-4">       
@@ -31,4 +32,9 @@
             </div>
         {% endfor %}
     </div>
+    {% else %}
+       <div class="contenedor-titulo">
+		    <h1>Actualmente Sin Publicaciones </h1>
+	    </div>
+    {% endif %}
 </div>
