@@ -4,13 +4,19 @@
 <div class="contenedor-login centrar-contenedor">
   <div class="ventana-login">
     {% if form.errors %} 
-      <p calss="alert alert-warning" algin="center" role="alert">Los datos ingresados no son válidos. Inténtalo de nuevo.</p>
+    <script>
+      alertify.error('Los datos no son válidos');
+    </script>
     {% endif %}
       {% if next %}
         {% if user.is_authenticated %}
-          <p algin="center">Tu cuenta no tiene acceso a esta página. </p>
+          <script>
+            alertify.error('Sin permisos para ver esta página');
+          </script>
         {% else %}
-          <p algin="center">Inicie sesión para ver esta página.</p>
+          <script>
+            alertify.warning('Inicie sesión');
+          </script>
         {% endif %}
     {% endif %}
     <div class="ventana-titulo">

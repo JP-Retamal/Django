@@ -680,11 +680,11 @@ h6 {
 
 .contenedor-navbar {
   --bg-opacity: 1;
-  background-color: #48bb78;
+  background-color: #38a169;
   background-color: rgba(72, 187, 120, var(--bg-opacity));
   padding: 1rem;
 }
-
+ 
 .contenedor-logo {
   height: 100%;
   background: url("../img/BestFruit_Logo_horizontal.png");
@@ -1088,6 +1088,7 @@ h6 {
 .formulario-login__input {
   border-radius: 0.5rem;
   border-top-width: 2px;
+  width: 100%;
   --bg-opacity: 1;
   background-color: #f7fafc;
   background-color: rgba(247, 250, 252, var(--bg-opacity));

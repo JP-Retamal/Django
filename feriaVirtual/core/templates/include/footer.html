@@ -1,10 +1,11 @@
 <div class="contenedor-footer grid grid-cols-1 lg:grid-cols-3">
     <div class="seccion">
         <div class="seccion-titulo">
-            <h1 class="seccion-titulo__h1">BestFruit</h1>
+            <h2 class="seccion-titulo__h1">BestFruit</h2>
         </div>
         <div class="seccion-imagen flex justify-center my-4">
-            <img src="../static/img/BestFruit.png" alt="Logo" class="seccion-imagen__img" />
+            {% load static %}
+            <img src="{% static '../static/img/BestFruit.png' %}" alt="Logo" class="seccion-imagen__img" />
         </div>
         <div class="seccion-info px-4">
             <p class="seccion-info__p">
@@ -18,7 +19,7 @@
     </div>
     <div class="seccion">
         <div class="seccion-titulo">
-            <h1 class="seccion-titulo__h1">Menú</h1>
+            <h2 class="seccion-titulo__h1">Menú</h2>
         </div>
         <div class="seccion-enlaces">
             <ul class="">
@@ -42,7 +43,7 @@
     </div>
     <div class="seccion">
         <div class="seccion-titulo">
-            <h1 class="seccion-titulo__h1">Contactanos en...</h1>
+            <h2 class="seccion-titulo__h1">Contacto</h2>
         </div>
         <div class="seccion-contactos">
             <div class="medio-contacto">

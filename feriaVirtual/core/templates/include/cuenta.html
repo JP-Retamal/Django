@@ -17,7 +17,7 @@
         <div class=" grid grid-cols-1 lg:grid-cols-3">
 
 		    <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Nombres:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Nombres</h4></b>
                 <input id="informacionPersonal-nombre" name="informacion-nombre" type="text" minlength="2" required 
                     class="input focus:outline-none focus:border-orange-500" placeholder="Ej: Nombres"
                     value = "{{u.2}}" readonly/>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Fecha de Nacimiento:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Fecha de Nacimiento</h4></b>
                 <input id="registro-fecha" name="informacion-fecha" type="text"
                     class="input appearance-none focus:outline-none focus:border-orange-500" required maxlength="10" minlength="10" 
                     placeholder="Fecha de Nacimiento"
@@ -57,18 +57,18 @@
             </div>
 		    
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Número de Teléfono:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Número de Teléfono</h4></b>
 			    <input id="informacionContacto-telefono" name="informacion-telefono" type="text" minlength="9" maxlength="9" required
                     class="input focus:outline-none focus:border-orange-500" placeholder="Ej: 9 XXXX XXXX"
                 value = "{{u.8}}" onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
             </div>
         </div>
         <div class="HistorialCompra-contenedor-titulo">
-		    <h3 class="HistorialCompra-contenedor-titulo__h2">Información de Despacho </h3>
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Información de Despacho</h3>
 	    </div>
         <div class=" grid grid-cols-1 lg:grid-cols-3">
 		    <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Dirección:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Dirección</h4></b>
                 <input id="informacionDespacho-direccion" name="informacion-direccion" type="text"
                     class="input focus:outline-none focus:border-orange-500" placeholder="Dirección" 
                     value = "{{u.7}}"/>
@@ -76,7 +76,7 @@
         </div>
         <div class=" grid grid-cols-1 lg:grid-cols-3">
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Región:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Región</h4></b>
 			    <select id="informacionDespacho-region" name="region" class="contenedor-selects__select focus:outline-none focus:border-orange-500">
                     {% for p in region %}
                         <option value="{{u.13}}">{{u.14}}</option>
@@ -84,7 +84,7 @@
 			    </select>
             </div>
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Provincia:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Provincia</h4></b>
 			    <select id="informacionDespacho-provincia" name="provincia" class="contenedor-selects__select focus:outline-none focus:border-orange-500">
                     {% for p in region %}
                         <option value="{{u.11}}">{{u.12}}</option>
@@ -92,7 +92,7 @@
                 </select>
             </div>
             <div class="contenedor-inputs">
-                <b><h4 style="margin: 5px; font-size: 15px;">Comuna:</h4></b>
+                <b><h4 style="margin: 5px; font-size: 15px;">Comuna</h4></b>
 			    <select id="informacionDespacho-comuna" name="comuna" class="contenedor-selects__select focus:outline-none focus:border-orange-500">
                     {% for p in region %}
 					    <option value="{{u.9}}">{{u.10}}</option>

@@ -6,7 +6,7 @@
 		<br>
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			<div class="contenedor-selects">
-				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Fruta:</h4></b>
+				<b><h4 class="label" style="margin: 5px; font-size: 14px;">Fruta</h4></b>
 				<select id="especie" name="crearSolicitud-especie"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500" required
 					onchange="cambiarvariedad()">
@@ -21,7 +21,7 @@
 			</div>
 			
 			<div class="contenedor-selects">
-				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Variedad:</h4></b>
+				<b><h4 class="label" style="margin: 5px; font-size: 14px;">Variedad</h4></b>
 				<select id="variedad" name="crearSolicitud-region"
 					class="contenedor-selects__select focus:outline-none focus:border-orange-500">
 	
@@ -29,17 +29,17 @@
 				</select>
 			</div>
 			<div class="contenedor-inputs">
-				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Kilos Fruta:</h4></b>
-				<input id="cantidad" name="crearSolicitud-cantidad" type="text"
-					class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos" 
-					onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-				
+			<input id="cantidad" name="crearSolicitud-cantidad" type="text"
+				class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos"
+				data-toggle="tooltip" data-placement="right" title="Ingrese cantidad de kilos"
+				onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+
 			</div>
 			<div class="contenedor-inputs">
-				<b><h4 class="label" style="margin: 5px; font-size: 15px;">Entrega Estimada:</h4></b>
 				<input id="fecha" name="fecha" type="text"
-				class="input appearance-none focus:outline-none focus:border-orange-500"
-				placeholder="Plazo Estimado" required maxlength="10" minlength="10"/>
+					class="input appearance-none focus:outline-none focus:border-orange-500" placeholder="Plazo Estimado"
+					data-toggle="tooltip" data-placement="right" title="Ingrese fecha estimada de entrega"
+					required maxlength="10" minlength="10" />
 			</div>
 		</div>
 		<br>
@@ -119,10 +119,10 @@
 
 <script>
 	// Create Django Ajax Call
-	function agregarFila(especie, variedad, cantidad, fecha) {
+	function agregarFila(especie, variedad, cantidad) {
 
-		if (especie && variedad && cantidad && fecha) {
-		
+		if (especie && variedad && cantidad) {
+
 
 			var table = document.getElementById("tablaItems");
 			var row = table.insertRow(-1);
@@ -131,28 +131,30 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
+			//var cell5 = row.insertCell(4);
 			// Add some text to the new cells:
 			var valor1 = document.getElementById(variedad).textContent;
 
-			cell1.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+especie+'</td>';
-			cell2.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+valor1+'</td>';
-			cell3.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+cantidad+'</td>';
-			cell4.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td">'+fecha+'</td>';
-			cell5.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
-
-		}else{
-			alert("Complete los campos para crear la solicitud!!!")
+			cell1.innerHTML = "<td class='HistorialCompra-contenedor-tabla__td text-right'>" + especie + "</td>";
+			cell2.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td text-center">' + valor1 + '</td>';
+			cell3.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td text-center">' + cantidad + '</td>';
+			//cell4.innerHTML = fecha;
+			cell4.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
+			alertify.success('Fruta ingresada');
+		} else {
+			alertify.error("Complete todos los campos!!!")
 		}
 	}
 
 	function eliminarFila() {
 		document.getElementById("tablaItems").deleteRow(-1);
+		alertify.error('Fila Borrada');
 	}
 
 	function eliminarFilaID(r) {
 		var i = r.parentNode.parentNode.rowIndex;
 		document.getElementById("tablaItems").deleteRow(i - 1);
+		alertify.error('Fila Borrada');
 	}
 
 	function cambiarvariedad() {
@@ -169,84 +171,71 @@
 
 	}
 
-	function agregarFila(especie, variedad, cantidad, fecha) {
-
-		if (especie && variedad && cantidad && fecha) {
-			
-
-			var table = document.getElementById("tablaItems");
-			var row = table.insertRow(-1);
-
-			var cell1 = row.insertCell(0);
-			var cell2 = row.insertCell(1);
-			var cell3 = row.insertCell(2);
-			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
-			// Add some text to the new cells:
-			var valor1 = document.getElementById(variedad).textContent;
-
-			cell1.innerHTML = especie;
-			cell2.innerHTML = valor1;
-			cell3.innerHTML = cantidad;
-			cell4.innerHTML = fecha;
-			cell5.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
-
-		}else{
-			alert("Agregue una fruta con su Cantidad")
-		}
-		}
-
-		function eliminarFila() {
-			document.getElementById("tablaItems").deleteRow(-1);
-		}
-
-		function eliminarFilaID(r) {
-			var i = r.parentNode.parentNode.rowIndex;
-			document.getElementById("tablaItems").deleteRow(i - 1);
-		}
-
 </script>
 
 <script>
 	// Create Django Ajax Call
-	$("form#guardarSolicitud").submit(function () {
+	function solicituguardar() {
 		var filas = [];
 
 		let fecha = document.getElementById("fecha").value;
-		let usuario = document.getElementById("usuariox").value;
-			
-		$('#tablaItems tr').each(function () {
-			var especie = $(this).find('td').eq(0).text();
-			var variedad = $(this).find('td').eq(1).text();
-			var cantidad = $(this).find('td').eq(2).text();
-			$.ajax({
-				url: '{% url "crud_ajax_create" %}',
-				data: {
-					'especie' : especie,
-					'variedad': variedad,
-					'cantidad': cantidad,
-					'fecha'   : fecha,
-					'usuario' : usuario
-				},
-				dataType: 'json',
-				async: false,
-				success: function (data) {
-					if (data.user) {
-						appendToUsrTable(data.user);
+		let usuarioe = document.getElementById("usuariox").value;
 
+		alertify.confirm("Solicitud", "Desea enviar la solicitud?",
+			function () {
+
+				$.ajax({
+					url: '{% url "crud_ajax_create2" %}',
+					data: {
+						'fecha': fecha,
+						'usuariox': usuarioe
+					},
+					dataType: 'json',
+					async: false,
+					success: function (data) {
+						if (data.user) {
+							appendToUsrTable(data.user);
+						}
 					}
-				}
-				
+				});
+
+
+
+				$('#tablaItems tr').each(function () {
+					var especie = $(this).find('td').eq(0).text();
+					var variedad = $(this).find('td').eq(1).text();
+					var cantidad = $(this).find('td').eq(2).text();
+					$.ajax({
+						url: '{% url "crud_ajax_create" %}',
+						data: {
+							'especie': especie,
+							'variedad': variedad,
+							'cantidad': cantidad
+						},
+						dataType: 'json',
+						async: false,
+						success: function (data) {
+							if (data.user) {
+								appendToUsrTable(data.user);
+
+							}
+						}
+
+					});
+
+				});
+				console.log(filas)
+				// Create Ajax Call
+				window.location.replace('{% url "solicitud" %}');
+				alertify.success('Solicitud enviada');
+			},
+			function () {
+				alertify.error('No se a realizado la solicitud');
 			});
 
-		});
-		console.log(filas)
-		// Create Ajax Call
-		$('form#addUser').trigger("reset");
-		alert("solicitud creada")
-		window.location.href = "{% url 'home' %}";
 
-	});
+	};
+	
 </script>		
 
 <script>

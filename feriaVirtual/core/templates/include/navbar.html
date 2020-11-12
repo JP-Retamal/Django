@@ -58,7 +58,7 @@
                         <li></li>
                     </a>
                     <a href="{% url 'solicitud' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                        <li>Solicitudes de Compra</li>
+                        <li>Generar Solicitud</li>
                     </a>
                     <a href="javascript:enviar_formulario6()" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
                         <li>Pedidos</li>
@@ -73,10 +73,18 @@
                             }
                     </script>
 
-                    <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                        <li></li>
+                    <a href="javascript:enviar_formulario10()" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                        <li>Ordenes de Compra</li>
                     </a>    
-
+                    <form action="{% url 'ordenesExterno' %}" method="POST" hidden="hidden" name="formulario10">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{user.username}}" name="valcorreo">
+                    </form>
+                        <script>
+                            function enviar_formulario10(){
+                            document.formulario10.submit()
+                            }
+                    </script>
                 {% else %}
                     {% if perms.core.view_detalleoferta %}
                     

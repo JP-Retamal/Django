@@ -413,6 +413,17 @@ def listar_historial_solicitudes(email):
         lista.append(fila)
     return lista
 
+def LISTAR_COSTOS_ORDEN(email):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_COSTOS_ORDEN",[email, out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
 
 ##################################################        USUARIO ADMINISTRADOR       #########################################################
 

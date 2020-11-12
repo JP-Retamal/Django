@@ -51,6 +51,24 @@
                                 <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud de Compra</span>
                             </a>
                         </div>
+                         <!-- Ordenes de Compra -->
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                <a href="javascript:enviar_formulario8()">
+                                    <i class="fas fa-cash-register usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    Órdenes de Compra</span>
+                                </a>
+                            </div>
+                            <form action="{% url 'ordenesExterno' %}" method="POST" hidden="hidden" name="formulario8" >
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                </form>
+                            </form>
+                            <script>
+                                function enviar_formulario8(){
+                                document.formulario8.submit()
+                                }
+                            </script>
                         <!-- Pedidos -->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                             <a href="javascript:enviar_formulario7()">
@@ -64,10 +82,10 @@
                                 </form>
                         </form>
                             <script>
-                            function enviar_formulario7(){
-                            document.formulario7.submit()
-                            }
-                        </script>
+                                function enviar_formulario7(){
+                                document.formulario7.submit()
+                                }
+                            </script>
                     {% else %}
                         {% if perms.core.view_detalleoferta %}
                             <!-- historial de Ofertas-->

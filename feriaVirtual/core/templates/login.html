@@ -3,10 +3,20 @@
 
 <div class="contenedor-login centrar-contenedor">
   <div class="ventana-login">
+    {% if form.errors %} 
+      <p calss="alert alert-warning" algin="center" role="alert">Los datos ingresados no son válidos. Inténtalo de nuevo.</p>
+    {% endif %}
+      {% if next %}
+        {% if user.is_authenticated %}
+          <p algin="center">Tu cuenta no tiene acceso a esta página. </p>
+        {% else %}
+          <p algin="center">Inicie sesión para ver esta página.</p>
+        {% endif %}
+    {% endif %}
     <div class="ventana-titulo">
       <h2 class="ventana-titulo__h1">Ingresa a tu Cuenta</h2>
     </div>
-    <form action="" id="formlogin" action="" method="POST">
+    <form action="" id="formlogin" action="{% url 'login' %}" method="POST">
       {% csrf_token %}
       <div class="formulario-login">
         <input
@@ -43,9 +53,11 @@
         <button
           type="submit"
           class="formulario-login__btn btn focus:outline-none"
+          value="login"
         >
           Entrar
         </button>
+        <input type="hidden" name="next" value="{{ next }}" />
       </div>
     </form>
     <div class="enlace-sign">
@@ -58,6 +70,7 @@
     </div>
   </div>
 </div>
+<!--
 <script>
   const $form = document.querySelector('.formulario-login');
   const $input = document.querySelectorAll('.formulario-login__input');
@@ -81,6 +94,6 @@
   $form.addEventListener('submit', e => {
     e.preventDefault();
   });
-</script>
+</script>-->
 
 {% endblock %}

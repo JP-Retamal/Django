@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
 #-----------------------------------------
-from .models import Usuario, pruebadetalle
+from .models import Usuario, pruebadetalle, Rol
 #-----------------------------------------
 from .metodos_views import *
 from datetime import date
@@ -57,6 +57,7 @@ def detalle(request):
 # ACCESO USUARIOS AL SITEMA      
 def login(request):
     # validar datos de usuarios.
+    comprobar_usuarios()
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -72,6 +73,21 @@ def login(request):
  
     return render(request, 'login.html')
 
+def comprobar_usuarios():
+    entry_list = list(Usuario.objects.all())
+    for u in entry_list:
+        if User.objects.filter(username=u.email):
+            pass
+            #print("usuario: "+ u.nombre+" está")
+        else:
+            #print("usuario: "+ u.nombre+" no existe")
+            user = User.objects.create_user(username=u.email, first_name=u.nombre, last_name=u.ap_paterno, email=u.email, password=u.clave)
+            if u.id_rol.pk == 1:
+                user.is_staff = True
+            else:
+                user.is_staff = False
+            user.groups.add(u.id_rol.pk)
+            user.save()
 
 # cerrar sesión de usuario.
 def logout(request):
@@ -455,6 +471,22 @@ def listar_variedad(especie):
         lista.append(fila)
     
     return lista
+
+@permission_required('core.add_solicitud')
+def ordenes_externo(request):
+    info = request.POST.get("valcorreo")
+    print(info)
+    data = {
+        'bd_orden': LISTAR_COSTOS_ORDEN(info)
+    }
+    return render(request, 'aceptar_ordenes.html', data)
+
+@permission_required('core.add_solicitud')
+def ordenes_externo_detalle(request):
+    
+    
+    return render(request, 'ordenesExterno_detalle.html')
+
 
 # cliente externo
 @permission_required('core.add_solicitud')
