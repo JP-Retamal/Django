@@ -2,7 +2,7 @@
 {%load humanize%}
 <div class="cotenedor-producto my-10">
     <div class="contenedor-titulo text center">
-        <h1>Nuestros Productos</h1>
+        <h1>Más Ofertas</h1>
     </div>
     <div class="contenedor-producto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {% for p in media_alta %} 
@@ -13,7 +13,7 @@
                         <div class="titulo-tarjeta">
                             <h2><td>{{p.data.5}} {{p.data.6}}</td></h2>
                         </div>
-                        <div class="unidad-tarjeta"><span>Cantidad disponible: <td>{{p.data.4}}</td>Kg.</span></div>
+                        <div class="unidad-tarjeta"><span><h3>Cantidad disponible: <td>{{p.data.4}}</td>Kg.</h3></span></div>
                         <div class="precio-tarjeta">
                             <h2>$<td>{{p.data.3|intcomma}} x Kg.</td></h2>
                         </div>

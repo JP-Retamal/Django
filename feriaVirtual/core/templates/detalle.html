@@ -27,15 +27,15 @@
                     <span class="detalle-contenedor-caracteristica__span">Características:</span>
                     <ul>
                      <br>
-                        <li class="detalle-contenedor-caracteristica__li">Kilos Disponibles:<td> {{d.data.4}} Kg.</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Fecha cosecha:<td> {{d.data.8}}</td></li>
-                        <li class="detalle-contenedor-caracteristica__li">Descripción:<br><br><td> {{d.data.11}}</td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><h3>Kilos Disponibles:<td> {{d.data.4}} Kg.</h3></td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><h3>Fecha cosecha:<td> {{d.data.8}}</h3></td></li>
+                        <li class="detalle-contenedor-caracteristica__li"><h3>Descripción:<br><br><td> {{d.data.11}}</h3></td></li>
                     </ul>
                 </div>  
                 <form action="../comprar/" method="GET">
                     {% csrf_token %}
                 <div class="container"> 
-                <span class="container-slider">¿Cuánto desea comprar?</span>
+                <span class="container-slider"><h3>¿Cuánto desea comprar?</h3></span>
                     <div class="slidercontenedor">                       
                         <input type="range" min="0" step="1" max="{{d.data.4}}" value="0" 
                         class="slider" id="slider"> 

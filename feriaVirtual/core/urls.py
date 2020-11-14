@@ -26,19 +26,25 @@ urlpatterns = [
    path('usuario/historial_ofertas', login_required(historial_ofertas), name="historial_ofertas"),
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', login_required(ofertaPruductor), name="oferta_productor"),
+
    path('usuario/ordenes', ordenes_externo, name="ordenesExterno"),
    path('usuario/ordenes_detalle', ordenes_externo_detalle, name="ordenExterno_detalle"),
-   path('variedades',login_required(variedad_por_especie), name="variedades"),
+
+  
    path('usuario/solicitud', login_required(solicitud), name="solicitud"),
-   path('ajax/crud/create/', login_required(CreateCrudUser.as_view()), name='crud_ajax_create'),
-   path('ajax/crud/create_2/',login_required(CreateCrudUser2.as_view()), name='crud_ajax_create2'),
+   
+   path('ajax/crud/create/', CreateCrudUser.as_view(), name='crud_ajax_create'),
+   path('ajax/crud/create_2/', CreateCrudUser2.as_view(), name='crud_ajax_create2'),
+   path('variedad/', variedad_por_especie, name="variedad"),
+
    path('administracion/publicaciones_ofertadas', login_required(revisar_publicaciones_pedidos), name="revisar_publicaciones_pedidos"),
    path('administracion/detalle_publicacion_ofertada', login_required(revisar_detalle_pedido), name="revisar_detalle_pedido"),
 
 
 
+
 #-------------------------------------------------------------------------------
-   path('variedad/', variedad_por_especie, name="variedad"),
+   
    path('p_oferta', p_oferta, name='p_oferta'),
    path('grafico/', ver, name="grafico"),
 ]

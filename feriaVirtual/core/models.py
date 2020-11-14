@@ -287,9 +287,10 @@ class Solicitud(models.Model):
     id_solicitud = models.IntegerField(primary_key=True)
     fecha_entrega = models.DateField(blank=True, null=True)
     fecha_creacion = models.DateField()
+    fecha_de_termino = models.DateField(blank=True, null=True)
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
     id_estado = models.ForeignKey(EstadoSolicitud, models.DO_NOTHING, db_column='id_estado', blank=True, null=True)
-    fecha_de_termino = models.DateField(blank=True, null=True)
+    
 
     class Meta:
         managed = False

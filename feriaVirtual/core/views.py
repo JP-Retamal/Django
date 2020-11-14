@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User 
 from django.contrib import messages
 from django.db import connection
 from django.contrib import auth
@@ -108,8 +108,7 @@ def informacion(request):
         id_comuna     = request.POST.get('comuna')
         salida=modificar_usuario( info, celular, direccion, id_comuna)
         if salida==1:
-           data['mensaje']="Datos actualizados" 
-           data['usuario']=buscar_usuario(info)
+           messages.success(request, ' ')
     return  render(request, 'informacion.html', data) 
 
 # vistas de usuario inicio general
@@ -377,33 +376,9 @@ def solicitud(request):
     data = {
         'especie':listar_especie()
     }
-
+    
     return render(request, 'solicitud.html', data)
 
-# cliente externo
-class CreateCrudUser(View):
-    def  get(self, request):
-
-        especie  = request.GET.get('especie', None)
-        variedad = request.GET.get('variedad', None)
-        cantidad = request.GET.get('cantidad', None)
-        fecha    = request.GET.get('fecha', None)
-        externo    = request.GET.get('usuario',None)
-        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
-        print(fecha, externo, usuarioid)
-        agregarSolicitud(fecha, usuario)
-
-        print(especie.strip(), variedad.strip(), cantidad.strip())
-
-        #agregarfruta(especie.strip(), variedad.strip(), cantidad.strip())
-
-        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad,
-                'fecha':obj.fecha,'usuarioid':obj.usuarioid}
-
-        data = {
-            'user': user
-        }
-        return JsonResponse(data)
 
 # cliente externo
 def agregarfruta(especie,variedad,cantidad):
@@ -411,37 +386,65 @@ def agregarfruta(especie,variedad,cantidad):
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_agregar_prueba',[especie,variedad,cantidad])
 
-# cliente externo
-class CreateCrudUser2(View):
+
+ 
+class CreateCrudUser(View):
     def  get(self, request):
 
-        fecha      = request.GET.get('fecha', None)
-        externo    = request.GET.get('usuario',None)
-        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
+        name1 = request.GET.get('especie', None)
+        address1 = request.GET.get('variedad', None)
+        age1 = request.GET.get('cantidad', None)
 
-        print(externo)
-        print(fecha)
-        usuario = int(usuarioid)
-        print(usuario)
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        print(name1.strip(), address1.strip(), age1.strip())
+        #agregarfruta(name1.strip(),address1.strip(),age1.strip())
 
-        agregarSolicitud(fecha, usuario)
+        
 
-        print('Registro de solicitud Exitoso !!!')
-
-        user = {'fecha':obj.fecha,'usuarioid':obj.usuarioid}
+        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
 
         data = {
             'user': user
         }
-    
+        return JsonResponse(data)
+
+class CreateCrudUser2(View):
+    def  get(self, request):
+ 
+        fecha_entrega = request.GET.get('fecha', None)
+        externo = request.GET.get('usuariox', None)
+        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
+        usuario=int(usuarioid)
+        print(fecha_entrega, usuario)
+        print(fecha_entrega, usuario)
+        print(fecha_entrega, usuario)
+        print(fecha_entrega, usuario)
+        print(fecha_entrega, usuario)
+        print(fecha_entrega, usuario)
+
+        agregarSolicitud(fecha_entrega, usuario)
+       
+        messages.success(request, 'Registro Exitoso')
+        
+        respuesta = {'resp':'OKA'}
+
+        data = {
+            'respuesta':respuesta
+        }
+      
         return JsonResponse(data)
 
 # cliente externo
 @permission_required('core.add_solicitud')
-def agregarSolicitud(fecha_entrega, id_usuario):
+def agregarSolicitud(fecha_entrega, usuarioid):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
-    cursor.callproc('sp_ingresar_solicitud',[fecha_entrega, id_usuario])
+    cursor.callproc('sp_ingresar_solicitud',[fecha_entrega, usuarioid])
 
 
 # cliente externo
