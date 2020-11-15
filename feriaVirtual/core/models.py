@@ -16,6 +16,7 @@ class pruebadetalle(models.Model):
     class Meta:
         managed = False
         db_table = 'pruebadetalle'
+    
 #---------------------------------
 
 class Calidad(models.Model):

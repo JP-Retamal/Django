@@ -14,7 +14,7 @@ from .metodos_views import *
 from datetime import date
 import cx_Oracle
 
-from django.views.generic import TemplateView, View, DeleteView
+from django.views.generic import TemplateView, View, DeleteView, CreateView
 from django.core import serializers
 from django.http import JsonResponse
 import json
@@ -381,30 +381,17 @@ def solicitud(request):
 
 
 # cliente externo
-def agregarfruta(especie,variedad,cantidad):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    cursor.callproc('sp_agregar_prueba',[especie,variedad,cantidad])
-
-
- 
 class CreateCrudUser(View):
     def  get(self, request):
 
         name1 = request.GET.get('especie', None)
         address1 = request.GET.get('variedad', None)
         age1 = request.GET.get('cantidad', None)
+        print(name1)
+        print(address1)
+        agregarfruta(name1.strip(),address1.strip(),age1.strip())
 
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        print(name1.strip(), address1.strip(), age1.strip())
-        #agregarfruta(name1.strip(),address1.strip(),age1.strip())
 
-        
 
         user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
 
@@ -415,33 +402,27 @@ class CreateCrudUser(View):
 
 class CreateCrudUser2(View):
     def  get(self, request):
- 
-        fecha_entrega = request.GET.get('fecha', None)
-        externo = request.GET.get('usuariox', None)
-        usuarioid  = SP_BUSCA_NUM_USUARIO(externo)
-        usuario=int(usuarioid)
-        print(fecha_entrega, usuario)
-        print(fecha_entrega, usuario)
-        print(fecha_entrega, usuario)
-        print(fecha_entrega, usuario)
-        print(fecha_entrega, usuario)
-        print(fecha_entrega, usuario)
 
-        agregarSolicitud(fecha_entrega, usuario)
-       
-        messages.success(request, 'Registro Exitoso')
+        fecha = request.GET.get('fecha', None)
+        externo = request.GET.get('usuariox',None)
         
-        respuesta = {'resp':'OKA'}
+        agregarSolicitud(fecha.strip(),externo.strip())
+
+        user = {'id':obj.id,'especie':obj.especie,'variedad':obj.variedad,'cantidad':obj.cantidad}
 
         data = {
-            'respuesta':respuesta
+            'user': user
         }
-      
         return JsonResponse(data)
 
+
 # cliente externo
-@permission_required('core.add_solicitud')
+
 def agregarSolicitud(fecha_entrega, usuarioid):
+
+    print(fecha_entrega)
+    print(usuarioid)
+
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     cursor.callproc('sp_ingresar_solicitud',[fecha_entrega, usuarioid])

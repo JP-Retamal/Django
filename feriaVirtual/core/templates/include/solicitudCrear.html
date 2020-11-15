@@ -1,33 +1,52 @@
 
-<div class="crearSolicitud-contenedor" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+<div class="contenedor-tarjeta" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem ">
+	<div class="contenedor-titulo">
+        <h2>Solicitud de Frutas</h2>
+    </div>
 	<div class="crearSolicitud-contenedor-titulo">
-		<h2 class="crearSolicitud-contenedor-titulo__h2">Agregar Fruta</h2>
+		<h2 >Seleccione su Pedido:</h2>
+		<br>
+	</div>
+	<br>
+	<br>
+	<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
+		<div class="unidad-tarjeta">
+			<h3>1.- Seleccione Fruta</h3>
+		</div>
+		<div class="unidad-tarjeta">
+			<h3>2.- Seleccione Variedad</h3>
+		</div>
+		<div class="unidad-tarjeta">
+			<h3>3.- Ingrese kilos</h3>
+		</div>
+		<div class="unidad-tarjeta">
+			<h3>4.- Ingrese Fecha Estimada</h3>
+		</div>
 	</div>
 		<br>
-		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
-			<div class="contenedor-selects">
-				<b><h4 class="label" style="margin: 5px; font-size: 14px;">Fruta</h4></b>
-				<select id="especie" name="especie"
-					class="contenedor-selects__select focus:outline-none focus:border-orange-500" required
-					onchange="cambiarvariedad()">
-					<option value="0" disabled selected>Lista de frutas</option>
-					{% for c in especie%}
-					<option value="{{c.1}}" name="{{c.1}}">{{c.1}}
-					</option>
-					{% endfor %}
-
-				</select>
-
-			</div>
+	<form id="form-suscripcion" method="POST">
+	<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
+		
+		<div class="contenedor-selects">			
+			<select id="especie" name="especie"
+				class="contenedor-selects__select focus:outline-none focus:border-orange-500" required
+				onchange="cambiarvariedad()">
+				<option value="0" disabled selected>Lista de frutas</option>
+				{% for c in especie%}
+				<option value="{{c.1}}" name="{{c.1}}">{{c.1}}
+				</option>
+				{% endfor %}
+			</select>
+		</div>
 			
-			<div class="contenedor-selects">
-				<b><h4 class="label" style="margin: 5px; font-size: 14px;">Variedad</h4></b>
-				<select id="variedad" name="variedad"
-					class="contenedor-selects__select focus:outline-none focus:border-orange-500" required>
+		<div class="contenedor-selects">			
+			<select id="variedad" name="variedad"
+				class="contenedor-selects__select focus:outline-none focus:border-orange-500" required>
 	
 					<!-- VACIO-->
-				</select>
+			</select>
 			</div>
+
 			<div class="contenedor-inputs">
 			<input id="cantidad" name="cantidad" type="text"
 				class="input focus:outline-none focus:border-orange-500" placeholder="Cantidad Kilos"
@@ -35,41 +54,61 @@
 				onkeypress='return event.charCode >= 48 && event.charCode <= 57'required/>
 
 			</div>
+
 			<div class="contenedor-inputs">
 				<input id="fecha" name="fecha" type="text"
 					class="input appearance-none focus:outline-none focus:border-orange-500" placeholder="Plazo Estimado"
 					data-toggle="tooltip" data-placement="right" title="Ingrese fecha estimada de entrega"
 					required maxlength="10" minlength="10" />
 			</div>
+		</form>
 		</div>
 		<br>
+		<br>
 		<div class="contenedor-btns">
-			<button  onclick="agregarFila(especie.value, variedad.value, cantidad.value, fecha.value)"
+			<button  onclick="agregarFila(especie.value, variedad.value, cantidad.value)" 
 				class="btn bg-green-500 text-white w-1/4 focus:outline-none">
 				Agregar Fruta
 			</button>
 		</div>
+		<div class="crearSolicitud-contenedor-titulo">
+			
+			<br>
+		</div>
+		<br>
+		<!--------------------------------------------------------------------------------------------->
+		<div class="crearSolicitud-contenedor-formulario ">
+			<table class="table table-striped" id="tablita">
+				<thead>
+					<tr class="HistorialCompra-contenedor-tabla__tr">
+						<th class="crearSolicitud-contenedor-tabla__th ">Nombre</th>
+						<th class="crearSolicitud-contenedor-tabla__th ">Variedad</th>
+						<th class="crearSolicitud-contenedor-tabla__th ">Kilos</th>
+						<th class="crearSolicitud-contenedor-tabla__th ">Quitar</th>
+					</tr>
+				</thead>
+				<tbody id="tablaItems" class="crearSolicitud-contenedor-tabla__tbody">
+					<tr class="HistorialCompra-contenedor-tabla-tbody__tr">
+							<!--aqui se Agregar-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div class="contenedor-btns centrar-contenedor">
+			<input type="hidden" value="{{user.username}}" id="usuariox" name="usuariox">
+			<button class="btn bg-success text-white w-1/4 focus:outline-none" type="submit"
+				onclick="solicituguardar()">Enviar
+				Solicitud</button>
+		</div>
+		
+		<!--------------------------------------------------------------------------------------------->
 		<br>
 		<div class="crearSolicitud-contenedor-titulo">
-			<h2 class="crearSolicitud-contenedor-titulo__h2">Enviar Solicitud</h2>
+			
 		</div>
 			<div class="HistorialCompra-contenedor-tabla">
-				<table class="listarSolicitud-contenedor-solicitudes">
-					<thead>
-						<tr class="HistorialCompra-contenedor-tabla__tr">
-							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Nombre</th>
-							<th class="crearSolicitud-contenedor-tabla__th w-1/3 text-left">Variedad</th>
-							<th class="crearSolicitud-contenedor-tabla__th w-1/12 text-left">Kilos</th>
-							<th class="crearSolicitud-contenedor-tabla__th w-1/12 text-left">Fecha Estimada</th>
-							<th class="crearSolicitud-contenedor-tabla__th w-1/12">Quitar</th>
-						</tr>
-					</thead>
-					<tbody id="tablaItems" class="crearSolicitud-contenedor-tabla__tbody">
-						<tr class="HistorialCompra-contenedor-tabla-tbody__tr">
-						<!--aqui se Agregar-->
-						</tr>
-					</tbody>
-				</table>
+				
 				<br>
 				<br>
 				<div class="contenedor-btns centrar-contenedor">
@@ -133,10 +172,41 @@
 </script>
 
 <script>
-	// Create Django Ajax Call
-	function agregarFila(especie, variedad, cantidad, fecha) {
+	// Inicio DatePicker JQuery
+	$.datepicker.regional['es'] = {
+		closeText: 'Cerrar',
+		prevText: '< Ant',
+		nextText: 'Sig >',
+		currentText: 'Hoy',
+		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+			'Noviembre', 'Diciembre'],
 
-		if (especie && variedad && cantidad && fecha ) {
+		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
+		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
+		weekHeader: 'Sm',
+		dateFormat: 'yy/mm/dd',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+	};
+
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	$('#fecha').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "1Y",
+		minDate: "+D"
+	});
+</script>
+
+<script>
+	// Create Django Ajax Call
+	function agregarFila(especie, variedad, cantidad) {
+
+		if (especie && variedad && cantidad) {
 
 
 			var table = document.getElementById("tablaItems");
@@ -146,15 +216,15 @@
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
-			var cell5 = row.insertCell(4);
+			//var cell5 = row.insertCell(4);
 			// Add some text to the new cells:
 			var valor1 = document.getElementById(variedad).textContent;
 
 			cell1.innerHTML = "<td class='HistorialCompra-contenedor-tabla__td text-right'>" + especie + "</td>";
 			cell2.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td text-center">' + valor1 + '</td>';
 			cell3.innerHTML = '<td class="HistorialCompra-contenedor-tabla__td text-center">' + cantidad + '</td>';
-			cell4.innerHTML = fecha;
-			cell5.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
+			//cell4.innerHTML = fecha;
+			cell4.innerHTML = '<input class="px-2 py-1 rounded-lg bg-red-500 text-white focus:outline-none" type="button" value="Borrar" onclick="eliminarFilaID(this)">';
 			alertify.success('Fruta ingresada');
 		} else {
 			alertify.error("Complete todos los campos!!!")
@@ -190,33 +260,33 @@
 					dataType: 'json',
 					async: false,
 					success: function (data) {
-						if (data.respuesta) {
-							appendToUsrTable(data.respuesta);
+						if (data.user) {
+							appendToUsrTable(data.user);
 						}
 					}
 				});
 
 
 
-				$('#tablaItems tr').each(function () {
-					var especie = $(this).find('td').eq(0).text();
-					var variedad = $(this).find('td').eq(1).text();
-					var cantidad = $(this).find('td').eq(2).text();
-					$.ajax({
-						url: '{% url "crud_ajax_create" %}',
-						data: {
-							'especie': especie,
-							'variedad': variedad,
-							'cantidad': cantidad
-						},
-						dataType: 'json',
-						async: false,
-						success: function (data) {
-							if (data.user) {
-								appendToUsrTable(data.user);
+		$('#tablaItems tr').each(function () {
+			var especie = $(this).find('td').eq(0).text();
+				var variedad = $(this).find('td').eq(1).text();
+				var cantidad = $(this).find('td').eq(2).text();
+				$.ajax({
+					url: '{% url "crud_ajax_create" %}',
+					data: {
+						'especie': especie,
+						'variedad': variedad,
+						'cantidad': cantidad
+					},
+					dataType: 'json',
+					async: false,
+					success: function (data) {
+						if (data.user) {
+							appendToUsrTable(data.user);
 
-							}
 						}
+					}
 
 					});
 
@@ -237,33 +307,3 @@
 
 
 
-<script>
-	// Inicio DatePicker JQuery
-	$.datepicker.regional['es'] = {
-		closeText: 'Cerrar',
-		prevText: '< Ant',
-		nextText: 'Sig >',
-		currentText: 'Hoy',
-		monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
-			'Noviembre', 'Diciembre'],
-
-		monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-		dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-		dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
-		dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
-		weekHeader: 'Sm',
-		dateFormat: 'dd/mm/yy',
-		firstDay: 1,
-		isRTL: false,
-		showMonthAfterYear: false,
-		yearSuffix: ''
-	};
-
-	$.datepicker.setDefaults($.datepicker.regional['es']);
-	$('#fecha').datepicker({
-		changeMonth: true,
-		changeYear: true,
-		maxDate: "1Y",
-		minDate: "+D"
-	});
-</script>
