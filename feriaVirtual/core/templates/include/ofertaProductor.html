@@ -1,7 +1,10 @@
-<div class="crearSolicitud-contenedor" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+<div class="contenedor-tarjeta" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
 
 	<form id="oferta-productor" action=""  method="POST" name="oferta-productor">
 		{% csrf_token %}
+		<div class="contenedor-titulo">
+        	<h2>Oferta Productor</h2>
+    	</div>
 		{% for d in bd_pedido %}
 		<div class="HistorialCompra-contenedor-titulo">
 			<h2 class="HistorialCompra-contenedor-titulo__h4">Variedad Solicitada:</h2>

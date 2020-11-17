@@ -24,6 +24,8 @@ import json
 def ver(request):
    
     return render(request, 'grafico.html')
+
+
 ########################################            TODOS LOS USUARIOS         #################################################################
 # ver pagina de inicio.
 def home(request):
@@ -43,6 +45,7 @@ def home(request):
 
         return render(request, 'index.html', data)
 
+
 # vista detalle de venta local.
 def detalle(request):
     #capturar informacón de detalle de tarjeta, renderizar y enviar selección de k a comprar.
@@ -53,6 +56,7 @@ def detalle(request):
         return render(request, 'comprar.html"', context)
     else:
         return render(request, 'detalle.html')
+
 
 # ACCESO USUARIOS AL SITEMA      
 def login(request):
@@ -73,6 +77,7 @@ def login(request):
  
     return render(request, 'login.html')
 
+
 def comprobar_usuarios():
     entry_list = list(Usuario.objects.all())
     for u in entry_list:
@@ -89,11 +94,13 @@ def comprobar_usuarios():
             user.groups.add(u.id_rol.pk)
             user.save()
 
+
 # cerrar sesión de usuario.
 def logout(request):
     auth.logout(request)
     # Redirect to a success page.
     return HttpResponseRedirect("/")
+
 
 # actualizar datos cuenta
 def informacion(request):
@@ -111,12 +118,27 @@ def informacion(request):
            messages.success(request, ' ')
     return  render(request, 'informacion.html', data) 
 
+
 # vistas de usuario inicio general
 def usuario(request):
+    #usuario=request.GET['usuarioid']
     data = {
-        'v_salida': contar_solicitudes_nuevas()
+        'v_salida': contar_solicitudes_nuevas(),
+        'v_vl_count': contar_ventas_locales(),
+        'v_sol_publ': contar_solicitudes_publicadas()
+       # 'v_salida': contar_ordencompra_nuevas(usuariois)
     }
     return render(request, 'usuario.html', data)
+
+
+def usuario_2(request):
+    #usuario=request.GET['usuarioid']
+    data = {
+        'v_salida': contar_solicitudes_nuevas(),
+       # 'v_salida': contar_ordencompra_nuevas(usuariois)
+    }
+    return render(request, 'usuario_2.html', data)
+
 
 ##############################################          USUARIO COMERCIANTE        ############################################################
 # usuario comerciante
@@ -140,6 +162,7 @@ def comprar(request):
 
     return render(request, 'comprar.html', context)
 
+
 # usuario comerciante
 @permission_required('core.add_pago')
 def transbank(request):
@@ -160,6 +183,7 @@ def transbank(request):
         return render(request,'redcompra.html', context)
   
     return render(request, 'transbank.html', context)
+
 
 # usuario comerciante
 @permission_required('core.add_pago')
@@ -190,6 +214,7 @@ def medioPago(request):
             context['mensaje'] = 'Lo sentimos nose pudo efectuar la compra :( !!!'
     return render(request, 'redcompra.html',context)
 
+
 # usuario comerciante
 @permission_required('core.add_pago')
 def historial_compra(request):
@@ -200,6 +225,7 @@ def historial_compra(request):
     }
 
     return render(request, 'historial_compra.html', data)
+
 
 # usuario comerciante
 @permission_required('core.add_pago')
@@ -269,6 +295,7 @@ def registro(request):
                         
     return render(request, 'registro.html', data)
 
+
 ##################################################         USUARIO PRODUCTOR              #####################################################
 
 # LOS VEN PRODUCTOR Y ADMIN
@@ -290,6 +317,7 @@ def detallePedido(request):
     }
     context['id_oferta']=id_Publicacion
     return render(request, 'detallePedido.html', context)
+
 
 # USUARIO PRODUCTOR
 @permission_required('core.add_detalleoferta')
@@ -335,6 +363,7 @@ def ofertaPruductor(request):
 
     return render(request, 'formulario_oferta.html',context)
 
+
 # USUARIO PRODUCTOR
 @permission_required('core.add_detalleoferta')
 def historial_ofertas(request):
@@ -345,6 +374,7 @@ def historial_ofertas(request):
     }
 
     return render(request, 'historial_ofertas.html', data)
+
 
 # USUARIO PRODUCTOR
 @permission_required('core.add_detalleoferta')
@@ -359,6 +389,7 @@ def datalle_historial_ofertas(request):
 
 ##################################################         USUARIO CLIENTE EXTERNO          ###################################################
 
+
 # cliente externo
 @permission_required('core.add_solicitud')
 def variedad_por_especie(request):
@@ -368,6 +399,7 @@ def variedad_por_especie(request):
     }
 
     return render(request, 'variedad_por_especie.html', data)
+
 
 # cliente externo
 @permission_required('core.add_solicitud')
@@ -400,6 +432,7 @@ class CreateCrudUser(View):
         }
         return JsonResponse(data)
 
+
 class CreateCrudUser2(View):
     def  get(self, request):
 
@@ -417,6 +450,7 @@ class CreateCrudUser2(View):
 
 
 # cliente externo
+
 
 def agregarSolicitud(fecha_entrega, usuarioid):
 
@@ -442,6 +476,7 @@ def listar_especie():
     
     return lista
 
+
 # cliente externo
 def listar_variedad(especie):
     django_cursor = connection.cursor()
@@ -456,6 +491,7 @@ def listar_variedad(especie):
     
     return lista
 
+
 @permission_required('core.add_solicitud')
 def ordenes_externo(request):
     info = request.POST.get("valcorreo")
@@ -464,6 +500,7 @@ def ordenes_externo(request):
         'bd_orden': LISTAR_COSTOS_ORDEN(info)
     }
     return render(request, 'aceptar_ordenes.html', data)
+
 
 @permission_required('core.add_solicitud')
 def ordenes_externo_detalle(request):
@@ -482,6 +519,7 @@ def pedido(request):
     }
     
     return render(request, 'pedido.html', data)
+
 
 ##################################################        USUARIO ADMINISTRADOR       #########################################################
 
@@ -539,6 +577,7 @@ def revisar_publicaciones_pedidos(request):
                         context['mensaje']="Seleccion Terminada" 
                         context['lista_publicaciones'] = listar_publicaciones_of_activas()
     return render(request, 'revisar_publicacion_admin.html', context)
+
 
 def revisar_detalle_pedido(request):
     idso = request.POST.get("idsol")

@@ -2,160 +2,193 @@
 
 {%load humanize%}
 
-{% block title %} {{ tituloPagina }} {% endblock %}
+{% block head %} {% endblock %}
 
-{% block navbar %} {% include 'include/navbar-admin.html' %} {% endblock %}
+{% block title %} {{ tituloPagina }} {% endblock %}
 
 {% block titulo %} {% include 'include/titulo_usuario.html' %} {% endblock %}
 
 {% block content %}
-    <div class="usuario-contenedor grid justify-center lg:my-10" >
-    </div>
-    <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
-        <div class="usuario-contenedor-modal">
-            {% block contentUsuario %}{% endblock %}
+
+    {% if user.is_staff %}
+        <div id="latelal">
+            {% include 'include/menu_lateralUsuario.html' %}
         </div>
-        <div class="usuario-contenedor-aside">
-            <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
-                {% if perms.core.view_pago %}
-                    <!-- historial de compra-->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="javascript:enviar_formulario2()">
-                            <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
-                            Historial de Compras</span>
-                        </a>
-                        <form action="{% url 'historial_compra' %}" method="POST" name="formulario2">
-                            {% csrf_token %}
-                            <input type="hidden" name="valcorreo" value="{{user.email}}" >
-                        </form>
-                        <script>
-                            function enviar_formulario2(){
-                                document.formulario2.submit()
-                            }
-                        </script>
-                    </div>
-                    <!-- Pedidospuntos -->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="#">
-                            <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block">Puntos</span>
-                        </a>
-                    </div>
-                {% else %}
-                    {% if perms.core.view_solicitud %}
-                        <!-- Solicitud de Compra -->
+        <br>
+        <div id="resumen">
+            {% include 'include/dashboard-Resumen.html' %}
+        </div>
+        <br>
+        <br>
+        <br>
+    {% else %}
+
+        
+    <div class="usuario-contenedor grid justify-center lg:my-10" >
+        </div>
+        <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+            <div class="usuario-contenedor-modal">
+                {% block contentUsuario %}{% endblock %}
+            </div>
+            <div class="usuario-contenedor-aside">
+                <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
+                    {% if perms.core.view_pago %}
+                        <!-- historial de compra-->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="{% url 'solicitud' %}" class="">
+                            <a href="javascript:enviar_formulario2()">
                                 <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
-                                <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud de Compra</span>
+                                <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
+                                Historial de Compras</span>
                             </a>
-                        </div>
-                         <!-- Ordenes de Compra -->
-                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="javascript:enviar_formulario8()">
-                                    <i class="fas fa-cash-register usuario-contenedor-btns__i"></i>
-                                    <span class="usuario-contenedor-btns__span lg:inline-block">
-                                    Órdenes de Compra</span>
-                                </a>
-                            </div>
-                            <form action="{% url 'ordenesExterno' %}" method="POST" hidden="hidden" name="formulario8" >
-                                    {% csrf_token %}
-                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
-                                </form>
+                            <form action="{% url 'historial_compra' %}" method="POST" name="formulario2">
+                                {% csrf_token %}
+                                <input type="hidden" name="valcorreo" value="{{user.email}}" >
                             </form>
                             <script>
-                                function enviar_formulario8(){
-                                document.formulario8.submit()
+                                function enviar_formulario2(){
+                                    document.formulario2.submit()
                                 }
                             </script>
-                        <!-- Pedidos -->
+                        </div>
+                        <!-- Pedidospuntos -->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="javascript:enviar_formulario7()">
+                            <a href="#">
                                 <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
-                                <span class="usuario-contenedor-btns__span lg:inline-block">Pedidos</span>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">Puntos</span>
                             </a>
                         </div>
-                        <form action="{% url 'pedido' %}" method="POST" hidden="hidden" name="formulario7" >
-                                    {% csrf_token %}
-                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
-                                </form>
-                        </form>
-                            <script>
-                                function enviar_formulario7(){
-                                document.formulario7.submit()
-                                }
-                            </script>
                     {% else %}
-                        {% if perms.core.view_detalleoferta %}
-                            <!-- historial de Ofertas-->
+                        {% if perms.core.view_solicitud %}
+                            <!-- Solicitud de Compra -->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="javascript:enviar_formulario4()">
+                                <a href="{% url 'solicitud' %}" class="">
                                     <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
-                                    <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
-                                    Historial de Ofertas</span>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">Solicitud de Compra</span>
                                 </a>
-                                <form action="{% url 'historial_ofertas' %}" method="POST" hidden="hidden" name="formulario4" >
-                                    {% csrf_token %}
-                                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                            </div>
+                            <!-- Ordenes de Compra -->
+                            <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                    <a href="javascript:enviar_formulario8()">
+                                        <i class="fas fa-cash-register usuario-contenedor-btns__i"></i>
+
+                                        <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    (0)f Órdenes de Compra</span>
+                                    
+                                    </a>
+                                </div>
+                                <form action="{% url 'ordenesExterno' %}" method="POST" hidden="hidden" name="formulario8" >
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                    </form>
                                 </form>
                                 <script>
-                                    function enviar_formulario4(){
-                                    document.formulario4.submit()
+                                    function enviar_formulario8(){
+                                    document.formulario8.submit()
                                     }
                                 </script>
-                            </div>
-                            <!-- Pedidospuntos -->
+                            <!-- Pedidos -->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                                <a href="{% url 'portalDeOfertas' %}">
+                                <a href="javascript:enviar_formulario7()">
                                     <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
-                                    <span class="usuario-contenedor-btns__span lg:inline-block">
-                                    Portal de Ofertas</span>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">(6)f Pedidos en Curso</span>
                                 </a>
                             </div>
+                            <form action="{% url 'pedido' %}" method="POST" hidden="hidden" name="formulario7" >
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                    </form>
+                            </form>
+                                <script>
+                                    function enviar_formulario7(){
+                                    document.formulario7.submit()
+                                    }
+                                </script>
+                        {% else %}
+                            {% if perms.core.view_detalleoferta %}
+                                <!-- historial de Ofertas-->
+                                <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                    <a href="javascript:enviar_formulario4()">
+                                        <i class="fas fa-clipboard-check usuario-contenedor-btns__i usuario-contenedor-btns__i--activo"></i>
+                                        <span class="usuario-contenedor-btns__span lg:inline-block usuario-contenedor-btns__span--activo">
+                                        Historial de Ofertas</span>
+                                    </a>
+                                    <form action="{% url 'historial_ofertas' %}" method="POST" hidden="hidden" name="formulario4" >
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                                    </form>
+                                    <script>
+                                        function enviar_formulario4(){
+                                        document.formulario4.submit()
+                                        }
+                                    </script>
+                                </div>
+                                <!-- Pedidospuntos -->
+                                <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                                    <a href="{% url 'portalDeOfertas' %}">
+                                        <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
+                                        <span class="usuario-contenedor-btns__span lg:inline-block">
+                                        Portal de Ofertas</span>
+                                    </a>
+                                </div>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
-                {% endif %}
-                {% if perms.core.view_ventalocal %}
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="{% url 'solicitudAdmin' %}">                        
-                            {% for c in v_salida %}
-                                <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                    {% if perms.core.view_ventalocal %}
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                            <a href="{% url 'solicitudAdmin' %}">                        
+                                {% for c in v_salida %}
+                                    <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    Hay {{c.0}} solicitudes nuevas</span>
+                                {% endfor %}
+                            </a>
+                        </div>
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                            <a href="{% url 'portalDeOfertas' %}">                        
+                                {% for sp in v_sol_publ %}
+                                    <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                ( {{sp.0}}) Solicitudes Publicadas</span>
+                                {% endfor %}
+                            </a>
+                        </div>
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                            <a href="{% url 'home' %}">                        
+                                {% for vl in v_vl_count %}
+                                    <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                    <span class="usuario-contenedor-btns__span lg:inline-block">
+                                    ( {{vl.0}})  Ventas Locales</span>
+                                {% endfor %}
+                            </a>
+                        </div>
+                                        
+                    {% else %}              
+                        <!-- Cuenta -->
+                        <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                            <a href="javascript:enviar_formulario5()">
+                                <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
                                 <span class="usuario-contenedor-btns__span lg:inline-block">
-                                 Hay {{c.0}} solicitudes nuevas</span>
-                            {% endfor %}
-                        </a>
-                    </div>
-                                    
-                 {% else %}              
-                    <!-- Cuenta -->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="javascript:enviar_formulario5()">
-                            <i class="fas fa-address-card usuario-contenedor-btns__i"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block">
-                            Cuenta</span>
-                        </a>
-                        <form action="{% url 'informacion' %}" method="GET" hidden="hidden" name="formulario5" >
-                            {% csrf_token %}
-                            <input type="hidden" value="{{request.user.username}}" name="valcorreo">
-                        </form>
-                        <script>
-                            function enviar_formulario5(){
-                            document.formulario5.submit()
-                            }
-                        </script>
-                    </div>
-                    <!-- Salir -->
-                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                        <a href="{% url 'logout' %}">
-                            <i class="fas fa-sign-out-alt usuario-contenedor-btns__i"></i>
-                            <span class="usuario-contenedor-btns__span lg:inline-block">
-                            Salir</span>
-                        </a>
-                    </div>
-                {% endif %}
-            </aside>
+                                Cuenta</span>
+                            </a>
+                            <form action="{% url 'informacion' %}" method="GET" hidden="hidden" name="formulario5" >
+                                {% csrf_token %}
+                                <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                            </form>
+                            <script>
+                                function enviar_formulario5(){
+                                document.formulario5.submit()
+                                }
+                            </script>
+                        </div>
+                    
+                    {% endif %}
+                </aside>
+            </div>
         </div>
     </div>
+    {% endif %}
+    
+
+
 
 {% endblock %}

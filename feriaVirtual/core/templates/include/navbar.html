@@ -2,13 +2,10 @@
         <div class="contenedor-menu flex justify-end border-b pr-4 md:hidden">
             <span class="py-4"><i class="fas fa-bars text-white text-3xl"></i></span>
         </div>
-         {% if user.is_staff %}
-            <div></div>
-         {% else %}
-            <a href="/">
-                <div class="contenedor-logo hidden md:flex centrar-contenedor"></div>
-            </a>
-        {% endif %}
+        <a href="/">
+            <div class="contenedor-logo hidden md:flex centrar-contenedor"></div>
+        </a>
+    
         <div class="contenedor-enlace md:col-span-3">
             <ul class="contenedor-enlace__ul grid grid-cols-1 md:grid-cols-5">
             {% if perms.core.view_pago %}
@@ -38,10 +35,20 @@
     	                subir_btn.click();
                         });
                 </script>
-                <a href="#"
+                <a href="javascript:enviar_formulario11()"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
                     <li>Cuenta</li>
                 </a>
+                <form action="{% url 'informacion' %}" method="GET" hidden="hidden" name="formulario11" >
+                    {% csrf_token %}
+                    <input type="hidden" value="{{request.user.username}}" name="valcorreo">
+                </form>
+                <script>
+                    function enviar_formulario11(){
+                    document.formulario11.submit()
+                    }
+                </script>
+                
                 <a href="#"
                     class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0 ">
                     <li>Puntos</li>
@@ -117,11 +124,21 @@
                     {% else %}
                         {% if perms.core.view_ventalocal %}
                             <a href="{% url 'revisar_publicaciones_pedidos' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Publiciones Ofertadas</li>
+                                <li>Selección Ofertas</li>
                             </a>
-                            <a href="{% url 'revisar_detalle_pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Detalle P. Ofertadas</li>
+                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>D</li>
                             </a>
+                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>Qué Hacemos?</li>
+                            </a>
+                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>Servicios</li>
+                            </a>
+                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
+                                <li>Contactanos</li>
+                            </a>
+                           
                         {% else %}
                             <a href="{% url 'home' %}"
 

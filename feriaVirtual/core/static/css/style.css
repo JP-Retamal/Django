@@ -683,6 +683,8 @@ h6 {
   background-color: #38a169;
   background-color: rgba(72, 187, 120, var(--bg-opacity));
   padding: 1rem;
+  width: 100%;
+  height: 80px;
 }
  
 .contenedor-logo {
@@ -743,6 +745,10 @@ h6 {
 }
 
 /* =================================Navbar================================= */
+
+
+
+
 
 /* =================================Banner================================= */
 
@@ -925,13 +931,17 @@ h6 {
 
 /* =================================Oferta-Producto================================= */
 
+div#todo{
+  min-height: calc(100vh - 80px);
+}
+
 /* =====================================Footer===================================== */
 
 .contenedor-footer {
   --bg-opacity: 1;
   background-color: #ed8936;
   background-color: rgba(237, 137, 54, var(--bg-opacity));
-  position: absolute;
+
 }
 
 .seccion {

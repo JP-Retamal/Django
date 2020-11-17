@@ -14,12 +14,18 @@ urlpatterns = [
    path('transbank',login_required(transbank), name='transbank'),
    path('medioPago', login_required(medioPago), name="medioPago"),
    path('usuario/', login_required(usuario), name="usuario"),
+
+   path('usuario_2/', login_required(usuario_2), name="usuario_2"),
+
+
    path('usuario/pedido', login_required(pedido), name="pedido"),
    path('usuario/informacion', login_required(informacion), name="informacion"),
    path('administracion/', login_required(homeAdmin), name="homeAdmin"),
    path('administracion/solicitud', login_required(solicitudAdmin), name="solicitudAdmin"),
    path('administracion/solicitud_detalle', login_required(detallesolicitudAdmin), name="detallesolicitudAdmin"),
+   
    path('portalDeOfertas', login_required(portalDeOfertas), name="portalDeOfertas"),
+
    path('detallePedido', login_required(detallePedido), name="detallePedido"),
    path('usuario/historial_compra',login_required(historial_compra), name= "historial_compra"),
    path('usuario/detalle_historial_compra',login_required(detalle_historial_compra), name= "detalle_historial_compra"),

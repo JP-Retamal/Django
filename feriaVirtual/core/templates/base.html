@@ -38,17 +38,16 @@
 </head>
 
 <body>
+    <header>
     {% include 'include/navbar.html' %}
-    {% if perms.core.view_ventalocal %}
-      {% include 'include/navbar-admin.html' %}                  
-    {% endif %}
 
     {% block titulo %} {% endblock %}
 
     {% include 'include/messages.html' %}
-
+    </header>
+    <div id="todo">
     {% block content %} {% endblock %}
-
+    </div>
     {% include 'include/footer.html' %}
 
     <script src="{% static '../static/js/glide.js' %}"></script>

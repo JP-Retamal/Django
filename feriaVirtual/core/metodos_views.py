@@ -425,6 +425,18 @@ def LISTAR_COSTOS_ORDEN(email):
         lista.append(fila)
     return lista
 
+def contar_ordencompra_nuevas(usuariois):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_CONTAR_ORDENCOMPRA_NUEVAS", [usuarioid, out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
 ##################################################        USUARIO ADMINISTRADOR       #########################################################
 
 def contar_solicitudes_nuevas():
@@ -439,6 +451,29 @@ def contar_solicitudes_nuevas():
 
     return lista
 
+def contar_ventas_locales():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_CONTAR_VENTAS_LOCALES", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def contar_solicitudes_publicadas():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_CONTAR_SOLICITUDES_PUBLICADAS", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
 
 def aprobar_solicitud( id_detalle):
     django_cursor = connection.cursor()
