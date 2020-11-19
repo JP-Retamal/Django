@@ -30,6 +30,7 @@ def ver(request):
 # ver pagina de inicio.
 def home(request):
     #listar tarjetas de venta local.
+    comprobar_usuarios()
     data = {
         'baja': listar_saldos_calidad_baja(),
         'media_alta': saldos_calidad_alta_media()
@@ -115,7 +116,7 @@ def informacion(request):
         id_comuna     = request.POST.get('comuna')
         salida=modificar_usuario( info, celular, direccion, id_comuna)
         if salida==1:
-           messages.success(request, ' ')
+           messages.success(request, 'Datos actualizados!!! ')
     return  render(request, 'informacion.html', data) 
 
 
@@ -125,9 +126,14 @@ def usuario(request):
     data = {
         'v_salida': contar_solicitudes_nuevas(),
         'v_vl_count': contar_ventas_locales(),
-        'v_sol_publ': contar_solicitudes_publicadas()
-       # 'v_salida': contar_ordencompra_nuevas(usuariois)
+        'v_sol_publ': contar_solicitudes_publicadas(),
+        'resumen_vl': RESUMEN_VENTA_LOCAL(),
+        'resumen_oc': RESUMEN_EXPORTACIONES(),
+        'resumen_per': RESUMEN_PERDIDAS(),
+        'resumen_stock': RESUMEN_STOCK_INICIAL()
+       
     }
+ 
     return render(request, 'usuario.html', data)
 
 
@@ -540,7 +546,7 @@ def solicitudAdmin(request):
             idsolA = request.POST.get('idsol1')
             salida1=aprobar_solicitud(idsolA)
             if salida1==1:
-
+                messages.success(request, 'Solicitud Publicada!!! ')
                 data['mensaje']="Solicitud Aprobada" 
                 data['lista_solicitudes'] = listar_solicitudes()
         elif(request.POST.get('idsol2') != None):
@@ -591,6 +597,17 @@ def revisar_detalle_pedido(request):
     }
     print(context)
     return render(request, 'revisar_detalle_publicacion_admin.html',context)
+
+
+
+
+
+
+
+
+
+
+
 
 
 

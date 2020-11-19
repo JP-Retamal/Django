@@ -7,15 +7,11 @@
     </div>
     <div class="row">
     {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li>
-            <script>
-                alertify.warning('{{ message }}');
-            </script>
-        </li>
-      {% endfor %}
-    </ul>
+ 
+    <script>
+        alertify.warning('Datos Actualizados!!!');
+    </script>
+    
     {% endif %}
     </div>
     {% if usuario %}

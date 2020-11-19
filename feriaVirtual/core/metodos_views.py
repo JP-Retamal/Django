@@ -593,4 +593,55 @@ def datosLogin(correo):
         lista.append(fila)
 
     return lista
+
+##################################################        USUARIO ADMINISTRADOR       #########################
+
+def RESUMEN_VENTA_LOCAL():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_VENTA_LOCAL",[out_cur])
    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def RESUMEN_EXPORTACIONES():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_EXPORTACIONES",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def RESUMEN_PERDIDAS():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_PERDIDAS",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+def RESUMEN_STOCK_INICIAL():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_STOCK_INICIAL",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista

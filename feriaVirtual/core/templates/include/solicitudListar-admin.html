@@ -1,13 +1,15 @@
 
 <div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
 	<div class="admin-solicitudListar-header">
+	<br>
+	<br>
 		<h1 class="admin-solicitudListar-header__h1 font-lato">PUBLICAR SOLICITUDES</h1>
 	</div>
 	{% if messages %}
     <ul class="messages">
-       {% for message in messages %}
-       <li>{% if message.tags %} class="{{ message.tags }}"{% endif %} >{{ message }}</li>
-       {% endfor %}
+    <script>
+        alertify.warning('Solicitud publicada!!!');
+    </script>
     </ul>
     {% endif %}
 	<div class="admin-solicitudListar-body">
@@ -68,7 +70,13 @@
 		</div>
 	</div>
 	{% else %}
-        <h1>No hay peticiones de compra disponibles</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+		<div id="todo">
+        	<h1>No hay peticiones de compra disponibles</h1>
+		</div>
     {% endif %}
 	
 </div>
