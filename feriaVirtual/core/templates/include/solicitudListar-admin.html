@@ -3,7 +3,7 @@
 	<div class="admin-solicitudListar-header">
 	<br>
 	<br>
-		<h1 class="admin-solicitudListar-header__h1 font-lato">PUBLICAR SOLICITUDES</h1>
+		<h1 class="admin-solicitudListar-header__h1 font-lato">PUBLICACIONES</h1>
 	</div>
 	{% if messages %}
     <ul class="messages">
@@ -74,9 +74,9 @@
 	<br>
 	<br>
 	<br>
-		<div id="todo">
-        	<h1>No hay peticiones de compra disponibles</h1>
-		</div>
+	<div id="todo">
+        <h1>No hay peticiones de compra disponibles</h1>
+	</div>
     {% endif %}
 	
 </div>
@@ -168,6 +168,30 @@ You could also use a data-* attribute and content for this. That way "bloats" th
 			padding-right: 8rem;
 		}
 	}
+	/*@keyframes abrirModal{
+		from {
+			opacity: 0%;
+		}
+
+		to {
+			opacity: 100%;
+		}
+	}
+
+	@keyframes cerrarModal{
+		from {
+			opacity: 100%;
+		}
+
+		to {
+			opacity: 0%;
+		}
+	}
+
+	.admin-solicitudListar-modal {
+		animation-duration: .5s;
+		animation-fill-mode: forwards;
+	}*/
 
 </style>
 

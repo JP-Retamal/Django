@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+{%load humanize%} 
+<head>
+	<style>
+		@page
+		{
+            background-image: url('../static/img/BestFruitF2.png')  ;
+			size: letter portrait;
+            @frame text {
+                top: 1cm;
+                left: 1cm;
+                right: 1cm;
+                bottom: 1cm;
+				padding: 1cm;
+                /*-pdf-frame-border: 1;*/
+            }
+			@frame footer_frame {          
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+			}
+				
+        }
+			
+			
+	</style>
+</head>
+
+<body >
+	<table >
+		<tr>
+			<td>
+				<div >
+					<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 150px; height: auto; margin: 0; border: solid;"/>
+				</div>
+			</td>
+			<td><div><h1 align="center" style="top: 0;">Cotizacion de compra</h1></div></td>
+			<td></td>
+			<!--<td>#{{compañia}}</td>-->
+		</tr>
+		<tr ><!--style="border:solid; border-width:1px; border-color: black;">-->
+			<td>
+				<div id="header_content" >
+					<h3>BestFruit N° Solicitud: {{ver_ordenp1.0.9}}</h3>
+					Empresa: Maipo Grande<br>
+					Direccion: Av. Grande #123, Maipo<br>
+					Telefono: +56 9 4985 2049<br>
+					Email: contacto@bestfruit.cl<br>
+				</div>
+			</td>
+			<td></td>
+			<td><div align="right"><span > Santiago, {{ver_ordenp1.0.15}}</span></div></td>
+			
+		</tr>
+	</table>
+
+	<!-- HTML Content -->
+
+    <table>
+    		<tr>
+				<br>
+				<td>Estimado(a): <u>{{ver_ordenp1.0.12}} {{ver_ordenp1.0.13}}</u> <br>
+				De acuerdo a su solicitud generada el dia {{ver_ordenp1.0.14}} se encuentra disponible la cotizacion correspondientes a los productos de su interés.</td>
+    		</tr>
+	</table>
+
+    <hr>
+
+    <table >
+		<CAPTION ALIGN=bottom>Productos Solicitados</CAPTION> 
+		
+    	<tr>
+			<th>Descripcion Producto</th>
+			<th>Cantidad</th>
+			<th>Precio por kilo aprox.</th>
+			<th>Subtotal</th>
+			<th>Aduana</th>
+			<th>Comision</th>
+			<th>Transporte</th>
+			<th>Iva</th>
+			<th>Total</th>
+		</tr>
+		{% for vop2 in ver_ordenp2 %}
+    	<tr>
+ 
+    		<td ALIGN="Center">{{vop2.1}}</td>
+    		<td ALIGN="Center">{{vop2.2}}</td>
+			<td ALIGN="Center">${{vop2.3|intcomma}}.-</td>
+			<td ALIGN="Center">${{vop2.4|intcomma}}.-</td>
+			<!--<td ALIGN="Center">${{vop2.8|intcomma}}.-</td>
+			<td ALIGN="Center">${{vop2.9|intcomma}}.-</td>
+			<td ALIGN="Center">${{vop2.10|intcomma}}.-</td>
+			<td ALIGN="Center">${{vop2.11|intcomma}}.-</td>
+			<td ALIGN="Center">${{vop2.12|intcomma}}.-</td>-->
+
+    	</tr>
+		{% endfor %}
+		
+    </table>
+
+    <hr>
+	<table ALIGN="Left">
+    	<tr>
+			<th></th>
+			<th></th>
+			
+			<th><p ALIGN="Left"><strong>Total: </strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.7|intcomma}}.-</strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.4|intcomma}}.-</strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.6|intcomma}}.-</strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.5|intcomma}}.-</strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.3|intcomma}}.-</strong></p></th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.8|intcomma}}.-</strong></p></th>
+		</tr>
+
+		<CAPTION ALIGN=bottom></CAPTION> 
+	</table>
+	<table>
+		<tr>
+			<br>
+			<td>Estimado(a): {{ver_ordenp1.0.12}} {{ver_ordenp1.0.13}} <br>
+				Este es un presupuesto de los articulos indicados, sujeto a las condiciones que se indican a continuacion: Describa las condiciones de estos precios y los términos adicionales del contrato.<br>
+				<br>Atentamente: Administrador de Ventas  
+			</td>
+		</tr>
+</table>
+<div id="footer_content" align="right">
+	Bestfruit 2020(©) Todos lo derechos reservados 
+</div>
+</body>
+
+
+</html>

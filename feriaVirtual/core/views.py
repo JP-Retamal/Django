@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User 
 from django.contrib import messages
 from django.db import connection
@@ -18,6 +18,13 @@ from django.views.generic import TemplateView, View, DeleteView, CreateView
 from django.core import serializers
 from django.http import JsonResponse
 import json
+#--------Librerias PDF
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+import os
 #------------------------------
 
 # Create your views here. la funcion def home busca el template (controlador).
@@ -567,23 +574,131 @@ def detallesolicitudAdmin(request):
     return render(request, 'solicitud-detalle-admin.html', data)
 
 
+#------Informacion para pdf----
+def render_pdf_view(request):
+    template_path = 'user_printer.html'
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="report.pdf"'
+    template = get_template(template_path)
+    html = template.render(context)
+    pisa_status = pisa.CreatePDF(
+       html, dest=response, link_callback=link_callback)
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response
+
+
+def render_to_pdf(template_src, context_dict={}):
+	template = get_template(template_src)
+	html  = template.render(context_dict)
+	result = BytesIO()
+	pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result,link_callback=link_callback)
+	if not pdf.err:
+		return HttpResponse(result.getvalue(), content_type='application/pdf')
+	return None
+
+def link_callback(uri, rel):
+            """
+            Convert HTML URIs to absolute system paths so xhtml2pdf can access those
+            resources
+            """
+            result = finders.find(uri)
+            if result:
+                    if not isinstance(result, (list, tuple)):
+                            result = [result]
+                    result = list(os.path.realpath(path) for path in result)
+                    path=result[0]
+            else:
+                    sUrl = settings.STATIC_URL        # Typically /static/
+                    sRoot = settings.STATIC_ROOT      # Typically /home/userX/project_static/
+                    mUrl = settings.MEDIA_URL         # Typically /media/
+                    mRoot = settings.MEDIA_ROOT       # Typically /home/userX/project_static/media/
+
+                    if uri.startswith(mUrl):
+                            path = os.path.join(mRoot, uri.replace(mUrl, ""))
+                    elif uri.startswith(sUrl):
+                            path = os.path.join(sRoot, uri.replace(sUrl, ""))
+                    else:
+                            return uri
+
+            # make sure that file exists
+            if not os.path.isfile(path):
+                    raise Exception(
+                            'media URI must start with %s or %s' % (sUrl, mUrl)
+                    )
+            return path
+
+data = {
+	"compañia": "BESTFRUIT",
+	"nombre": "Gonzalo San Martin",
+	}
+
+#Opens up page as PDF
+class ViewPDF(View):
+	def get(self, request, *args, **kwargs):
+
+		pdf = render_to_pdf('include/pdf_template.html', data)
+		return HttpResponse(pdf, content_type='application/pdf')
+
+
+#Automaticly downloads to PDF file
+class DownloadPDF(View):
+	def get(self, request, *args, **kwargs):
+		
+		pdf = render_to_pdf('include/pdf_template.html', data)
+
+		response = HttpResponse(pdf, content_type='application/pdf')
+		filename = "Invoice_%s.pdf" %("12341231")
+		content = "attachment; filename=%s" %(filename)
+		response['Content-Disposition'] = content
+		return response
+
 def revisar_publicaciones_pedidos(request):
+    #listar_publicaciones_en_curso()
     context = {
         'lista_publicaciones': listar_publicaciones_of_activas()
+        #'lista_publicaciones':listar_publicaciones_en_curso()
     }
     if request.method =="POST":
         if(request.POST.get('idsol') != None):
-            if(request.POST.get("espec") != None):
-                if(request.POST.get("varie") != None):
-                    idsox = request.POST.get("idsol")
-                    espex = request.POST.get("espec")
-                    varix = request.POST.get("varie")
-                    salida=Codex_Seleccion( idsox, espex, varix)
-                    if salida==1:
-                        context['mensaje']="Seleccion Terminada" 
-                        context['lista_publicaciones'] = listar_publicaciones_of_activas()
+            idsox = request.POST.get("idsol")
+            salida0 = generar_cot(idsox)
+            if salida0 == 0:
+                pass
+            elif salida0 ==1:
+                salida=verificar_cot(idsox)
+                if salida==2:
+                    pass
+                elif salida==1:
+                    context['ver_ordenp1'] = ver_oc1(idsox)
+                    context['ver_ordenp2'] = ver_oc2(idsox)
+                    pdf = render_to_pdf('include/pdf_template.html', context)
+                    #return HttpResponse(pdf,content_type='application/pdf')
+                    response = HttpResponse(pdf, content_type='application/pdf')
+                    filename = "Cotizacion N° %s.pdf" %(context['ver_ordenp1'][0][9])
+                    content = "attachment; filename=%s" %(filename)
+                    #content = " filename=%s" %(filename) #para visualizar
+                    response['Content-Disposition'] = content
+                    return response
     return render(request, 'revisar_publicacion_admin.html', context)
 
+#def revisar_publicaciones_pedidos(request):
+#    context = {
+#        'lista_publicaciones': listar_publicaciones_of_activas()
+#    }
+#    if request.method =="POST":
+#        if(request.POST.get('idsol') != None):
+#            if(request.POST.get("espec") != None):
+#                if(request.POST.get("varie") != None):
+#                    idsox = request.POST.get("idsol")
+#                    espex = request.POST.get("espec")
+#                    varix = request.POST.get("varie")
+#                    salida=Codex_Seleccion( idsox, espex, varix)
+#                    if salida==1:
+#                        context['mensaje']="Seleccion Terminada" 
+#                        context['lista_publicaciones'] = listar_publicaciones_of_activas()
+#    return render(request, 'revisar_publicacion_admin.html', context)
+ 
 
 def revisar_detalle_pedido(request):
     idso = request.POST.get("idsol")
@@ -597,6 +712,20 @@ def revisar_detalle_pedido(request):
     }
     print(context)
     return render(request, 'revisar_detalle_publicacion_admin.html',context)
+
+    
+#def revisar_detalle_pedido(request):
+   # idso = request.POST.get("idsol")
+  #  espe = request.POST.get("espec")
+   # vari = request.POST.get("varie")
+   # variedad = vari.strip()
+    
+  #  context = {
+  #      'lista_detalle_publicaciones': listar_detalle_publicaciones_of_activas(idso, espe, variedad),
+  #      'lista_total_detalle_publicaciones': listar_total_publicaciones_of_activas(idso, espe, variedad)
+  #  }
+ #   print(context)
+#    return render(request, 'revisar_detalle_publicacion_admin.html',context)
 
 
 

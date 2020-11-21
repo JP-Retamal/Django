@@ -10,56 +10,58 @@
 				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
 
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
-						role="columnheader">N Publicacion Solicitud</th>
-					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">Imagen</th>-->
+						role="columnheader">N° de Solicitud</th>
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">Descripcion</th>
+						role="columnheader">Imagen</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-2/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Descripcion oferta publicada</th>
 					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
 						role="columnheader">ESTADO</th>-->
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">Detalle Estado de Oferta</th>
+						role="columnheader">Detalle de Oferta</th>
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
-						role="columnheader">Cerrar Pedido</th>
+						role="columnheader">Generar Cotizacion</th>
 				
 				</thead>
 
 				<tbody role="rowgroup">
 					{% for lp in lista_publicaciones %}
+					
 					<tr role="trow">
-						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lp.0}}<br>{{lp.10}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">Solicitud: {{lp.data.8}}<br>Publicacion: {{lp.data.0}}<br>Estado: {{lp.data.10}}</td>
 
-						<!--<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
 							<div class="detalle-contenedor-imagen centrar-contenedor " >
 								<img class="" style="
 									width: 100%;
 									height: 15vh;
 									border-radius: 5%;
-								background-image: url(''data:imagen/jpg;base64, {{lp.imagen}}''); 
+								background-image: url('data:imagen/jpg;base64, {{lp.imagen}}'); 
 								-webkit-background-size: 100% 100px !important;
 								-moz-background-size: 100% 100px !important;
 								  -o-background-size: 100% 100px !important;
 									 background-size: 100% 100px !important;
 								">  
-							</div>N/A
-						</td>-->
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="text-align: left ;">
+							</div>
+						</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="text-align: left ; margin: 0;" >
 							<table class="admin-solicitudListar-table md:w-full" role="table">
 								<tbody role="rowgroup">
 									<tr role="trow">
-										<td class="admin-solicitudListar-table__td font-lato  border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2" style="text-align: left ;">
-										<div class="detalle-contenedor-informacion md:col-span-2 md:m-0 " >
-											<div class="detalle-contenedor-caracteristica " >
+										<td class="admin-solicitudListar-table__td font-lato  border-gray-500 md:border-0 md:text-sm md:text-center  md:border-gray-500 md:p-2" style="text-align: left ;margin: 0;">
+										<div class="detalle-contenedor-informacion md:col-span-2 md:m-0 " style="border: solid gold; background-color: gold; padding: 0.2rem; border-radius: 10px;" >
+											<!--<div class="detalle-contenedor-caracteristica " style="border: solid;">-->
 												<ul>
-													<li class="detalle-contenedor-caracteristica__li"><b>Solicitud: </b>{{lp.8}}</li>
-													<li class="detalle-contenedor-caracteristica__li"><b>Nombre: </b>{{lp.1}} {{lp.2}}</li>
-													<li class="detalle-contenedor-caracteristica__li"><b>Kilos: </b>{{lp.3}}</li>
-													<li class="detalle-contenedor-caracteristica__li"><b>Fecha Publicacion: </b>{{lp.6}}</li>
-													<li class="detalle-contenedor-caracteristica__li"><b>Fecha Entrega: </b>{{lp.4}}</li>
+													<!--<li class="detalle-contenedor-caracteristica__li" style="border-top:solid gold; margin: 0; background-color: transparent;"><b>Solicitud: </b>{{lp.data.8}}</li>-->
+													<li class="detalle-contenedor-caracteristica__li" style=" margin: 0;"><b>Nombre: </b>{{lp.data.1}} {{lp.data.2}}</li>
+													<li class="detalle-contenedor-caracteristica__li" style=" margin: 0;"><b>Kilos: </b>{{lp.data.3}}</li>
+													<li class="detalle-contenedor-caracteristica__li" style=" margin: 0;"><b>Fecha Publicacion: </b>{{lp.data.6}}</li>
+													<li class="detalle-contenedor-caracteristica__li" style=" margin: 0;"><b>Fecha Entrega: </b>{{lp.data.4}}</li>
 													
 												</ul> 
-											</div>
+											<!--</div>-->
 										</div>
+										
 										</td>
 									</tr>
 								</tbody>
@@ -71,25 +73,36 @@
 
 							<form action="{% url 'revisar_detalle_pedido' %}" method="POST">
 								{% csrf_token %}
-								<input type="hidden" value="{{lp.8}}" name="idsol">
-									<input type="hidden" value="{{lp.2}}" name="varie">
-									<input type="hidden" value="{{lp.1}}" name="espec">
+								<input type="hidden" value="{{lp.data.8}}" name="idsol">
+									<input type="hidden" value="{{lp.data.2}}" name="varie">
+									<input type="hidden" value="{{lp.data.1}}" name="espec">
 								<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" style="display: inline;">Ver Detalle</button>
 							</form>
 						</td>
 			
 
-						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+						<!--<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
 							<div class="flex flex-row md:justify-center">
 								<form id="#" action="" method="POST" >
 									{% csrf_token %}
-									<input type="hidden" value="{{lp.8}}" name="idsol">
-									<input type="hidden" value="{{lp.2}}" name="varie">
-									<input type="hidden" value="{{lp.1}}" name="espec">
+									<input type="hidden" value="{{lp.data.8}}" name="idsol">
+									<input type="hidden" value="{{lp.data.2}}" name="varie">
+									<input type="hidden" value="{{lp.data.1}}" name="espec">
 									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-12 h-12 bg-yellow-500 font-lato text-white text-3xl mx-2 px-2"><i class="fas fa-clipboard-check"></i></button>
 								</form>
 							</div>
+						</td>-->
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<div class="flex flex-row md:justify-center">
+									<!--<button class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-12 h-12 bg-yellow-500 font-lato text-white text-3xl mx-2 px-2"><i class="fas fa-clipboard-check"></i></button>-->
+									<button class="btn btn-info bg-red-500 font-lato text-white text-sm mx-2 px-2"><a  href="{% url 'pdf_view' %}" target="_blank">VER PDF</a></button>
+									<button class="btn btn-info bg-blue-500 font-lato text-white text-sm mx-2 px-2"><a  href="{% url 'pdf_download' %}" target="_blank">DESCARGAR PDF</a></button>
+									<!--<a class="btn btn-info" href="{% url 'pdf_view' %}" target="_blank">VER PDF</a>-->
+									<!--<a class="btn btn-info" href="{% url 'pdf_view' %}" target="_blank">VER PDF</a>
+									<a class="btn btn-info"  href="{% url 'pdf_download' %}">DESCARGAR PDF</a>-->
+							</div>
 						</td>
+						
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -146,7 +159,7 @@
 		}
 
 		td[role='cell']:nth-of-type(1):before {
-			content: "N Publicacion Solicitud:";
+			content: "N° de Solicitud:";
 		}
 
 		td[role='cell']:nth-of-type(2):before {
@@ -158,7 +171,7 @@
 		}
 
 		td[role='cell']:nth-of-type(4):before {
-			content: "Detalle Estado de Oferta:";
+			content: "Detalle de Oferta:";
 		}
 
 		td[role='cell']:nth-of-type(5):before {

@@ -293,15 +293,16 @@
 					});
 
 				});
+				
 				console.log(filas)
 				// Create Ajax Call
 				window.location.replace('{% url "solicitud" %}');
 				alertify.success('Solicitud enviada');
 			},
+
 			function () {
 				alertify.error('No se a realizado la solicitud');
-			});
-
+			}).set('labels', {ok:'Aceptar', cancel:'Cancelar'},);
 
 	};
 

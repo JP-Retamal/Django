@@ -1,6 +1,7 @@
 from django.contrib.auth.views import login_required
 from django.urls import path, include
 from .views import *
+from . import views
 
 #esta url en core se encarga de rutear las views
 
@@ -40,6 +41,9 @@ urlpatterns = [
    path('usuario/solicitud', login_required(solicitud), name="solicitud"),
    path('ajax/crud/create/', CreateCrudUser.as_view(), name='crud_ajax_create'),
    path('ajax/crud/create_2/', CreateCrudUser2.as_view(), name='crud_ajax_create2'),
+   #-------------PDF
+   path('pdf_view/', views.ViewPDF.as_view(), name="pdf_view"),
+   path('pdf_download/', views.DownloadPDF.as_view(), name="pdf_download"),
 
    path('variedad/', variedad_por_especie, name="variedad"),
 

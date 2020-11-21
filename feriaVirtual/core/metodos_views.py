@@ -500,14 +500,12 @@ def listar_publicaciones_of_activas():
 
     lista = []
     for fila in out_cur:
-    #    data = {
-    #        'data':fila,
-    #        'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
-    #    }
+        data = {
+            'data':fila,
+            'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
+        }
 
-        #lista.append(data)
-        lista.append(fila)
-
+        lista.append(data)
     return lista
 
 
@@ -536,13 +534,52 @@ def listar_total_publicaciones_of_activas(id_solicitud,especi, varied ):
         lista.append(fila)
     return lista
 
+def ver_oc1(ids):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_VER_COTIZACION1",[ids,out_cur])
 
-def Codex_Seleccion(id_solicitud, especie, variedad):
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def ver_oc2(ids):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_VER_COTIZACION2",[ids,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def generar_cot(id_solicitud):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('SP_CODEX_OFERTA', [id_solicitud, especie, variedad, salida])
+    cursor.callproc('SP_GENERAR_COTIZACION', [id_solicitud, salida])
     return salida.getvalue()
+
+def verificar_cot(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_VERIFICAR_COTIZACION', [id_solicitud, salida])
+    return salida.getvalue()
+
+    
+#-----------------------------------------------------------
+#def Codex_Seleccion(id_solicitud, especie, variedad):
+#    django_cursor = connection.cursor()
+#    cursor = django_cursor.connection.cursor()
+#    salida = cursor.var(cx_Oracle.NUMBER)
+#    cursor.callproc('SP_CODEX_OFERTA', [id_solicitud, especie, variedad, salida])
+#    return salida.getvalue()
 
 
 ####################### ver ##########################
