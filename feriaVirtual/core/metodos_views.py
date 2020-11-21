@@ -504,7 +504,6 @@ def listar_publicaciones_of_activas():
             'data':fila,
             'imagen':str(base64.b64encode(fila[9].read()), 'utf-8')
         }
-
         lista.append(data)
     return lista
 
