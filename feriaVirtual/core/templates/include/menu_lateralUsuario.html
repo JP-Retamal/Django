@@ -131,12 +131,21 @@
                             {% endfor %}
                         </a>
                     </div>
-                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                         <a href="{% url 'home' %}">                        
                             {% for vl in v_vl_count %}
                                 <i class="far fa-bell usuario-contenedor-btns__i"></i>
                                 <span class="usuario-contenedor-btns__span lg:inline-block">
                                 ({{vl.0}}) Ventas Locales publicadas</span>
+                            {% endfor %}
+                        </a>
+                    </div>
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'ventalocal_publicar' %}">                        
+                            {% for st in stock_nuevo %}
+                                <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">
+                                ({{st.0}}) Nuevos Saldos en Stock</span>
                             {% endfor %}
                         </a>
                     </div>

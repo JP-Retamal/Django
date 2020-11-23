@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+
 {%load humanize%} 
 <head>
 	<style>
@@ -9,11 +8,11 @@
 			size: letter portrait;
             @frame text {
                 top: 1cm;
-                left: 1cm;
-                right: 1cm;
+                left: 0.5cm;
+                right: 0.5cm;
                 bottom: 1cm;
-				padding: 1cm;
-                /*-pdf-frame-border: 1;*/
+				padding: 0.5cm;
+                -pdf-frame-border: 1;
             }
 			@frame footer_frame {          
             -pdf-frame-content: footer_content;
@@ -21,64 +20,90 @@
 			}
 				
         }
-			
+
 			
 	</style>
 </head>
 
 <body >
 	<table >
-		<tr>
-			<td>
-				<div >
-					<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 150px; height: auto; margin: 0; border: solid;"/>
-				</div>
-			</td>
-			<td><div><h1 align="center" style="top: 0;">Cotizacion de compra</h1></div></td>
-			<td></td>
-			<!--<td>#{{compañia}}</td>-->
-		</tr>
 		<tr ><!--style="border:solid; border-width:1px; border-color: black;">-->
 			<td>
 				<div id="header_content" >
-					<h3>BestFruit N° Solicitud: {{ver_ordenp1.0.9}}</h3>
-					Empresa: Maipo Grande<br>
-					Direccion: Av. Grande #123, Maipo<br>
-					Telefono: +56 9 4985 2049<br>
+					<b><span>MAIPO GRANDE S.A.</span></b><br>
+					Importadora, Exportadora y Venta de Fruta<br>
+					<b><span>CASA MATRIZ: Av. Grande #123, Maipo</span></b><br>
+					Linea Ventas Exportacion: +56 9 4985 2049<br>
 					Email: contacto@bestfruit.cl<br>
+					Sitio Web: www.maipogrande_besfruit.cl
+				</div>
+				
+			</td>
+			<td VALIGN="TOP"><div><!--<h1 align="center" >Orden de compra BestFruit</h1>--><div >
+					<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 4cm; height: auto; margin: 0; border: solid; padding: 0;"/>
+				</div></div></td>
+			<td style="width: 8cm;border: solid; border-width: 2px; border-color: black; ">
+				<div align="center" style="font-size: 17px; padding: 0.5cm;">
+					<b><span >R.U.T: 99.999.999-9</span><b>
+					<br>
+					<b><span  >ORDEN DE COMPRA </br>N°: {{ver_ordenp1.0.0}}</span></b>
 				</div>
 			</td>
-			<td></td>
-			<td><div align="right"><span > Santiago, {{ver_ordenp1.0.15}}</span></div></td>
-			
+		</tr>
+		
+	</table>
+	<br>
+	<table>
+		<tr >
+			<td VALIGN="TOP" style="width: 50%; padding-top: 1rem; ">
+				<div id="header_content" >
+					<b><span >Besfruit N° de Solicitud:</span></b> {{ver_ordenp1.0.9}}<br>
+					<b><span >Besfruit N° de Orden:</span></b> {{ver_ordenp1.0.0}}<br>
+					<b><span >Realizado por:</span></b> Administrador de Ventas
+				</div>
+			</td>
+			<td VALIGN="TOP" style="width: 50%;  padding-top: 1rem; padding-left: 3.5rem;">
+				<div id="header_content" style="font-size: 11px;">
+					<div ALIGN="Center" >
+						<b><span  >Datos del comprador</span></b>
+					</div>
+					<span >Santiago, {{ver_ordenp1.0.15}}</span><br>
+					<span >Señor(a)(es): </span>{{ver_ordenp1.0.12}} {{ver_ordenp1.0.13}}<br>
+					<span >Giro: </span> Venta Particular<br>
+					<span >Dirección:</span> {{ver_ordenp1.0.22}}<br>
+					<span >R.U.T.:</span> {{ver_ordenp1.0.23}}<br>
+					<span >Fono:</span> {{ver_ordenp1.0.24}}
+
+				</div>
+			</td>
+			<!--<td style="width: 50%; padding: 0.5rem;">
+				<div id="header_content" style=" padding: 0.5rem; ">
+					<span > </span>
+				</div>
+			</td>-->
 		</tr>
 	</table>
-
 	<!-- HTML Content -->
 
-    <table>
+    <!--<table>
     		<tr>
 				<br>
 				<td>Estimado(a): <u>{{ver_ordenp1.0.12}} {{ver_ordenp1.0.13}}</u> <br>
 				De acuerdo a su solicitud generada el dia {{ver_ordenp1.0.14}} se encuentra disponible la cotizacion correspondientes a los productos de su interés.</td>
     		</tr>
-	</table>
+	</table>-->
 
     <hr>
 
     <table >
-		<CAPTION ALIGN=bottom>Productos Solicitados</CAPTION> 
+		<CAPTION ALIGN=bottom >Productos Solicitados</CAPTION> 
 		
-    	<tr>
+    	<tr >
 			<th>Descripcion Producto</th>
 			<th>Cantidad</th>
 			<th>Precio por kilo aprox.</th>
-			<th>Subtotal</th>
-			<th>Aduana</th>
-			<th>Comision</th>
-			<th>Transporte</th>
-			<th>Iva</th>
-			<th>Total</th>
+			<th>Monto</th>
+			
 		</tr>
 		{% for vop2 in ver_ordenp2 %}
     	<tr>
@@ -86,12 +111,8 @@
     		<td ALIGN="Center">{{vop2.1}}</td>
     		<td ALIGN="Center">{{vop2.2}}</td>
 			<td ALIGN="Center">${{vop2.3|intcomma}}.-</td>
+			
 			<td ALIGN="Center">${{vop2.4|intcomma}}.-</td>
-			<!--<td ALIGN="Center">${{vop2.8|intcomma}}.-</td>
-			<td ALIGN="Center">${{vop2.9|intcomma}}.-</td>
-			<td ALIGN="Center">${{vop2.10|intcomma}}.-</td>
-			<td ALIGN="Center">${{vop2.11|intcomma}}.-</td>
-			<td ALIGN="Center">${{vop2.12|intcomma}}.-</td>-->
 
     	</tr>
 		{% endfor %}
@@ -103,27 +124,149 @@
     	<tr>
 			<th></th>
 			<th></th>
-			
-			<th><p ALIGN="Left"><strong>Total: </strong></p></th>
+				<th>
+					<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>SubTotal: </strong>
+								</p>
+							</th>
+						</tr>
+					</table>
+				</th>
 			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.7|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Aduana({{ver_ordenp1.0.17|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
 			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.4|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Comision({{ver_ordenp1.0.18|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
 			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.6|intcomma}}.-</strong></p></th>
-			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.5|intcomma}}.-</strong></p></th>
+			
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Total sin Iva: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.16|intcomma}}.-</strong></p></th>
+			
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Iva({{ver_ordenp1.0.20|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
 			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.3|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Transporte: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.5|intcomma}}.-</strong></p></th>
+		</tr>
+		
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Total: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
 			<th><p ALIGN="center"><strong>${{ver_ordenp1.0.8|intcomma}}.-</strong></p></th>
 		</tr>
-
-		<CAPTION ALIGN=bottom></CAPTION> 
 	</table>
+	<hr>
 	<table>
 		<tr>
 			<br>
 			<td>Estimado(a): {{ver_ordenp1.0.12}} {{ver_ordenp1.0.13}} <br>
-				Este es un presupuesto de los articulos indicados, sujeto a las condiciones que se indican a continuacion: Describa las condiciones de estos precios y los términos adicionales del contrato.<br>
-				<br>Atentamente: Administrador de Ventas  
+				<p>Si usted tiene alguna pregunta sobre esta orden de compra, por favor, comuniquese con contacto@bestfruit.cl</p>  
 			</td>
 		</tr>
 </table>
+
 <div id="footer_content" align="right">
 	Bestfruit 2020(©) Todos lo derechos reservados 
 </div>

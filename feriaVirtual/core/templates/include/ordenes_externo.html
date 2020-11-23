@@ -10,10 +10,6 @@
 	</div>
 	{% if bd_orden %}
 	<div class="admin-solicitudListar-body">
-	
-		<div class="admin-solicitudListar-filtro grid grid-cols-1 my-2 md:grid-cols-2 md:gap-x-2">
-			
-		</div>
 		<div class="admin-solicitudListar-listado my-4">
 			<table class="admin-solicitudListar-table md:w-full" role="table">
 				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
@@ -32,7 +28,7 @@
 						role="columnheader">ESTADO</th>
 
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">DETALLE</th>
+						role="columnheader">Cotizacion</th>
 					
 					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
 						role="columnheader">Aceptar</th>
@@ -46,62 +42,144 @@
 						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{d.1}}</td>
 						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{d.2}}</td>
 						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{d.3}}</td>
-						<td class="admin-solicitudListar-table__td flex justify-center font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
-						<button class="admin-solicitudListar-table__td-button-detalle btn bg-green-500 font-lato text-white text-sm mt-1 w-20" value="{{d.4}}">Ver Detalle</button></td>
-						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
-							<div class="flex flex-row md:justify-center">
-								<button class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
-							</div>
+						<!--Ver Detalle-->
+						<td class="admin-solicitudListar-table__td  justify-center font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{d.4}}" name="IDS1">
+								<input type="hidden" value="{{user.username}}" name="info1">
+								<button type="submit" class="listarSolicitud-contenedor-label__span" >Ver Detalle</button>
+							</form>
 						</td>
-                        <td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
-							<div class="flex flex-row md:justify-center">
-								<button class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
-							</div>
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form id="#" action=""  method="POST"><!-- target="_blank" >-->
+								{% csrf_token %}
+								<input type="hidden" value="{{d.4}}" name="IDS2">
+								<input type="hidden" value="{{user.username}}" name="info2">
+								<div class="flex flex-row md:justify-center">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2" ><i class="fas fa-check"></i></button>
+								</div>
+							</form>
+						</td>
+
+
+						<!--Rechazar-->
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form id="#" action="" method="POST" ><!--target="_blank" >-->
+								{% csrf_token %}
+								<input type="hidden" value="{{d.4}}" name="IDS3">
+                        		<input type="hidden" value="{{user.username}}" name="info3">
+									<div class="flex flex-row md:justify-center">
+										<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
+									</div>
+							</form>
 						</td>
 					</tr>
 				</tbody>
 				{% endfor %}
 			</table>
-		</div>
-	</div>
-	
-	<!-- MODAL VER DETALLE -->
-	<div class="admin-solicitudListar-modal-verDetalle flex justify-center align-top hidden" >
-		<div class="admin-solicitudListar-capaGris fixed inset-0 z-20 w-full h-full bg-gray-800 opacity-75"></div>
-		<div class="admin-solicitudListar-ventana  fixed  z-30 bg-white w-11/12 rounded-2xl p-4 md:w-2/3 md:w-3/4 lg:w-2/3 xl:w-2/4" style="max-height: 20rem; top: 30%; ">
-			<div class="admin-solicitudListar-ventana-titulo border-b-2 border-gray-500">
-				<h3 class="admin-solicitudListar-ventana-titulo__h3 font-lato text-xl font-bold py-2">Solicitud N 123</h3>
-			</div>
-			<div class="admin-solicitudListar-contendor-tabla overflow-auto my-4" style="max-height: 12rem;">
-				<table class="admin-solicitudListar-table">
-					<thead class="admin-solicitudListar-table__thead">
-						<th class="admin-solicitudListar-table__thead-th w-1/6 font-lato text-white border-b border-gray-500 bg-gray-500 p-2 rounded-tl-md">#</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-2/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2">FRUTA</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-2/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2">VARIEDAD</th>
-						<!-- DETALLE_SOLICITUD-->
-						<th class="admin-solicitudListar-table__thead-th w-1/4 font-lato text-white border-b border-gray-500 bg-gray-500 p-2 rounded-tr-md">CANTIDAD</th>
-					</thead>
-	
-					<tbody>
-						<tr>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">{{d.12}}</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">{{d.7}}</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">{{d.8}}</td>
-							<td class="admin-solicitudListar-table__td font-lato text-sm text-center border-b border-gray-500 p-2">{{d.6}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+
 			
-			<div class="admin-solicitudListar-ventana-detalle-boton flex justify-end">
-				<button class="admin-solicitudListar-ventana-detalle-boton__button btn bg-red-600 font-lato text-white w-48 p-2">Cerrar</button>
-			</div>
 		</div>
 	</div>
+	
 	{% else %}
         <h1>Sin ordenes Pendientes Actualmente</h1>
+	{% endif %}
+	
+	{% if orden_en_camino %}
+	<div class="HistorialCompra-contenedor-titulo">
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Ordenes en Camino</h2>
+	</div>
+	
+	<div class="admin-solicitudListar-body">
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md" role="columnheader">N° Orden</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Fecha Creacion</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Solicitante</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Estado</th>
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Documento Orden</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Confirmar Entrega</th>
+                    <th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md" role="columnheader">Rechazar Entrega</th>
+				</thead>
+				{% for x in orden_en_camino %}
+				<tbody role="rowgroup">
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{x.0}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{x.1}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{x.2}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{x.3}}</td>
+						<!--Detalle-->
+						<td class="admin-solicitudListar-table__td  justify-center font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{x.4}}" name="IDSX">
+								<input type="hidden" value="{{user.username}}" name="infoX">
+								<button type="submit" class="listarSolicitud-contenedor-label__span" >Ver Orden</button>
+							</form>
+						</td>
+						<!--Aceptar-->
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form id="#" action=""  method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{x.4}}" name="IDS4">
+								<input type="hidden" value="{{user.username}}" name="info4">
+								<div class="flex flex-row md:justify-center">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2" ><i class="fas fa-check"></i></button>
+								</div>
+							</form>
+						</td>
+						<!--Rechazar-->
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form id="#" action="" method="POST" >
+								{% csrf_token %}
+								<input type="hidden" value="{{x.4}}" name="IDS5">
+                        		<input type="hidden" value="{{user.username}}" name="info5">
+									<div class="flex flex-row md:justify-center">
+										<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
+									</div>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+				{% endfor %}
+			</table>	
+		</div>
+	</div>
+
+	{% endif %}
+	
+	{% if orden_terminada %}
+	<div class="HistorialCompra-contenedor-titulo">
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Ordenes Finalizadas</h2>
+	</div>
+	
+	<div class="admin-solicitudListar-body">
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md" role="columnheader">N° Orden</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Fecha Creacion</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Solicitante</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2" role="columnheader">Estado</th>
+				</thead>
+				{% for z in orden_terminada %}
+				<tbody role="rowgroup">
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{z.0}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{z.1}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{z.2}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{z.3}}</td>
+					</tr>
+				</tbody>
+				{% endfor %}
+			</table>	
+		</div>
+	</div>
+
     {% endif %}
 </div>
 
@@ -132,7 +210,6 @@ Max width before this PARTICULAR table gets nasty. This query will take effect f
 
 		tr:nth-child(even) {
 			background:   #e5e8e8  ;
- ;
 		}
 
 		td[role='cell'] {
@@ -182,64 +259,9 @@ You could also use a data-* attribute and content for this. That way "bloats" th
 		}
 	}
 
-	@keyframes abrirModal{
-		from {
-			opacity: 0%;
-		}
-
-		to {
-			opacity: 100%;
-		}
-	}
-
-	@keyframes cerrarModal{
-		from {
-			opacity: 100%;
-		}
-
-		to {
-			opacity: 0%;
-		}
-	}
-
-	.admin-solicitudListar-modal-verDetalle {
-		animation-duration: .5s;
-		animation-fill-mode: forwards;
-	}
+	
 </style>
 
-<script>
 
-	$('#fecha-desde').datepicker({
-		changeMonth: true,
-		changeYear: true,
-        minDate: "-1Y",
-		maxDate: "0D"
-	});
-	$('#fecha-hasta').datepicker({
-		changeMonth: true,
-		changeYear: true,
-        minDate: "-1Y",
-		maxDate: "0D"
-	});
-
-
-	document.addEventListener("click", e => {
-		// TOMO LA PRIMERA CLASE
-		switch (e.target.className.substring(0, e.target.className.indexOf(' '))) {
-			case 'admin-solicitudListar-table__td-button-detalle':
-				document.querySelector('.admin-solicitudListar-modal-verDetalle').classList.remove('hidden');
-				document.querySelector('.admin-solicitudListar-modal-verDetalle').style.animationName = 'abrirModal';
-				break;
-
-			case 'admin-solicitudListar-ventana-detalle-boton__button':
-				document.querySelector('.admin-solicitudListar-modal-verDetalle').style.animationName = 'cerrarModal';
-				setTimeout(() => document.querySelector('.admin-solicitudListar-modal-verDetalle').classList.add('hidden'), 500);
-				break;
-
-		}
-	});
-
-</script>
 
 {% endblock %}

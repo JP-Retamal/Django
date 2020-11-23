@@ -134,10 +134,12 @@ def usuario(request):
         'v_salida': contar_solicitudes_nuevas(),
         'v_vl_count': contar_ventas_locales(),
         'v_sol_publ': contar_solicitudes_publicadas(),
+        'stock_nuevo': contar_stock_nuevo(),
         'resumen_vl': RESUMEN_VENTA_LOCAL(),
         'resumen_oc': RESUMEN_EXPORTACIONES(),
         'resumen_per': RESUMEN_PERDIDAS(),
-        'resumen_stock': RESUMEN_STOCK_INICIAL()
+        'resumen_stock': RESUMEN_STOCK_INICIAL(),
+        'resumen_donaciones': RESUMEN_DONACIONES()
        
     }
  
@@ -148,7 +150,7 @@ def usuario_2(request):
     #usuario=request.GET['usuarioid']
     data = {
         'v_salida': contar_solicitudes_nuevas(),
-       # 'v_salida': contar_ordencompra_nuevas(usuariois)
+       
     }
     return render(request, 'usuario_2.html', data)
 
@@ -508,10 +510,105 @@ def listar_variedad(especie):
 @permission_required('core.add_solicitud')
 def ordenes_externo(request):
     info = request.POST.get("valcorreo")
-    print(info)
+    #print(info)
     data = {
-        'bd_orden': LISTAR_COSTOS_ORDEN(info)
+        'bd_orden': LISTAR_COSTOS_ORDEN(info),
+        'orden_en_camino': LISTAR_ORDEN_EN_CAMINO(info),
+        'orden_terminada': LISTAR_ORDEN_COMPLETADA(info)
     }
+    if request.method =="POST":
+        if (request.POST.get("IDS1") != None):
+            PIDS1 = request.POST.get("IDS1")
+            correo1 = request.POST.get("info1")
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correo1)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo1)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo1)
+            salida=verificar_cot(PIDS1)
+            if salida ==1:
+                data['ver_ordenp1'] = ver_oc1(PIDS1)
+                data['ver_ordenp2'] = ver_oc2(PIDS1)
+                
+                pdf = render_to_pdf('include/pdf_template.html', data)
+                print(salida)
+                response = HttpResponse(pdf, content_type='application/pdf')
+                filename = "Cotizacion NÂ° %s.pdf" %(data['ver_ordenp1'][0][9])
+                content = "attachment; filename=%s" %(filename)
+                #content = " filename=%s" %(filename) #para visualizar
+                response['Content-Disposition'] = content
+                return response
+        elif (request.POST.get("IDS2") != None):
+            PIDS2 = request.POST.get("IDS2")
+            correo2 = request.POST.get("info2")
+            salida=verificar_cot(PIDS2)
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correo2)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo2)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo2)
+            if salida ==1:
+                salida2 = aprobar_oc(PIDS2)
+                if salida2 == 1:
+                    data['mensaje']="Orden de Compra Aprobada" 
+                    data['bd_orden']=LISTAR_COSTOS_ORDEN(correo2)
+                    data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo2)
+                    data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo2)
+                    return render(request, 'aceptar_ordenes.html', data)
+            
+        elif (request.POST.get("IDS3") != None):
+            PIDS3 = request.POST.get("IDS3")
+            correo3 = request.POST.get("info3")
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correo3)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo3)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo3)
+            salida=verificar_cot(PIDS3)
+            if salida ==1:
+                salida2 = rechazar_oc(PIDS3)
+                if salida2 == 1:
+                    data['mensaje']="Orden de Compra Rechazada"
+                    data['bd_orden']=LISTAR_COSTOS_ORDEN(correo3)
+                    data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo3)
+                    data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo3) 
+
+        elif (request.POST.get("IDS4") != None):
+            PIDS4 = request.POST.get("IDS4")
+            correo4 = request.POST.get("info4")
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correo4)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo4)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo4)
+            salida = aceptar_oc_final(PIDS4)
+            if salida == 1:
+                data['mensaje']="Pedido Recepcionado"
+                data['bd_orden']=LISTAR_COSTOS_ORDEN(correo4)
+                data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo4)
+                data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo4)
+                
+        elif (request.POST.get("IDS5") != None):
+            PIDS5 = request.POST.get("IDS5")
+            correo5 = request.POST.get("info5")
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correo5)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo5)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo5)
+            salida = rechazar_oc_final(PIDS5)
+            if salida == 1:        
+                data['mensaje']="Pedido Rechazado"
+                data['bd_orden']=LISTAR_COSTOS_ORDEN(correo5)
+                data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo5)
+                data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo5) 
+        elif (request.POST.get("IDSX") != None):
+            PIDSX = request.POST.get("IDSX")
+            correoX = request.POST.get("infoX")
+            data['bd_orden']=LISTAR_COSTOS_ORDEN(correoX)
+            data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correoX)
+            data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correoX)
+            salida=verificar_cot(PIDSX)
+            if salida ==2:
+                data['ver_ordenp1'] = ver_oc1(PIDSX)
+                data['ver_ordenp2'] = ver_oc2(PIDSX)
+                pdf = render_to_pdf('include/pdf_template2.html', data)
+                response = HttpResponse(pdf, content_type='application/pdf')
+                filename = "Orden de Compra NÂ° %s.pdf" %(data['ver_ordenp1'][0][0])
+                content = "attachment; filename=%s" %(filename)
+                #content = " filename=%s" %(filename) #para visualizar
+                response['Content-Disposition'] = content
+                return response
     return render(request, 'aceptar_ordenes.html', data)
 
 
@@ -573,6 +670,9 @@ def detallesolicitudAdmin(request):
     print(data)
     return render(request, 'solicitud-detalle-admin.html', data)
 
+def publicar_venta_local(request):
+    
+    return render(request, 'saldos.html')
 
 #------Informacion para pdf----
 def render_pdf_view(request):
@@ -682,23 +782,6 @@ def revisar_publicaciones_pedidos(request):
                     return response
     return render(request, 'revisar_publicacion_admin.html', context)
 
-#def revisar_publicaciones_pedidos(request):
-#    context = {
-#        'lista_publicaciones': listar_publicaciones_of_activas()
-#    }
-#    if request.method =="POST":
-#        if(request.POST.get('idsol') != None):
-#            if(request.POST.get("espec") != None):
-#                if(request.POST.get("varie") != None):
-#                    idsox = request.POST.get("idsol")
-#                    espex = request.POST.get("espec")
-#                    varix = request.POST.get("varie")
-#                    salida=Codex_Seleccion( idsox, espex, varix)
-#                    if salida==1:
-#                        context['mensaje']="Seleccion Terminada" 
-#                        context['lista_publicaciones'] = listar_publicaciones_of_activas()
-#    return render(request, 'revisar_publicacion_admin.html', context)
- 
 
 def revisar_detalle_pedido(request):
     idso = request.POST.get("idsol")
@@ -713,19 +796,8 @@ def revisar_detalle_pedido(request):
     print(context)
     return render(request, 'revisar_detalle_publicacion_admin.html',context)
 
-    
-#def revisar_detalle_pedido(request):
-   # idso = request.POST.get("idsol")
-  #  espe = request.POST.get("espec")
-   # vari = request.POST.get("varie")
-   # variedad = vari.strip()
-    
-  #  context = {
-  #      'lista_detalle_publicaciones': listar_detalle_publicaciones_of_activas(idso, espe, variedad),
-  #      'lista_total_detalle_publicaciones': listar_total_publicaciones_of_activas(idso, espe, variedad)
-  #  }
- #   print(context)
-#    return render(request, 'revisar_detalle_publicacion_admin.html',context)
+
+
 
 
 

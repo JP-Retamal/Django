@@ -1,0 +1,254 @@
+
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+	<div class="admin-solicitudListar-header">
+	<br>
+	<br>
+		<h1 class="admin-solicitudListar-header__h1 font-lato">PUBLICAR NUEVO STOCK</h1>
+	</div>
+	{% if messages %}
+    <ul class="messages">
+    <script>
+        alertify.warning('Venta local publicada!!!');
+    </script>
+    </ul>
+    {% endif %}
+	<div class="admin-solicitudListar-body">
+		{% if lista_solicitudes %}
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">N° STOCK</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">FECHA VENCIMIENTO</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">CANTIDAD</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">ESTADO</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">DETALLE</th>
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+						role="columnheader">PUBLICAR</th>
+				
+				</thead>
+
+				<tbody role="rowgroup">
+					<!--{% for lsu in lista_solicitudes %}-->
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.0}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.2}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.3}} {{lsu.4}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.5}}</td>
+
+						<td class="admin-solicitudListar-table__td font-lato flex justify-center border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="margin-bottom: -1px !important;">
+							<form action="{% url 'detallesolicitudAdmin' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{lsu.0}}" name="idsol">
+								<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" >Ver Detalle</button>
+							</form>
+						</td>				
+
+						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<div class="flex flex-row md:justify-center">
+								<form id="#" action="" method="POST" >
+									{% csrf_token %}
+									<input type="hidden" value="{{lsu.0}}" name="idsol1">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
+								</form>
+								<form id="#" action="" method="POST" >
+									{% csrf_token %}
+									<input type="hidden" value="{{lsu.0}}" name="idsol2">
+									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
+								</form>
+							</div>
+						</td>
+					</tr>
+				<!--	{% endfor %}-->
+				</tbody>
+			</table>
+		</div>
+	</div>
+	{% else %}
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="todo">
+        <h1>No hay nuevos ingresos en stock de saldos</h1>
+	</div>
+    {% endif %}
+	
+</div>
+
+<style>
+
+	@media only screen and (max-width: 767px) {
+
+		/* Force table to not be like tables anymore */
+		table[role='table'],
+		thead[role='rowgroup'],
+		tbody[role='rowgroup'],
+		th[role='columnheader'],
+		td[role='cell'],
+		tr[role='trow'] {
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead[role='rowgroup'] th[role='columnheader'] {
+			display: none;
+		}
+
+		tr[role='trow'] {
+			margin: 0 0 1rem 0;
+		}
+
+		tr:nth-child(even) {
+			background:   #e5e8e8  ;
+		}
+
+		td[role='cell'] {
+			position: relative;
+			padding-left: 50%;
+			height: 50px;
+			line-height: 45px;
+		}
+
+		td[role='cell']:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			line-height: 45px;
+			left: 20px;
+			width: 45%;
+			/* padding-right: 10px; */
+			white-space: nowrap;
+		}
+
+		/*
+Label the data
+You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+*/
+		td[role='cell']:nth-of-type(1):before {
+			content: "N SOLICITUD";
+		}
+
+		td[role='cell']:nth-of-type(2):before {
+			content: "FECHA CREACION";
+		}
+
+		td[role='cell']:nth-of-type(3):before {
+			content: "SOLICITANTE";
+		}
+
+		td[role='cell']:nth-of-type(4):before {
+			content: "ESTADO";
+		}
+
+		td[role='cell']:nth-of-type(5):before {
+			content: "DETALLE";
+		}
+
+		td[role='cell']:nth-of-type(6):before {
+			content: "PUBLICAR";
+		}
+	}
+	@media only screen and (min-width: 640px) and (max-width: 765px) {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+		}
+	}
+	
+	@media only screen and (min-width: 765px)  {
+		.admin-solicitudListar-contenedor-general
+		{
+			padding-left: 8.5rem;
+			padding-right: 8rem;
+		}
+	}
+	/*@keyframes abrirModal{
+		from {
+			opacity: 0%;
+		}
+
+		to {
+			opacity: 100%;
+		}
+	}
+
+	@keyframes cerrarModal{
+		from {
+			opacity: 100%;
+		}
+
+		to {
+			opacity: 0%;
+		}
+	}
+
+	.admin-solicitudListar-modal {
+		animation-duration: .5s;
+		animation-fill-mode: forwards;
+	}*/
+
+</style>
+
+<script>
+
+	$('#fecha-desde').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "0D"
+	});
+	$('#fecha-hasta').datepicker({
+		changeMonth: true,
+		changeYear: true,
+		maxDate: "0D"
+	});
+
+
+	document.addEventListener("click", e => {
+		// TOMO LA PRIMERA CLASE
+		switch (e.target.className.substring(0, e.target.className.indexOf(' '))) {
+			case 'admin-solicitudListar-table__td-button-detalle':
+				document.querySelector('.admin-solicitudListar-modal').classList.remove('hidden');
+				document.querySelector('.admin-solicitudListar-modal').style.animationName = 'abrirModal';
+				break;
+
+			case 'admin-solicitudListar-ventana-boton__button':
+				document.querySelector('.admin-solicitudListar-modal').style.animationName = 'cerrarModal';
+				setTimeout(() => document.querySelector('.admin-solicitudListar-modal').classList.add('hidden'), 500);
+				break;
+		}
+	});
+
+	function soloLetras(e) {
+		key = e.keyCode || e.which;
+		tecla = String.fromCharCode(key).toString();
+		letras = " áéíóúabcdefghijklmnñopqrstuvwxyzÁÉÍÓÚABCDEFGHIJKLMNÑOPQRSTUVWXYZ";//Se define todo el abecedario que se quiere que se muestre.
+		especiales = [8, 37, 39, 46, 6]; //Es la validación del KeyCodes, que teclas recibe el campo de texto.
+		tecla_especial = false
+		for(var i in especiales) {
+			if(key == especiales[i]) {
+				tecla_especial = true;
+				break;
+			}
+		}
+		if(letras.indexOf(tecla) == -1 && !tecla_especial){
+			return false;
+		}
+
+	}
+
+	function noPuntoComa(event) {
+		var e = event || window.event;
+		var key = e.keyCode || e.which;
+		if ( key === 110 || key === 190 || key === 188 ) {     
+			e.preventDefault();
+		}
+	}
+
+</script>
+
+

@@ -7,9 +7,31 @@
     	</div>
 		{% for d in bd_pedido %}
 		<div class="HistorialCompra-contenedor-titulo">
-			<h2 class="HistorialCompra-contenedor-titulo__h4">Variedad Solicitada:</h2>
+			<h2 class="HistorialCompra-contenedor-titulo__h4">Variedad Solicitada: {{d.5}} {{d.6}} {{d.7}} K. </h2>
 		</div>
 		<br>
+		<br>
+		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
+			
+			<!-- Especie -->
+			<div class="unidad-tarjeta">
+				<h3>1.- Fruta Seleccionada</h3>
+			</div>
+			<!-- Variedad -->
+			<div class="unidad-tarjeta">
+				<h3>2.- Variedad Seleccionada</h3>
+			</div>
+		
+			<!-- Cantidad -->
+			<div class="unidad-tarjeta">
+				<h3>4.- Ingrese kilos</h3>
+			</div>
+			<!-- Precio -->
+			<div class="unidad-tarjeta">
+				<h3>5.- Ingrese Precio Oferta</h3>
+			</div>
+			
+		</div>
 		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			
 			<!-- Especie -->
@@ -37,16 +59,32 @@
 					class="input focus:outline-none focus:border-orange-500" placeholder="Ingrese precio:" 
 					 onkeypress='return event.charCode >= 48 && event.charCode <= 57' required/>
 			</div>
+			
+		</div>
+		<br>
+		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
+		<!-- Fecha-->
+		<div class="unidad-tarjeta">
+			<h3>6.- Ingrese Fecha de Cosecha</h3>
+		</div>
+		<div class="contenedor-inputs"></div>
+		<div class="contenedor-inputs"></div>
+		<div class="contenedor-inputs"></div>
+		<br>
+
+		</div>
+		<div class="crearSolicitud-contenedor-formulario grid grid-cols-1 sm:grid-cols-4">
 			<div class="contenedor-inputs">
 				<b><h4 style="margin: 5px; font-size: 15px;">Fecha de Cosecha:</h4></b>
 				<input id="registro-fecha" name="fecha" type="text"
-					class="input appearance-none focus:outline-none focus:border-orange-500"
-					placeholder="Fecha de Nacimiento" required maxlength="10" minlength="10"/>
+				class="input appearance-none focus:outline-none focus:border-orange-500"
+				placeholder="Fecha de Nacimiento" required maxlength="10" minlength="10"/>
 			</div>
 			<div class="contenedor-inputs"></div>
 			<div class="contenedor-inputs"></div>
 			<div class="contenedor-inputs"></div>
 			<br>
+		<br>
 		</div>
 		<div class="HistorialCompra-contenedor-titulo">
 			<h2 class="HistorialCompra-contenedor-titulo__h4">Ofertar:</h2>
@@ -97,9 +135,9 @@
 	$.datepicker.setDefaults($.datepicker.regional['es']);
 	$('#registro-fecha').datepicker({
 		changeMonth: true,
-		changeYear: true,
-		maxDate: "+D",
-		minDate: "-1Y"
+		changeYear: true
+		
+		
 	});
 	// Fin DatePicker JQuery
 

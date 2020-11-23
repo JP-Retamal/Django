@@ -437,6 +437,43 @@ def contar_ordencompra_nuevas(usuariois):
 
     return lista
 
+#LISTAS ORDEN DE COMPRA----------------------------------------
+def LISTAR_COSTOS_ORDEN(email):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_COSTOS_ORDEN",[email, out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def LISTAR_ORDEN_EN_CAMINO(email):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_ORDEN_EN_CAMINO",[email, out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def LISTAR_ORDEN_COMPLETADA(email):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_ORDEN_TERMINADA",[email, out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
 ##################################################        USUARIO ADMINISTRADOR       #########################################################
 
 def contar_solicitudes_nuevas():
@@ -468,6 +505,18 @@ def contar_solicitudes_publicadas():
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
     cursor.callproc("SP_CONTAR_SOLICITUDES_PUBLICADAS", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def contar_stock_nuevo():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_CONTAR_STOCK_SALDO_NUEVO", [out_cur])
     
     lista = []
     for fila in out_cur:
@@ -571,15 +620,33 @@ def verificar_cot(id_solicitud):
     cursor.callproc('SP_VERIFICAR_COTIZACION', [id_solicitud, salida])
     return salida.getvalue()
 
-    
-#-----------------------------------------------------------
-#def Codex_Seleccion(id_solicitud, especie, variedad):
-#    django_cursor = connection.cursor()
-#    cursor = django_cursor.connection.cursor()
-#    salida = cursor.var(cx_Oracle.NUMBER)
-#    cursor.callproc('SP_CODEX_OFERTA', [id_solicitud, especie, variedad, salida])
-#    return salida.getvalue()
+def aprobar_oc(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_ACEPTAR_OC', [id_solicitud, salida])
+    return salida.getvalue()
 
+def rechazar_oc(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_RECHAZAR_OC', [id_solicitud, salida])
+    return salida.getvalue()
+
+def aceptar_oc_final(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_CONFIRMAR_LLEGADA_OC', [id_solicitud, salida])
+    return salida.getvalue()
+
+def rechazar_oc_final(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_RECHAZAR_LLEGADA_OC', [id_solicitud, salida])
+    return salida.getvalue()
 
 ####################### ver ##########################
 def validaCorreo(correo):
@@ -681,3 +748,16 @@ def RESUMEN_STOCK_INICIAL():
     for fila in out_cur:
         lista.append(fila)
     return lista
+
+def RESUMEN_DONACIONES():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_DONACIONES",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+

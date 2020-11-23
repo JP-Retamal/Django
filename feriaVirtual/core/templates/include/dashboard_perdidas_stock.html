@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{% static '../static/css/resumenAnio.css' %}"/>
 {% endblock %}
 
-    <div id="container"></div>
+    <div id="container-2"></div>
 
 <script type="application/javascript">
-Highcharts.chart('container', {
+Highcharts.chart('container-2', {
     chart: {
         type: 'column'
     },
@@ -20,7 +20,7 @@ Highcharts.chart('container', {
         text: 'Resumen del año 2020'
     },
     subtitle: {
-        text: 'Exportaciones, Venta Local'
+        text: 'Perdidas, Stock Saldos, Donaciones'
     },
     xAxis: {
         categories: [
@@ -61,16 +61,17 @@ Highcharts.chart('container', {
         }
     },
     series: [{
-        name: 'Exportaciones',
-
-        data: {{resumen_oc|safe}}
+        name: 'Perdidas',
+        data: {{resumen_per|safe}}
 
     }, {
-        name: 'Venta Local',
-        data: {{resumen_vl|safe}}
+        name: 'Stock Saldos',
+        data: {{resumen_stock|safe}}
 
-    }
-    
-    ]
+    }, {
+        name: 'Donaciones',
+        data: {{resumen_donaciones|safe}}
+
+    }]
 });
 </script>
