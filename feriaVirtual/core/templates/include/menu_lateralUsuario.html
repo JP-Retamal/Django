@@ -149,8 +149,17 @@
                             {% endfor %}
                         </a>
                     </div>
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'revisar_publicaciones_pedidos' %}">                        
+                         
+                                <i class="fas fa-clipboard-list usuario-contenedor-btns__i"></i>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">
+                                Selección Ofertas</span>
+                            
+                        </a>
+                    </div>
                                     
-                 {% else %}              
+                {% else %}              
                     <!-- Cuenta -->
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                         <a href="javascript:enviar_formulario5()">

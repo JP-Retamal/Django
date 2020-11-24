@@ -123,21 +123,7 @@
                     
                     {% else %}
                         {% if perms.core.view_ventalocal %}
-                            <a href="{% url 'revisar_publicaciones_pedidos' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Selección Ofertas</li>
-                            </a>
-                            <a href="{% url 'revisar_detalle_pedido' %}" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Detalle Ofertas</li>
-                            </a>
-                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Venta Local</li>
-                            </a>
-                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>Solicitudes</li>
-                            </a>
-                            <a href="#" class="contenedor-enlace__li centrar-contenedor py-4 hover:bg-green-600 md:p-0">
-                                <li>#</li>
-                            </a>
+                          
                            
                         {% else %}
                             <a href="{% url 'home' %}"

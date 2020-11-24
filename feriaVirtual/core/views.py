@@ -671,8 +671,19 @@ def detallesolicitudAdmin(request):
     return render(request, 'solicitud-detalle-admin.html', data)
 
 def publicar_venta_local(request):
-    
-    return render(request, 'saldos.html')
+    data = {
+        'saldos': LISTAR_SALDOS()
+    }
+    return render(request, 'saldos.html', data)
+
+
+def detalle_publicar_vl(request):
+    info = request.POST.get("idsol")
+    data={
+        'saldos_detalle': LISTAR_DETALLE_SALDOS(info)
+    }
+
+    return render(request, 'saldos_detalle.html', data)
 
 #------Informacion para pdf----
 def render_pdf_view(request):

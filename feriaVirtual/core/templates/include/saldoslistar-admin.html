@@ -1,4 +1,4 @@
-
+{%load humanize%}
 <div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
 	<div class="admin-solicitudListar-header">
 	<br>
@@ -12,71 +12,72 @@
     </script>
     </ul>
     {% endif %}
-	<div class="admin-solicitudListar-body">
-		{% if lista_solicitudes %}
-		<div class="admin-solicitudListar-listado my-4">
-			<table class="admin-solicitudListar-table md:w-full" role="table">
-				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
 
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
-						role="columnheader">N° STOCK</th>
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">FECHA VENCIMIENTO</th>
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">CANTIDAD</th>
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">ESTADO</th>
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
-						role="columnheader">DETALLE</th>
-					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
-						role="columnheader">PUBLICAR</th>
-				
-				</thead>
 
-				<tbody role="rowgroup">
-					<!--{% for lsu in lista_solicitudes %}-->
-						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.0}}</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.2}}</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.3}} {{lsu.4}}</td>
-						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lsu.5}}</td>
+		<div class="admin-solicitudListar-body">
+			{% if saldos %}
+			<div class="admin-solicitudListar-listado my-4">
+				<table class="admin-solicitudListar-table md:w-full" role="table">
+					<thead class="admin-solicitudListar-table__thead" role="rowgroup">
 
-						<td class="admin-solicitudListar-table__td font-lato flex justify-center border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="margin-bottom: -1px !important;">
-							<form action="{% url 'detallesolicitudAdmin' %}" method="POST">
-								{% csrf_token %}
-								<input type="hidden" value="{{lsu.0}}" name="idsol">
-								<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" >Ver Detalle</button>
-							</form>
-						</td>				
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+							role="columnheader">STOCK</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+							role="columnheader">FECHA COSECHA</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+							role="columnheader">FECHA VENCIMIENTO</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+							role="columnheader">COSTO</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+							role="columnheader">DESCRIPCIÓN</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+							role="columnheader">DETALLE</th>
+						<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+							role="columnheader">PUBLICAR</th>
+					
+					</thead>
 
-						<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
-							<div class="flex flex-row md:justify-center">
-								<form id="#" action="" method="POST" >
+					<tbody role="rowgroup">
+					{% for sal in saldos %}	
+						<tr role="trow">
+							<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{sal.1}}</td>
+							<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{sal.2}}</td>
+							<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{sal.3}}</td>
+							<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{sal.4|intcomma}}</td>
+							<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{sal.5}}</td>
+
+							<td class="admin-solicitudListar-table__td font-lato flex justify-center border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell" style="margin-bottom: -1px !important;">
+								<form action="{% url 'ventalocal_publicar_detalle' %}" method="POST">
 									{% csrf_token %}
-									<input type="hidden" value="{{lsu.0}}" name="idsol1">
-									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
+									<input type="hidden" value="{{sal.0}}" name="idsol">
+									<button type="submit" class="admin-solicitudListar-table__td-button-detalle  btn bg-green-500 font-lato text-white text-sm mt-1 w-20" >Ver Detalle</button>
 								</form>
-								<form id="#" action="" method="POST" >
-									{% csrf_token %}
-									<input type="hidden" value="{{lsu.0}}" name="idsol2">
-									<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-red-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-times"></i></button>
-								</form>
-							</div>
-						</td>
-					</tr>
-				<!--	{% endfor %}-->
-				</tbody>
-			</table>
+							</td>				
+
+							<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+								<div class="flex flex-row md:justify-center">
+									<form id="#" action="" method="POST" >
+										{% csrf_token %}
+										<input type="hidden" value="{{sal.0}}" name="idsol1">
+										<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
+									</form>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	{% else %}
-	<br>
-	<br>
-	<br>
-	<br>
-	<div id="todo">
-        <h1>No hay nuevos ingresos en stock de saldos</h1>
-	</div>
-    {% endif %}
+		{% else %}
+			<br>
+			<br>
+			<br>
+			<br>
+			<div id="todo">
+				<h1>Sin Registro de nuevo Stock</h1>
+			</div>
+		{% endif %}
 	
 </div>
 

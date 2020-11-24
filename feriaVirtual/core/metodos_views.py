@@ -761,3 +761,27 @@ def RESUMEN_DONACIONES():
         lista.append(fila)
     return lista
 
+
+def LISTAR_SALDOS():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_LISTAR_SALDOS", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def LISTAR_DETALLE_SALDOS(STOCK_ID):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_SALDOS_DETALLE",[STOCK_ID, out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista

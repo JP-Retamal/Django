@@ -49,7 +49,7 @@ Highcharts.chart('container-2', {
     tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.0f} $</b></td></tr>',
+            '<td style="padding:0"><b>{point.y:.0f} Kilos</b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
@@ -61,12 +61,12 @@ Highcharts.chart('container-2', {
         }
     },
     series: [{
-        name: 'Perdidas',
-        data: {{resumen_per|safe}}
-
-    }, {
         name: 'Stock Saldos',
         data: {{resumen_stock|safe}}
+
+    }, {
+        name: 'Perdidas',
+        data: {{resumen_per|safe}}
 
     }, {
         name: 'Donaciones',
