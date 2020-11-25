@@ -26,6 +26,7 @@ urlpatterns = [
    path('administracion/solicitud_detalle', login_required(detallesolicitudAdmin), name="detallesolicitudAdmin"),
    path('administracion/publicar_venta_local', publicar_venta_local, name="ventalocal_publicar"),
    path('administracion/detalle_saldos', detalle_publicar_vl, name="ventalocal_publicar_detalle"),
+   path('administracion/publicacion_vl', publicacion_vl, name="publicacion_vl"),
    
    path('portalDeOfertas', login_required(portalDeOfertas), name="portalDeOfertas"),
 

@@ -785,3 +785,22 @@ def LISTAR_DETALLE_SALDOS(STOCK_ID):
     for fila in out_cur:
         lista.append(fila)
     return lista
+
+def LISTAR_VARIEDAD():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_LISTAR_VARIEDAD", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def AGREGAR_VENTA_LOCAL(v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_id_stock):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    salida = cursor.var(cx_Oracle.NUMBER)
+    cursor.callproc('SP_AGREGAR_VENTA_LOCAL', [v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_id_stock, salida])
+    return salida.getvalue()

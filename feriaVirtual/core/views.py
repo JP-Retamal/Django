@@ -685,6 +685,30 @@ def detalle_publicar_vl(request):
 
     return render(request, 'saldos_detalle.html', data)
 
+def publicacion_vl(request):
+    info = request.GET.get("idsol")
+    idusuario = request.GET.get("usuario")
+  
+    data={
+        'saldos_detalle': LISTAR_DETALLE_SALDOS(info),
+        'bd_calidad': LISTAR_VARIEDAD()
+    }
+    
+    if request.method =="POST":
+        precio       = request.POST.get('precio')
+        descripcion  = request.POST.get('descripcion-venta')
+        calidad      = request.POST.get('calidad')
+        id_stock     = info
+        usuarioid        = SP_BUSCA_NUM_USUARIO(idusuario)
+        salida=AGREGAR_VENTA_LOCAL(usuarioid, precio, descripcion, calidad, id_stock)
+        if salida == 1:
+            print('Registro Exitoso !!!')
+            return redirect("/") 
+        else:
+            print('Error al registrar los datos :(')
+
+    return render(request, 'publicacion_saldo.html', data)
+
 #------Informacion para pdf----
 def render_pdf_view(request):
     template_path = 'user_printer.html'

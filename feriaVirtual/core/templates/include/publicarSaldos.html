@@ -1,0 +1,166 @@
+{%load humanize%}
+<div class="admin-solicitudListar-contenedor-general m-4 mb-20 md:mb-0 sm:ml-24" >
+<div class="contenedor-tarjeta" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+    <div class="contenedor-titulo">
+        <h2>Publicación Venta Local</h2>
+    </div>
+    <div class="HistorialCompra-contenedor-titulo">
+		<h3 class="HistorialCompra-contenedor-titulo__h2">Información Stock </h3>
+    </div>
+    <div class="row">
+    {% if messages %}
+ 
+    <script>
+        alertify.warning('Publicación creada!!!');
+    </script>
+    
+    {% endif %}
+    </div>
+    {% if saldos_detalle %}
+    {% for u in saldos_detalle %}
+    
+    <form id="#" action="" method="POST" >
+        {% csrf_token %}
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+
+		    <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">kilos Totales</h4></b>
+                <input id="kilos-totales" name="kios totales" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="kilos Totales"
+                    value = "{{u.0}}" readonly/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 class="label" style="margin: 5px; font-size: 15px;">Fecha Cosecha</h4></b>
+			    <input id="fecha-cosecha" name="Fecha Cosecha" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Fecha Cosecha"
+                    value = "{{u.2}}" readonly/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 class="label" style="margin: 5px; font-size: 15px;">Fecha Vencimiento</h4></b>
+			    <input id="fecha-vencimiento" name="Fecha Vencimiento" type="text" minlength="2" required 
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Fecha Vencimiento"
+                    value = "{{u.3}}" readonly/>
+            </div>
+
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Descripción</h4></b>
+                <input id="descripción" name="Descripción" type="text"
+                    class="input appearance-none focus:outline-none focus:border-orange-500" required 
+                    placeholder="Descripción"
+                    value = "{{u.8}}" readonly/>
+            </div>
+        
+        </div>
+        <div class="HistorialCompra-contenedor-titulo">
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Información de Costos</h3>
+	    </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo por Kilo</h4></b>
+			    <input name="kilos" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.9|intcomma}}" readonly/>
+            </div>
+		    
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo Kilos Total</h4></b>
+			    <input id="total-kilos" name="Total-kilos" type="text"  required
+                    class="input focus:outline-none focus:border-orange-500" placeholder="Total kilos"
+                value = "{{u.10|intcomma}}"/>
+            </div>
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo IVA</h4></b>
+			    <input name="iva" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.4|intcomma}}" readonly/>
+            </div>
+        </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo ADUANA</h4></b>
+                <input name="aduana" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.5|intcomma}}" readonly/>
+            </div>
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo Transpote</h4></b>
+			    <input name="costo-transporte" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.6|intcomma}}" readonly/>
+            </div>
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Costo Total</h4></b>
+			    <input name="kilos" type="text" 
+                    class="input focus:outline-none focus:border-orange-500" value = "{{u.7|intcomma}}" readonly/>
+            </div>  
+        </div>
+        <div class="HistorialCompra-contenedor-titulo">
+		    <h3 class="HistorialCompra-contenedor-titulo__h2">Completar Campos</h3>
+	    </div>
+        <div class=" grid grid-cols-1 lg:grid-cols-3">
+		    <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Precio x kilo</h4></b>
+                <input id="precio" name="precio" type="text"
+                    class="input focus:outline-none focus:border-orange-500"  
+                    value = "{{u.9}}" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+            </div>
+           
+            <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Calidad Fruta</h4></b>
+			    <select id="calidad" name="calidad" class="contenedor-selects__select focus:outline-none focus:border-orange-500">
+                   {% for p in bd_calidad %}
+                    <option value=""></option>
+                    <option value="{{p.0}}">{{p.1}}</option>
+                   {% endfor %} 
+			    </select>
+                 
+            </div>
+            <div class="contenedor-inputs">
+                
+            </div>
+        </div>
+         <div class="contenedor-inputs">
+                <b><h4 style="margin: 5px; font-size: 15px;">Descripción Venta</h4></b>
+                <input id="descripcion-venta" name="descripcion-venta" type="text"
+                    class="input focus:outline-none focus:border-orange-500"  
+                    value = "La mejor fruta de exportación" required onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+            </div>
+        <br>
+        {% endfor %}
+            <div class="contenedor-inputs"><h4 style="margin: 5px; font-size: 15px;">{{mensaje}}</h4></div>
+		    <div class="contenedor-btns flex justify-end lg:col-span-3">
+                <input type="hidden" value="{{user.username}}" name="valcorreo3">
+			    <button type="submit" class="informacionDespacho-contenedor-btns__button btn w-1/3 lg:w-1/4 focus:outline-none"
+                >Guardar</button>
+            </div>
+        {% else %}
+            <h1>Sin información en este momento</h1>
+        {% endif %}
+    </form>
+</div>
+</div>
+<script>
+    function validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+    }
+
+	$(document).ready(function () {
+		const selects = document.getElementsByTagName('select');
+		const selectsName = ['Calidad'];
+
+		for (let index = 0; index < selects.length; index++) {
+			$(`#${selects[index].id}`).select2({
+				placeholder: `Selecciona ${selectsName[index]}`,
+				language: {
+					noResults: function () {
+						return "No hay resultado";
+					},
+					searching: function () {
+						return "Buscando..";
+					}
+				}
+			});
+		}
+	});
+</script>

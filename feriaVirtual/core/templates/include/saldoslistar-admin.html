@@ -56,9 +56,10 @@
 
 							<td class="admin-solicitudListar-table__td font-lato border-b-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
 								<div class="flex flex-row md:justify-center">
-									<form id="#" action="" method="POST" >
+									<form id="#" action="{% url 'publicacion_vl' %}" method="GET" >
 										{% csrf_token %}
-										<input type="hidden" value="{{sal.0}}" name="idsol1">
+										<input type="hidden" value="{{sal.0}}" name="idsol">
+										<input type="hidden" value="{{user.username}}" name="usuario">
 										<button type="submit" class="admin-solicitudListar-table__td-button-aceptar btn rounded-full w-10 h-10 bg-blue-500 font-lato text-white text-sm mx-2 px-2"><i class="fas fa-check"></i></button>
 									</form>
 								</div>
