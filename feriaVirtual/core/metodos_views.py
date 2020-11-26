@@ -749,17 +749,7 @@ def RESUMEN_STOCK_INICIAL():
         lista.append(fila)
     return lista
 
-def RESUMEN_DONACIONES():
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc("SP_RESUMEN_DONACIONES",[out_cur])
-   
-    lista = []
-    for fila in out_cur:
-        lista.append(fila)
-    return lista
 
 
 def LISTAR_SALDOS():
@@ -791,6 +781,18 @@ def LISTAR_VARIEDAD():
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
     cursor.callproc("SP_LISTAR_VARIEDAD", [out_cur])
+    
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+def LISTAR_CALIDAD():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    cursor.callproc("SP_LISTAR_CALIDAD", [out_cur])
     
     lista = []
     for fila in out_cur:

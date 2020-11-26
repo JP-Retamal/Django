@@ -4,7 +4,7 @@
 	</div>
 
 	<div class="admin-solicitudListar-body">
-
+	{% if lista_publicaciones %}
 		<div class="admin-solicitudListar-listado my-4">
 			<table class="admin-solicitudListar-table md:w-full" role="table">
 				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
@@ -115,7 +115,9 @@
 			</table>
 		</div>
 	</div>
-
+	{% else %}
+        <h1>Estás al día Con los pedidos ofertados.</h1>
+    {% endif %}
 	
 </div>
 

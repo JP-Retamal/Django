@@ -123,7 +123,7 @@ def informacion(request):
         id_comuna     = request.POST.get('comuna')
         salida=modificar_usuario( info, celular, direccion, id_comuna)
         if salida==1:
-           messages.success(request, 'Datos actualizados!!! ')
+           messages.success(request, '.')
     return  render(request, 'informacion.html', data) 
 
 
@@ -138,8 +138,7 @@ def usuario(request):
         'resumen_vl': RESUMEN_VENTA_LOCAL(),
         'resumen_oc': RESUMEN_EXPORTACIONES(),
         'resumen_per': RESUMEN_PERDIDAS(),
-        'resumen_stock': RESUMEN_STOCK_INICIAL(),
-        'resumen_donaciones': RESUMEN_DONACIONES()
+        'resumen_stock': RESUMEN_STOCK_INICIAL()
        
     }
  
@@ -223,7 +222,7 @@ def medioPago(request):
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
         #si en exittosa o no, la compra se informa al usuario.
         if salida == 1:
-            context['mensaje'] = 'compra exitosa!!!'
+           # messages.success(request, '.')
             return redirect("/")              
         else:
             context['mensaje'] = 'Lo sentimos nose pudo efectuar la compra :( !!!'
@@ -650,7 +649,7 @@ def solicitudAdmin(request):
             idsolA = request.POST.get('idsol1')
             salida1=aprobar_solicitud(idsolA)
             if salida1==1:
-                messages.success(request, 'Solicitud Publicada!!! ')
+                messages.success(request, '.')
                 data['mensaje']="Solicitud Aprobada" 
                 data['lista_solicitudes'] = listar_solicitudes()
         elif(request.POST.get('idsol2') != None):
@@ -691,7 +690,7 @@ def publicacion_vl(request):
   
     data={
         'saldos_detalle': LISTAR_DETALLE_SALDOS(info),
-        'bd_calidad': LISTAR_VARIEDAD()
+        'bd_calidad': LISTAR_CALIDAD()
     }
     
     if request.method =="POST":
@@ -703,6 +702,7 @@ def publicacion_vl(request):
         salida=AGREGAR_VENTA_LOCAL(usuarioid, precio, descripcion, calidad, id_stock)
         if salida == 1:
             print('Registro Exitoso !!!')
+            #messages.success(request, '.')
             return redirect("/") 
         else:
             print('Error al registrar los datos :(')
