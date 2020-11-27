@@ -20,7 +20,7 @@ Highcharts.chart('container', {
         text: 'Resumen del año 2020'
     },
     subtitle: {
-        text: 'Exportaciones, Venta Local'
+        text: 'Exportaciones VS Venta Local'
     },
     xAxis: {
         categories: [
@@ -62,7 +62,6 @@ Highcharts.chart('container', {
     },
     series: [{
         name: 'Exportaciones',
-
         data: {{resumen_oc|safe}}
 
     }, {

@@ -1,0 +1,47 @@
+{% load static %}
+<script src="{% static 'lib/highcharts-8.1.2/highcharts.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/exporting.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/export-data.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/modules/accessibility.js' %}"></script>
+<script src="{% static 'lib/highcharts-8.1.2/highcharts-3d.js' %}"></script>
+
+<figure class="highcharts-figure">
+    <div id="container-3"></div>
+    <p class="highcharts-description">
+        A variation of a 3D pie chart with an inner radius added.
+        These charts are often referred to as donut charts.
+    </p>
+</figure>
+<script>
+Highcharts.chart('container-3', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: 'Contents of Highsoft\'s weekly fruit delivery'
+    },
+    subtitle: {
+        text: '3D donut in Highcharts'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Delivered amount',
+        data: [
+            ['Exportaciones', 150],
+            ['Perdidas', 6],
+            ['Venta Local', 13],
+            ['Saldos Stock', 30]
+           
+        ]
+    }]
+});
+</script>
