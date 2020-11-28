@@ -138,12 +138,20 @@ def usuario(request):
         'resumen_vl': RESUMEN_VENTA_LOCAL(),
         'resumen_oc': RESUMEN_EXPORTACIONES(),
         'resumen_per': RESUMEN_PERDIDAS(),
-        'resumen_stock': RESUMEN_STOCK_INICIAL()
+        'resumen_stock': RESUMEN_STOCK_INICIAL(),
+        'puntos': PUNTOS_ANIO(),
+        'puntos_totales': PUNTOS_TOTALES()
+
        
     }
  
     return render(request, 'usuario.html', data)
 
+def dashboard_puntos(request):
+    data = {
+        'puntos': PUNTOS_ANIO()
+    }
+    return render(request, 'puntos.html', data)
 
 def usuario_2(request):
     #usuario=request.GET['usuarioid']

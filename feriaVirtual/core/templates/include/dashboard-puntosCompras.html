@@ -1,0 +1,87 @@
+
+{% load static %}
+{%load humanize%}
+{% block head %}
+    <script src="{% static 'lib/highcharts-8.1.2/highcharts.js' %}"></script>
+    <script src="{% static 'lib/highcharts-8.1.2/highcharts-more.js' %}"></script>
+    <script src="{% static 'lib/highcharts-8.1.2/modules/exporting.js' %}"></script>
+    <script src="{% static 'lib/highcharts-8.1.2/modules/export-data.js' %}"></script>
+    <script src="{% static 'lib/highcharts-8.1.2/modules/accessibility.js' %}"></script>
+    <link rel="stylesheet" href="{% static '../static/css/puntos.css' %}"/>
+{% endblock %}
+
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description">
+            {% for i in puntos_totales %}
+          <h4> Actualmente cuentas con  {{i.0|intcomma}}   puntos BestFruit </h4>
+            {% endfor %} 
+        </p>
+        <br>
+        <button id="plain">Click barra vertical</button><br>
+        <br>
+        <button id="inverted">Click barra horizontal</button><br>
+        <br>
+        <button id="polar">Click Polar</button><br>
+        <br>
+        <br>
+        <br>
+    </figure>
+
+<script type="application/javascript">
+const chart = Highcharts.chart('container', {
+    title: {
+        text: 'Historial de puntos BestFruit'
+    },
+    subtitle: {
+        text: 'Año 2020'
+    },
+    xAxis: {
+        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 
+        'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    },
+    series: [{
+        type: 'column',
+        colorByPoint: true,
+        data: {{puntos|safe}},
+        showInLegend: false
+    }]
+});
+
+document.getElementById('plain').addEventListener('click', () => {
+    chart.update({
+        chart: {
+            inverted: false,
+            polar: false
+        },
+        subtitle: {
+            text: 'Plain'
+        }
+    });
+});
+
+document.getElementById('inverted').addEventListener('click', () => {
+    chart.update({
+        chart: {
+            inverted: true,
+            polar: false
+        },
+        subtitle: {
+            text: 'Inverted'
+        }
+    });
+});
+
+document.getElementById('polar').addEventListener('click', () => {
+    chart.update({
+        chart: {
+            inverted: false,
+            polar: true
+        },
+        subtitle: {
+            text: 'Polar'
+        }
+    });
+});
+
+</script>

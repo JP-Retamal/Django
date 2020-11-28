@@ -39,6 +39,7 @@ urlpatterns = [
 
    path('usuario/ordenes', ordenes_externo, name="ordenesExterno"),
    path('usuario/ordenes_detalle', ordenes_externo_detalle, name="ordenExterno_detalle"),
+   path('usuario/puntos', dashboard_puntos, name="puntos"),
 
 
    path('usuario/solicitud', login_required(solicitud), name="solicitud"),

@@ -35,7 +35,19 @@
         </div>
         <div class="usuario-contendor-general grid grid-col-1 lg:grid-cols-4" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
             <div class="usuario-contenedor-modal">
-                {% block contentUsuario %}{% endblock %}
+                {% block contentUsuario %}
+                    {% if perms.core.view_pago %}
+                        {% include 'include/dashboard-puntosCompras.html' %}
+                    {% else %}
+                        {% if perms.core.view_solicitud %}
+
+                        {% else %}
+                            {% if perms.core.view_detalleoferta %}
+
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endblock %}
             </div>
             <div class="usuario-contenedor-aside">
                 <aside class="usuario-aside grid grid-cols-4 lg:grid-cols-1">
@@ -59,13 +71,14 @@
                         </div>
                         <!-- Pedidospuntos -->
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
-                            <a href="#">
+                            <a href="{% url 'puntos' %}">
                                 <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
                                 <span class="usuario-contenedor-btns__span lg:inline-block">Puntos</span>
                             </a>
                         </div>
                     {% else %}
                         {% if perms.core.view_solicitud %}
+                        
                             <!-- Solicitud de Compra -->
                             <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                                 <a href="{% url 'solicitud' %}" class="">

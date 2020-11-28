@@ -195,7 +195,42 @@ def userDjango(email, nombre, ap_paterno, clave):
 def admin(user):
     return user.is_authenticated() and user.has_perm("view_ventalocal")
 
+def PUNTOS_ANIO():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
 
+    cursor.callproc("SP_PUNTOS_ANIO",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def PUNTOS_TOTALES():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_PUNTOS_TOTALES",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def lista_puntosMarzo():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_PUNTOS_MARZO", [out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
 ##################################################          USUARIO PRODUCTOR            #####################################################
 
 
