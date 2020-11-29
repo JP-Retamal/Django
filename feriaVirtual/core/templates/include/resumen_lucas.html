@@ -8,8 +8,7 @@
 <figure class="highcharts-figure">
     <div id="container-3"></div>
     <p class="highcharts-description">
-        A variation of a 3D pie chart with an inner radius added.
-        These charts are often referred to as donut charts.
+        
     </p>
 </figure>
 <script>
@@ -22,10 +21,10 @@ Highcharts.chart('container-3', {
         }
     },
     title: {
-        text: 'Contents of Highsoft\'s weekly fruit delivery'
+        text: 'Montos totales por indicadores'
     },
     subtitle: {
-        text: '3D donut in Highcharts'
+        text: 'Exportaciones, Venta Local, Stock Saldos y perdidas'
     },
     plotOptions: {
         pie: {
@@ -35,12 +34,20 @@ Highcharts.chart('container-3', {
     },
     series: [{
         name: 'Delivered amount',
+
         data: [
-            ['Exportaciones', 150],
-            ['Perdidas', 6],
-            ['Venta Local', 13],
-            ['Saldos Stock', 30]
-           
+            {% for ex in resumen_totaloc %}
+            ['Exportaciones', {{ex.0}}],
+            {% endfor %}
+            {% for p in perdidas_totales %}
+            ['Perdidas', {{p.0}}],
+            {% endfor %}
+            {% for t in resumen_totalvl %}
+            ['Venta Local', {{t.0}}],
+            {% endfor %}
+            {% for st in TOTAL_STOCK %}
+            ['Saldos Stock', {{st.0}}]
+            {% endfor %}
         ]
     }]
 });

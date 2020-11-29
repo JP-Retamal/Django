@@ -842,9 +842,6 @@ def AGREGAR_VENTA_LOCAL(v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_i
     cursor.callproc('SP_AGREGAR_VENTA_LOCAL', [v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_id_stock, salida])
     return salida.getvalue()
 
-
-
-
 def RESUMEN_VENTAS_CERRADAS():
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
@@ -920,8 +917,52 @@ def ver_rp1(ids):
     return lista
 
 
+def RESUMEN_TOTAL_VL():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_TOTAL_VL",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def EXPORTACIONES_TOTAL():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_EXPORTACIONES_TOTAL",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
 
 
 
+def PERDIDAS_TOTALES():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
 
+    cursor.callproc("SP_PERDIDAS_TOTALES",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
 
+def STOCK_INICIAL_TOTAL():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_STOCK_INICIAL_TOTAL",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista

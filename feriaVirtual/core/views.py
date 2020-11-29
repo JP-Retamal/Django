@@ -141,7 +141,11 @@ def usuario(request):
         'resumen_stock': RESUMEN_STOCK_INICIAL(),
         'puntos': PUNTOS_ANIO(),
         'puntos_totales': PUNTOS_TOTALES(),
-        'resumen_ventas_cerradas': RESUMEN_VENTAS_CERRADAS()
+        'resumen_ventas_cerradas': RESUMEN_VENTAS_CERRADAS(),
+        'resumen_totalvl': RESUMEN_TOTAL_VL(),
+        'resumen_totaloc': EXPORTACIONES_TOTAL(),
+        'perdidas_totales': PERDIDAS_TOTALES(),
+        'TOTAL_STOCK':STOCK_INICIAL_TOTAL()
 
        
     }
