@@ -1,0 +1,178 @@
+
+{%load humanize%}
+{% block content %} 
+
+<!-- admin-solicitudLintar-seccion-... -->
+<div class="admin-solicitudListar-contenedor-general" 
+    style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
+	<div class="HistorialCompra-contenedor-titulo">
+		<h2 class="HistorialCompra-contenedor-titulo__h2">Ventas Términadas</h2>
+	</div>
+	{% if lista_vcerradas %}
+	<div class="admin-solicitudListar-body">
+		<div class="admin-solicitudListar-listado my-4">
+			<table class="admin-solicitudListar-table md:w-full" role="table">
+				<thead class="admin-solicitudListar-table__thead" role="rowgroup">
+				
+					<!-- SOLICITUD -->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tl-md"
+						role="columnheader">N° Orden</th>
+					<!-- SOLICITUD -->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Solicitud Asociada</th>
+					<!-- SOLICITUD -->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Fecha</th>
+					<!-- SOLICITUD -->
+					<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Total</th>
+                    <th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Estado de Venta</th>
+					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+                        role="columnheader">Detalle</th>-->
+                    <th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Reporte</th>
+					
+					<!--<th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2"
+						role="columnheader">Aceptar</th>
+                    <th class="admin-solicitudListar-table__thead-th w-auto md:w-1/6 font-lato border border-gray-400 md:border-0 md:text-white md:text-sm md:border-b md:border-gray-500 md:bg-gray-500 md:p-2 rounded-tr-md"
+						role="columnheader">Rechazar</th>-->
+				</thead>
+				{% for lvc in lista_vcerradas %}
+				<tbody role="rowgroup">
+					<tr role="trow">
+						<td class="admin-solicitudListar-table__td font-lato border-t-2 border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lvc.0}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lvc.2}}<br>{{lvc.3}}</td>
+						<td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lvc.4}}</td>
+                        <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">${{lvc.5|intcomma}}.-</td>
+                        <td class="admin-solicitudListar-table__td font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">{{lvc.1}}</td>
+						<!--Ver Detalle-->
+						<!--<td class="admin-solicitudListar-table__td  justify-center font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{lvc.2}}" name="IDS1">
+								<input type="hidden" value="{{user.username}}" name="info1">
+								<button type="submit" class="listarSolicitud-contenedor-label__span" >Ver Detalle</button>
+							</form>
+                        </td>-->
+                        <!--Ver Reporte-->
+                        <td class="admin-solicitudListar-table__td  justify-center font-lato border-l-2 border-r-2 border-gray-500 md:border-0 md:text-sm md:text-center md:border-b md:border-gray-500 md:p-2" role="cell">
+							<form action="" method="POST">
+								{% csrf_token %}
+								<input type="hidden" value="{{lvc.2}}" name="IDS2">
+								<input type="hidden" value="{{user.username}}" name="info2">
+								<button type="submit" class="listarSolicitud-contenedor-label__span" >Ver Reporte</button>
+							</form>
+						</td>
+
+
+					</tr>
+				</tbody>
+				{% endfor %}
+            </table>
+            <!--<table>
+                <tr>
+                    <td>
+                        <div id="resumen">
+                            {#% include 'include/dashboard_ventas_usuario.html' %}
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>-->
+            
+			
+		</div>
+	</div>
+	
+	{% else %}
+        <h1>Sin ventas realizadas a la fecha</h1>
+	{% endif %}
+	
+	
+</div>
+
+<style>
+	/*
+Max width before this PARTICULAR table gets nasty. This query will take effect for any full smaller than 760px and also iPads specifically.
+*/
+	@media only screen and (max-width: 767px) {
+
+		/* Force table to not be like tables anymore */
+		table[role='table'],
+		thead[role='rowgroup'],
+		tbody[role='rowgroup'],
+		th[role='columnheader'],
+		td[role='cell'],
+		tr[role='trow'] {
+			display: block;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		thead[role='rowgroup'] th[role='columnheader'] {
+			display: none;
+		}
+
+		tr[role='trow'] {
+			margin: 0 0 1rem 0;
+		}
+
+		tr:nth-child(even) {
+			background:   #e5e8e8  ;
+		}
+
+		td[role='cell'] {
+			position: relative;
+			padding-left: 50%;
+			height: 50px;
+			line-height: 45px;
+		}
+
+		td[role='cell']:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			line-height: 45px;
+			left: 20px;
+			width: 45%;
+			/* padding-right: 10px; */
+			white-space: nowrap;
+		}
+
+		/*
+Label the data
+You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+*/
+		td[role='cell']:nth-of-type(1):before {
+			content: "N SOLICITUD";
+		}
+
+		td[role='cell']:nth-of-type(2):before {
+			content: "FECHA CREACION";
+		}
+
+		td[role='cell']:nth-of-type(3):before {
+			content: "SOLICITANTE";
+		}
+
+		td[role='cell']:nth-of-type(4):before {
+			content: "ESTADO";
+		}
+
+		td[role='cell']:nth-of-type(5):before {
+			content: "DETALLE";
+		}
+
+		td[role='cell']:nth-of-type(6):before {
+			content: "PUBLICAR";
+		}
+	}
+
+	
+</style>
+
+
+
+{% endblock %}

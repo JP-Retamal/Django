@@ -1,0 +1,296 @@
+
+{%load humanize%} 
+<head>
+	<style>
+		@page
+		{
+            background-image: url('../static/img/BestFruitF2.png')  ;
+			size: letter portrait;
+            @frame text {
+                top: 1cm;
+                left: 0.5cm;
+                right: 0.5cm;
+                bottom: 1cm;
+				padding: 0.5cm;
+                -pdf-frame-border: 1;
+            }
+			@frame footer_frame {          
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+			}
+				
+        }
+
+			
+	</style>
+</head>
+
+<body >
+	<table >
+		<tr ><!--style="border:solid; border-width:1px; border-color: black;">-->
+
+			<td>
+				<div id="header_content" >
+					<b><span>MAIPO GRANDE S.A.</span></b><br>
+					Importadora, Exportadora y Venta de Fruta<br>
+					<b><span>CASA MATRIZ: Av. Grande #123, Maipo</span></b><br>
+					Linea Ventas Exportacion: +56 9 4985 2049<br>
+					Email: contacto@bestfruit.cl<br>
+					Sitio Web: www.maipogrande_besfruit.cl
+				</div>
+			</td>
+			<td VALIGN="TOP">
+				<div><h1 align="center" >Reporte de Venta N° {{ver_read1.0.0}}</h1>
+					<!--<div >
+						<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 4cm; height: auto; margin: 0; border: solid; padding: 0;"/>
+					</div>-->
+				</div>
+			</td>
+			<td align="right">
+				<div >
+					<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 4cm; height: auto; margin: 0; border: solid; padding: 0;"/>
+				</div>
+			</td>
+		</tr>
+		
+	</table>
+	<br>
+	
+
+	<table>
+	<h1>Datos del comprador</h1>
+		<tr >
+			<td VALIGN="TOP" style="font-size: 12px;">
+				
+					<b><span >Empresa:</span></b> {{ver_read1.0.28}}<br>
+					<b><span >R.U.T.:</span></b> {{ver_read1.0.27}}<br>
+					<b><span >Telefono:</span></b> {{ver_read1.0.26}}<br>
+					<b><span >Direccion:</span></b>{{ver_read1.0.25}}
+				
+			</td>
+			<td VALIGN="TOP" style="font-size: 12px;">
+				
+					<b><span >Contacto:</span></b> {{ver_read1.0.14}} {{ver_read1.0.15}}<br>
+					<b><span >Email:</span></b> {{ver_read1.0.23}}<br>
+					<b><span >RUN:</span></b> {{ver_read1.0.13}}<br>
+					<b><span >Estado de Usuario:</span></b> {{ver_read1.0.30}}
+				
+			</td>
+			<td VALIGN="TOP" style=" padding-top: 1rem; padding-left: 3.5rem;">
+			</td>
+		</tr>
+	</table>
+	<!-- HTML Content -->
+
+
+    <hr>
+
+    <table >
+		<CAPTION ALIGN=bottom >Productos Solicitados</CAPTION> 
+		
+    	<tr >
+			<th>Descripcion Producto</th>
+			<th>Cantidad</th>
+			<th>Precio por kilo aprox.</th>
+			<th>Monto</th>
+			
+		</tr>
+		{% for vop2 in ver_read2 %}
+    	<tr>
+ 
+    		<td ALIGN="Center">{{vop2.1}}</td>
+    		<td ALIGN="Center">{{vop2.2}}</td>
+			<td ALIGN="Center">${{vop2.3|intcomma}}.-</td>
+			
+			<td ALIGN="Center">${{vop2.4|intcomma}}.-</td>
+
+    	</tr>
+		{% endfor %}
+		
+    </table>
+
+    <hr>
+	<table ALIGN="Left">
+    	<tr>
+			<th></th>
+			<th></th>
+				<th>
+					<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>SubTotal: </strong>
+								</p>
+							</th>
+						</tr>
+					</table>
+				</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.8|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Aduana({{ver_read1.0.19|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.5|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Comision({{ver_read1.0.19|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.7|intcomma}}.-</strong></p></th>
+			
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Total sin Iva: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.18|intcomma}}.-</strong></p></th>
+			
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Iva({{ver_read1.0.21|intcomma}}%): </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.4|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Transporte: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.6|intcomma}}.-</strong></p></th>
+		</tr>
+		
+		<tr>
+			<th></th>
+			<th></th>
+			<th>
+				<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Total: </strong>
+								</p>
+							</th>
+						</tr>
+				</table>
+				
+			</th>
+			<th><p ALIGN="center"><strong>${{ver_read1.0.9|intcomma}}.-</strong></p></th>
+		</tr>
+	</table>
+	<hr>
+	<br>
+{% if pro_asociados %}
+<table >
+	<h1>Productores involucrados</h1>
+		<tr>
+			<th VALIGN="Center" style="font-size: 12px;"><b>Productor</b></th>
+			<th style="font-size: 12px;"><b>Empresa Asociada</b></th>
+			<th style="font-size: 12px;"><b>Variedad</b></th>
+			<th style="font-size: 12px;"><b>Cantidad</b></th>
+			<th style="font-size: 12px;"><b>Precio Ofertado</b></th>
+			<th style="font-size: 12px;"><b>Fecha de Oferta</b></th>
+		</tr>
+		{% for lpa in pro_asociados %}
+		<tr >
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.0}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.1}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.2}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.3}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">${{lpa.4|intcomma}}.-</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.5}}</p></td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+	<!--<div>
+		<h1>Ventas anteriores realizadas (Gráfico)</h1>
+		<table>
+                <tr>
+                    <td>
+                        <div id="resumen">
+                            {#% include 'include/dashboard_ventas_usuario.html' %}
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+		</table>	
+		</div>-->
+<div id="footer_content" align="right">
+	Bestfruit 2020(©) Todos lo derechos reservados 
+</div>
+</body>
+
+
+</html>

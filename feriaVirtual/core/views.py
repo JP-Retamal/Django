@@ -140,7 +140,8 @@ def usuario(request):
         'resumen_per': RESUMEN_PERDIDAS(),
         'resumen_stock': RESUMEN_STOCK_INICIAL(),
         'puntos': PUNTOS_ANIO(),
-        'puntos_totales': PUNTOS_TOTALES()
+        'puntos_totales': PUNTOS_TOTALES(),
+        'resumen_ventas_cerradas': RESUMEN_VENTAS_CERRADAS()
 
        
     }
@@ -386,14 +387,32 @@ def ofertaPruductor(request):
     return render(request, 'formulario_oferta.html',context)
 
 
-# USUARIO PRODUCTOR
+# USUARIO PRODUCTOR (Modificado)
 @permission_required('core.add_detalleoferta')
 def historial_ofertas(request):
     info = request.POST.get("valcorreo")
-    print(info)
     data = {
         'registros': listar_ofertas(info)
     }
+    if request.method =="POST":
+        if (request.POST.get("correo") != None):
+            correo = request.POST.get("correo")
+            print(correo)
+            if (request.POST.get("publicacion") != None):
+                idpubof = request.POST.get("publicacion")
+                print(idpubof)
+                data['registros']= listar_ofertas(correo)
+                data['ver_repr1'] = ver_rp1(idpubof)
+                pdf = render_to_pdf('include/pdf_template4.html', data)
+                print(data['ver_repr1'])
+                response = HttpResponse(pdf, content_type='application/pdf')
+                filename = "Informe de Compra N° %s.pdf" %(str(data['ver_repr1'][0][0]))
+                #content = "attachment; filename=%s" %(filename)
+                content = " filename=%s" %(filename) #para visualizar
+                response['Content-Disposition'] = content
+                return response
+
+
 
     return render(request, 'historial_ofertas.html', data)
 
@@ -838,6 +857,29 @@ def revisar_detalle_pedido(request):
     }
     print(context)
     return render(request, 'revisar_detalle_publicacion_admin.html',context)
+
+
+def ventas_cerradas(request):
+    context = {
+        'lista_vcerradas': LISTAR_VENTAS_CERRADAS() 
+    }
+    #print(context)
+    if request.method =="POST":
+        if (request.POST.get("IDS2") != None):
+            PIDS2 = request.POST.get("IDS2")
+            correo2 = request.POST.get("info2")
+            context['lista_vcerradas']= LISTAR_VENTAS_CERRADAS()
+            context['ver_read1'] = ver_ra1(PIDS2)
+            context['ver_read2'] = ver_ra2(PIDS2)
+            context['pro_asociados'] = LISTAR_PRODUCTORES_ASOCIADOS(PIDS2)
+            pdf = render_to_pdf('include/pdf_template3.html', context)
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = "Reporte Ventas %s.pdf" %(str(context['ver_read1'][0][0]))
+            #content = "attachment; filename=%s" %(filename) #para descargar
+            content = " filename=%s" %(filename) #para visualizar
+            response['Content-Disposition'] = content
+            return response
+    return render(request, 'ventas_terminadas.html', context)    
 
 
 

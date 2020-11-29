@@ -149,6 +149,19 @@
                             {% endfor %}
                         </a>
                     </div>
+
+                    <!--Ventas realizadas-->
+                    <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
+                        <a href="{% url 'ventas_cerradas' %}">                        
+                            {% for rvc in resumen_ventas_cerradas %}
+                                <i class="far fa-bell usuario-contenedor-btns__i"></i>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">
+                                ({{rvc.0}}) Ventas Finalizadas</span>
+                            {% endfor %}
+                        </a>
+                    </div>
+                    <!----> 
+
                     <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                         <a href="{% url 'revisar_publicaciones_pedidos' %}">                        
                          
@@ -158,6 +171,8 @@
                             
                         </a>
                     </div>
+
+
                                     
                 {% else %}              
                     <!-- Cuenta -->

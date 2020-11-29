@@ -53,7 +53,7 @@ urlpatterns = [
 
    path('administracion/publicaciones_ofertadas', login_required(revisar_publicaciones_pedidos), name="revisar_publicaciones_pedidos"),
    path('administracion/detalle_publicacion_ofertada', login_required(revisar_detalle_pedido), name="revisar_detalle_pedido"),
-
+   path('usuario/ventas_cerradas', ventas_cerradas, name="ventas_cerradas"),
 
 
 

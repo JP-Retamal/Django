@@ -1,0 +1,185 @@
+
+{%load humanize%} 
+<head>
+	<style>
+		@page
+		{
+            background-image: url('../static/img/BestFruitF2.png')  ;
+			size: letter portrait;
+            @frame text {
+                top: 1cm;
+                left: 0.5cm;
+                right: 0.5cm;
+                bottom: 1cm;
+				padding: 0.5cm;
+                -pdf-frame-border: 1;
+            }
+			@frame footer_frame {          
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+			}
+				
+        }
+
+			
+	</style>
+</head>
+
+<body >
+	<table >
+		<tr >
+
+			<td>
+				<div id="header_content" >
+					<b><span>MAIPO GRANDE S.A.</span></b><br>
+					Importadora, Exportadora y Venta de Fruta<br>
+					<b><span>CASA MATRIZ: Av. Grande #123, Maipo</span></b><br>
+					Linea Ventas Exportacion: +56 9 4985 2049<br>
+					Email: contacto@bestfruit.cl<br>
+					Sitio Web: www.maipogrande_besfruit.cl
+				</div>
+			</td>
+			<td VALIGN="TOP">
+				<div><h1 align="center" >Informe de Compra N° {{ver_repr1.0.16}}</h1>
+				</div>
+			</td>
+			<td align="right">
+				<div >
+					<img src="../static/img/BestFruit_Logo.png"  class="seccion-imagen__img" style="width: 4cm; height: auto; margin: 0; border: solid; padding: 0;"/>
+				</div>
+			</td>
+		</tr>
+		
+	</table>
+	<br>
+	
+
+	<table>
+	<h1>Datos del Vendedor</h1>
+		<tr >
+			<td VALIGN="TOP" style="font-size: 12px;">
+				
+					<b><span >Empresa:</span></b> {{ver_repr1.0.14}}<br>
+					<b><span >R.U.T.:</span></b> {{ver_repr1.0.13}}<br>
+					<b><span >Telefono:</span></b> {{ver_repr1.0.12}}<br>
+					<b><span >Direccion:</span></b> {{ver_repr1.0.15}}
+				
+			</td>
+			<td VALIGN="TOP" style="font-size: 12px;">
+				
+					<b><span >Contacto:</span></b> {{ver_repr1.0.9}}<br>
+					<b><span >RUN:</span></b> {{ver_repr1.0.8}}<br>
+					<b><span >Direccion:</span></b> {{ver_repr1.0.11}}
+				
+			</td>
+			<td VALIGN="TOP" style="font-size: 12px;">
+				<b><span >Email:</span></b> {{ver_repr1.0.10}}<br>
+				<b><span >Celular:</span></b> {{ver_repr1.0.12}}<br>
+			</td>
+		</tr>
+	</table>
+	<!-- HTML Content -->
+
+
+    <hr>
+
+    <table >
+		<CAPTION ALIGN=bottom style="font-size: 12px; padding-bottom: 5px;"><b>Producto Ofertado</b></CAPTION> 
+    	<tr >
+			<th>Descripcion Producto</th>
+			<th>Cantidad</th>
+			<th>Precio por kilo aprox.</th>
+			<th>Monto</th>
+			
+		</tr>
+		{% for vop1 in ver_repr1 %}
+    	<tr>
+ 
+    		<td ALIGN="Center">{{vop1.3}}</td>
+    		<td ALIGN="Center">{{vop1.5}}</td>
+			<td ALIGN="Center">${{vop1.6|intcomma}}.-</td>
+			
+			<td ALIGN="Center">${{vop1.7|intcomma}}.-</td>
+
+    	</tr>
+		{% endfor %}
+		
+    </table>
+
+    <hr>
+	<table ALIGN="Left">
+    	<tr>
+			<th></th>
+			<th></th>
+				<th>
+					<table ALIGN="Left">
+    					<tr>
+							
+							<th></th>
+							<th>
+								<p ALIGN="Left">
+									<strong>Total: </strong>
+								</p>
+							</th>
+						</tr>
+					</table>
+				</th>
+			<th><p ALIGN="center"><strong>${{ver_repr1.0.7|intcomma}}.-</strong></p></th>
+		</tr>
+		<tr>
+			<td VALIGN="TOP" style="font-size: 12px;">
+				
+				<b><span >Fecha de Cosecha:</span></b> {{ver_repr1.0.4}}<br>
+				<b><span >Fecha de Oferta:</span></b> {{ver_repr1.0.1}}<br>
+				<b><span >Estado de Oferta:</span></b> {{ver_repr1.0.17}}<br>
+			
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<br>
+{% if pro_asociados %}
+<table >
+	<h1>Productores involucrados</h1>
+		<tr>
+			<th VALIGN="Center" style="font-size: 12px;"><b>Productor</b></th>
+			<th style="font-size: 12px;"><b>Empresa Asociada</b></th>
+			<th style="font-size: 12px;"><b>Variedad</b></th>
+			<th style="font-size: 12px;"><b>Cantidad</b></th>
+			<th style="font-size: 12px;"><b>Precio Ofertado</b></th>
+			<th style="font-size: 12px;"><b>Fecha de Oferta</b></th>
+		</tr>
+		{% for lpa in pro_asociados %}
+		<tr >
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.0}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.1}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.2}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.3}}</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">${{lpa.4|intcomma}}.-</p></td>
+			<td  style="font-size: 12px; border-top: solid black; border-width: 1px; padding-top: 0.5rem;"><p ALIGN="center">{{lpa.5}}</p></td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endif %}
+	<!--<div>
+		<h1>Ventas anteriores realizadas (Gráfico)</h1>
+		<table>
+                <tr>
+                    <td>
+                        <div id="resumen">
+                            {#% include 'include/dashboard_ventas_usuario.html' %}
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+		</table>	
+		</div>-->
+<div id="footer_content" align="right">
+	Bestfruit 2020(©) Todos lo derechos reservados 
+</div>
+</body>
+
+
+</html>

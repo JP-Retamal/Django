@@ -841,3 +841,87 @@ def AGREGAR_VENTA_LOCAL(v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_i
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc('SP_AGREGAR_VENTA_LOCAL', [v_id_usuario, v_precio, v_descripcion, v_id_calidad, v_id_stock, salida])
     return salida.getvalue()
+
+
+
+
+def RESUMEN_VENTAS_CERRADAS():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_RESUMEN_VENTAS_TERMINADAS",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def LISTAR_VENTAS_CERRADAS():
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_VENTAS_TERMINADAS",[out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def ver_ra1(ids):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_VER_REPORTE_ADMIN1",[ids,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def ver_ra2(ids):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_VER_REPORTE_ADMIN2",[ids,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+def LISTAR_PRODUCTORES_ASOCIADOS(id_solicitud):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("SP_LISTAR_PRODUCTORES_ASOCIADOS",[id_solicitud,out_cur])
+   
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+#------ Reporte Productor
+def ver_rp1(ids):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+    
+    cursor.callproc("SP_VER_REPORTE_PRODUCTOR",[ids,out_cur])
+
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+    return lista
+
+
+
+
+
+
+
