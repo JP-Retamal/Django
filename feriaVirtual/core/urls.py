@@ -24,9 +24,9 @@ urlpatterns = [
    path('administracion/', login_required(homeAdmin), name="homeAdmin"),
    path('administracion/solicitud', login_required(solicitudAdmin), name="solicitudAdmin"),
    path('administracion/solicitud_detalle', login_required(detallesolicitudAdmin), name="detallesolicitudAdmin"),
-   path('administracion/publicar_venta_local', publicar_venta_local, name="ventalocal_publicar"),
-   path('administracion/detalle_saldos', detalle_publicar_vl, name="ventalocal_publicar_detalle"),
-   path('administracion/publicacion_vl', publicacion_vl, name="publicacion_vl"),
+   path('administracion/publicar_venta_local', login_required(publicar_venta_local), name="ventalocal_publicar"),
+   path('administracion/detalle_saldos', login_required(detalle_publicar_vl), name="ventalocal_publicar_detalle"),
+   path('administracion/publicacion_vl', login_required(publicacion_vl), name="publicacion_vl"),
    
    path('portalDeOfertas', login_required(portalDeOfertas), name="portalDeOfertas"),
 
@@ -37,8 +37,8 @@ urlpatterns = [
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', login_required(ofertaPruductor), name="oferta_productor"),
 
-   path('usuario/ordenes', ordenes_externo, name="ordenesExterno"),
-   path('usuario/ordenes_detalle', ordenes_externo_detalle, name="ordenExterno_detalle"),
+   path('usuario/ordenes', login_required(ordenes_externo), name="ordenesExterno"),
+   path('usuario/ordenes_detalle', login_required(ordenes_externo_detalle), name="ordenExterno_detalle"),
    path('usuario/puntos', dashboard_puntos, name="puntos"),
 
 

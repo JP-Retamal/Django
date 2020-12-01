@@ -235,7 +235,7 @@ def medioPago(request):
         salida = agregar_compra(descripcion, monto, fecha_pago, kilos, usuario, especie, variedad, idVentaLocal,  idStock)
         #si en exittosa o no, la compra se informa al usuario.
         if salida == 1:
-           # messages.success(request, '.')
+            messages.success(request, '.')
             return redirect("/")              
         else:
             context['mensaje'] = 'Lo sentimos nose pudo efectuar la compra :( !!!'
@@ -291,16 +291,16 @@ def registro(request):
         comuna      = request.POST.get('registro-comuna')
         #validaciones de BD y enviar mensaje al usuario.
         if clave!=clave2:
-            data['mensaje'] = 'Las contraseñas no coinciden'
+            messages.error('Las contraseñas no coinciden')
         else:
             salidaR = validaRegistroRut(run_usuario)
             if salidaR ==1:
-                data['mensaje'] = 'El rut ingresasdo ya existe'
+                messages.error('Problemas Datos existentes')
             else:
                 if salidaR == 2:
                     salidaC = validaRegistroEmail(email)
                     if salidaC ==1:
-                        data['mensaje'] = 'El email ingresasdo ya existe'
+                        messages.error('Problemas Datos existentes')
                     else:
                         if salidaC == 2:
                            #enc_clave = pbkdf2_sha256.encrypt(clave,roundlt_s=12000,sasize=32)
@@ -309,16 +309,16 @@ def registro(request):
                             run_usuario, nombre, ap_paterno, ap_materno, fecha_nac, email, direccion, celular, clave, comuna)
                             if salida == 1:
                                 userDjango(email, nombre, ap_paterno, clave)
-                                data['mensaje'] =  'Registro exitoso'
+                                messages.success(request, '.')
                                 return redirect("/") 
                             else:
-                                data['mensaje'] = 'Error al guardar el registro'
+                                messages.error('Error al guardar el registro')
                         else:
                             if salidaC == 3:
-                                data['mensaje'] = 'Error al guardar el registro'
+                                messages.error('Error al guardar el registro')
                 else:
                     if salidaR == 3:
-                        data['mensaje'] = 'Error al guardar el registro'
+                        messages.error('Error al guardar el registro')
                         
     return render(request, 'registro.html', data)
 
@@ -379,7 +379,7 @@ def ofertaPruductor(request):
                 salida3 = OFERTA_PRODUCTOR_PUBLICACION(nombre_usuario, kilos, precio, fecha_cosecha, especie, usuarioid, variedad)
                 if salida3 == 1:
                     print('Registro oferta productor publicación Exitoso !!!')
-                    context['mensaje'] =  'Registro oferta Exitoso !!!'
+                    messages.success(request, ".")
                     return redirect("usuario/") 
                 else:
                     print('fallo al insertar Registro oferta productor publicación :(')
@@ -576,6 +576,7 @@ def ordenes_externo(request):
             if salida ==1:
                 salida2 = aprobar_oc(PIDS2)
                 if salida2 == 1:
+                    messages.success(request, '.')
                     data['mensaje']="Orden de Compra Aprobada" 
                     data['bd_orden']=LISTAR_COSTOS_ORDEN(correo2)
                     data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo2)
@@ -592,6 +593,7 @@ def ordenes_externo(request):
             if salida ==1:
                 salida2 = rechazar_oc(PIDS3)
                 if salida2 == 1:
+                    messages.success(request, '.')
                     data['mensaje']="Orden de Compra Rechazada"
                     data['bd_orden']=LISTAR_COSTOS_ORDEN(correo3)
                     data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo3)
@@ -605,6 +607,7 @@ def ordenes_externo(request):
             data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo4)
             salida = aceptar_oc_final(PIDS4)
             if salida == 1:
+                messages.success(request, '.')
                 data['mensaje']="Pedido Recepcionado"
                 data['bd_orden']=LISTAR_COSTOS_ORDEN(correo4)
                 data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo4)
@@ -617,7 +620,8 @@ def ordenes_externo(request):
             data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo5)
             data['orden_terminada']= LISTAR_ORDEN_COMPLETADA(correo5)
             salida = rechazar_oc_final(PIDS5)
-            if salida == 1:        
+            if salida == 1: 
+                messages.success(request, '.')       
                 data['mensaje']="Pedido Rechazado"
                 data['bd_orden']=LISTAR_COSTOS_ORDEN(correo5)
                 data['orden_en_camino']= LISTAR_ORDEN_EN_CAMINO(correo5)
@@ -733,7 +737,7 @@ def publicacion_vl(request):
         salida=AGREGAR_VENTA_LOCAL(usuarioid, precio, descripcion, calidad, id_stock)
         if salida == 1:
             print('Registro Exitoso !!!')
-            #messages.success(request, '.')
+            messages.success(request, '.')
             return redirect("/") 
         else:
             print('Error al registrar los datos :(')

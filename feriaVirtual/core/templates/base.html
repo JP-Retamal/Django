@@ -46,6 +46,7 @@
     {% include 'include/messages.html' %}
     </header>
     <div id="todo">
+
     {% block content %} {% endblock %}
     </div>
     {% include 'include/footer.html' %}
@@ -53,6 +54,21 @@
     <script src="{% static '../static/js/glide.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1.7.3/glider.min.js"></script>
     <script src="https://kit.fontawesome.com/f126795e7d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {% if messages %}
+      {% for m in messages %}
+        <script>
+          Swal.fire({
+            "title": "Felicitaciones",
+            "text": "Operación Exitosa !!!",
+            "icon": "success",
+          })
+        </script>
+      {% endfor %}
+    {% endif %}
+
+    {% block js %} {% endblock %}
+
     {% block script %} {% endblock %}
 </body>
 
