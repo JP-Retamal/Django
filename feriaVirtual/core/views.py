@@ -32,6 +32,10 @@ def ver(request):
    
     return render(request, 'grafico.html')
 
+def info_empresa(request):
+
+    return render(request, 'informacionBestFruit.html')
+
 
 ########################################            TODOS LOS USUARIOS         #################################################################
 # ver pagina de inicio.

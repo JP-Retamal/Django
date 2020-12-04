@@ -7,9 +7,8 @@
 
 <figure class="highcharts-figure">
     <div id="container-3"></div>
-    <p class="highcharts-description">
-        
-    </p>
+    <div id="container-4"></div>
+  
 </figure>
 <script>
 Highcharts.chart('container-3', {
@@ -21,10 +20,10 @@ Highcharts.chart('container-3', {
         }
     },
     title: {
-        text: 'Montos totales por indicadores'
+        text: 'Montos Totales por Indicadores'
     },
     subtitle: {
-        text: 'Exportaciones, Venta Local, Stock Saldos y perdidas'
+        text: 'Exportaciones, Venta Local'
     },
     plotOptions: {
         pie: {
@@ -33,20 +32,52 @@ Highcharts.chart('container-3', {
         }
     },
     series: [{
-        name: 'Delivered amount',
+        name: 'Montos en $',
 
         data: [
             {% for ex in resumen_totaloc %}
             ['Exportaciones', {{ex.0}}],
             {% endfor %}
-            {% for p in perdidas_totales %}
-            ['Perdidas', {{p.0}}],
+            
+            {% for st in TOTAL_STOCK %}
+            ['Saldos Stock', {{st.0}}]
             {% endfor %}
+        ]
+    }]
+});
+
+Highcharts.chart('container-4', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: 'Montos Totales por Indicadores'
+    },
+    subtitle: {
+        text: 'Venta Local, Stock Saldos y perdidas'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Montos en $',
+
+        data: [
             {% for t in resumen_totalvl %}
             ['Venta Local', {{t.0}}],
             {% endfor %}
+            {% for p in perdidas_totales %}
+            ['Perdidas', {{p.0}}],
+            {% endfor %}
             {% for st in TOTAL_STOCK %}
-            ['Saldos Stock', {{st.0}}]
+            ['Saldos Stock Total', {{st.0}}]
             {% endfor %}
         ]
     }]

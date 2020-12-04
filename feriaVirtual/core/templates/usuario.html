@@ -37,7 +37,7 @@
             <div class="usuario-contenedor-modal">
                 {% block contentUsuario %}
                     {% if perms.core.view_pago %}
-                        {% include 'include/dashboard-puntosCompras.html' %}
+                        
                     {% else %}
                         {% if perms.core.view_solicitud %}
 
@@ -73,7 +73,7 @@
                         <div class="usuario-contenedor-btns centrar-contenedor lg:justify-start">
                             <a href="{% url 'puntos' %}">
                                 <i class="fas fa-shopping-cart usuario-contenedor-btns__i"></i>
-                                <span class="usuario-contenedor-btns__span lg:inline-block">Puntos</span>
+                                <span class="usuario-contenedor-btns__span lg:inline-block">Resumen Frutas</span>
                             </a>
                         </div>
                     {% else %}

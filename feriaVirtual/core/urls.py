@@ -36,6 +36,7 @@ urlpatterns = [
    path('usuario/historial_ofertas', login_required(historial_ofertas), name="historial_ofertas"),
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
    path('oferta_productor', login_required(ofertaPruductor), name="oferta_productor"),
+   path('informacion_empresa', info_empresa, name="info_empresa"),
 
    path('usuario/ordenes', login_required(ordenes_externo), name="ordenesExterno"),
    path('usuario/ordenes_detalle', login_required(ordenes_externo_detalle), name="ordenExterno_detalle"),
