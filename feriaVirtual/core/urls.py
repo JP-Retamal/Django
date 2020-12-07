@@ -35,7 +35,7 @@ urlpatterns = [
    path('usuario/detalle_historial_compra',login_required(detalle_historial_compra), name= "detalle_historial_compra"),
    path('usuario/historial_ofertas', login_required(historial_ofertas), name="historial_ofertas"),
    path('usuario/detalle_hitorial_ofertas', login_required(datalle_historial_ofertas), name="detalle_historial_ofertas"),
-   path('oferta_productor', login_required(ofertaPruductor), name="oferta_productor"),
+   path('oferta_productor', login_required(ofertaProductor), name="oferta_productor"),
    path('informacion_empresa', info_empresa, name="info_empresa"),
 
    path('usuario/ordenes', login_required(ordenes_externo), name="ordenesExterno"),
@@ -55,6 +55,7 @@ urlpatterns = [
    path('administracion/publicaciones_ofertadas', login_required(revisar_publicaciones_pedidos), name="revisar_publicaciones_pedidos"),
    path('administracion/detalle_publicacion_ofertada', login_required(revisar_detalle_pedido), name="revisar_detalle_pedido"),
    path('usuario/ventas_cerradas', ventas_cerradas, name="ventas_cerradas"),
+   path('usuario/contacto', contactanos, name = "contactanos"),
 
 
 

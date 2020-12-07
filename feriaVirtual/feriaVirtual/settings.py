@@ -138,20 +138,36 @@ EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = 'f204d573e739f5'
 EMAIL_HOST_PASSWORD = '4f6f560c630412'
 EMAIL_PORT = '2525'
-EMAIL_USE_TLS = True
+MAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
+#MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'),)
 
 STATICFIES_DIRS =[
     os.path.join(BASE_DIR, 'static')
 ]
 
+from decouple import config
 
+#EMAIL_HOST = 'smtp.googlemail.com'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'bryanmelzx21@gmail.com' #correo gmail
+#EMAIL_HOST_PASSWORD = '65831821'#config('USER_MAIL_PASSWORD') contraseña de acceso
+#EMAIL_USE_TLS = True
+
+STATICFIES_DIRS =[
+    os.path.join(BASE_DIR, 'static')
+]
+#----------------------------
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #template formularios boostrap 4

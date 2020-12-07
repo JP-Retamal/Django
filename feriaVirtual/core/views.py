@@ -25,6 +25,9 @@ from django.views import View
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
 import os
+from django.conf import settings
+#---------CORREO (nuevo)
+from django.core.mail import EmailMultiAlternatives
 #------------------------------
 
 # Create your views here. la funcion def home busca el template (controlador).
@@ -352,7 +355,7 @@ def detallePedido(request):
 
 # USUARIO PRODUCTOR
 @permission_required('core.add_detalleoferta')
-def ofertaPruductor(request):
+def ofertaProductor(request):
     id_Publicacion = request.GET.get('Publicacion')
     variedad = request.GET.get('variedad')
     context = {
@@ -894,6 +897,42 @@ def ventas_cerradas(request):
     return render(request, 'ventas_terminadas.html', context)    
 
 
+def send_email(nombre, asunto, correo, fono, mensaje):
+    context = {'Nombre' : nombre,
+               'Asunto' : asunto,
+               'Email' : correo,
+               'fono' : fono,
+               'mensaje' : mensaje}
+    template = get_template('include/correo.html')
+    content = template.render(context)
+
+    email = EmailMultiAlternatives(
+        'Solicitud de contacto: '+' '.join([asunto]),# titulo correo 
+        'BestFruit',
+        settings.EMAIL_HOST_USER,
+        [nombre,asunto,correo,fono,mensaje],
+        
+    )
+    email.attach_alternative(content, 'text/html')
+    email.send()
+
+def contactanos(request):
+    if request.method == 'POST':
+        print(request.POST.get('nombre'))
+        print(request.POST.get('subject'))
+        print(request.POST.get('email'))
+        print(request.POST.get('fono'))
+        print(request.POST.get('mensaje'))
+
+        nombre = request.POST.get('nombre')
+        asunto = request.POST.get('subject')
+        mail = request.POST.get('email')
+        fono = request.POST.get('fono')
+        mensaje = request.POST.get('mensaje')
+        #mail = request.POST.get('mail')
+        #print(mail)
+        send_email(nombre, asunto, mail, fono, mensaje)
+    return render(request, 'contacto.html')
 
 
 
