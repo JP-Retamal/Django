@@ -932,6 +932,7 @@ def contactanos(request):
         #mail = request.POST.get('mail')
         #print(mail)
         send_email(nombre, asunto, mail, fono, mensaje)
+        messages.success(request, '.')
     return render(request, 'contacto.html')
 
 
