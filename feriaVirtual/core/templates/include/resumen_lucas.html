@@ -55,10 +55,10 @@ Highcharts.chart('container-4', {
         }
     },
     title: {
-        text: 'Montos Totales por Indicadores'
+        text: 'Resumen Stock Total'
     },
     subtitle: {
-        text: 'Venta Local, Stock Saldos y perdidas'
+        text: 'Venta Local y perdidas'
     },
     plotOptions: {
         pie: {
@@ -76,9 +76,7 @@ Highcharts.chart('container-4', {
             {% for p in perdidas_totales %}
             ['Perdidas', {{p.0}}],
             {% endfor %}
-            {% for st in TOTAL_STOCK %}
-            ['Saldos Stock Total', {{st.0}}]
-            {% endfor %}
+          
         ]
     }]
 });
